@@ -75,7 +75,7 @@ const About = () => {
               </div>
               
               <div className="pt-6">
-                <Button variant="luxury" size="lg" asChild>
+                <Button variant="default" size="lg" className="bg-accent hover:bg-accent/90 text-black" asChild>
                   <Link to="/contact">Schedule a Consultation</Link>
                 </Button>
               </div>

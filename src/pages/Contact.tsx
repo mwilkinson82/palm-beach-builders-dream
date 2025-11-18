@@ -77,7 +77,7 @@ const Contact = () => {
                   <Textarea id="message" rows={6} required />
                 </div>
 
-                <Button variant="luxury" size="xl" className="w-full">
+                <Button variant="default" size="xl" className="w-full bg-accent hover:bg-accent/90 text-black">
                   Send Message
                 </Button>
               </form>

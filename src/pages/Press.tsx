@@ -67,7 +67,7 @@ const Press = () => {
                 Stay tuned for updates on our media appearances and awards.
               </p>
               <div className="pt-8">
-                <Button variant="luxury" size="lg" asChild>
+                <Button variant="default" size="lg" className="bg-accent hover:bg-accent/90 text-black" asChild>
                   <Link to="/contact">Contact Press Team</Link>
                 </Button>
               </div>

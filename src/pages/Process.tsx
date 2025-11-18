@@ -131,7 +131,7 @@ const Process = () => {
             Let's discuss your vision and how we can bring your dream home to life in Palm Beach.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="gold" size="xl" asChild>
+            <Button variant="default" size="xl" className="bg-accent hover:bg-accent/90 text-black" asChild>
               <Link to="/contact">Schedule Consultation</Link>
             </Button>
             <Button variant="secondary" size="xl" asChild>
