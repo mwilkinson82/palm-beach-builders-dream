@@ -1,77 +1,31 @@
 import { Link } from "react-router-dom";
-import { Instagram, Facebook, Youtube, Linkedin } from "lucide-react";
+import { Instagram, Facebook, Youtube, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 
 export const Footer = () => {
   return (
-    <footer className="bg-primary text-primary-foreground">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-          {/* Brand */}
-          <div className="space-y-4">
+    <footer className="bg-primary text-primary-foreground border-t border-white/10">
+      <div className="container mx-auto px-4 lg:px-8 py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-16">
+          {/* Brand Column */}
+          <div className="lg:col-span-4 space-y-6">
             <div className="flex flex-col">
-              <span className="text-2xl font-serif font-bold">BEAU MONDE</span>
-              <span className="text-xs tracking-[0.3em] text-primary-foreground/80 uppercase">Builders</span>
+              <span className="text-3xl font-display font-bold tracking-tight text-white">
+                BEAU MONDE
+              </span>
+              <span className="text-xs tracking-[0.4em] uppercase text-white/60">
+                Builders
+              </span>
             </div>
-            <p className="text-sm text-primary-foreground/80 leading-relaxed">
-              Florida's premier custom luxury home builder, crafting bespoke residences with three decades of excellence.
+            <p className="text-white/60 font-light leading-relaxed max-w-sm">
+              Creating Palm Beach's most distinguished estates through architectural excellence
+              and uncompromising craftsmanship since 1994.
             </p>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="font-semibold text-sm uppercase tracking-wider mb-4">Quick Links</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link to="/about" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link to="/process" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  Our Process
-                </Link>
-              </li>
-              <li>
-                <Link to="/projects" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link to="/press" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  Press
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="font-semibold text-sm uppercase tracking-wider mb-4">Palm Beach Office</h3>
-            <address className="not-italic space-y-2 text-sm text-primary-foreground/80">
-              <p>205 Worth Avenue, Suite 120</p>
-              <p>Palm Beach, FL 33480</p>
-              <p className="pt-2">
-                <a href="tel:+15555551234" className="hover:text-primary-foreground transition-colors">
-                  (555) 555-1234
-                </a>
-              </p>
-              <p>
-                <a href="mailto:info@beaumondebuilders.com" className="hover:text-primary-foreground transition-colors">
-                  info@beaumondebuilders.com
-                </a>
-              </p>
-            </address>
-          </div>
-
-          {/* Social */}
-          <div>
-            <h3 className="font-semibold text-sm uppercase tracking-wider mb-4">Follow Us</h3>
             <div className="flex space-x-4">
               <a
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                className="text-white/40 hover:text-accent transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
@@ -80,7 +34,7 @@ export const Footer = () => {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                className="text-white/40 hover:text-accent transition-colors"
                 aria-label="Facebook"
               >
                 <Facebook className="h-5 w-5" />
@@ -89,7 +43,7 @@ export const Footer = () => {
                 href="https://youtube.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                className="text-white/40 hover:text-accent transition-colors"
                 aria-label="YouTube"
               >
                 <Youtube className="h-5 w-5" />
@@ -98,24 +52,83 @@ export const Footer = () => {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                className="text-white/40 hover:text-accent transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>
           </div>
+
+          {/* Quick Links */}
+          <div className="lg:col-span-2">
+            <h3 className="text-sm uppercase tracking-widest font-medium mb-6 text-white">Explore</h3>
+            <ul className="space-y-4">
+              {["About", "Process", "Portfolio", "Press", "Contact"].map((item) => (
+                <li key={item}>
+                  <Link
+                    to={`/${item.toLowerCase() === "portfolio" ? "projects" : item.toLowerCase()}`}
+                    className="text-white/60 hover:text-accent transition-colors font-light text-sm"
+                  >
+                    {item}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div className="lg:col-span-3">
+            <h3 className="text-sm uppercase tracking-widest font-medium mb-6 text-white">Services</h3>
+            <ul className="space-y-4">
+              <li className="text-white/60 font-light text-sm">Custom Home Design</li>
+              <li className="text-white/60 font-light text-sm">Architectural Planning</li>
+              <li className="text-white/60 font-light text-sm">Luxury Construction</li>
+              <li className="text-white/60 font-light text-sm">Project Management</li>
+              <li className="text-white/60 font-light text-sm">Interior Design</li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div className="lg:col-span-3">
+            <h3 className="text-sm uppercase tracking-widest font-medium mb-6 text-white">Contact</h3>
+            <div className="space-y-4">
+              <div className="flex items-start space-x-3">
+                <MapPin className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                <div className="text-white/60 font-light text-sm">
+                  205 Worth Avenue, Suite 120<br />
+                  Palm Beach, FL 33480
+                </div>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Phone className="h-5 w-5 text-accent flex-shrink-0" />
+                <a href="tel:+15555551234" className="text-white/60 hover:text-accent transition-colors font-light text-sm">
+                  (555) 555-1234
+                </a>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Mail className="h-5 w-5 text-accent flex-shrink-0" />
+                <a href="mailto:info@beaumondebuilders.com" className="text-white/60 hover:text-accent transition-colors font-light text-sm">
+                  info@beaumondebuilders.com
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-primary-foreground/20">
-          <div className="flex flex-col md:flex-row justify-between items-center text-sm text-primary-foreground/60">
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-white/10">
+          <div className="flex flex-col md:flex-row justify-between items-center text-sm text-white/40 font-light">
             <p>&copy; {new Date().getFullYear()} Beau Monde Builders. All rights reserved.</p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link to="/privacy" className="hover:text-primary-foreground transition-colors">
-                Privacy Policy
+            <div className="flex space-x-8 mt-4 md:mt-0">
+              <Link to="/privacy" className="hover:text-accent transition-colors">
+                Privacy
               </Link>
-              <Link to="/terms" className="hover:text-primary-foreground transition-colors">
-                Terms of Service
+              <Link to="/terms" className="hover:text-accent transition-colors">
+                Terms
+              </Link>
+              <Link to="/sitemap" className="hover:text-accent transition-colors">
+                Sitemap
               </Link>
             </div>
           </div>
