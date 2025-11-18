@@ -2,76 +2,178 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+
+const projects = [
+  {
+    id: 1,
+    title: "Palm Beach Oceanfront Estate",
+    location: "Palm Beach, FL",
+    category: "Oceanfront",
+    sqft: "12,500",
+    bedrooms: 6,
+    year: 2024,
+  },
+  {
+    id: 2,
+    title: "Worth Avenue Residence",
+    location: "Palm Beach, FL",
+    category: "Urban Luxury",
+    sqft: "8,200",
+    bedrooms: 5,
+    year: 2024,
+  },
+  {
+    id: 3,
+    title: "Intracoastal Contemporary",
+    location: "Palm Beach, FL",
+    category: "Waterfront",
+    sqft: "10,800",
+    bedrooms: 5,
+    year: 2023,
+  },
+  {
+    id: 4,
+    title: "Mediterranean Villa",
+    location: "Palm Beach, FL",
+    category: "Estate",
+    sqft: "15,000",
+    bedrooms: 7,
+    year: 2023,
+  },
+  {
+    id: 5,
+    title: "Modern Minimalist Haven",
+    location: "Palm Beach, FL",
+    category: "Contemporary",
+    sqft: "9,500",
+    bedrooms: 4,
+    year: 2024,
+  },
+  {
+    id: 6,
+    title: "Classic Palm Beach Estate",
+    location: "Palm Beach, FL",
+    category: "Traditional",
+    sqft: "11,200",
+    bedrooms: 6,
+    year: 2023,
+  },
+];
 
 const Projects = () => {
+  const [filter, setFilter] = useState("All");
+  const categories = ["All", "Oceanfront", "Waterfront", "Estate", "Contemporary", "Traditional"];
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-background to-muted">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center animate-fade-in">
-            <p className="text-sm uppercase tracking-wider text-muted-foreground font-semibold mb-4">
-              Our Portfolio
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-background z-0" />
+        <div className="container mx-auto px-4 relative z-10 pt-32 pb-20">
+          <div className="max-w-5xl mx-auto text-center animate-fade-in">
+            <p className="text-sm uppercase tracking-[0.3em] text-accent font-light mb-6">
+              Masterpieces in Luxury Living
             </p>
-            <h1 className="text-5xl md:text-6xl font-serif font-bold text-foreground mb-6">
-              Luxury Homes <span className="italic text-primary">Crafted with Excellence</span>
+            <h1 className="text-6xl md:text-8xl font-display font-light text-foreground mb-8 tracking-tight">
+              Our <span className="font-serif italic">Portfolio</span>
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              Explore our collection of bespoke custom homes throughout Palm Beach and Florida,
-              each one a testament to our commitment to architectural excellence and client satisfaction.
+            <p className="text-xl text-muted-foreground font-light leading-relaxed max-w-3xl mx-auto">
+              Each residence a testament to uncompromising excellence and bespoke craftsmanship 
+              in Palm Beach's most prestigious locations.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Coming Soon Section */}
-      <section className="py-24">
+      {/* Filter Navigation */}
+      <section className="py-12 border-y border-border/20">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center space-y-8">
-            <div className="w-24 h-24 bg-accent/20 rounded-full flex items-center justify-center mx-auto">
-              <svg
-                className="w-12 h-12 text-accent"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setFilter(category)}
+                className={`text-sm uppercase tracking-[0.2em] font-light transition-all duration-500 pb-1 ${
+                  filter === category
+                    ? "text-accent border-b border-accent"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                />
-              </svg>
-            </div>
-            
-            <h2 className="text-4xl font-serif font-bold text-foreground">
-              Portfolio Coming Soon
-            </h2>
-            
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              We're currently curating our portfolio of exceptional custom homes. Check back soon
-              to see our latest projects showcasing the finest in luxury homebuilding throughout
-              Palm Beach and Florida.
-            </p>
-            
-            <div className="pt-8">
-              <Button variant="default" size="lg" className="bg-accent hover:bg-accent/90 text-black" asChild>
-                <Link to="/contact">Discuss Your Project</Link>
-              </Button>
-            </div>
+                {category}
+              </button>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Temporary Placeholder Grid */}
-      <section className="py-16 bg-muted/30">
+      {/* Projects Grid */}
+      <section className="py-32">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="aspect-[4/3] bg-muted rounded-lg animate-pulse" />
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-7xl mx-auto">
+            {projects
+              .filter((project) => filter === "All" || project.category === filter)
+              .map((project, index) => (
+                <div
+                  key={project.id}
+                  className="group animate-fade-in"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="aspect-[4/5] bg-muted/30 mb-6 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/20 transition-all duration-700" />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-700">
+                      <Button
+                        variant="outline"
+                        size="lg"
+                        className="border-background text-background hover:bg-background hover:text-foreground"
+                        asChild
+                      >
+                        <Link to={`/projects/${project.id}`}>View Project</Link>
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <p className="text-xs uppercase tracking-[0.3em] text-accent font-light">
+                      {project.category}
+                    </p>
+                    <h3 className="text-3xl font-serif text-foreground group-hover:text-accent transition-colors duration-500">
+                      {project.title}
+                    </h3>
+                    <div className="flex items-center gap-6 text-sm text-muted-foreground font-light">
+                      <span>{project.sqft} SQ FT</span>
+                      <span>•</span>
+                      <span>{project.bedrooms} BEDROOMS</span>
+                      <span>•</span>
+                      <span>{project.year}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-32 bg-foreground text-background relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNiIgc3Ryb2tlPSIjZmZmIi8+PC9nPjwvc3ZnPg==')]" />
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <div className="max-w-4xl mx-auto space-y-12 animate-fade-in">
+            <h2 className="text-5xl md:text-7xl font-display font-light tracking-tight">
+              Envision Your Legacy
+            </h2>
+            <p className="text-xl text-background/70 font-light leading-relaxed">
+              Let us create your bespoke masterpiece in Palm Beach.
+            </p>
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-accent text-accent hover:bg-accent hover:text-background transition-all duration-500"
+              asChild
+            >
+              <Link to="/contact">Discuss Your Vision</Link>
+            </Button>
           </div>
         </div>
       </section>

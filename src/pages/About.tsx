@@ -6,77 +6,79 @@ import ajImage from "@/assets/aj-hoover.jpg";
 
 const About = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-background to-muted">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center animate-fade-in">
-            <h1 className="text-5xl md:text-6xl font-serif font-bold text-foreground mb-6">
-              About AJ & <span className="italic text-primary">Beau Monde Builders</span>
-            </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              Under the leadership and vision of AJ Hoover, Beau Monde Builders has risen to become
-              Florida's premier custom luxury home builder.
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-background z-0" />
+        <div className="container mx-auto px-4 relative z-10 pt-32 pb-20">
+          <div className="max-w-5xl mx-auto text-center animate-fade-in">
+            <p className="text-sm uppercase tracking-[0.3em] text-accent font-light mb-6">
+              The Visionary Behind Excellence
             </p>
+            <h1 className="text-6xl md:text-8xl font-display font-light text-foreground mb-8 tracking-tight">
+              AJ Hoover &<br />
+              <span className="font-serif italic">Beau Monde Builders</span>
+            </h1>
           </div>
         </div>
       </section>
 
       {/* AJ's Story */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            <div className="animate-slide-up">
-              <img
-                src={ajImage}
-                alt="AJ Hoover, CEO of Beau Monde Builders"
-                className="rounded-lg shadow-2xl w-full"
-              />
+      <section className="py-32 bg-background relative">
+        <div className="absolute inset-0 opacity-5 bg-[radial-gradient(circle_at_30%_50%,_var(--accent),transparent_50%)]" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center max-w-7xl mx-auto">
+            <div className="animate-slide-up order-2 lg:order-1">
+              <div className="relative">
+                <div className="absolute -inset-4 bg-accent/20 blur-2xl" />
+                <img
+                  src={ajImage}
+                  alt="AJ Hoover, CEO of Beau Monde Builders"
+                  className="rounded-none shadow-2xl w-full relative z-10"
+                />
+              </div>
             </div>
             
-            <div className="space-y-6 animate-fade-in">
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground">
-                AJ Hoover
-              </h2>
-              <p className="text-sm uppercase tracking-wider text-muted-foreground font-semibold">
-                CEO, Beau Monde Builders
-              </p>
+            <div className="space-y-8 animate-fade-in order-1 lg:order-2">
+              <div>
+                <h2 className="text-5xl md:text-6xl font-display font-light text-foreground mb-4 tracking-tight">
+                  AJ Hoover
+                </h2>
+                <p className="text-sm uppercase tracking-[0.3em] text-accent font-light">
+                  CEO & Founder
+                </p>
+              </div>
               
-              <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <div className="space-y-6 text-muted-foreground leading-relaxed text-lg font-light">
                 <p>
-                  Under the leadership and vision of AJ Hoover, Beau Monde Builders has risen to become
-                  Florida's premier custom luxury home builder, renowned for excellence, craftsmanship,
-                  and an unwavering commitment to client satisfaction. AJ Hoover's journey epitomizes
-                  the entrepreneurial spirit and the realization of the American Dream.
+                  Under AJ Hoover's visionary leadership, Beau Monde Builders has emerged as 
+                  Florida's preeminent custom luxury home builder, distinguished by uncompromising 
+                  excellence and meticulous craftsmanship.
                 </p>
                 
                 <p>
-                  Raised in rural Upstate New York in a single-parent household, AJ's work ethic was
-                  honed early on. He cut his teeth in the construction industry by working hands-on
-                  across nearly every trade, mastering each aspect with determination and precision.
-                  His practical experience became the bedrock of his expertise and fueled his drive
-                  to achieve more.
+                  From humble beginnings in rural Upstate New York, AJ's journey embodies the 
+                  quintessential American Dream. Raised in a single-parent household, he cultivated 
+                  an unparalleled work ethic, mastering every construction trade through hands-on experience.
                 </p>
                 
                 <p>
-                  With a clear vision, AJ committed himself to establishing a brand that would elevate
-                  the standards of custom luxury home building. Saving diligently, building credit, and
-                  fostering relationships with the finest subcontractors in Florida, he took the leap
-                  to earn his contractor's license, launching Beau Monde Builders.
+                  With unwavering vision, AJ committed himself to establishing a brand that would 
+                  redefine luxury homebuilding standards. Through strategic relationship building 
+                  with Florida's finest artisans and subcontractors, he launched Beau Monde Builders.
                 </p>
                 
                 <p>
-                  Today, AJ remains personally involved in every project from start to finish, ensuring
-                  that each home reflects the uncompromising quality and attention to detail that has
-                  become synonymous with the Beau Monde Builders name.
+                  Today, AJ remains intimately involved in every project, ensuring each residence 
+                  reflects the uncompromising quality synonymous with the Beau Monde Builders legacy.
                 </p>
               </div>
               
               <div className="pt-6">
-                <Button variant="default" size="lg" className="bg-accent hover:bg-accent/90 text-black" asChild>
-                  <Link to="/contact">Schedule a Consultation</Link>
+                <Button variant="outline" size="lg" className="border-accent text-accent hover:bg-accent hover:text-background transition-all duration-500" asChild>
+                  <Link to="/contact">Schedule Private Consultation</Link>
                 </Button>
               </div>
             </div>
@@ -84,93 +86,79 @@ const About = () => {
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="py-24 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">Our Core Values</h2>
-            <p className="text-xl text-primary-foreground/80">
-              The principles that guide every project we undertake
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="text-center space-y-4">
-              <h3 className="text-2xl font-serif font-bold">Excellence</h3>
-              <p className="text-primary-foreground/80 leading-relaxed">
-                We never compromise on quality, ensuring every detail meets the highest standards
-                of craftsmanship and design.
-              </p>
-            </div>
-
-            <div className="text-center space-y-4">
-              <h3 className="text-2xl font-serif font-bold">Integrity</h3>
-              <p className="text-primary-foreground/80 leading-relaxed">
-                Transparency and honesty guide our relationships with clients, subcontractors,
-                and partners throughout every phase.
-              </p>
-            </div>
-
-            <div className="text-center space-y-4">
-              <h3 className="text-2xl font-serif font-bold">Innovation</h3>
-              <p className="text-primary-foreground/80 leading-relaxed">
-                We embrace cutting-edge technology and design trends to create homes that are
-                both timeless and forward-thinking.
-              </p>
+      {/* Philosophy */}
+      <section className="py-32 bg-foreground text-background relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNiIgc3Ryb2tlPSIjZmZmIi8+PC9nPjwvc3ZnPg==')]" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto text-center space-y-12 animate-fade-in">
+            <h2 className="text-5xl md:text-7xl font-display font-light tracking-tight mb-8">
+              Our Philosophy
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+              <div className="space-y-4">
+                <div className="text-accent text-xl font-light tracking-[0.3em]">01</div>
+                <h3 className="text-2xl font-serif italic">Excellence</h3>
+                <p className="text-background/70 font-light leading-relaxed">
+                  Unwavering commitment to perfection in every detail, ensuring each project 
+                  exceeds the highest standards of luxury craftsmanship.
+                </p>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="text-accent text-xl font-light tracking-[0.3em]">02</div>
+                <h3 className="text-2xl font-serif italic">Integrity</h3>
+                <p className="text-background/70 font-light leading-relaxed">
+                  Transparent relationships built on trust, honesty, and mutual respect 
+                  throughout every phase of your building journey.
+                </p>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="text-accent text-xl font-light tracking-[0.3em]">03</div>
+                <h3 className="text-2xl font-serif italic">Innovation</h3>
+                <p className="text-background/70 font-light leading-relaxed">
+                  Embracing cutting-edge technology and timeless design to create 
+                  homes that are both contemporary and enduring.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Team Section */}
-      <section className="py-24 bg-gradient-to-br from-background to-muted">
+      <section className="py-32 bg-background">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-16">
-            <p className="text-sm uppercase tracking-wider text-muted-foreground font-semibold mb-4">
-              Our Team
+          <div className="max-w-5xl mx-auto text-center mb-20 animate-fade-in">
+            <p className="text-sm uppercase tracking-[0.3em] text-accent font-light mb-6">
+              Expertise & Mastery
             </p>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
-              The Experts of <span className="italic text-primary">Beau Monde Builders</span>
+            <h2 className="text-5xl md:text-7xl font-display font-light text-foreground tracking-tight">
+              The Beau Monde <span className="font-serif italic">Team</span>
             </h2>
-            <p className="text-xl text-muted-foreground">
-              Building custom homes in Palm Beach requires someone with the necessary expertise.
-              We have the best people in the game on our side.
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="text-center space-y-4">
-              <div className="aspect-square bg-muted rounded-lg mb-4" />
-              <h3 className="text-2xl font-serif font-bold text-foreground">Melissa Rahal</h3>
-              <p className="text-sm uppercase tracking-wider text-muted-foreground font-semibold">
-                Project Manager
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                Over 20 years of experience in construction, ensuring every project detail is executed flawlessly.
-              </p>
-            </div>
-
-            <div className="text-center space-y-4">
-              <div className="aspect-square bg-muted rounded-lg mb-4" />
-              <h3 className="text-2xl font-serif font-bold text-foreground">Michelle Williams</h3>
-              <p className="text-sm uppercase tracking-wider text-muted-foreground font-semibold">
-                Office Manager/Financials
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                Over 20 years in accounting, specializing in residential construction financial management.
-              </p>
-            </div>
-
-            <div className="text-center space-y-4">
-              <div className="aspect-square bg-muted rounded-lg mb-4" />
-              <h3 className="text-2xl font-serif font-bold text-foreground">Linda Lucas</h3>
-              <p className="text-sm uppercase tracking-wider text-muted-foreground font-semibold">
-                Project Manager
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                25+ years transforming blueprints into reality with unparalleled skill and commitment.
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+            {[
+              { name: "Melissa Rahal", role: "Project Manager", experience: "20+ years ensuring flawless execution" },
+              { name: "Michelle Williams", role: "Financial Director", experience: "20+ years in luxury construction finance" },
+              { name: "Linda Lucas", role: "Project Manager", experience: "25+ years transforming visions into reality" }
+            ].map((member, index) => (
+              <div key={index} className="text-center space-y-6 animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
+                <div className="aspect-[3/4] bg-muted/30 relative group overflow-hidden">
+                  <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-serif text-foreground mb-2">{member.name}</h3>
+                  <p className="text-xs uppercase tracking-[0.3em] text-accent font-light mb-4">
+                    {member.role}
+                  </p>
+                  <p className="text-muted-foreground font-light leading-relaxed">
+                    {member.experience}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

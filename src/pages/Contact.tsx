@@ -7,145 +7,175 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 const Contact = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-background to-muted">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center animate-fade-in">
-            <h1 className="text-5xl md:text-6xl font-serif font-bold text-foreground mb-6">
-              Let's Build Your <span className="italic text-primary">Dream Home</span>
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-background z-0" />
+        <div className="container mx-auto px-4 relative z-10 pt-32 pb-20">
+          <div className="max-w-5xl mx-auto text-center animate-fade-in">
+            <p className="text-sm uppercase tracking-[0.3em] text-accent font-light mb-6">
+              Begin Your Journey
+            </p>
+            <h1 className="text-6xl md:text-8xl font-display font-light text-foreground mb-8 tracking-tight">
+              Let's Create <span className="font-serif italic">Something Extraordinary</span>
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              Contact us today to schedule a consultation and begin your journey to luxury homeownership
-              in Palm Beach.
+            <p className="text-xl text-muted-foreground font-light leading-relaxed max-w-3xl mx-auto">
+              Schedule a private consultation to discuss your vision for luxury living in Palm Beach.
             </p>
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section className="py-24">
+      <section className="py-32">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 max-w-7xl mx-auto">
             {/* Contact Form */}
-            <div className="space-y-8">
-              <div>
-                <h2 className="text-3xl font-serif font-bold text-foreground mb-4">
-                  Send Us a Message
+            <div className="space-y-12 animate-fade-in">
+              <div className="space-y-6">
+                <h2 className="text-4xl md:text-5xl font-serif italic text-foreground">
+                  Send a Message
                 </h2>
-                <p className="text-muted-foreground">
-                  Fill out the form below and our team will get back to you within 24 hours.
+                <p className="text-muted-foreground font-light leading-relaxed">
+                  Share your vision with us. Our team will respond within 24 hours to schedule 
+                  your private consultation.
                 </p>
               </div>
 
-              <form className="space-y-6">
+              <form className="space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label htmlFor="firstName" className="text-sm font-medium text-foreground">
-                      First Name *
+                  <div className="space-y-3">
+                    <label htmlFor="firstName" className="text-sm uppercase tracking-[0.2em] font-light text-foreground">
+                      First Name
                     </label>
-                    <Input id="firstName" required />
+                    <Input 
+                      id="firstName" 
+                      required 
+                      className="bg-transparent border-border/30 focus:border-accent transition-colors duration-500"
+                    />
                   </div>
-                  <div className="space-y-2">
-                    <label htmlFor="lastName" className="text-sm font-medium text-foreground">
-                      Last Name *
+                  <div className="space-y-3">
+                    <label htmlFor="lastName" className="text-sm uppercase tracking-[0.2em] font-light text-foreground">
+                      Last Name
                     </label>
-                    <Input id="lastName" required />
+                    <Input 
+                      id="lastName" 
+                      required 
+                      className="bg-transparent border-border/30 focus:border-accent transition-colors duration-500"
+                    />
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium text-foreground">
-                    Email *
+                <div className="space-y-3">
+                  <label htmlFor="email" className="text-sm uppercase tracking-[0.2em] font-light text-foreground">
+                    Email
                   </label>
-                  <Input id="email" type="email" required />
+                  <Input 
+                    id="email" 
+                    type="email" 
+                    required 
+                    className="bg-transparent border-border/30 focus:border-accent transition-colors duration-500"
+                  />
                 </div>
 
-                <div className="space-y-2">
-                  <label htmlFor="phone" className="text-sm font-medium text-foreground">
+                <div className="space-y-3">
+                  <label htmlFor="phone" className="text-sm uppercase tracking-[0.2em] font-light text-foreground">
                     Phone
                   </label>
-                  <Input id="phone" type="tel" />
+                  <Input 
+                    id="phone" 
+                    type="tel" 
+                    className="bg-transparent border-border/30 focus:border-accent transition-colors duration-500"
+                  />
                 </div>
 
-                <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium text-foreground">
-                    Tell us about your project *
+                <div className="space-y-3">
+                  <label htmlFor="message" className="text-sm uppercase tracking-[0.2em] font-light text-foreground">
+                    Tell Us About Your Vision
                   </label>
-                  <Textarea id="message" rows={6} required />
+                  <Textarea 
+                    id="message" 
+                    rows={6} 
+                    required 
+                    className="bg-transparent border-border/30 focus:border-accent transition-colors duration-500"
+                  />
                 </div>
 
-                <Button variant="default" size="xl" className="w-full bg-accent hover:bg-accent/90 text-black">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="w-full border-accent text-accent hover:bg-accent hover:text-background transition-all duration-500"
+                >
                   Send Message
                 </Button>
               </form>
             </div>
 
             {/* Contact Information */}
-            <div className="space-y-8">
-              <div>
-                <h2 className="text-3xl font-serif font-bold text-foreground mb-4">
-                  Get In Touch
+            <div className="space-y-12 animate-fade-in" style={{ animationDelay: "200ms" }}>
+              <div className="space-y-6">
+                <h2 className="text-4xl md:text-5xl font-serif italic text-foreground">
+                  Visit Our Offices
                 </h2>
-                <p className="text-muted-foreground">
-                  Visit our Palm Beach office or reach out through any of the channels below.
+                <p className="text-muted-foreground font-light leading-relaxed">
+                  Experience the Beau Monde Builders difference at our Palm Beach location.
                 </p>
               </div>
 
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="flex items-center justify-center w-12 h-12 bg-accent/20 rounded-full flex-shrink-0">
+              <div className="space-y-10">
+                <div className="flex items-start space-x-6 group">
+                  <div className="flex items-center justify-center w-14 h-14 bg-accent/10 group-hover:bg-accent/20 transition-colors duration-500 flex-shrink-0">
                     <MapPin className="h-6 w-6 text-accent" />
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">Office Location</h3>
-                    <p className="text-muted-foreground">
+                  <div className="space-y-2">
+                    <h3 className="text-sm uppercase tracking-[0.2em] font-light text-foreground">Location</h3>
+                    <p className="text-muted-foreground font-light leading-relaxed">
                       205 Worth Avenue, Suite 120<br />
                       Palm Beach, FL 33480
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="flex items-center justify-center w-12 h-12 bg-accent/20 rounded-full flex-shrink-0">
+                <div className="flex items-start space-x-6 group">
+                  <div className="flex items-center justify-center w-14 h-14 bg-accent/10 group-hover:bg-accent/20 transition-colors duration-500 flex-shrink-0">
                     <Phone className="h-6 w-6 text-accent" />
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">Phone</h3>
+                  <div className="space-y-2">
+                    <h3 className="text-sm uppercase tracking-[0.2em] font-light text-foreground">Phone</h3>
                     <a
                       href="tel:+15555551234"
-                      className="text-muted-foreground hover:text-primary transition-colors"
+                      className="text-muted-foreground hover:text-accent transition-colors duration-500 font-light"
                     >
                       (555) 555-1234
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="flex items-center justify-center w-12 h-12 bg-accent/20 rounded-full flex-shrink-0">
+                <div className="flex items-start space-x-6 group">
+                  <div className="flex items-center justify-center w-14 h-14 bg-accent/10 group-hover:bg-accent/20 transition-colors duration-500 flex-shrink-0">
                     <Mail className="h-6 w-6 text-accent" />
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">Email</h3>
+                  <div className="space-y-2">
+                    <h3 className="text-sm uppercase tracking-[0.2em] font-light text-foreground">Email</h3>
                     <a
                       href="mailto:info@beaumondebuilders.com"
-                      className="text-muted-foreground hover:text-primary transition-colors"
+                      className="text-muted-foreground hover:text-accent transition-colors duration-500 font-light"
                     >
                       info@beaumondebuilders.com
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="flex items-center justify-center w-12 h-12 bg-accent/20 rounded-full flex-shrink-0">
+                <div className="flex items-start space-x-6 group">
+                  <div className="flex items-center justify-center w-14 h-14 bg-accent/10 group-hover:bg-accent/20 transition-colors duration-500 flex-shrink-0">
                     <Clock className="h-6 w-6 text-accent" />
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">Business Hours</h3>
-                    <p className="text-muted-foreground">
-                      Monday - Friday: 9:00 AM - 5:00 PM<br />
+                  <div className="space-y-2">
+                    <h3 className="text-sm uppercase tracking-[0.2em] font-light text-foreground">Hours</h3>
+                    <p className="text-muted-foreground font-light leading-relaxed">
+                      Monday – Friday: 9:00 AM – 5:00 PM<br />
                       Saturday: By Appointment<br />
                       Sunday: Closed
                     </p>
@@ -154,7 +184,7 @@ const Contact = () => {
               </div>
 
               {/* Map Placeholder */}
-              <div className="aspect-video bg-muted rounded-lg" />
+              <div className="aspect-video bg-muted/30 hover:bg-muted/40 transition-colors duration-500" />
             </div>
           </div>
         </div>

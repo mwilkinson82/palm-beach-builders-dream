@@ -5,134 +5,142 @@ import { Instagram, Facebook, Youtube, Linkedin } from "lucide-react";
 
 const Social = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-background to-muted">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center animate-fade-in">
-            <p className="text-sm uppercase tracking-wider text-muted-foreground font-semibold mb-4">
-              Connect With Us
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-background z-0" />
+        <div className="container mx-auto px-4 relative z-10 pt-32 pb-20">
+          <div className="max-w-5xl mx-auto text-center animate-fade-in">
+            <p className="text-sm uppercase tracking-[0.3em] text-accent font-light mb-6">
+              Connect & Follow
             </p>
-            <h1 className="text-5xl md:text-6xl font-serif font-bold text-foreground mb-6">
-              Follow Our <span className="italic text-primary">Journey</span>
+            <h1 className="text-6xl md:text-8xl font-display font-light text-foreground mb-8 tracking-tight">
+              Our <span className="font-serif italic">Social Presence</span>
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              Stay connected with Beau Monde Builders through our social media channels. Get the latest
-              updates on our projects, design inspiration, and behind-the-scenes insights into luxury
-              homebuilding in Palm Beach.
+            <p className="text-xl text-muted-foreground font-light leading-relaxed max-w-3xl mx-auto">
+              Experience the artistry of luxury homebuilding through our curated social channels. 
+              Design inspiration, project updates, and behind-the-scenes insights.
             </p>
           </div>
         </div>
       </section>
 
       {/* Social Media Grid */}
-      <section className="py-24">
+      <section className="py-32">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
             {/* Instagram */}
-            <div className="bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl p-8 text-white space-y-6 hover:scale-105 transition-transform duration-300">
-              <Instagram className="h-12 w-12" />
-              <div>
-                <h3 className="text-3xl font-serif font-bold mb-2">Instagram</h3>
-                <p className="text-white/90 mb-6">
+            <div className="group relative overflow-hidden bg-foreground text-background p-12 aspect-square flex flex-col justify-between animate-fade-in hover:scale-[1.02] transition-transform duration-700">
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-500/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="relative z-10">
+                <Instagram className="h-12 w-12 mb-8 text-accent" />
+                <h3 className="text-4xl font-serif italic mb-4">Instagram</h3>
+                <p className="text-background/70 font-light leading-relaxed mb-8">
                   Explore our latest projects, design inspiration, and luxury home showcases.
                 </p>
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  className="w-full"
-                  asChild
-                >
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                    Follow Us
-                  </a>
-                </Button>
               </div>
+              <Button
+                variant="outline"
+                size="lg"
+                className="relative z-10 border-accent text-accent hover:bg-accent hover:text-background transition-all duration-500 w-full"
+                asChild
+              >
+                <a href="https://instagram.com/beaumondebuilders" target="_blank" rel="noopener noreferrer">
+                  Follow Us
+                </a>
+              </Button>
             </div>
 
             {/* Facebook */}
-            <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl p-8 text-white space-y-6 hover:scale-105 transition-transform duration-300">
-              <Facebook className="h-12 w-12" />
-              <div>
-                <h3 className="text-3xl font-serif font-bold mb-2">Facebook</h3>
-                <p className="text-white/90 mb-6">
+            <div className="group relative overflow-hidden bg-foreground text-background p-12 aspect-square flex flex-col justify-between animate-fade-in hover:scale-[1.02] transition-transform duration-700" style={{ animationDelay: "100ms" }}>
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-blue-800/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="relative z-10">
+                <Facebook className="h-12 w-12 mb-8 text-accent" />
+                <h3 className="text-4xl font-serif italic mb-4">Facebook</h3>
+                <p className="text-background/70 font-light leading-relaxed mb-8">
                   Join our community and stay updated on news, events, and client testimonials.
                 </p>
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  className="w-full"
-                  asChild
-                >
-                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                    Like Our Page
-                  </a>
-                </Button>
               </div>
+              <Button
+                variant="outline"
+                size="lg"
+                className="relative z-10 border-accent text-accent hover:bg-accent hover:text-background transition-all duration-500 w-full"
+                asChild
+              >
+                <a href="https://facebook.com/beaumondebuilders" target="_blank" rel="noopener noreferrer">
+                  Like Our Page
+                </a>
+              </Button>
             </div>
 
             {/* YouTube */}
-            <div className="bg-gradient-to-br from-red-600 to-red-800 rounded-2xl p-8 text-white space-y-6 hover:scale-105 transition-transform duration-300">
-              <Youtube className="h-12 w-12" />
-              <div>
-                <h3 className="text-3xl font-serif font-bold mb-2">YouTube</h3>
-                <p className="text-white/90 mb-6">
-                  Watch virtual tours, construction updates, and educational content about homebuilding.
+            <div className="group relative overflow-hidden bg-foreground text-background p-12 aspect-square flex flex-col justify-between animate-fade-in hover:scale-[1.02] transition-transform duration-700" style={{ animationDelay: "200ms" }}>
+              <div className="absolute inset-0 bg-gradient-to-br from-red-600/20 to-red-800/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="relative z-10">
+                <Youtube className="h-12 w-12 mb-8 text-accent" />
+                <h3 className="text-4xl font-serif italic mb-4">YouTube</h3>
+                <p className="text-background/70 font-light leading-relaxed mb-8">
+                  Watch virtual tours, construction updates, and educational content.
                 </p>
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  className="w-full"
-                  asChild
-                >
-                  <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
-                    Subscribe
-                  </a>
-                </Button>
               </div>
+              <Button
+                variant="outline"
+                size="lg"
+                className="relative z-10 border-accent text-accent hover:bg-accent hover:text-background transition-all duration-500 w-full"
+                asChild
+              >
+                <a href="https://youtube.com/@beaumondebuilders" target="_blank" rel="noopener noreferrer">
+                  Subscribe
+                </a>
+              </Button>
             </div>
 
             {/* LinkedIn */}
-            <div className="bg-gradient-to-br from-blue-700 to-blue-900 rounded-2xl p-8 text-white space-y-6 hover:scale-105 transition-transform duration-300">
-              <Linkedin className="h-12 w-12" />
-              <div>
-                <h3 className="text-3xl font-serif font-bold mb-2">LinkedIn</h3>
-                <p className="text-white/90 mb-6">
-                  Connect professionally and learn about career opportunities with our team.
+            <div className="group relative overflow-hidden bg-foreground text-background p-12 aspect-square flex flex-col justify-between animate-fade-in hover:scale-[1.02] transition-transform duration-700" style={{ animationDelay: "300ms" }}>
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-700/20 to-blue-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="relative z-10">
+                <Linkedin className="h-12 w-12 mb-8 text-accent" />
+                <h3 className="text-4xl font-serif italic mb-4">LinkedIn</h3>
+                <p className="text-background/70 font-light leading-relaxed mb-8">
+                  Connect professionally and learn about career opportunities.
                 </p>
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  className="w-full"
-                  asChild
-                >
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-                    Connect
-                  </a>
-                </Button>
               </div>
+              <Button
+                variant="outline"
+                size="lg"
+                className="relative z-10 border-accent text-accent hover:bg-accent hover:text-background transition-all duration-500 w-full"
+                asChild
+              >
+                <a href="https://linkedin.com/company/beaumondebuilders" target="_blank" rel="noopener noreferrer">
+                  Connect
+                </a>
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
       {/* Instagram Feed Placeholder */}
-      <section className="py-16 bg-muted/30">
+      <section className="py-32 bg-muted/10">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-serif font-bold text-foreground mb-4">
-              Latest From Instagram
+          <div className="text-center mb-20 animate-fade-in">
+            <h2 className="text-5xl md:text-6xl font-display font-light text-foreground mb-6 tracking-tight">
+              Latest From <span className="font-serif italic">Instagram</span>
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-accent font-light tracking-[0.3em] text-sm">
               @beaumondebuilders
             </p>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
             {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-              <div key={i} className="aspect-square bg-muted rounded-lg animate-pulse" />
+              <div 
+                key={i} 
+                className="aspect-square bg-muted/30 hover:bg-muted/50 transition-all duration-500 animate-fade-in"
+                style={{ animationDelay: `${i * 50}ms` }}
+              />
             ))}
           </div>
         </div>
