@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { RevealAnimation } from "@/components/RevealAnimation";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 const Contact = () => {
@@ -29,7 +30,8 @@ const Contact = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="py-32">
+      <RevealAnimation animation="luxury-reveal">
+        <section className="py-32">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 max-w-7xl mx-auto">
             {/* Contact Form */}
@@ -189,6 +191,7 @@ const Contact = () => {
           </div>
         </div>
       </section>
+      </RevealAnimation>
 
       <Footer />
     </div>

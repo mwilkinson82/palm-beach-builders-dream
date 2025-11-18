@@ -2,6 +2,7 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { RevealAnimation } from "@/components/RevealAnimation";
 import ajImage from "@/assets/aj-hoover.jpg";
 
 const About = () => {
@@ -26,7 +27,8 @@ const About = () => {
       </section>
 
       {/* AJ's Story */}
-      <section className="py-32 bg-background relative">
+      <RevealAnimation animation="luxury-reveal">
+        <section className="py-32 bg-background relative">
         <div className="absolute inset-0 opacity-5 bg-[radial-gradient(circle_at_30%_50%,_var(--accent),transparent_50%)]" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center max-w-7xl mx-auto">
@@ -85,9 +87,11 @@ const About = () => {
           </div>
         </div>
       </section>
+      </RevealAnimation>
 
       {/* Philosophy */}
-      <section className="py-32 bg-foreground text-background relative overflow-hidden">
+      <RevealAnimation animation="fade-up" delay={100}>
+        <section className="py-32 bg-foreground text-background relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNiIgc3Ryb2tlPSIjZmZmIi8+PC9nPjwvc3ZnPg==')]" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-12 animate-fade-in">
@@ -125,9 +129,11 @@ const About = () => {
           </div>
         </div>
       </section>
+      </RevealAnimation>
 
       {/* Team Section */}
-      <section className="py-32 bg-background">
+      <RevealAnimation animation="luxury-reveal" delay={200}>
+        <section className="py-32 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto text-center mb-20 animate-fade-in">
             <p className="text-sm uppercase tracking-[0.3em] text-accent font-light mb-6">
@@ -162,6 +168,7 @@ const About = () => {
           </div>
         </div>
       </section>
+      </RevealAnimation>
 
       <Footer />
     </div>
