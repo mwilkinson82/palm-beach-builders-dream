@@ -3,6 +3,12 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import oceanfrontEstate from "@/assets/projects/oceanfront-estate.jpg";
+import worthAvenueResidence from "@/assets/projects/worth-avenue-residence.jpg";
+import intracoastalContemporary from "@/assets/projects/intracoastal-contemporary.jpg";
+import mediterraneanVilla from "@/assets/projects/mediterranean-villa.jpg";
+import modernMinimalist from "@/assets/projects/modern-minimalist.jpg";
+import classicEstate from "@/assets/projects/classic-estate.jpg";
 
 const projects = [
   {
@@ -13,6 +19,7 @@ const projects = [
     sqft: "12,500",
     bedrooms: 6,
     year: 2024,
+    image: oceanfrontEstate,
   },
   {
     id: 2,
@@ -22,6 +29,7 @@ const projects = [
     sqft: "8,200",
     bedrooms: 5,
     year: 2024,
+    image: worthAvenueResidence,
   },
   {
     id: 3,
@@ -31,6 +39,7 @@ const projects = [
     sqft: "10,800",
     bedrooms: 5,
     year: 2023,
+    image: intracoastalContemporary,
   },
   {
     id: 4,
@@ -40,6 +49,7 @@ const projects = [
     sqft: "15,000",
     bedrooms: 7,
     year: 2023,
+    image: mediterraneanVilla,
   },
   {
     id: 5,
@@ -49,6 +59,7 @@ const projects = [
     sqft: "9,500",
     bedrooms: 4,
     year: 2024,
+    image: modernMinimalist,
   },
   {
     id: 6,
@@ -58,6 +69,7 @@ const projects = [
     sqft: "11,200",
     bedrooms: 6,
     year: 2023,
+    image: classicEstate,
   },
 ];
 
@@ -121,13 +133,18 @@ const Projects = () => {
                   className="group animate-fade-in"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="aspect-[4/5] bg-muted/30 mb-6 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/20 transition-all duration-700" />
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-700">
+                  <div className="aspect-[4/5] mb-6 relative overflow-hidden">
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-all duration-700" />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-700 z-10">
                       <Button
                         variant="outline"
                         size="lg"
-                        className="border-background text-background hover:bg-background hover:text-foreground"
+                        className="border-white text-white hover:bg-white hover:text-black transition-all duration-500"
                         asChild
                       >
                         <Link to={`/projects/${project.id}`}>View Project</Link>
