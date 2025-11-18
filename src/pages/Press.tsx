@@ -2,6 +2,7 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { RevealAnimation } from "@/components/RevealAnimation";
 
 const Press = () => {
   return (
@@ -28,7 +29,8 @@ const Press = () => {
       </section>
 
       {/* Featured Recognition */}
-      <section className="py-32">
+      <RevealAnimation animation="luxury-reveal">
+        <section className="py-32">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-32">
@@ -71,9 +73,11 @@ const Press = () => {
           </div>
         </div>
       </section>
+      </RevealAnimation>
 
       {/* Media Contact */}
-      <section className="py-32 bg-foreground text-background relative overflow-hidden">
+      <RevealAnimation animation="fade-up" delay={100}>
+        <section className="py-32 bg-foreground text-background relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNiIgc3Ryb2tlPSIjZmZmIi8+PC9nPjwvc3ZnPg==')]" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-12 animate-fade-in">
@@ -94,6 +98,7 @@ const Press = () => {
           </div>
         </div>
       </section>
+      </RevealAnimation>
 
       <Footer />
     </div>

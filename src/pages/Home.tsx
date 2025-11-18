@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { RevealAnimation } from "@/components/RevealAnimation";
 import { ArrowRight, Award, Building2, Sparkles } from "lucide-react";
 import heroImage from "@/assets/hero-home.jpg";
 
@@ -79,7 +80,8 @@ const Home = () => {
       </section>
 
       {/* Stats Bar */}
-      <section className="bg-primary text-primary-foreground py-16">
+      <RevealAnimation animation="fade-in">
+        <section className="bg-primary text-primary-foreground py-16">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center border-r border-white/10 last:border-r-0">
@@ -101,9 +103,11 @@ const Home = () => {
           </div>
         </div>
       </section>
+      </RevealAnimation>
 
       {/* Philosophy Section */}
-      <section className="py-32 bg-white">
+      <RevealAnimation animation="luxury-reveal" delay={100}>
+        <section className="py-32 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-5xl mx-auto">
             <div className="flex items-center space-x-3 mb-8">
@@ -129,9 +133,11 @@ const Home = () => {
           </div>
         </div>
       </section>
+      </RevealAnimation>
 
       {/* Services Grid */}
-      <section className="py-32 bg-muted">
+      <RevealAnimation animation="scale-in" delay={200}>
+        <section className="py-32 bg-muted">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-border">
             {/* Service 1 */}
@@ -172,9 +178,11 @@ const Home = () => {
           </div>
         </div>
       </section>
+      </RevealAnimation>
 
       {/* CTA Section */}
-      <section className="relative py-40 overflow-hidden">
+      <RevealAnimation animation="fade-up" delay={300}>
+        <section className="relative py-40 overflow-hidden">
         <div className="absolute inset-0 bg-primary" />
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMwLTkuOTQtOC4wNi0xOC0xOC0xOCIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDMpIiBzdHJva2Utd2lkdGg9IjEiLz48L2c+PC9zdmc+')] opacity-20" />
 
@@ -204,6 +212,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+      </RevealAnimation>
 
       <Footer />
     </div>

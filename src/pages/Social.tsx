@@ -1,6 +1,7 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { RevealAnimation } from "@/components/RevealAnimation";
 import { Instagram, Facebook, Youtube, Linkedin } from "lucide-react";
 
 const Social = () => {
@@ -28,7 +29,8 @@ const Social = () => {
       </section>
 
       {/* Social Media Grid */}
-      <section className="py-32">
+      <RevealAnimation animation="luxury-reveal">
+        <section className="py-32">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
             {/* Instagram */}
@@ -145,6 +147,7 @@ const Social = () => {
           </div>
         </div>
       </section>
+      </RevealAnimation>
 
       <Footer />
     </div>
