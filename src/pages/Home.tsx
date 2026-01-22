@@ -187,6 +187,32 @@ const Home = () => {
             style={{ transform: `translate(${scrollY * 0.01}px, ${scrollY * 0.01}px)` }}
           />
           
+          {/* Floating decorative quote with parallax */}
+          <div 
+            className="absolute top-1/2 right-8 lg:right-16 xl:right-24 -translate-y-1/2 hidden md:block pointer-events-none select-none"
+            style={{ transform: `translateY(${-50 + scrollY * -0.04}%)` }}
+          >
+            <div className="relative">
+              {/* Large decorative quote mark */}
+              <span 
+                className="text-[12rem] lg:text-[16rem] font-serif text-accent/10 leading-none absolute -top-16 -left-8"
+                style={{ transform: `translateY(${scrollY * 0.03}px)` }}
+              >
+                "
+              </span>
+              {/* Quote text */}
+              <div 
+                className="relative z-10 max-w-[200px] lg:max-w-[240px]"
+                style={{ transform: `translateY(${scrollY * 0.02}px)` }}
+              >
+                <p className="text-lg lg:text-xl font-serif italic text-primary/40 leading-relaxed">
+                  Turning blueprints to fingerprints
+                </p>
+                <div className="mt-4 h-px w-12 bg-accent/30" />
+              </div>
+            </div>
+          </div>
+          
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <div className="max-w-5xl mx-auto">
               <div className="flex items-center space-x-3 mb-8">
