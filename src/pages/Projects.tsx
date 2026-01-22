@@ -157,12 +157,6 @@ const Projects = () => {
           }}>
                   <div className="aspect-[4/5] mb-6 relative overflow-hidden">
                     <ProjectImage src={project.image} alt={project.title} priority={index < 2} />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-all duration-700" />
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-700 z-10">
-                      <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-black transition-all duration-500" asChild>
-                        <Link to={`/projects/${project.id}`}>View Project</Link>
-                      </Button>
-                    </div>
                   </div>
                   <div className="space-y-3">
                     <p className="text-xs uppercase tracking-[0.3em] text-accent font-light">
