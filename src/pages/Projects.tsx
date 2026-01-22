@@ -75,7 +75,7 @@ const Projects = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-background z-0" />
         <div className="container mx-auto px-4 relative z-10 pt-32 pb-20">
           <div className="max-w-5xl mx-auto text-center animate-fade-in">
-            <p className="text-sm uppercase tracking-[0.3em] text-accent font-light mb-6">DESIGN & BUILD PORTFOLIO</p>
+            <p className="text-sm uppercase tracking-[0.3em] text-accent font-light mb-6">DESIGN & BUILD STYLE</p>
             <h1 className="text-6xl md:text-8xl font-display font-light text-foreground mb-8 tracking-tight">
               Find Your <span className="font-serif italic">Style</span>
             </h1>
