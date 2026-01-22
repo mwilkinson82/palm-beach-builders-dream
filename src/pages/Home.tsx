@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
@@ -8,6 +9,25 @@ import heroImage from "@/assets/hero-home.jpg";
 import fcmbLogo from "@/assets/fcmb-logo.png";
 
 const Home = () => {
+  const [scrollY, setScrollY] = useState(0);
+  const philosophyRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (philosophyRef.current) {
+        const rect = philosophyRef.current.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        // Only update when section is in view
+        if (rect.top < windowHeight && rect.bottom > 0) {
+          setScrollY(window.scrollY);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -125,28 +145,47 @@ const Home = () => {
 
       {/* Philosophy Section */}
       <RevealAnimation animation="luxury-reveal" delay={100}>
-        <section className="relative py-32 overflow-hidden">
-          {/* Layered textured background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-secondary via-white to-secondary/80" />
+        <section ref={philosophyRef} className="relative py-32 overflow-hidden">
+          {/* Layered textured background with parallax */}
+          <div 
+            className="absolute inset-0 bg-gradient-to-br from-secondary via-white to-secondary/80"
+            style={{ transform: `translateY(${scrollY * 0.05}px)` }}
+          />
           
-          {/* Subtle diagonal lines texture */}
-          <div className="absolute inset-0 opacity-[0.03]" style={{
-            backgroundImage: `repeating-linear-gradient(
-              45deg,
-              hsl(0, 0%, 5%),
-              hsl(0, 0%, 5%) 1px,
-              transparent 1px,
-              transparent 40px
-            )`
-          }} />
+          {/* Subtle diagonal lines texture with parallax */}
+          <div 
+            className="absolute inset-0 opacity-[0.03]" 
+            style={{
+              backgroundImage: `repeating-linear-gradient(
+                45deg,
+                hsl(0, 0%, 5%),
+                hsl(0, 0%, 5%) 1px,
+                transparent 1px,
+                transparent 40px
+              )`,
+              transform: `translateY(${scrollY * 0.02}px)`
+            }} 
+          />
           
-          {/* Large decorative accent elements */}
-          <div className="absolute -top-32 -right-32 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
-          <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
+          {/* Large decorative accent elements with parallax */}
+          <div 
+            className="absolute -top-32 -right-32 w-96 h-96 bg-accent/5 rounded-full blur-3xl transition-transform duration-100"
+            style={{ transform: `translate(${scrollY * -0.03}px, ${scrollY * 0.08}px)` }}
+          />
+          <div 
+            className="absolute -bottom-32 -left-32 w-80 h-80 bg-primary/5 rounded-full blur-3xl transition-transform duration-100"
+            style={{ transform: `translate(${scrollY * 0.04}px, ${scrollY * -0.06}px)` }}
+          />
           
-          {/* Elegant corner accents */}
-          <div className="absolute top-0 left-0 w-32 h-32 border-l-2 border-t-2 border-accent/20" />
-          <div className="absolute bottom-0 right-0 w-32 h-32 border-r-2 border-b-2 border-accent/20" />
+          {/* Elegant corner accents with subtle parallax */}
+          <div 
+            className="absolute top-0 left-0 w-32 h-32 border-l-2 border-t-2 border-accent/20"
+            style={{ transform: `translate(${scrollY * -0.01}px, ${scrollY * -0.01}px)` }}
+          />
+          <div 
+            className="absolute bottom-0 right-0 w-32 h-32 border-r-2 border-b-2 border-accent/20"
+            style={{ transform: `translate(${scrollY * 0.01}px, ${scrollY * 0.01}px)` }}
+          />
           
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <div className="max-w-5xl mx-auto">
