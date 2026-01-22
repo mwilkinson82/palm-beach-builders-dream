@@ -33,10 +33,10 @@ export const Navigation = () => {
               }`}>
                 BEAU MONDE
               </span>
-              <span className={`text-[10px] tracking-[0.4em] uppercase transition-colors ${
+              <span className={`text-[10px] tracking-[0.3em] uppercase transition-colors ${
                 isScrolled ? "text-muted-foreground" : "text-white/70"
               }`}>
-                Palm Beach
+                Builders · Palm Beach
               </span>
             </div>
           </Link>
