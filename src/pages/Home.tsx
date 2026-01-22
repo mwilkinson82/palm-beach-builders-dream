@@ -6,8 +6,8 @@ import { RevealAnimation } from "@/components/RevealAnimation";
 import { ArrowRight, Award, Building2, Sparkles, CheckCircle2, Shield, Users, FileCheck } from "lucide-react";
 import heroImage from "@/assets/hero-home.jpg";
 
-// Use the uploaded asset directly to avoid any static-file caching/proxy issues.
-const fcmbLogo = "/lovable-uploads/FCMB-2.png?v=1";
+// Use a public static asset to avoid caching/proxy issues with uploads.
+const fcmbLogo = "/images/fcmb-logo.jpg?v=1";
 
 const Home = () => {
   return (
