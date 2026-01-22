@@ -91,7 +91,7 @@ const Home = () => {
                 className="border-white/30 text-white hover:bg-white hover:text-black font-medium tracking-wide text-sm md:text-base"
                 asChild
               >
-                <Link to="/projects">EXPLORE PORTFOLIO</Link>
+                <Link to="/projects">FIND MY STYLE</Link>
               </Button>
             </div>
           </div>
