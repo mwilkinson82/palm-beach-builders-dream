@@ -13,8 +13,8 @@ export const Footer = () => {
               <span className="text-3xl font-display font-bold tracking-tight text-white">
                 BEAU MONDE
               </span>
-              <span className="text-xs tracking-[0.4em] uppercase text-white/60">
-                Palm Beach
+              <span className="text-xs tracking-[0.3em] uppercase text-white/60">
+                Builders · Palm Beach
               </span>
             </div>
             <p className="text-white/60 font-light leading-relaxed max-w-sm">
