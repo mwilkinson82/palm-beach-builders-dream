@@ -147,10 +147,10 @@ const Contact = () => {
                   <div className="space-y-2">
                     <h3 className="text-sm uppercase tracking-[0.2em] font-light text-foreground">Phone</h3>
                     <a
-                      href="tel:+15555551234"
+                      href="tel:+15616468992"
                       className="text-muted-foreground hover:text-accent transition-colors duration-500 font-light"
                     >
-                      (555) 555-1234
+                      (561) 646-8992
                     </a>
                   </div>
                 </div>
