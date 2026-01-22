@@ -86,10 +86,6 @@ const handler = async (req: Request): Promise<Response> => {
             Our team will review your inquiry and respond within 24 hours to schedule your private consultation.
           </p>
           
-          <p style="color: #555; line-height: 1.8; font-size: 16px; margin-top: 30px;">
-            In the meantime, feel free to explore our portfolio at <a href="https://beaumondebuilders.com" style="color: #B8860B;">beaumondebuilders.com</a>.
-          </p>
-          
           <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid #eee;">
             <p style="color: #333; font-weight: 500; margin-bottom: 10px;">Beau Monde Builders Palm Beach</p>
             <p style="color: #777; font-size: 14px; margin: 5px 0;">205 Worth Avenue, Suite 120</p>
