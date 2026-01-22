@@ -65,7 +65,7 @@ export const Navigation = () => {
                 isScrolled ? "text-foreground" : "text-white"
               }`}
             >
-              Portfolio
+              Your Style
             </Link>
             <Link 
               to="/contact" 
@@ -133,7 +133,7 @@ export const Navigation = () => {
               className="block text-sm uppercase tracking-widest font-light text-foreground hover:text-accent transition-colors"
               onClick={() => setIsOpen(false)}
             >
-              Portfolio
+              Your Style
             </Link>
             <Link
               to="/contact"
