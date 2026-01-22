@@ -231,7 +231,7 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto text-center mb-20 animate-fade-in">
             <p className="text-sm uppercase tracking-[0.3em] text-accent font-light mb-6">
-              Expertise & Mastery
+              Palm Beach
             </p>
             <h2 className="text-5xl md:text-7xl font-display font-light text-foreground tracking-tight">
               The Beau Monde <span className="font-serif italic">Team</span>
