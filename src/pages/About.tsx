@@ -4,8 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { RevealAnimation } from "@/components/RevealAnimation";
 import { Award, Shield, Users, FileCheck, CheckCircle2 } from "lucide-react";
-// Placeholder until photo is uploaded
-const ajImage = "/placeholder.svg";
+import ajImage from "@/assets/aj-hoover.png";
 import fcmbLogo from "@/assets/fcmb-logo.png";
 
 const About = () => {
