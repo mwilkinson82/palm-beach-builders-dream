@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { RevealAnimation } from "@/components/RevealAnimation";
-import { ArrowRight, Award, Building2, Sparkles, CheckCircle2, Shield, Users, FileCheck } from "lucide-react";
+import { ArrowRight, Award, Building2, Sparkles, CheckCircle2, Shield, Users, FileCheck, Star } from "lucide-react";
 import heroImage from "@/assets/hero-home.jpg";
 import fcmbLogo from "@/assets/fcmb-logo.png";
 
@@ -84,18 +84,29 @@ const Home = () => {
       <RevealAnimation animation="fade-in">
         <section className="bg-primary text-primary-foreground py-16">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center border-r border-white/10 last:border-r-0">
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-8">
+            <div className="text-center border-r border-white/10">
               <div className="text-5xl md:text-6xl font-thin mb-2 text-accent">30+</div>
               <div className="text-sm uppercase tracking-widest text-white/70">Years Excellence</div>
             </div>
-            <div className="text-center border-r border-white/10 last:border-r-0">
+            <div className="text-center border-r border-white/10">
               <div className="text-5xl md:text-6xl font-thin mb-2 text-accent">$500M+</div>
               <div className="text-sm uppercase tracking-widest text-white/70">Project Value</div>
             </div>
-            <div className="text-center border-r border-white/10 last:border-r-0">
+            <div className="text-center border-r border-white/10">
               <div className="text-5xl md:text-6xl font-thin mb-2 text-accent">50+</div>
               <div className="text-sm uppercase tracking-widest text-white/70">Estate Homes</div>
+            </div>
+            <div className="text-center border-r border-white/10">
+              <div className="flex items-center justify-center gap-1 mb-2">
+                <span className="text-5xl md:text-6xl font-thin text-accent">50+</span>
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 md:w-5 md:h-5 text-accent fill-accent" />
+                  ))}
+                </div>
+              </div>
+              <div className="text-sm uppercase tracking-widest text-white/70">Google Reviews</div>
             </div>
             <div className="text-center">
               <div className="text-5xl md:text-6xl font-thin mb-2 text-accent">100%</div>
