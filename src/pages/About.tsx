@@ -43,6 +43,11 @@ const About = () => {
                 <img
                   src={ajImage}
                   alt="AJ Hoover, CEO of Beau Monde Builders"
+                  loading="eager"
+                  decoding="async"
+                  onError={(e) => {
+                    e.currentTarget.src = "/placeholder.svg";
+                  }}
                   className="rounded-none shadow-2xl w-full relative z-10"
                 />
               </div>
@@ -149,6 +154,11 @@ const About = () => {
                     <img 
                       src={fcmbLogo} 
                       alt="Florida Certified Master Builder" 
+                      loading="lazy"
+                      decoding="async"
+                      onError={(e) => {
+                        e.currentTarget.src = "/placeholder.svg";
+                      }}
                       className="w-40 h-40 sm:w-52 sm:h-52 md:w-72 md:h-72 object-contain"
                     />
                   </div>
@@ -249,6 +259,11 @@ const About = () => {
                   <img 
                     src={member.image} 
                     alt={member.name}
+                    loading="lazy"
+                    decoding="async"
+                    onError={(e) => {
+                      e.currentTarget.src = "/placeholder.svg";
+                    }}
                     className="w-full h-full object-cover object-center"
                   />
                   <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />

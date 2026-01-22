@@ -3,7 +3,7 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import oceanfrontEstate from "@/assets/projects/oceanfront-estate.jpg";
 import worthAvenueResidence from "@/assets/projects/worth-avenue-residence.jpg";
 import intracoastalContemporary from "@/assets/projects/intracoastal-contemporary.jpg";
@@ -11,23 +11,50 @@ import mediterraneanVilla from "@/assets/projects/mediterranean-villa.jpg";
 import modernMinimalist from "@/assets/projects/modern-minimalist.jpg";
 import classicEstate from "@/assets/projects/classic-estate.jpg";
 
-const ProjectImage = ({ src, alt }: { src: string; alt: string }) => {
+const ProjectImage = ({
+  src,
+  alt,
+  priority = false,
+}: {
+  src: string;
+  alt: string;
+  priority?: boolean;
+}) => {
+  const imgRef = useRef<HTMLImageElement | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(false);
+    setHasError(false);
+  }, [src]);
+
+  // If the image comes from cache, onLoad may not fire reliably.
+  useEffect(() => {
+    const img = imgRef.current;
+    if (img && img.complete && img.naturalWidth > 0) {
+      setIsLoaded(true);
+    }
+  }, [src]);
+
   return (
     <>
-      {!isLoaded && (
-        <Skeleton className="absolute inset-0 w-full h-full" />
-      )}
       <img
-        src={src}
+        ref={imgRef}
+        src={hasError ? "/placeholder.svg" : src}
         alt={alt}
-        loading="lazy"
+        loading={priority ? "eager" : "lazy"}
+        decoding="async"
         onLoad={() => setIsLoaded(true)}
-        className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-110 ${
-          isLoaded ? 'opacity-100' : 'opacity-0'
-        }`}
+        onError={() => {
+          setHasError(true);
+          setIsLoaded(true);
+        }}
+        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
       />
+      {!isLoaded && (
+        <Skeleton className="absolute inset-0 w-full h-full pointer-events-none" />
+      )}
     </>
   );
 };
@@ -129,7 +156,7 @@ const Projects = () => {
             animationDelay: `${index * 100}ms`
           }}>
                   <div className="aspect-[4/5] mb-6 relative overflow-hidden">
-                    <ProjectImage src={project.image} alt={project.title} />
+                    <ProjectImage src={project.image} alt={project.title} priority={index < 2} />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-all duration-700" />
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-700 z-10">
                       <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-black transition-all duration-500" asChild>
