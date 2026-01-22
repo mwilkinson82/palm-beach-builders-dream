@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Instagram, Facebook, Youtube, Linkedin, Mail, Phone, MapPin, Shield } from "lucide-react";
-// Cache-busted URL to ensure browsers fetch the newly replaced PNG.
-const fcmbLogo = "/images/fcmb-certification.png?v=2";
+// Use the uploaded asset directly to avoid any static-file caching/proxy issues.
+const fcmbLogo = "/lovable-uploads/FCMB-2.png?v=1";
 
 export const Footer = () => {
   return (
