@@ -6,7 +6,8 @@ import { RevealAnimation } from "@/components/RevealAnimation";
 import { ArrowRight, Award, Building2, Sparkles, CheckCircle2, Shield, Users, FileCheck } from "lucide-react";
 import heroImage from "@/assets/hero-home.jpg";
 
-const fcmbLogo = "/images/fcmb-certification.png";
+// Cache-busted URL to ensure browsers fetch the newly replaced PNG.
+const fcmbLogo = "/images/fcmb-certification.png?v=2";
 
 const Home = () => {
   return (
