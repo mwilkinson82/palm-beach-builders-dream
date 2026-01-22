@@ -5,9 +5,7 @@ import { Link } from "react-router-dom";
 import { RevealAnimation } from "@/components/RevealAnimation";
 import { Award, Shield, Users, FileCheck, CheckCircle2 } from "lucide-react";
 import ajImage from "@/assets/aj-hoover.jpg";
-
-// Use the uploaded asset directly to avoid any static-file caching/proxy issues.
-const fcmbLogo = "/lovable-uploads/FCMB-2.png?v=1";
+import fcmbLogo from "@/assets/fcmb-logo.png";
 
 const About = () => {
   return (

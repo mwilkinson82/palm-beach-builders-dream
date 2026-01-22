@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Instagram, Facebook, Youtube, Linkedin, Mail, Phone, MapPin, Shield } from "lucide-react";
-// Use the uploaded asset directly to avoid any static-file caching/proxy issues.
-const fcmbLogo = "/lovable-uploads/FCMB-2.png?v=1";
+import fcmbLogo from "@/assets/fcmb-logo.png";
 
 export const Footer = () => {
   return (
