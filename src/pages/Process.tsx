@@ -58,17 +58,17 @@ const Process = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[50vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-background z-0" />
-        <div className="container mx-auto px-4 relative z-10 pt-32 pb-20">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10 pt-24 md:pt-32 pb-12 md:pb-20">
           <div className="max-w-5xl mx-auto text-center animate-fade-in">
-            <p className="text-sm uppercase tracking-[0.3em] text-accent font-light mb-6">
+            <p className="text-xs md:text-sm uppercase tracking-[0.2em] md:tracking-[0.3em] text-accent font-light mb-4 md:mb-6">
               The Journey to Excellence
             </p>
-            <h1 className="text-6xl md:text-8xl font-display font-light text-foreground mb-8 tracking-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-display font-light text-foreground mb-6 md:mb-8 tracking-tight">
               Our <span className="font-serif italic">Process</span>
             </h1>
-            <p className="text-xl text-muted-foreground font-light leading-relaxed max-w-3xl mx-auto">
+            <p className="text-base md:text-xl text-muted-foreground font-light leading-relaxed max-w-3xl mx-auto">
               A meticulously orchestrated journey from vision to reality, guided by decades 
               of expertise in luxury homebuilding.
             </p>
@@ -78,27 +78,27 @@ const Process = () => {
 
       {/* Process Steps */}
       <RevealAnimation animation="luxury-reveal">
-        <section className="py-32">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto space-y-32">
+        <section className="py-16 md:py-32">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-6xl mx-auto space-y-16 md:space-y-32">
             {processSteps.map((step, index) => (
               <div
                 key={step.number}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start animate-fade-in"
+                className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-12 items-start animate-fade-in"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className="lg:col-span-3">
-                  <div className="text-8xl md:text-9xl font-display font-light text-accent/20">
+                  <div className="text-6xl md:text-8xl lg:text-9xl font-display font-light text-accent/20">
                     {step.number}
                   </div>
                 </div>
                 
-                <div className="lg:col-span-9 space-y-6 lg:pt-8">
-                  <h3 className="text-4xl md:text-5xl font-serif italic text-foreground">
+                <div className="lg:col-span-9 space-y-4 md:space-y-6 lg:pt-8">
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif italic text-foreground">
                     {step.title}
                   </h3>
-                  <div className="w-20 h-px bg-accent" />
-                  <p className="text-lg md:text-xl text-muted-foreground font-light leading-relaxed">
+                  <div className="w-16 md:w-20 h-px bg-accent" />
+                  <p className="text-base md:text-lg lg:text-xl text-muted-foreground font-light leading-relaxed">
                     {step.description}
                   </p>
                 </div>
