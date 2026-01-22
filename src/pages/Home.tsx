@@ -367,49 +367,116 @@ const Home = () => {
           </div>
         </section>
       </RevealAnimation>
-      <RevealAnimation animation="scale-in" delay={200}>
-        <section className="py-32 bg-muted">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-border">
-            {/* Service 1 */}
-            <div className="bg-background p-12 group hover:bg-primary transition-all duration-500">
-              <Sparkles className="h-10 w-10 mb-6 text-accent group-hover:text-accent transition-colors" />
-              <h3 className="text-2xl font-medium mb-4 group-hover:text-white transition-colors">
-                BESPOKE DESIGN
-              </h3>
-              <p className="text-muted-foreground group-hover:text-white/80 transition-colors font-light leading-relaxed">
-                Collaborate with renowned architects to create a home that embodies your unique aesthetic
-                and lifestyle aspirations.
-              </p>
+      {/* Services Section - Redesigned */}
+      <section className="relative py-32 overflow-hidden">
+        {/* Background with texture */}
+        <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary to-primary/95" />
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+          backgroundSize: '40px 40px'
+        }} />
+        
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          {/* Section Header */}
+          <div className="text-center mb-20">
+            <div className="flex items-center justify-center space-x-3 mb-6">
+              <div className="h-px w-12 bg-accent" />
+              <span className="text-sm uppercase tracking-[0.3em] text-accent font-light">Our Approach</span>
+              <div className="h-px w-12 bg-accent" />
             </div>
+            <h2 className="text-4xl md:text-6xl font-thin text-white leading-tight">
+              The Beau Monde<br />
+              <span className="italic font-light text-white/70">Difference</span>
+            </h2>
+          </div>
+
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-6">
+            {/* Service 1 */}
+            <RevealAnimation animation="fade-up" delay={100}>
+              <div className="group relative">
+                {/* Card glow effect on hover */}
+                <div className="absolute -inset-0.5 bg-gradient-to-b from-accent/20 to-transparent rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
+                
+                <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 p-10 lg:p-12 h-full transition-all duration-500 group-hover:bg-white/10 group-hover:border-accent/30">
+                  {/* Number accent */}
+                  <span className="absolute top-6 right-6 text-7xl font-thin text-white/5 group-hover:text-accent/10 transition-colors duration-500">01</span>
+                  
+                  <div className="relative z-10">
+                    <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mb-8 group-hover:bg-accent/20 transition-colors duration-500">
+                      <Sparkles className="h-7 w-7 text-accent" />
+                    </div>
+                    
+                    <h3 className="text-2xl font-light text-white mb-4 tracking-wide">
+                      BESPOKE DESIGN
+                    </h3>
+                    
+                    <div className="h-px w-12 bg-accent/50 mb-6 group-hover:w-20 transition-all duration-500" />
+                    
+                    <p className="text-white/60 font-light leading-relaxed group-hover:text-white/80 transition-colors duration-500">
+                      Collaborate with renowned architects to create a home that embodies your unique aesthetic and lifestyle aspirations.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </RevealAnimation>
 
             {/* Service 2 */}
-            <div className="bg-background p-12 group hover:bg-primary transition-all duration-500">
-              <Building2 className="h-10 w-10 mb-6 text-accent group-hover:text-accent transition-colors" />
-              <h3 className="text-2xl font-medium mb-4 group-hover:text-white transition-colors">
-                PRECISION EXECUTION
-              </h3>
-              <p className="text-muted-foreground group-hover:text-white/80 transition-colors font-light leading-relaxed">
-                State-of-the-art project management ensures flawless execution, on time and beyond
-                expectations.
-              </p>
-            </div>
+            <RevealAnimation animation="fade-up" delay={200}>
+              <div className="group relative">
+                <div className="absolute -inset-0.5 bg-gradient-to-b from-accent/20 to-transparent rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
+                
+                <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 p-10 lg:p-12 h-full transition-all duration-500 group-hover:bg-white/10 group-hover:border-accent/30">
+                  <span className="absolute top-6 right-6 text-7xl font-thin text-white/5 group-hover:text-accent/10 transition-colors duration-500">02</span>
+                  
+                  <div className="relative z-10">
+                    <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mb-8 group-hover:bg-accent/20 transition-colors duration-500">
+                      <Building2 className="h-7 w-7 text-accent" />
+                    </div>
+                    
+                    <h3 className="text-2xl font-light text-white mb-4 tracking-wide">
+                      PRECISION EXECUTION
+                    </h3>
+                    
+                    <div className="h-px w-12 bg-accent/50 mb-6 group-hover:w-20 transition-all duration-500" />
+                    
+                    <p className="text-white/60 font-light leading-relaxed group-hover:text-white/80 transition-colors duration-500">
+                      State-of-the-art project management ensures flawless execution, on time and beyond expectations.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </RevealAnimation>
 
             {/* Service 3 */}
-            <div className="bg-background p-12 group hover:bg-primary transition-all duration-500">
-              <Award className="h-10 w-10 mb-6 text-accent group-hover:text-accent transition-colors" />
-              <h3 className="text-2xl font-medium mb-4 group-hover:text-white transition-colors">
-                LIFETIME COMMITMENT
-              </h3>
-              <p className="text-muted-foreground group-hover:text-white/80 transition-colors font-light leading-relaxed">
-                Our relationship extends beyond completion with comprehensive warranty support and ongoing
-                care for your investment.
-              </p>
-            </div>
+            <RevealAnimation animation="fade-up" delay={300}>
+              <div className="group relative">
+                <div className="absolute -inset-0.5 bg-gradient-to-b from-accent/20 to-transparent rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
+                
+                <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 p-10 lg:p-12 h-full transition-all duration-500 group-hover:bg-white/10 group-hover:border-accent/30">
+                  <span className="absolute top-6 right-6 text-7xl font-thin text-white/5 group-hover:text-accent/10 transition-colors duration-500">03</span>
+                  
+                  <div className="relative z-10">
+                    <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mb-8 group-hover:bg-accent/20 transition-colors duration-500">
+                      <Award className="h-7 w-7 text-accent" />
+                    </div>
+                    
+                    <h3 className="text-2xl font-light text-white mb-4 tracking-wide">
+                      LIFETIME COMMITMENT
+                    </h3>
+                    
+                    <div className="h-px w-12 bg-accent/50 mb-6 group-hover:w-20 transition-all duration-500" />
+                    
+                    <p className="text-white/60 font-light leading-relaxed group-hover:text-white/80 transition-colors duration-500">
+                      Our relationship extends beyond completion with comprehensive warranty support and ongoing care for your investment.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </RevealAnimation>
           </div>
         </div>
       </section>
-      </RevealAnimation>
 
       {/* CTA Section */}
       <RevealAnimation animation="fade-up" delay={300}>
