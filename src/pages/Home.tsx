@@ -240,6 +240,15 @@ const Home = () => {
                   in Palm Beach.
                 </p>
               </div>
+
+              {/* Mobile quote - centered below content */}
+              <div className="mt-12 text-center md:hidden">
+                <span className="text-6xl font-serif text-accent/20 leading-none">"</span>
+                <p className="text-lg font-serif italic text-primary/50 leading-relaxed mt-2">
+                  Turning blueprints to fingerprints
+                </p>
+                <div className="mt-4 h-px w-12 bg-accent/30 mx-auto" />
+              </div>
             </div>
           </div>
         </section>
