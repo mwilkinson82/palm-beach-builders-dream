@@ -240,7 +240,7 @@ const About = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
             {[
-              { name: "John Colaiacovo", role: "Project Manager", experience: "Dedicated to delivering exceptional results", image: johnImage },
+              { name: "John Colaiacovo", role: "Project Manager", experience: "Over 40 Years of Luxury Construction Project Management", image: johnImage },
               { name: "Michelle Williams", role: "Financial Director", experience: "20+ years in luxury construction finance", image: michelleImage },
               { name: "Linda Lucas", role: "Project Manager", experience: "25+ years transforming visions into reality", image: lindaImage }
             ].map((member, index) => (
