@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Instagram, Facebook, Youtube, Linkedin, Mail, Phone, MapPin, Shield } from "lucide-react";
+import { Mail, Phone, MapPin, Shield } from "lucide-react";
 import fcmbLogo from "@/assets/fcmb-logo.png";
 
 export const Footer = () => {
@@ -21,44 +21,6 @@ export const Footer = () => {
               Creating Palm Beach's most distinguished estates through architectural excellence
               and uncompromising craftsmanship since 1994.
             </p>
-            <div className="flex space-x-4">
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/40 hover:text-accent transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/40 hover:text-accent transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a
-                href="https://youtube.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/40 hover:text-accent transition-colors"
-                aria-label="YouTube"
-              >
-                <Youtube className="h-5 w-5" />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/40 hover:text-accent transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-            </div>
           </div>
 
           {/* Quick Links */}
