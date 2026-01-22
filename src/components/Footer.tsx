@@ -27,13 +27,19 @@ export const Footer = () => {
           <div className="col-span-1 lg:col-span-2">
             <h3 className="text-sm uppercase tracking-widest font-medium mb-6 text-white">Explore</h3>
             <ul className="space-y-4">
-              {["About", "Process", "Portfolio", "Press", "Contact"].map((item) => (
-                <li key={item}>
+              {[
+                { label: "About", path: "/about" },
+                { label: "Process", path: "/process" },
+                { label: "Find My Style", path: "/projects" },
+                { label: "Press", path: "/press" },
+                { label: "Contact", path: "/contact" },
+              ].map((item) => (
+                <li key={item.label}>
                   <Link
-                    to={`/${item.toLowerCase() === "portfolio" ? "projects" : item.toLowerCase()}`}
+                    to={item.path}
                     className="text-white/60 hover:text-accent transition-colors font-light text-sm"
                   >
-                    {item}
+                    {item.label}
                   </Link>
                 </li>
               ))}
