@@ -5,7 +5,8 @@ import { Footer } from "@/components/Footer";
 import { RevealAnimation } from "@/components/RevealAnimation";
 import { ArrowRight, Award, Building2, Sparkles, CheckCircle2, Shield, Users, FileCheck } from "lucide-react";
 import heroImage from "@/assets/hero-home.jpg";
-import fcmbLogo from "@/assets/fcmb-certification.png";
+
+const fcmbLogo = "/images/fcmb-certification.png";
 
 const Home = () => {
   return (

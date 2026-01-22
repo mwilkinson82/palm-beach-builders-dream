@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Instagram, Facebook, Youtube, Linkedin, Mail, Phone, MapPin, Shield } from "lucide-react";
-import fcmbLogo from "@/assets/fcmb-certification.png";
+const fcmbLogo = "/images/fcmb-certification.png";
 
 export const Footer = () => {
   return (

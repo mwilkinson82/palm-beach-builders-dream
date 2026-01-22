@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import { RevealAnimation } from "@/components/RevealAnimation";
 import { Award, Shield, Users, FileCheck, CheckCircle2 } from "lucide-react";
 import ajImage from "@/assets/aj-hoover.jpg";
-import fcmbLogo from "@/assets/fcmb-certification.png";
+
+const fcmbLogo = "/images/fcmb-certification.png";
 
 const About = () => {
   return (
