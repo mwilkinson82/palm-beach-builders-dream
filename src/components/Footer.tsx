@@ -14,7 +14,7 @@ export const Footer = () => {
                 BEAU MONDE
               </span>
               <span className="text-xs tracking-[0.4em] uppercase text-white/60">
-                Builders
+                Palm Beach
               </span>
             </div>
             <p className="text-white/60 font-light leading-relaxed max-w-sm">
