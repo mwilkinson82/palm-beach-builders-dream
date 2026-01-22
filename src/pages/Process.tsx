@@ -177,7 +177,7 @@ const Process = () => {
                 className="text-background hover:text-accent transition-all duration-500"
                 asChild
               >
-                <Link to="/projects">View Portfolio</Link>
+                <Link to="/projects">Find My Style</Link>
               </Button>
             </div>
           </div>
