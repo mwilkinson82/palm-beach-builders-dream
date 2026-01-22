@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Instagram, Facebook, Youtube, Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import { Instagram, Facebook, Youtube, Linkedin, Mail, Phone, MapPin, Shield } from "lucide-react";
+import fcmbLogo from "@/assets/fcmb-certification.png";
 
 export const Footer = () => {
   return (
@@ -111,6 +112,39 @@ export const Footer = () => {
                 <a href="mailto:info@beaumondebuilders.com" className="text-white/60 hover:text-accent transition-colors font-light text-sm">
                   info@beaumondebuilders.com
                 </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Trust Badges */}
+        <div className="pt-8 border-t border-white/10 mb-12">
+          <div className="flex flex-col items-center space-y-6">
+            <h3 className="text-sm uppercase tracking-widest font-medium text-white/60">Certified Excellence</h3>
+            <div className="flex flex-wrap items-center justify-center gap-8">
+              {/* FCMB Badge */}
+              <div className="bg-white/10 backdrop-blur-sm p-4 rounded-lg border border-white/10 hover:border-accent/50 transition-colors">
+                <img 
+                  src={fcmbLogo} 
+                  alt="Florida Certified Master Builder" 
+                  className="h-20 w-20 object-contain"
+                />
+              </div>
+              
+              {/* Additional Trust Badges */}
+              <div className="flex items-center space-x-2 px-4 py-3 bg-white/5 rounded-lg border border-white/10">
+                <Shield className="h-5 w-5 text-accent" />
+                <span className="text-sm text-white/70 font-light">Fully Insured</span>
+              </div>
+              
+              <div className="flex items-center space-x-2 px-4 py-3 bg-white/5 rounded-lg border border-white/10">
+                <Shield className="h-5 w-5 text-accent" />
+                <span className="text-sm text-white/70 font-light">Licensed Contractor</span>
+              </div>
+              
+              <div className="flex items-center space-x-2 px-4 py-3 bg-white/5 rounded-lg border border-white/10">
+                <Shield className="h-5 w-5 text-accent" />
+                <span className="text-sm text-white/70 font-light">30+ Years Experience</span>
               </div>
             </div>
           </div>
