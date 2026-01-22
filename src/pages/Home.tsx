@@ -75,7 +75,7 @@ const Home = () => {
                 asChild
               >
                 <Link to="/contact">
-                  SCHEDULE CONSULTATION
+                  TALK TO BEAU MONDE
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
