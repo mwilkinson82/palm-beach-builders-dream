@@ -3,7 +3,9 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { RevealAnimation } from "@/components/RevealAnimation";
+import { Award, Shield, Users, FileCheck, CheckCircle2 } from "lucide-react";
 import ajImage from "@/assets/aj-hoover.jpg";
+import fcmbLogo from "@/assets/fcmb-certification.png";
 
 const About = () => {
   return (
@@ -129,6 +131,95 @@ const About = () => {
           </div>
         </div>
       </section>
+      </RevealAnimation>
+
+      {/* Florida Certified Master Builder Section */}
+      <RevealAnimation animation="scale-in" delay={150}>
+        <section className="py-32 bg-gradient-to-b from-muted to-background relative overflow-hidden">
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
+              {/* Certification Badge */}
+              <div className="flex justify-center">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-accent/10 blur-3xl rounded-full scale-125" />
+                  <div className="relative bg-white p-10 rounded-full shadow-2xl border border-border">
+                    <img 
+                      src={fcmbLogo} 
+                      alt="Florida Certified Master Builder" 
+                      className="w-56 h-56 md:w-72 md:h-72 object-contain"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div>
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="h-px w-16 bg-accent" />
+                  <span className="text-sm uppercase tracking-[0.3em] text-accent font-medium">Elite Certification</span>
+                </div>
+
+                <h2 className="text-4xl md:text-5xl font-display font-light text-foreground mb-6 leading-tight tracking-tight">
+                  Florida Certified
+                  <br />
+                  <span className="font-serif italic text-muted-foreground">Master Builder</span>
+                </h2>
+
+                <p className="text-lg text-muted-foreground mb-8 font-light leading-relaxed">
+                  AJ Hoover holds the prestigious Florida Certified Master Builder designation — 
+                  an elite voluntary certification representing the pinnacle of construction excellence. 
+                  This distinction is earned through decades of experience, impeccable ethics, and 
+                  unwavering commitment to client satisfaction.
+                </p>
+
+                {/* Requirements Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-8">
+                  <div className="flex items-start space-x-3 p-4 bg-background rounded-lg border border-border">
+                    <Award className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="font-medium text-foreground text-sm mb-1">7+ Years Experience</h4>
+                      <p className="text-xs text-muted-foreground">Proven industry expertise</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-3 p-4 bg-background rounded-lg border border-border">
+                    <Shield className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="font-medium text-foreground text-sm mb-1">Clean Record</h4>
+                      <p className="text-xs text-muted-foreground">No regulatory issues</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-3 p-4 bg-background rounded-lg border border-border">
+                    <Users className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="font-medium text-foreground text-sm mb-1">Verified References</h4>
+                      <p className="text-xs text-muted-foreground">Client & subcontractor approval</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-3 p-4 bg-background rounded-lg border border-border">
+                    <FileCheck className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="font-medium text-foreground text-sm mb-1">Written Warranty</h4>
+                      <p className="text-xs text-muted-foreground">Minimum 1-year guarantee</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Verification badges */}
+                <div className="flex flex-wrap gap-3">
+                  {["Background Verified", "5+ Years Licensed", "Fully Insured", "Board Approved"].map((badge) => (
+                    <div key={badge} className="flex items-center space-x-2 px-3 py-1.5 bg-accent/10 rounded-full">
+                      <CheckCircle2 className="w-4 h-4 text-accent" />
+                      <span className="text-xs font-medium text-foreground">{badge}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </RevealAnimation>
 
       {/* Team Section */}
