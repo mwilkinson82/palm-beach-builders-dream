@@ -6,7 +6,8 @@ import { RevealAnimation } from "@/components/RevealAnimation";
 import { Award, Shield, Users, FileCheck, CheckCircle2 } from "lucide-react";
 import ajImage from "@/assets/aj-hoover.jpg";
 
-const fcmbLogo = "/images/fcmb-certification.png";
+// Cache-busted URL to ensure browsers fetch the newly replaced PNG.
+const fcmbLogo = "/images/fcmb-certification.png?v=2";
 
 const About = () => {
   return (
