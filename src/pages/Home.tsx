@@ -90,11 +90,11 @@ const Home = () => {
               <div className="text-sm uppercase tracking-widest text-white/70">Years Excellence</div>
             </div>
             <div className="text-center border-r border-white/10">
-              <div className="text-5xl md:text-6xl font-thin mb-2 text-accent">$500M+</div>
+              <div className="text-5xl md:text-6xl font-thin mb-2 text-accent">$150M+</div>
               <div className="text-sm uppercase tracking-widest text-white/70">Project Value</div>
             </div>
             <div className="text-center border-r border-white/10">
-              <div className="text-5xl md:text-6xl font-thin mb-2 text-accent">50+</div>
+              <div className="text-5xl md:text-6xl font-thin mb-2 text-accent">25+</div>
               <div className="text-sm uppercase tracking-widest text-white/70">Estate Homes</div>
             </div>
             <div className="text-center border-r border-white/10">
