@@ -75,13 +75,14 @@ const Projects = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-background z-0" />
         <div className="container mx-auto px-4 relative z-10 pt-32 pb-20">
           <div className="max-w-5xl mx-auto text-center animate-fade-in">
-            <p className="text-sm uppercase tracking-[0.3em] text-accent font-light mb-6">DESIGN & BUILD STYLE</p>
+            <p className="text-sm uppercase tracking-[0.3em] text-accent font-light mb-6">DESIGN & BUILD PORTFOLIO</p>
             <h1 className="text-6xl md:text-8xl font-display font-light text-foreground mb-8 tracking-tight">
-              Our <span className="font-serif italic">Portfolio</span>
+              Find Your <span className="font-serif italic">Style</span>
             </h1>
             <p className="text-xl text-muted-foreground font-light leading-relaxed max-w-3xl mx-auto">
-              Each residence a testament to uncompromising excellence and bespoke craftsmanship 
-              in Palm Beach's most prestigious locations.
+              Explore our signature design styles below. Each represents the caliber of craftsmanship 
+              we bring to every Beau Monde residence. Find the aesthetic that speaks to you, 
+              and let's discuss bringing your dream home to life.
             </p>
           </div>
         </div>
@@ -140,13 +141,14 @@ const Projects = () => {
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="max-w-4xl mx-auto space-y-12 animate-fade-in">
             <h2 className="text-5xl md:text-7xl font-display font-light tracking-tight">
-              Envision Your Legacy
+              Found Your Style?
             </h2>
             <p className="text-xl text-background/70 font-light leading-relaxed">
-              Let us create your bespoke masterpiece in Palm Beach.
+              Whether you're drawn to one of these designs or have a unique vision of your own, 
+              we're ready to craft your bespoke Palm Beach residence.
             </p>
             <Button variant="outline" size="lg" className="border-accent text-accent hover:bg-accent hover:text-background transition-all duration-500" asChild>
-              <Link to="/contact">Discuss Your Vision</Link>
+              <Link to="/contact">Talk to Beau Monde</Link>
             </Button>
           </div>
         </div>
