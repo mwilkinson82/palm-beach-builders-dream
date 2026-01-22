@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { RevealAnimation } from "@/components/RevealAnimation";
+import { SEO } from "@/components/SEO";
 import { ArrowRight, Award, Building2, Sparkles, CheckCircle2, Shield, Users, FileCheck, Star } from "lucide-react";
 import heroImage from "@/assets/hero-home.jpg";
 import fcmbLogo from "@/assets/fcmb-logo.png";
@@ -29,8 +30,13 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
+    <>
+      <SEO 
+        canonical="/"
+        description="Beau Monde Builders Palm Beach - Florida's premier custom luxury home builder. Three decades of excellence crafting oceanfront estates and bespoke residences on Worth Avenue for discerning clients."
+      />
+      <div className="min-h-screen bg-background">
+        <Navigation />
 
       {/* Hero Section - Full Screen Immersive */}
       <section className="relative h-screen flex items-center">
@@ -513,7 +519,8 @@ const Home = () => {
       </RevealAnimation>
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 

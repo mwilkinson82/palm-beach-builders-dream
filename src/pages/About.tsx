@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { RevealAnimation } from "@/components/RevealAnimation";
+import { SEO, PersonSchema, BreadcrumbSchema } from "@/components/SEO";
 import { Award, Shield, Users, FileCheck, CheckCircle2 } from "lucide-react";
 import ajImage from "@/assets/aj-hoover.png";
 import fcmbLogo from "@/assets/fcmb-logo.png";
@@ -12,8 +13,24 @@ import lindaImage from "@/assets/linda-lucas.jpg";
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
+    <>
+      <SEO 
+        title="About AJ Hoover & Our Team"
+        description="Meet AJ Hoover, Florida Certified Master Builder and CEO of Beau Monde Builders. Over 30 years of excellence in luxury custom home building in Palm Beach."
+        canonical="/about"
+      />
+      <PersonSchema 
+        name="AJ Hoover"
+        jobTitle="CEO & Founder"
+        description="Florida Certified Master Builder with over 30 years of experience in luxury custom home building. Founder of Beau Monde Builders, Palm Beach's premier luxury home builder."
+        image="https://beaumondebuilders.com/assets/aj-hoover.png"
+      />
+      <BreadcrumbSchema items={[
+        { name: "Home", url: "/" },
+        { name: "About", url: "/about" }
+      ]} />
+      <div className="min-h-screen bg-background">
+        <Navigation />
 
       {/* Hero Section */}
       <section className="relative min-h-[50vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden">
@@ -285,7 +302,8 @@ const About = () => {
       </RevealAnimation>
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 

@@ -5,9 +5,33 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { RevealAnimation } from "@/components/RevealAnimation";
+import { SEO, BreadcrumbSchema } from "@/components/SEO";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { Helmet } from "react-helmet-async";
+
+// Contact page specific schema
+const contactPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Contact Beau Monde Builders",
+  description: "Schedule a private consultation for your luxury custom home in Palm Beach. Contact us at (561) 646-8992 or visit our Worth Avenue office.",
+  mainEntity: {
+    "@type": "LocalBusiness",
+    name: "Beau Monde Builders",
+    telephone: "+1-561-646-8992",
+    email: "info@beaumondebuilders.com",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "205 Worth Avenue, Suite 120",
+      addressLocality: "Palm Beach",
+      addressRegion: "FL",
+      postalCode: "33480",
+      addressCountry: "US"
+    }
+  }
+};
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -62,8 +86,23 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
+    <>
+      <SEO 
+        title="Contact Us"
+        description="Schedule a private consultation with Beau Monde Builders. Visit us at 205 Worth Avenue, Palm Beach or call (561) 646-8992. Office hours: Mon-Fri 9AM-5PM."
+        canonical="/contact"
+      />
+      <BreadcrumbSchema items={[
+        { name: "Home", url: "/" },
+        { name: "Contact", url: "/contact" }
+      ]} />
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(contactPageSchema)}
+        </script>
+      </Helmet>
+      <div className="min-h-screen bg-background">
+        <Navigation />
 
       {/* Hero Section */}
       <section className="relative min-h-[50vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden">
@@ -264,7 +303,8 @@ const Contact = () => {
       </RevealAnimation>
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 
