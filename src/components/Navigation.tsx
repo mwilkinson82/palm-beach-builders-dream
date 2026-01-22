@@ -88,7 +88,7 @@ export const Navigation = () => {
               }`}
               asChild
             >
-              <Link to="/contact">Consultation</Link>
+              <Link to="/contact">Talk to Beau Monde</Link>
             </Button>
           </div>
 
@@ -149,7 +149,7 @@ export const Navigation = () => {
                 className="w-full bg-accent hover:bg-accent/90 text-black uppercase tracking-widest text-xs font-medium"
                 asChild
               >
-                <Link to="/contact">Schedule Consultation</Link>
+                <Link to="/contact">Talk to Beau Monde</Link>
               </Button>
             </div>
           </div>
