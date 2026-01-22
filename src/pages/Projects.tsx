@@ -93,7 +93,7 @@ const Projects = () => {
               Our <span className="font-serif italic">Portfolio</span>
             </h1>
             <p className="text-xl text-muted-foreground font-light leading-relaxed max-w-3xl mx-auto">
-              Each residence a testament to uncompromising excellence and bespoke craftsmanship 
+              Each residence is a testament to uncompromising excellence and bespoke craftsmanship 
               in Palm Beach's most prestigious locations.
             </p>
           </div>
