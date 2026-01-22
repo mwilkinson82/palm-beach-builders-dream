@@ -3,8 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { RevealAnimation } from "@/components/RevealAnimation";
-import { ArrowRight, Award, Building2, Sparkles } from "lucide-react";
+import { ArrowRight, Award, Building2, Sparkles, CheckCircle2, Shield, Users, FileCheck } from "lucide-react";
 import heroImage from "@/assets/hero-home.jpg";
+import fcmbLogo from "@/assets/fcmb-certification.png";
 
 const Home = () => {
   return (
@@ -135,7 +136,117 @@ const Home = () => {
       </section>
       </RevealAnimation>
 
-      {/* Services Grid */}
+      {/* Florida Certified Master Builder Section */}
+      <RevealAnimation animation="luxury-reveal" delay={150}>
+        <section className="py-32 bg-gradient-to-b from-primary to-primary/95 relative overflow-hidden">
+          {/* Subtle pattern overlay */}
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMwLTkuOTQtOC4wNi0xOC0xOC0xOCIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDMpIiBzdHJva2Utd2lkdGg9IjEiLz48L2c+PC9zdmc+')] opacity-30" />
+          
+          <div className="container mx-auto px-4 lg:px-8 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              {/* Certification Badge */}
+              <div className="flex justify-center lg:justify-end">
+                <div className="relative">
+                  {/* Glowing background effect */}
+                  <div className="absolute inset-0 bg-accent/20 blur-3xl rounded-full scale-150" />
+                  <div className="relative bg-white/10 backdrop-blur-sm p-12 rounded-full border border-white/20 shadow-2xl">
+                    <img 
+                      src={fcmbLogo} 
+                      alt="Florida Certified Master Builder" 
+                      className="w-64 h-64 md:w-80 md:h-80 object-contain drop-shadow-2xl"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="text-white">
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="h-px w-16 bg-accent" />
+                  <span className="text-sm uppercase tracking-[0.3em] text-accent font-medium">Elite Certification</span>
+                </div>
+
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-thin mb-6 leading-tight">
+                  Florida Certified
+                  <br />
+                  <span className="italic font-light text-accent">Master Builder</span>
+                </h2>
+
+                <p className="text-xl text-white/80 mb-10 font-light leading-relaxed">
+                  An elite designation held by only the finest builders in Florida. This voluntary certification 
+                  represents the pinnacle of construction excellence, requiring decades of experience, 
+                  impeccable ethics, and unwavering commitment to client satisfaction.
+                </p>
+
+                {/* Requirements Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center">
+                      <Award className="w-6 h-6 text-accent" />
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-white mb-1">7+ Years Experience</h4>
+                      <p className="text-sm text-white/60 font-light">Proven industry expertise</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center">
+                      <Shield className="w-6 h-6 text-accent" />
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-white mb-1">Clean Record</h4>
+                      <p className="text-sm text-white/60 font-light">No regulatory issues</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center">
+                      <Users className="w-6 h-6 text-accent" />
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-white mb-1">Verified References</h4>
+                      <p className="text-sm text-white/60 font-light">Client & subcontractor approval</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center">
+                      <FileCheck className="w-6 h-6 text-accent" />
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-white mb-1">Written Warranty</h4>
+                      <p className="text-sm text-white/60 font-light">Minimum 1-year guarantee</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Additional highlights */}
+                <div className="border-t border-white/10 pt-8">
+                  <div className="flex flex-wrap gap-4">
+                    <div className="flex items-center space-x-2 text-white/70">
+                      <CheckCircle2 className="w-5 h-5 text-accent" />
+                      <span className="text-sm font-light">Background Verified</span>
+                    </div>
+                    <div className="flex items-center space-x-2 text-white/70">
+                      <CheckCircle2 className="w-5 h-5 text-accent" />
+                      <span className="text-sm font-light">5+ Years Licensed</span>
+                    </div>
+                    <div className="flex items-center space-x-2 text-white/70">
+                      <CheckCircle2 className="w-5 h-5 text-accent" />
+                      <span className="text-sm font-light">Fully Insured</span>
+                    </div>
+                    <div className="flex items-center space-x-2 text-white/70">
+                      <CheckCircle2 className="w-5 h-5 text-accent" />
+                      <span className="text-sm font-light">Board Approved</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </RevealAnimation>
       <RevealAnimation animation="scale-in" delay={200}>
         <section className="py-32 bg-muted">
         <div className="container mx-auto px-4 lg:px-8">
