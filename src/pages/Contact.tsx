@@ -5,10 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { RevealAnimation } from "@/components/RevealAnimation";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
-
 const Contact = () => {
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       <Navigation />
 
       {/* Hero Section */}
@@ -37,9 +35,7 @@ const Contact = () => {
             {/* Contact Form */}
             <div className="space-y-12 animate-fade-in">
               <div className="space-y-6">
-                <h2 className="text-4xl md:text-5xl font-serif italic text-foreground">
-                  Send a Message
-                </h2>
+                <h2 className="text-4xl md:text-5xl font-serif italic text-foreground">Talk to Beau Monde Today</h2>
                 <p className="text-muted-foreground font-light leading-relaxed">
                   Share your vision with us. Our team will respond within 24 hours to schedule 
                   your private consultation.
@@ -52,21 +48,13 @@ const Contact = () => {
                     <label htmlFor="firstName" className="text-sm uppercase tracking-[0.2em] font-light text-foreground">
                       First Name
                     </label>
-                    <Input 
-                      id="firstName" 
-                      required 
-                      className="bg-transparent border-border/30 focus:border-accent transition-colors duration-500"
-                    />
+                    <Input id="firstName" required className="bg-transparent border-border/30 focus:border-accent transition-colors duration-500" />
                   </div>
                   <div className="space-y-3">
                     <label htmlFor="lastName" className="text-sm uppercase tracking-[0.2em] font-light text-foreground">
                       Last Name
                     </label>
-                    <Input 
-                      id="lastName" 
-                      required 
-                      className="bg-transparent border-border/30 focus:border-accent transition-colors duration-500"
-                    />
+                    <Input id="lastName" required className="bg-transparent border-border/30 focus:border-accent transition-colors duration-500" />
                   </div>
                 </div>
 
@@ -74,49 +62,33 @@ const Contact = () => {
                   <label htmlFor="email" className="text-sm uppercase tracking-[0.2em] font-light text-foreground">
                     Email
                   </label>
-                  <Input 
-                    id="email" 
-                    type="email" 
-                    required 
-                    className="bg-transparent border-border/30 focus:border-accent transition-colors duration-500"
-                  />
+                  <Input id="email" type="email" required className="bg-transparent border-border/30 focus:border-accent transition-colors duration-500" />
                 </div>
 
                 <div className="space-y-3">
                   <label htmlFor="phone" className="text-sm uppercase tracking-[0.2em] font-light text-foreground">
                     Phone
                   </label>
-                  <Input 
-                    id="phone" 
-                    type="tel" 
-                    className="bg-transparent border-border/30 focus:border-accent transition-colors duration-500"
-                  />
+                  <Input id="phone" type="tel" className="bg-transparent border-border/30 focus:border-accent transition-colors duration-500" />
                 </div>
 
                 <div className="space-y-3">
                   <label htmlFor="message" className="text-sm uppercase tracking-[0.2em] font-light text-foreground">
                     Tell Us About Your Vision
                   </label>
-                  <Textarea 
-                    id="message" 
-                    rows={6} 
-                    required 
-                    className="bg-transparent border-border/30 focus:border-accent transition-colors duration-500"
-                  />
+                  <Textarea id="message" rows={6} required className="bg-transparent border-border/30 focus:border-accent transition-colors duration-500" />
                 </div>
 
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="w-full border-accent text-accent hover:bg-accent hover:text-background transition-all duration-500"
-                >
+                <Button variant="outline" size="lg" className="w-full border-accent text-accent hover:bg-accent hover:text-background transition-all duration-500">
                   Send Message
                 </Button>
               </form>
             </div>
 
             {/* Contact Information */}
-            <div className="space-y-12 animate-fade-in" style={{ animationDelay: "200ms" }}>
+            <div className="space-y-12 animate-fade-in" style={{
+              animationDelay: "200ms"
+            }}>
               <div className="space-y-6">
                 <h2 className="text-4xl md:text-5xl font-serif italic text-foreground">
                   Visit Our Offices
@@ -146,11 +118,8 @@ const Contact = () => {
                   </div>
                   <div className="space-y-2">
                     <h3 className="text-sm uppercase tracking-[0.2em] font-light text-foreground">Phone</h3>
-                    <a
-                      href="tel:+15616468992"
-                      className="text-muted-foreground hover:text-accent transition-colors duration-500 font-light"
-                    >
-                      (561) 646-8992
+                    <a href="tel:+15555551234" className="text-muted-foreground hover:text-accent transition-colors duration-500 font-light">
+                      (555) 555-1234
                     </a>
                   </div>
                 </div>
@@ -161,10 +130,7 @@ const Contact = () => {
                   </div>
                   <div className="space-y-2">
                     <h3 className="text-sm uppercase tracking-[0.2em] font-light text-foreground">Email</h3>
-                    <a
-                      href="mailto:info@beaumondebuilders.com"
-                      className="text-muted-foreground hover:text-accent transition-colors duration-500 font-light"
-                    >
+                    <a href="mailto:info@beaumondebuilders.com" className="text-muted-foreground hover:text-accent transition-colors duration-500 font-light">
                       info@beaumondebuilders.com
                     </a>
                   </div>
@@ -194,8 +160,6 @@ const Contact = () => {
       </RevealAnimation>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Contact;
