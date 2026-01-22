@@ -87,14 +87,14 @@ const Projects = () => {
         <div className="container mx-auto px-4 relative z-10 pt-32 pb-20">
           <div className="max-w-5xl mx-auto text-center animate-fade-in">
             <p className="text-sm uppercase tracking-[0.3em] text-accent font-light mb-6">
-              Masterpieces in Luxury Living
+              Design & Build Portfolio
             </p>
             <h1 className="text-6xl md:text-8xl font-display font-light text-foreground mb-8 tracking-tight">
-              Our <span className="font-serif italic">Portfolio</span>
+              Find Your <span className="font-serif italic">Style</span>
             </h1>
             <p className="text-xl text-muted-foreground font-light leading-relaxed max-w-3xl mx-auto">
-              Each residence is a testament to uncompromising excellence and bespoke craftsmanship 
-              in Palm Beach's most prestigious locations.
+              Explore our collection of signature designs—from oceanfront estates to contemporary retreats. 
+              Discover the style that speaks to you, and let's bring your dream home to life.
             </p>
           </div>
         </div>
@@ -165,10 +165,10 @@ const Projects = () => {
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="max-w-4xl mx-auto space-y-12 animate-fade-in">
             <h2 className="text-5xl md:text-7xl font-display font-light tracking-tight">
-              Envision Your Legacy
+              Ready to Discuss Your Vision?
             </h2>
             <p className="text-xl text-background/70 font-light leading-relaxed">
-              Let us create your bespoke masterpiece in Palm Beach.
+              Tell us which style resonates with you, and we'll design something uniquely yours.
             </p>
             <Button
               variant="outline"
