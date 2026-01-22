@@ -66,17 +66,17 @@ const Contact = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[50vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-background z-0" />
-        <div className="container mx-auto px-4 relative z-10 pt-32 pb-20">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10 pt-24 md:pt-32 pb-12 md:pb-20">
           <div className="max-w-5xl mx-auto text-center animate-fade-in">
-            <p className="text-sm uppercase tracking-[0.3em] text-accent font-light mb-6">
+            <p className="text-xs md:text-sm uppercase tracking-[0.2em] md:tracking-[0.3em] text-accent font-light mb-4 md:mb-6">
               Begin Your Journey
             </p>
-            <h1 className="text-6xl md:text-8xl font-display font-light text-foreground mb-8 tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-display font-light text-foreground mb-6 md:mb-8 tracking-tight">
               Let's Create <span className="font-serif italic">Something Extraordinary</span>
             </h1>
-            <p className="text-xl text-muted-foreground font-light leading-relaxed max-w-3xl mx-auto">
+            <p className="text-base md:text-xl text-muted-foreground font-light leading-relaxed max-w-3xl mx-auto">
               Schedule a private consultation to discuss your vision for luxury living in Palm Beach.
             </p>
           </div>
@@ -85,14 +85,14 @@ const Contact = () => {
 
       {/* Contact Section */}
       <RevealAnimation animation="luxury-reveal">
-        <section className="py-32">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 max-w-7xl mx-auto">
+        <section className="py-16 md:py-32">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 max-w-7xl mx-auto">
               {/* Contact Form */}
-              <div className="space-y-12 animate-fade-in">
-                <div className="space-y-6">
-                  <h2 className="text-4xl md:text-5xl font-serif italic text-foreground">Talk to Beau Monde Today</h2>
-                  <p className="text-muted-foreground font-light leading-relaxed">
+              <div className="space-y-8 md:space-y-12 animate-fade-in">
+                <div className="space-y-4 md:space-y-6">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif italic text-foreground">Talk to Beau Monde Today</h2>
+                  <p className="text-sm md:text-base text-muted-foreground font-light leading-relaxed">
                     Share your vision with us. Our team will respond within 24 hours to schedule 
                     your private consultation.
                   </p>
