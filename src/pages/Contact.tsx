@@ -243,8 +243,20 @@ const Contact = () => {
                   </div>
                 </div>
 
-                {/* Map Placeholder */}
-                <div className="aspect-video bg-muted/30 hover:bg-muted/40 transition-colors duration-500" />
+                {/* Google Maps Embed */}
+                <div className="aspect-video overflow-hidden">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3565.8876!2d-80.0370!3d26.7015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d8d7a3d1234567%3A0x1234567890abcdef!2s205%20Worth%20Ave%2C%20Palm%20Beach%2C%20FL%2033480!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Beau Monde Builders Location - 205 Worth Avenue, Palm Beach"
+                    className="grayscale hover:grayscale-0 transition-all duration-700"
+                  />
+                </div>
               </div>
             </div>
           </div>
