@@ -21,7 +21,7 @@ const contactPageSchema = {
     "@type": "LocalBusiness",
     name: "Beau Monde Builders",
     telephone: "+1-561-646-8992",
-    email: "info@beaumondebuilders.com",
+    email: "ajhoover@mac.com",
     address: {
       "@type": "PostalAddress",
       streetAddress: "205 Worth Avenue, Suite 120",
@@ -261,8 +261,8 @@ const Contact = () => {
                     </div>
                     <div className="space-y-2">
                       <h3 className="text-sm uppercase tracking-[0.2em] font-light text-foreground">Email</h3>
-                      <a href="mailto:info@beaumondebuilders.com" className="text-muted-foreground hover:text-accent transition-colors duration-500 font-light">
-                        info@beaumondebuilders.com
+                      <a href="mailto:ajhoover@mac.com" className="text-muted-foreground hover:text-accent transition-colors duration-500 font-light">
+                        ajhoover@mac.com
                       </a>
                     </div>
                   </div>
