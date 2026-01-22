@@ -6,6 +6,9 @@ import { RevealAnimation } from "@/components/RevealAnimation";
 import { Award, Shield, Users, FileCheck, CheckCircle2 } from "lucide-react";
 import ajImage from "@/assets/aj-hoover.png";
 import fcmbLogo from "@/assets/fcmb-logo.png";
+import michelleImage from "@/assets/michelle-williams.jpg";
+import johnImage from "@/assets/john-colaiacovo.jpg";
+import lindaImage from "@/assets/linda-lucas.jpg";
 
 const About = () => {
   return (
@@ -237,12 +240,17 @@ const About = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
             {[
-              { name: "John Colaiacovo", role: "Project Manager", experience: "Dedicated to delivering exceptional results" },
-              { name: "Michelle Williams", role: "Financial Director", experience: "20+ years in luxury construction finance" },
-              { name: "Linda Lucas", role: "Project Manager", experience: "25+ years transforming visions into reality" }
+              { name: "John Colaiacovo", role: "Project Manager", experience: "Dedicated to delivering exceptional results", image: johnImage },
+              { name: "Michelle Williams", role: "Financial Director", experience: "20+ years in luxury construction finance", image: michelleImage },
+              { name: "Linda Lucas", role: "Project Manager", experience: "25+ years transforming visions into reality", image: lindaImage }
             ].map((member, index) => (
               <div key={index} className="text-center space-y-6 animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
                 <div className="aspect-[3/4] bg-muted/30 relative group overflow-hidden">
+                  <img 
+                    src={member.image} 
+                    alt={member.name}
+                    className="w-full h-full object-cover object-center"
+                  />
                   <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 </div>
                 <div>
