@@ -42,7 +42,7 @@ const handler = async (req: Request): Promise<Response> => {
     // Send notification email to the team
     const teamEmailResponse = await resend.emails.send({
       from: "Beau Monde Builders <onboarding@resend.dev>",
-      to: ["ajhoover@mac.com", "wilkinson.marshall@gmail.com"],
+      to: ["wilkinson.marshall@gmail.com"],
       subject: `New Contact Form Submission from ${firstName} ${lastName}`,
       html: `
         <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 40px 20px;">
