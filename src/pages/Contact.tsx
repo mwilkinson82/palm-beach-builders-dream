@@ -98,10 +98,10 @@ const Contact = () => {
                   </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-8">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-3">
-                      <label htmlFor="firstName" className="text-sm uppercase tracking-[0.2em] font-light text-foreground">
+                <form onSubmit={handleSubmit} className="space-y-6 md:space-y-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+                    <div className="space-y-2 md:space-y-3">
+                      <label htmlFor="firstName" className="text-xs md:text-sm uppercase tracking-[0.15em] md:tracking-[0.2em] font-light text-foreground block">
                         First Name
                       </label>
                       <Input 
@@ -112,8 +112,8 @@ const Contact = () => {
                         className="bg-transparent border-border/30 focus:border-accent transition-colors duration-500" 
                       />
                     </div>
-                    <div className="space-y-3">
-                      <label htmlFor="lastName" className="text-sm uppercase tracking-[0.2em] font-light text-foreground">
+                    <div className="space-y-2 md:space-y-3">
+                      <label htmlFor="lastName" className="text-xs md:text-sm uppercase tracking-[0.15em] md:tracking-[0.2em] font-light text-foreground block">
                         Last Name
                       </label>
                       <Input 
@@ -126,8 +126,8 @@ const Contact = () => {
                     </div>
                   </div>
 
-                  <div className="space-y-3">
-                    <label htmlFor="email" className="text-sm uppercase tracking-[0.2em] font-light text-foreground">
+                  <div className="space-y-2 md:space-y-3">
+                    <label htmlFor="email" className="text-xs md:text-sm uppercase tracking-[0.15em] md:tracking-[0.2em] font-light text-foreground block">
                       Email
                     </label>
                     <Input 
@@ -140,8 +140,8 @@ const Contact = () => {
                     />
                   </div>
 
-                  <div className="space-y-3">
-                    <label htmlFor="phone" className="text-sm uppercase tracking-[0.2em] font-light text-foreground">
+                  <div className="space-y-2 md:space-y-3">
+                    <label htmlFor="phone" className="text-xs md:text-sm uppercase tracking-[0.15em] md:tracking-[0.2em] font-light text-foreground block">
                       Phone
                     </label>
                     <Input 
@@ -153,8 +153,8 @@ const Contact = () => {
                     />
                   </div>
 
-                  <div className="space-y-3">
-                    <label htmlFor="message" className="text-sm uppercase tracking-[0.2em] font-light text-foreground">
+                  <div className="space-y-2 md:space-y-3">
+                    <label htmlFor="message" className="text-xs md:text-sm uppercase tracking-[0.15em] md:tracking-[0.2em] font-light text-foreground block">
                       Tell Us About Your Vision
                     </label>
                     <Textarea 
@@ -172,7 +172,7 @@ const Contact = () => {
                     variant="outline" 
                     size="lg" 
                     disabled={isSubmitting}
-                    className="w-full border-accent text-accent hover:bg-accent hover:text-background transition-all duration-500"
+                    className="w-full h-14 md:h-12 text-base border-accent text-accent hover:bg-accent hover:text-background transition-all duration-500 touch-manipulation"
                   >
                     {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
