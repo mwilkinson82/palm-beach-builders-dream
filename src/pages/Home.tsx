@@ -125,32 +125,59 @@ const Home = () => {
 
       {/* Philosophy Section */}
       <RevealAnimation animation="luxury-reveal" delay={100}>
-        <section className="py-32 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-5xl mx-auto">
-            <div className="flex items-center space-x-3 mb-8">
-              <div className="h-px w-16 bg-accent" />
-              <span className="text-sm uppercase tracking-[0.3em] text-muted-foreground font-light">Our Philosophy</span>
+        <section className="relative py-32 overflow-hidden">
+          {/* Layered textured background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-secondary via-white to-secondary/80" />
+          
+          {/* Subtle diagonal lines texture */}
+          <div className="absolute inset-0 opacity-[0.03]" style={{
+            backgroundImage: `repeating-linear-gradient(
+              45deg,
+              hsl(0, 0%, 5%),
+              hsl(0, 0%, 5%) 1px,
+              transparent 1px,
+              transparent 40px
+            )`
+          }} />
+          
+          {/* Large decorative accent elements */}
+          <div className="absolute -top-32 -right-32 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+          <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
+          
+          {/* Elegant corner accents */}
+          <div className="absolute top-0 left-0 w-32 h-32 border-l-2 border-t-2 border-accent/20" />
+          <div className="absolute bottom-0 right-0 w-32 h-32 border-r-2 border-b-2 border-accent/20" />
+          
+          <div className="container mx-auto px-4 lg:px-8 relative z-10">
+            <div className="max-w-5xl mx-auto">
+              <div className="flex items-center space-x-3 mb-8">
+                <div className="h-px w-16 bg-accent" />
+                <span className="text-sm uppercase tracking-[0.3em] text-muted-foreground font-light">Our Philosophy</span>
+              </div>
+
+              <h2 className="text-5xl md:text-7xl font-thin mb-12 leading-tight">
+                Architectural mastery<br />
+                <span className="italic font-light text-muted-foreground">meets personal vision</span>
+              </h2>
+
+              <div className="relative">
+                {/* Gold accent bar */}
+                <div className="absolute -left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-accent via-accent/50 to-transparent hidden lg:block" />
+                
+                <p className="text-xl text-muted-foreground leading-relaxed mb-8 font-light">
+                  Every Beau Monde estate begins with a singular commitment: to transform your vision into an
+                  architectural masterpiece that transcends time. We don't build houses—we craft legacies.
+                </p>
+
+                <p className="text-xl text-muted-foreground leading-relaxed font-light">
+                  Under AJ Hoover's hands-on leadership, our team of master craftsmen, elite designers, and
+                  seasoned project managers orchestrate every detail with precision that defines luxury living
+                  in Palm Beach.
+                </p>
+              </div>
             </div>
-
-            <h2 className="text-5xl md:text-7xl font-thin mb-12 leading-tight">
-              Architectural mastery<br />
-              <span className="italic font-light text-muted-foreground">meets personal vision</span>
-            </h2>
-
-            <p className="text-xl text-muted-foreground leading-relaxed mb-8 font-light">
-              Every Beau Monde estate begins with a singular commitment: to transform your vision into an
-              architectural masterpiece that transcends time. We don't build houses—we craft legacies.
-            </p>
-
-            <p className="text-xl text-muted-foreground leading-relaxed font-light">
-              Under AJ Hoover's hands-on leadership, our team of master craftsmen, elite designers, and
-              seasoned project managers orchestrate every detail with precision that defines luxury living
-              in Palm Beach.
-            </p>
           </div>
-        </div>
-      </section>
+        </section>
       </RevealAnimation>
 
       {/* Florida Certified Master Builder Section */}
