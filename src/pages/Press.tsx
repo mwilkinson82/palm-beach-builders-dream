@@ -3,11 +3,22 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { RevealAnimation } from "@/components/RevealAnimation";
+import { SEO, BreadcrumbSchema } from "@/components/SEO";
 
 const Press = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
+    <>
+      <SEO 
+        title="Press & Media"
+        description="Press coverage and media recognition for Beau Monde Builders. Industry awards, media features, and thought leadership in Palm Beach luxury homebuilding."
+        canonical="/press"
+      />
+      <BreadcrumbSchema items={[
+        { name: "Home", url: "/" },
+        { name: "Press", url: "/press" }
+      ]} />
+      <div className="min-h-screen bg-background">
+        <Navigation />
 
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
@@ -101,7 +112,8 @@ const Press = () => {
       </RevealAnimation>
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 

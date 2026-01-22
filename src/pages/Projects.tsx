@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+import { SEO, BreadcrumbSchema } from "@/components/SEO";
+import { Helmet } from "react-helmet-async";
 import oceanfrontEstate from "@/assets/projects/oceanfront-estate.jpg";
 import worthAvenueResidence from "@/assets/projects/worth-avenue-residence.jpg";
 import intracoastalContemporary from "@/assets/projects/intracoastal-contemporary.jpg";
@@ -113,11 +115,67 @@ const projects = [{
   year: 2023,
   image: classicEstate
 }];
+// Portfolio ItemList schema for projects
+const projectsSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Beau Monde Builders Portfolio",
+  description: "Explore our signature luxury home designs and completed projects in Palm Beach, Florida.",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      item: {
+        "@type": "Product",
+        name: "Palm Beach Oceanfront Estate",
+        description: "12,500 sq ft oceanfront luxury estate with 6 bedrooms",
+        brand: "Beau Monde Builders"
+      }
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      item: {
+        "@type": "Product",
+        name: "Worth Avenue Residence",
+        description: "8,200 sq ft urban luxury residence with 5 bedrooms",
+        brand: "Beau Monde Builders"
+      }
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      item: {
+        "@type": "Product",
+        name: "Mediterranean Villa",
+        description: "15,000 sq ft Mediterranean estate with 7 bedrooms",
+        brand: "Beau Monde Builders"
+      }
+    }
+  ]
+};
+
 const Projects = () => {
   const [filter, setFilter] = useState("All");
   const categories = ["All", "Oceanfront", "Waterfront", "Estate", "Contemporary", "Traditional"];
-  return <div className="min-h-screen bg-background">
-      <Navigation />
+  return (
+    <>
+      <SEO 
+        title="Portfolio - Luxury Home Designs"
+        description="Explore Beau Monde Builders' signature luxury home designs. Oceanfront estates, waterfront properties, and custom residences in Palm Beach, Florida."
+        canonical="/projects"
+      />
+      <BreadcrumbSchema items={[
+        { name: "Home", url: "/" },
+        { name: "Portfolio", url: "/projects" }
+      ]} />
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(projectsSchema)}
+        </script>
+      </Helmet>
+      <div className="min-h-screen bg-background">
+        <Navigation />
 
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
@@ -198,6 +256,8 @@ const Projects = () => {
       </section>
 
       <Footer />
-    </div>;
+      </div>
+    </>
+  );
 };
 export default Projects;

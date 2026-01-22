@@ -2,12 +2,23 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { RevealAnimation } from "@/components/RevealAnimation";
+import { SEO, BreadcrumbSchema } from "@/components/SEO";
 import { Instagram, Facebook, Youtube, Linkedin } from "lucide-react";
 
 const Social = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
+    <>
+      <SEO 
+        title="Follow Us on Social Media"
+        description="Connect with Beau Monde Builders on Instagram, Facebook, YouTube, and LinkedIn. Explore luxury home design inspiration and behind-the-scenes content."
+        canonical="/social"
+      />
+      <BreadcrumbSchema items={[
+        { name: "Home", url: "/" },
+        { name: "Social", url: "/social" }
+      ]} />
+      <div className="min-h-screen bg-background">
+        <Navigation />
 
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
@@ -150,7 +161,8 @@ const Social = () => {
       </RevealAnimation>
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 

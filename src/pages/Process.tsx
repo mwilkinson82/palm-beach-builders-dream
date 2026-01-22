@@ -3,6 +3,8 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { RevealAnimation } from "@/components/RevealAnimation";
+import { SEO, BreadcrumbSchema, ServicePageSchema } from "@/components/SEO";
+import { Helmet } from "react-helmet-async";
 
 const processSteps = [
   {
@@ -52,10 +54,49 @@ const processSteps = [
   },
 ];
 
+// HowTo schema for the construction process
+const processSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "Beau Monde Builders 9-Step Custom Home Building Process",
+  description: "A meticulously orchestrated journey from vision to reality, guided by decades of expertise in luxury homebuilding.",
+  totalTime: "PT12M",
+  estimatedCost: {
+    "@type": "MonetaryAmount",
+    currency: "USD",
+    value: "Varies by project scope"
+  },
+  step: processSteps.map((step, index) => ({
+    "@type": "HowToStep",
+    position: index + 1,
+    name: step.title,
+    text: step.description
+  }))
+};
+
 const Process = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
+    <>
+      <SEO 
+        title="Our 9-Step Building Process"
+        description="Discover Beau Monde Builders' meticulous 9-step custom home building process. From initial consultation to seamless move-in, we guide you through every phase."
+        canonical="/process"
+      />
+      <BreadcrumbSchema items={[
+        { name: "Home", url: "/" },
+        { name: "Process", url: "/process" }
+      ]} />
+      <ServicePageSchema 
+        serviceName="Custom Luxury Home Building Process"
+        description="Our comprehensive 9-step process ensures your vision becomes reality with precision and excellence."
+      />
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(processSchema)}
+        </script>
+      </Helmet>
+      <div className="min-h-screen bg-background">
+        <Navigation />
 
       {/* Hero Section */}
       <section className="relative min-h-[50vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden">
@@ -145,7 +186,8 @@ const Process = () => {
       </RevealAnimation>
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 
