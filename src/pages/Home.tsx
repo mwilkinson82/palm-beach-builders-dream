@@ -5,9 +5,7 @@ import { Footer } from "@/components/Footer";
 import { RevealAnimation } from "@/components/RevealAnimation";
 import { ArrowRight, Award, Building2, Sparkles, CheckCircle2, Shield, Users, FileCheck } from "lucide-react";
 import heroImage from "@/assets/hero-home.jpg";
-
-// Use a public static asset to avoid caching/proxy issues with uploads.
-const fcmbLogo = "/images/fcmb-logo.jpg?v=1";
+import fcmbLogo from "@/assets/fcmb-logo.png";
 
 const Home = () => {
   return (
