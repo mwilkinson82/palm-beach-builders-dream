@@ -6,19 +6,38 @@ interface SplashScreenProps {
   onComplete: () => void;
 }
 
-export const SplashScreen = ({ duration = 2000, onComplete }: SplashScreenProps) => {
-  const [phase, setPhase] = useState<"entering" | "visible" | "exiting" | "complete">("entering");
+export const SplashScreen = ({ duration = 3000, onComplete }: SplashScreenProps) => {
+  const [phase, setPhase] = useState<"loading" | "entering" | "visible" | "exiting" | "complete">("loading");
+  const [imageLoaded, setImageLoaded] = useState(false);
 
+  // Preload image
   useEffect(() => {
-    // Phase 1: Logo fades in (1.5s)
+    const img = new Image();
+    img.src = logoSketch;
+    
+    if (img.complete) {
+      setImageLoaded(true);
+    } else {
+      img.onload = () => setImageLoaded(true);
+      img.onerror = () => setImageLoaded(true); // Proceed anyway on error
+    }
+  }, []);
+
+  // Start animation once image is loaded
+  useEffect(() => {
+    if (!imageLoaded) return;
+
+    // Start entering phase
+    setPhase("entering");
+    
     const enterTimer = setTimeout(() => {
       setPhase("visible");
     }, 100);
 
-    // Phase 2: Stay visible, then start exit
+    // Phase 2: Stay visible, then start exit (use shorter fade time)
     const exitTimer = setTimeout(() => {
       setPhase("exiting");
-    }, duration - 1500);
+    }, duration - 800);
 
     // Phase 3: Complete and unmount
     const completeTimer = setTimeout(() => {
@@ -31,20 +50,20 @@ export const SplashScreen = ({ duration = 2000, onComplete }: SplashScreenProps)
       clearTimeout(exitTimer);
       clearTimeout(completeTimer);
     };
-  }, [duration, onComplete]);
+  }, [imageLoaded, duration, onComplete]);
 
   if (phase === "complete") return null;
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#f8f6f1] transition-opacity duration-1500 ${
+      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#f8f6f1] transition-opacity duration-700 ${
         phase === "exiting" ? "opacity-0" : "opacity-100"
       }`}
     >
       {/* Logo Container */}
       <div
-        className={`flex flex-col items-center transition-all duration-1500 ease-out ${
-          phase === "entering" 
+        className={`flex flex-col items-center transition-all duration-700 ease-out ${
+          phase === "loading" || phase === "entering" 
             ? "opacity-0 scale-95" 
             : "opacity-100 scale-100"
         }`}
@@ -76,9 +95,9 @@ export const SplashScreen = ({ duration = 2000, onComplete }: SplashScreenProps)
         <div className="mt-12">
           <div className="w-32 h-px bg-primary/10 overflow-hidden">
             <div 
-              className="h-full bg-accent origin-left"
+              className={`h-full bg-accent origin-left ${imageLoaded ? '' : 'opacity-0'}`}
               style={{
-                animation: `loadingBar ${duration - 1500}ms ease-out forwards`,
+                animation: imageLoaded ? `loadingBar ${duration - 800}ms ease-out forwards` : 'none',
               }}
             />
           </div>
