@@ -89,6 +89,9 @@ export const SplashScreen = ({ duration = 3000, onComplete }: SplashScreenProps)
             </span>
             <div className="h-px w-8 bg-accent" />
           </div>
+          <p className="text-xs sm:text-sm tracking-[0.25em] uppercase text-primary/50 font-light mt-2">
+            Palm Beach
+          </p>
         </div>
 
         {/* Subtle loading indicator */}
