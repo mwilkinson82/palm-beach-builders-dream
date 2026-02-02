@@ -288,6 +288,9 @@ const Renovations = () => {
                           </div>
                         ))}
                       </div>
+                      <div className="text-sm text-white/60 font-light italic mt-3">
+                        And surrounding areas
+                      </div>
                     </div>
 
                     {/* Our Process */}
