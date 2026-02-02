@@ -24,7 +24,7 @@ const Home = () => {
       {/* Splash Screen */}
       {showSplash && (
         <SplashScreen 
-          duration={10000} 
+          duration={3000} 
           onComplete={() => setShowSplash(false)} 
         />
       )}
