@@ -373,6 +373,102 @@ const Home = () => {
           </div>
         </section>
       </RevealAnimation>
+
+      {/* Luxury Renovations Section */}
+      <RevealAnimation animation="luxury-reveal" delay={100}>
+        <section className="py-16 md:py-24 bg-secondary relative overflow-hidden">
+          {/* Decorative elements */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary/5 rounded-full blur-2xl" />
+          
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
+              {/* Content */}
+              <div>
+                <div className="flex items-center space-x-3 mb-4 md:mb-6">
+                  <div className="h-px w-12 md:w-16 bg-accent" />
+                  <span className="text-xs md:text-sm uppercase tracking-[0.2em] md:tracking-[0.3em] text-muted-foreground font-light">Now Offering</span>
+                </div>
+
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-thin mb-6 md:mb-8 leading-tight">
+                  Luxury
+                  <br />
+                  <span className="italic font-light text-muted-foreground">Renovations</span>
+                </h2>
+
+                <p className="text-base md:text-lg text-muted-foreground mb-6 md:mb-8 font-light leading-relaxed">
+                  From iconic oceanfront condominiums to historic Palm Beach estates, 
+                  we bring the same uncompromising craftsmanship and Florida Certified 
+                  Master Builder excellence to every renovation project.
+                </p>
+
+                <div className="grid grid-cols-2 gap-4 mb-8">
+                  <div className="flex items-center space-x-2">
+                    <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0" />
+                    <span className="text-sm text-muted-foreground font-light">Condo Transformations</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0" />
+                    <span className="text-sm text-muted-foreground font-light">Kitchen & Bath</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0" />
+                    <span className="text-sm text-muted-foreground font-light">Whole-Home Remodels</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0" />
+                    <span className="text-sm text-muted-foreground font-light">Turnkey Packages</span>
+                  </div>
+                </div>
+
+                <Button 
+                  variant="default" 
+                  size="lg" 
+                  className="group bg-accent hover:bg-accent/90 text-black font-medium tracking-wide text-sm md:text-base"
+                  asChild
+                >
+                  <Link to="/renovations">
+                    EXPLORE RENOVATIONS
+                    <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
+              </div>
+
+              {/* Stats/Highlights Card */}
+              <div className="relative">
+                <div className="absolute -inset-4 bg-accent/10 blur-2xl rounded-lg" />
+                <div className="relative bg-primary text-white p-8 md:p-12 border border-white/10">
+                  <h3 className="text-xl md:text-2xl font-light mb-8 text-center">
+                    Palm Beach & West Palm Beach
+                    <br />
+                    <span className="text-accent italic">Condo Specialists</span>
+                  </h3>
+                  
+                  <div className="grid grid-cols-2 gap-6 mb-8">
+                    <div className="text-center">
+                      <div className="text-3xl md:text-4xl font-thin text-accent mb-1">50+</div>
+                      <div className="text-xs uppercase tracking-widest text-white/60">Renovations</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl md:text-4xl font-thin text-accent mb-1">30+</div>
+                      <div className="text-xs uppercase tracking-widest text-white/60">Years Expertise</div>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-white/10 pt-6">
+                    <p className="text-sm text-white/70 font-light text-center leading-relaxed">
+                      Expert navigation of condo association requirements, 
+                      building management coordination, and neighbor-conscious 
+                      construction practices.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </RevealAnimation>
+
       {/* Services Section - Redesigned */}
       <section className="relative py-16 md:py-32 overflow-hidden">
         {/* Background with texture */}
