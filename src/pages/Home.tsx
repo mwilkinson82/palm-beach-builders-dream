@@ -444,14 +444,26 @@ const Home = () => {
                     <span className="text-accent italic">Condo Specialists</span>
                   </h3>
                   
-                  <div className="grid grid-cols-2 gap-6 mb-8">
-                    <div className="text-center">
-                      <div className="text-3xl md:text-4xl font-thin text-accent mb-1">50+</div>
-                      <div className="text-xs uppercase tracking-widest text-white/60">Renovations</div>
+                  <div className="space-y-4 mb-8">
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0" />
+                      <span className="text-sm text-white/80 font-light">Full Gut Renovations</span>
                     </div>
-                    <div className="text-center">
-                      <div className="text-3xl md:text-4xl font-thin text-accent mb-1">30+</div>
-                      <div className="text-xs uppercase tracking-widest text-white/60">Years Expertise</div>
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0" />
+                      <span className="text-sm text-white/80 font-light">Gourmet Kitchen Design</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0" />
+                      <span className="text-sm text-white/80 font-light">Spa-Inspired Bathrooms</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0" />
+                      <span className="text-sm text-white/80 font-light">Turnkey Move-In Packages</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0" />
+                      <span className="text-sm text-white/80 font-light">Smart Home Integration</span>
                     </div>
                   </div>
 
