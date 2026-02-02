@@ -9,6 +9,7 @@ import { SEO } from "@/components/SEO";
 import { ArrowRight, Award, Building2, Sparkles, CheckCircle2, Shield, Users, FileCheck, Star } from "lucide-react";
 import heroImage from "@/assets/hero-home.jpg";
 import fcmbLogo from "@/assets/fcmb-logo.png";
+import logoSketch from "@/assets/beau-monde-logo-sketch.jpeg";
 
 const Home = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -158,6 +159,98 @@ const Home = () => {
           </div>
         </div>
       </section>
+      </RevealAnimation>
+
+      {/* Logo Story Section */}
+      <RevealAnimation animation="luxury-reveal" delay={100}>
+        <section className="py-16 md:py-32 bg-[#f8f6f1] relative overflow-hidden">
+          {/* Subtle decorative elements */}
+          <div className="absolute top-0 left-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
+          
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            {/* Section Header */}
+            <div className="text-center mb-12 md:mb-16">
+              <div className="flex items-center justify-center space-x-3 mb-6">
+                <div className="h-px w-12 bg-accent" />
+                <span className="text-sm uppercase tracking-[0.3em] text-muted-foreground font-light">Our Emblem</span>
+                <div className="h-px w-12 bg-accent" />
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-thin leading-tight">
+                The Beau Monde
+                <br />
+                <span className="italic font-light text-muted-foreground">Symbol</span>
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+              {/* Logo Image */}
+              <div className="flex justify-center lg:sticky lg:top-32">
+                <div className="relative">
+                  <div className="absolute -inset-8 bg-accent/10 blur-3xl rounded-full" />
+                  <img
+                    src={logoSketch}
+                    alt="Beau Monde Builders Logo - Classical architecture with lions and palm trees"
+                    className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* Description Content */}
+              <div className="space-y-10">
+                {/* Intro */}
+                <div>
+                  <p className="text-lg text-muted-foreground font-light leading-relaxed">
+                    The Beau Monde Builders logo is a powerful emblem that speaks to the essence of the company's philosophy, expertise, and dedication to excellence in luxury home building. Every element within the logo has been carefully chosen to represent the characteristics that Beau Monde Builders brings to each project.
+                  </p>
+                </div>
+
+                {/* The Lions */}
+                <div className="border-l-2 border-accent pl-6">
+                  <h3 className="text-xl md:text-2xl font-light mb-4">
+                    The Lions
+                    <span className="block text-sm text-accent uppercase tracking-widest mt-1">Symbols of Strength & Leadership</span>
+                  </h3>
+                  <p className="text-muted-foreground font-light leading-relaxed">
+                    The lions in the Beau Monde Builders logo are more than just a nod to nature's royalty—they embody the qualities of a true leader. As the "King of the Jungle," the lion symbolizes strength, steadfastness, and vigilance. These traits mirror the approach Beau Monde Builders takes on each project: approaching each challenge with confidence, meeting every detail with unwavering attention, and leading every build with integrity. The lions also represent resilience and power, reminding clients that Beau Monde Builders will guide and safeguard their vision through every phase of construction.
+                  </p>
+                </div>
+
+                {/* The Parthenon */}
+                <div className="border-l-2 border-accent pl-6">
+                  <h3 className="text-xl md:text-2xl font-light mb-4">
+                    The Parthenon Structure
+                    <span className="block text-sm text-accent uppercase tracking-widest mt-1">Timeless Quality & Architectural Excellence</span>
+                  </h3>
+                  <p className="text-muted-foreground font-light leading-relaxed">
+                    The Parthenon structure in the logo speaks to Beau Monde Builders' commitment to creating homes that are both enduring and visually stunning. Modeled after one of history's architectural masterpieces, the Parthenon symbolizes timelessness, durability, and aesthetic perfection. Much like this ancient structure, Beau Monde Builders designs homes that are built to last—homes that combine beauty, quality, and functionality to stand the test of time. The Parthenon also signifies an alignment with the highest standards of craftsmanship, emphasizing Beau Monde Builders' pursuit of architectural excellence.
+                  </p>
+                </div>
+
+                {/* The Palm Trees */}
+                <div className="border-l-2 border-accent pl-6">
+                  <h3 className="text-xl md:text-2xl font-light mb-4">
+                    The Palm Trees
+                    <span className="block text-sm text-accent uppercase tracking-widest mt-1">Our Geographical Stamp</span>
+                  </h3>
+                  <p className="text-muted-foreground font-light leading-relaxed">
+                    The Beau Monde Builders palm trees are not only a geographical marker but throughout history have represented tranquility, peace and security, making it an appropriate element to the Beau Monde philosophy of not just creating lasting and beautiful project builds but actually becoming an oasis of peace and tranquility for your family to lay their heads and make a true home and respite from the day to day chaos and stress of the world.
+                  </p>
+                </div>
+
+                {/* Vision Summary */}
+                <div className="bg-primary text-white p-8 md:p-10 mt-8">
+                  <h3 className="text-xl md:text-2xl font-light mb-4 text-accent">
+                    A Vision Guided by Excellence
+                  </h3>
+                  <p className="text-white/80 font-light leading-relaxed">
+                    The symbolism within the Beau Monde Builders logo reflects the core values that guide every project. Like the lion, Beau Monde Builders is committed to leadership, ensuring every project is executed with strength, diligence, and pride. The Parthenon serves as a constant reminder of the quality and precision that Beau Monde Builders brings to each home it builds—homes that are not only structurally sound but also masterpieces of aesthetic and functional design. And the Palm Trees create a peaceful and tranquil home for your family.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </RevealAnimation>
 
       {/* Philosophy Section */}
