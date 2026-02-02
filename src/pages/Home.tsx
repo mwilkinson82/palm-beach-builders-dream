@@ -468,11 +468,20 @@ const Home = () => {
                   </div>
 
                   <div className="border-t border-white/10 pt-6">
-                    <p className="text-sm text-white/70 font-light text-center leading-relaxed">
-                      Expert navigation of condo association requirements, 
-                      building management coordination, and neighbor-conscious 
-                      construction practices.
-                    </p>
+                    <div className="flex flex-wrap justify-center gap-3">
+                      <div className="flex items-center space-x-1.5 px-3 py-1.5 bg-white/5 rounded border border-white/10">
+                        <Shield className="w-4 h-4 text-accent" />
+                        <span className="text-xs text-white/70 font-light">Fully Insured</span>
+                      </div>
+                      <div className="flex items-center space-x-1.5 px-3 py-1.5 bg-white/5 rounded border border-white/10">
+                        <Shield className="w-4 h-4 text-accent" />
+                        <span className="text-xs text-white/70 font-light">Licensed</span>
+                      </div>
+                      <div className="flex items-center space-x-1.5 px-3 py-1.5 bg-white/5 rounded border border-white/10">
+                        <Award className="w-4 h-4 text-accent" />
+                        <span className="text-xs text-white/70 font-light">FCMB Certified</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
