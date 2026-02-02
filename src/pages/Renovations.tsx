@@ -4,7 +4,7 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { RevealAnimation } from "@/components/RevealAnimation";
 import { SEO } from "@/components/SEO";
-import { ArrowRight, Building2, Home, Sparkles, Bath, ChefHat, Palette, Shield, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Building2, Home, Sparkles, Bath, ChefHat, Palette, Shield, CheckCircle2, MapPin } from "lucide-react";
 
 const Renovations = () => {
   const services = [
@@ -251,23 +251,61 @@ const Renovations = () => {
 
                 <div className="relative">
                   <div className="absolute inset-0 bg-accent/10 blur-3xl rounded-full scale-75" />
-                  <div className="relative bg-primary/5 border border-border p-8 md:p-12">
-                    <h3 className="text-xl font-light mb-6">Buildings We've Transformed</h3>
-                    <div className="grid grid-cols-2 gap-4">
-                      {[
-                        "The Palm Beach",
-                        "Sloan's Curve",
-                        "The Bristol",
-                        "Bellaria",
-                        "Two Thousand Ocean",
-                        "La Bonne Vie",
-                        "The Residences at Mandarin Oriental",
-                        "Trump Plaza"
-                      ].map((building) => (
-                        <div key={building} className="text-sm text-muted-foreground font-light py-2 border-b border-border/50">
-                          {building}
-                        </div>
-                      ))}
+                  <div className="relative bg-primary/5 border border-border p-8 md:p-12 space-y-8">
+                    {/* Property Types */}
+                    <div>
+                      <h3 className="text-lg font-light mb-4 text-accent">Property Types</h3>
+                      <div className="grid grid-cols-2 gap-2">
+                        {[
+                          "Oceanfront Condos",
+                          "Penthouses",
+                          "Historic Estates",
+                          "Beachfront Residences"
+                        ].map((item) => (
+                          <div key={item} className="text-sm text-muted-foreground font-light py-1.5 flex items-center">
+                            <CheckCircle2 className="w-4 h-4 text-accent mr-2 flex-shrink-0" />
+                            {item}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Areas We Serve */}
+                    <div className="border-t border-border/50 pt-6">
+                      <h3 className="text-lg font-light mb-4 text-accent">Areas We Serve</h3>
+                      <div className="grid grid-cols-2 gap-2">
+                        {[
+                          "Palm Beach Island",
+                          "West Palm Beach",
+                          "Jupiter Island",
+                          "Singer Island"
+                        ].map((item) => (
+                          <div key={item} className="text-sm text-muted-foreground font-light py-1.5 flex items-center">
+                            <MapPin className="w-4 h-4 text-accent mr-2 flex-shrink-0" />
+                            {item}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Our Process */}
+                    <div className="border-t border-border/50 pt-6">
+                      <h3 className="text-lg font-light mb-4 text-accent">Our Process</h3>
+                      <div className="space-y-2">
+                        {[
+                          "Design Consultation",
+                          "Permit Management",
+                          "Quality Construction",
+                          "Final Walkthrough"
+                        ].map((item, index) => (
+                          <div key={item} className="text-sm text-muted-foreground font-light py-1.5 flex items-center">
+                            <span className="w-6 h-6 rounded-full bg-accent/20 text-accent text-xs flex items-center justify-center mr-2 flex-shrink-0">
+                              {index + 1}
+                            </span>
+                            {item}
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
