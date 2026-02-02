@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { RevealAnimation } from "@/components/RevealAnimation";
+import { SplashScreen } from "@/components/SplashScreen";
 import { SEO } from "@/components/SEO";
 import { ArrowRight, Award, Building2, Sparkles, CheckCircle2, Shield, Users, FileCheck, Star } from "lucide-react";
 import heroImage from "@/assets/hero-home.jpg";
@@ -11,6 +12,7 @@ import fcmbLogo from "@/assets/fcmb-logo.png";
 
 const Home = () => {
   const [scrollY, setScrollY] = useState(0);
+  const [showSplash, setShowSplash] = useState(true);
   const philosophyRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -35,6 +37,15 @@ const Home = () => {
         canonical="/"
         description="Beau Monde Builders Palm Beach - Florida's premier custom luxury home builder. Three decades of excellence crafting oceanfront estates and bespoke residences on Worth Avenue for discerning clients."
       />
+      
+      {/* Splash Screen */}
+      {showSplash && (
+        <SplashScreen 
+          duration={10000} 
+          onComplete={() => setShowSplash(false)} 
+        />
+      )}
+      
       <div className="min-h-screen bg-background">
         <Navigation />
 
