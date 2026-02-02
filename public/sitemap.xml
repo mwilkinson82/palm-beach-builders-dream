@@ -36,6 +36,14 @@
     <priority>0.9</priority>
   </url>
   
+  <!-- Renovations Page -->
+  <url>
+    <loc>https://beaumondebuilders.com/renovations</loc>
+    <lastmod>2026-02-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
   <!-- Press Page -->
   <url>
     <loc>https://beaumondebuilders.com/press</loc>

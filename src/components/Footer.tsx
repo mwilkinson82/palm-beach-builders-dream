@@ -31,6 +31,7 @@ export const Footer = () => {
                 { label: "About", path: "/about" },
                 { label: "Process", path: "/process" },
                 { label: "Find My Style", path: "/projects" },
+                { label: "Renovations", path: "/renovations" },
                 { label: "Press", path: "/press" },
                 { label: "Contact", path: "/contact" },
               ].map((item) => (

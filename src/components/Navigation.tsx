@@ -68,6 +68,14 @@ export const Navigation = () => {
               Your Style
             </Link>
             <Link 
+              to="/renovations" 
+              className={`text-sm uppercase tracking-widest font-light transition-all hover:text-accent ${
+                isScrolled ? "text-foreground" : "text-white"
+              }`}
+            >
+              Renovations
+            </Link>
+            <Link 
               to="/contact" 
               className={`text-sm uppercase tracking-widest font-light transition-all hover:text-accent ${
                 isScrolled ? "text-foreground" : "text-white"
@@ -134,6 +142,13 @@ export const Navigation = () => {
               onClick={() => setIsOpen(false)}
             >
               Your Style
+            </Link>
+            <Link
+              to="/renovations"
+              className="block text-sm uppercase tracking-widest font-light text-foreground hover:text-accent transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              Renovations
             </Link>
             <Link
               to="/contact"
