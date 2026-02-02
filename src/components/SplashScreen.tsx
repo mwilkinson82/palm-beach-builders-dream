@@ -6,7 +6,7 @@ interface SplashScreenProps {
   onComplete: () => void;
 }
 
-export const SplashScreen = ({ duration = 5500, onComplete }: SplashScreenProps) => {
+export const SplashScreen = ({ duration = 3500, onComplete }: SplashScreenProps) => {
   const [phase, setPhase] = useState<"entering" | "visible" | "exiting" | "complete">("entering");
 
   useEffect(() => {
