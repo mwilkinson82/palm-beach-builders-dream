@@ -251,7 +251,7 @@ const Renovations = () => {
 
                 <div className="relative">
                   <div className="absolute inset-0 bg-accent/10 blur-3xl rounded-full scale-75" />
-                  <div className="relative bg-primary/5 border border-border p-8 md:p-12 space-y-8">
+                  <div className="relative bg-primary text-white border border-white/10 p-8 md:p-12 space-y-8">
                     {/* Property Types */}
                     <div>
                       <h3 className="text-lg font-light mb-4 text-accent">Property Types</h3>
@@ -262,7 +262,7 @@ const Renovations = () => {
                           "Historic Estates",
                           "Beachfront Residences"
                         ].map((item) => (
-                          <div key={item} className="text-sm text-muted-foreground font-light py-1.5 flex items-center">
+                          <div key={item} className="text-sm text-white/80 font-light py-1.5 flex items-center">
                             <CheckCircle2 className="w-4 h-4 text-accent mr-2 flex-shrink-0" />
                             {item}
                           </div>
@@ -271,7 +271,7 @@ const Renovations = () => {
                     </div>
 
                     {/* Areas We Serve */}
-                    <div className="border-t border-border/50 pt-6">
+                    <div className="border-t border-white/10 pt-6">
                       <h3 className="text-lg font-light mb-4 text-accent">Areas We Serve</h3>
                       <div className="grid grid-cols-2 gap-2">
                         {[
@@ -280,7 +280,7 @@ const Renovations = () => {
                           "Jupiter Island",
                           "Singer Island"
                         ].map((item) => (
-                          <div key={item} className="text-sm text-muted-foreground font-light py-1.5 flex items-center">
+                          <div key={item} className="text-sm text-white/80 font-light py-1.5 flex items-center">
                             <MapPin className="w-4 h-4 text-accent mr-2 flex-shrink-0" />
                             {item}
                           </div>
@@ -289,7 +289,7 @@ const Renovations = () => {
                     </div>
 
                     {/* Our Process */}
-                    <div className="border-t border-border/50 pt-6">
+                    <div className="border-t border-white/10 pt-6">
                       <h3 className="text-lg font-light mb-4 text-accent">Our Process</h3>
                       <div className="space-y-2">
                         {[
@@ -298,7 +298,7 @@ const Renovations = () => {
                           "Quality Construction",
                           "Final Walkthrough"
                         ].map((item, index) => (
-                          <div key={item} className="text-sm text-muted-foreground font-light py-1.5 flex items-center">
+                          <div key={item} className="text-sm text-white/80 font-light py-1.5 flex items-center">
                             <span className="w-6 h-6 rounded-full bg-accent/20 text-accent text-xs flex items-center justify-center mr-2 flex-shrink-0">
                               {index + 1}
                             </span>
