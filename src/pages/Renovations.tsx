@@ -257,6 +257,8 @@ const Renovations = () => {
                       <h3 className="text-lg font-light mb-4 text-accent">Property Types</h3>
                       <div className="grid grid-cols-2 gap-2">
                         {[
+                          "Luxury Condos",
+                          "Residences",
                           "Oceanfront Condos",
                           "Penthouses",
                           "Historic Estates",
