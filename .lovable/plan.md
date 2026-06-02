@@ -1,69 +1,74 @@
-## Palm Beach Refinement + Phase 2 Home Rebuild
+## Refine three generic sections
 
-Palm Beach is the flagship. Space Coast bends to this later. Before rebuilding Home sections, refine the typographic and palette system to match Worth Avenue restraint — then build Phase 2 on the corrected foundation.
+The Bespoke → Stats → Emblem → Philosophy sequence is now editorial and restrained. The three sections directly below it haven't caught up — they still read as generic luxury template: glowing rings, glassmorphism cards, brass buttons, blurred radial gradients, rounded icon chips, full-width navy slabs. They break the engraved-invitation tone we just established.
 
-### Locked refinements (your agreement)
+This plan rebuilds all three on the same editorial system, plus a small fix to the closing CTA so the page ends in the same voice it now opens in.
 
-**Typography — swap to Cormorant Garamond as display**
-- `font-display` and `font-serif` → Cormorant Garamond (already loaded in `index.html`, weights 300/400/500 + italics)
-- DM Serif Display demoted to rare brand moments only (kept loaded for the "Beau Monde" wordmark in hero/footer if we want occasional weight contrast — otherwise removed entirely)
-- Fira Sans stays as `font-sans` for UI, body, captions, buttons
-- Effect: "engraved invitation" instead of "magazine cover." Thinner strokes, more breathing room, italic accents that feel handwritten.
+### What's wrong with each (specifics)
 
-**Brass discipline**
-- Brass `#b08a4a` restricted to: hairline dividers, small uppercase eyebrows, icon strokes, hover underlines
-- Never brass button fills, never brass large type, never brass blocks
-- Navy and ivory carry all the weight. Brass whispers.
-- Audit Navigation, Footer, Walkthrough, Delivery for any current brass overuse and pull back.
+**Florida Certified Master Builder**
+- Glowing blur halo + rounded white badge frame on the logo reads marketing-stock, not credential.
+- 4-up icon-chip requirements grid with rounded-lg accent boxes is identical to every SaaS feature grid.
+- Bottom row of "Background Verified / 5+ Years Licensed / Fully Insured / Board Approved" badges is decorative repetition.
+- Lives on a full navy slab with dot-pattern texture — visually competing with the navy DeliveryShowcase video and the upcoming navy CTA.
 
-**Atlantic Navy stays** — `#0f2a3d` is the right depth. Deeper and warmer than Space Coast cobalt. Ocean-at-dusk vs ocean-at-noon differentiation is intentional.
+**Luxury Renovations**
+- Two blurred radial gradient "decorative" blobs (brass + navy) are generic.
+- Brass-filled `EXPLORE RENOVATIONS` CTA violates brass discipline (CTAs must be navy).
+- Right-side "Condo Specialists" navy card with check-list bullets + Shield/Award badge chips with rounded borders is the most template-y element on the page.
+- Two parallel checklists (left grid + right card) say the same thing twice.
 
-### Third tonal whisper — my recommendation
+**The Beau Monde Difference**
+- Full navy slab + radial dot pattern + 3 glassmorphism cards with hover glow rings, oversized translucent "01/02/03" numerals, rounded icon chips, and `w-12 → w-20` underline-grow hover effects — pure 2022 SaaS card grid.
+- Headlines `BESPOKE DESIGN / PRECISION EXECUTION / LIFETIME COMMITMENT` set in uppercase sans serif fight the Cormorant editorial voice established above.
 
-You didn't explicitly weigh in on the seafoam vs coral vs austere question. My recommendation: **soft seafoam** `#dce8e4` (very pale ocean green, ~5% saturation). Used only in:
-- Section divider bands between editorial blocks
-- Subtle image tints on portfolio thumbnails on rest state
-- Hover wash on cards
-- Never in type, never in buttons
+**Closing CTA (folded in for consistency)**
+- Brass-outline `SCHEDULE YOUR CONSULTATION` button on navy violates brass discipline.
+- Headline still uses brass italic accent on large type.
 
-Coastal warmth without flash. If you'd rather stay austere (ivory/navy/brass only), say the word and I drop it from the plan.
+### Locked system reminder (no drift)
 
-### Phase 2 — Home editorial rebuild
+Ivory background by default. Navy reserved for one or two intentional editorial moments per page (we already have DeliveryShowcase + closing CTA — that's the budget). Brass = hairlines / eyebrows / hover underlines only, never fills, never large type. Cormorant for display + italics; Fira Sans for UI/eyebrows/body. Seafoam only as section wash, never in type. Icons strokeWidth 1.25, muted.
 
-After the foundation refinement above ships, rebuild Home sections below the Delivery showcase as editorial bands. Current structure replaced:
+### Rebuild — three editorial bands
 
-**Sections to rework** (Home page only — interior pages come in Phase 3):
-1. "Bespoke Luxury Redefined" + capabilities grid
-2. Stats / numbers band
-3. Closing CTA section
+**Band A · Florida Certified Master Builder** — asymmetric editorial pair on ivory.
+- Left 5/12: the FCMB logo at full size, no halo, no rounded frame, no backdrop — sitting in negative space with a single brass hairline running underneath it and a small Fira Sans eyebrow "Florida Certified · Master Builder · 2024".
+- Right 7/12: Cormorant statement "An elite designation. Held by the few." Italic on line two. One short paragraph of copy below.
+- Beneath the paragraph: four single-line credentials separated by brass hairlines (no icon chips, no boxes) — "7+ Years Experience / Clean Regulatory Record / Verified Client & Subcontractor References / Written Warranty Minimum 1 Year". Each line is a row: 8-char tracked label on the left, plain body on the right.
+- No bottom badge cluster (Background Verified / Licensed / Insured / Board Approved). Those are implied by FCMB.
 
-**New editorial system:**
-- Asymmetric image + text rows (60/40 splits, alternating sides)
-- Oversized Cormorant statements (single sentences, generous line-height)
-- Brass hairlines instead of Lucide icon grids
-- Eyebrows in Fira Sans uppercase, tracking-wide, brass color, very small
-- Section transitions use the seafoam divider band (if approved)
-- Full-bleed image moments between text bands for pacing
+**Band B · Luxury Renovations** — editorial pair, image-led, ivory background.
+- Eyebrow "Now Offering" + Cormorant statement "Renovations, at the same standard."
+- One short paragraph. Below it, a single brass-hairline list of four offerings: Condominium Transformations / Kitchen & Bath / Whole-Home Remodels / Turnkey Packages. No checkmarks, no parallel right-side card.
+- Primary CTA `Explore Renovations` (navy fill, ivory text — matches the new system).
+- Right column: a single ivory-bordered image moment (use an existing project photo or the hero asset) — quiet, no overlay, no hover.
+- Removes the duplicate "Condo Specialists" right card entirely. The trust signals (Insured / Licensed / FCMB) already live in the FCMB band above.
 
-**Three rendered design directions** generated via the design tool — all three lock the refined Cormorant + Fira Sans + Ivory/Navy/Brass(+Seafoam) system. They vary only in:
-- Composition rhythm (dense editorial vs. spacious gallery vs. cinematic full-bleed)
-- Image-to-type ratio
-- Where the "Talk to Beau Monde" CTA lands
+**Band C · The Beau Monde Difference** — three-row editorial list on ivory (not a navy card grid).
+- Eyebrow "Our Approach" + Cormorant statement "Three commitments, one standard." centered.
+- Below: a single column of three numbered rows separated by brass hairlines. Each row is one line: small navy "01 / 02 / 03" + Cormorant sub-headline (`Bespoke Design` / `Precision Execution` / `Lifetime Commitment`) + one Fira Sans sentence below.
+- No cards, no glassmorphism, no hover glows, no icons, no rounded chips. Whitespace and the hairlines carry the rhythm.
 
-You pick one. I build it.
+**Closing CTA polish (small)**
+- Drop brass-outline button → navy filled `Schedule Your Consultation`.
+- Headline stays Cormorant; italic accent stays the muted ivory tone the upper sequence uses (no brass on large type).
+- Address line stays.
 
-### Execution order
+### Technical details
 
-1. **Refinement pass** (one focused build): swap fonts in `tailwind.config.ts`, update `index.css` tokens (add seafoam if approved), audit brass usage across Nav/Footer/Walkthrough/Delivery, update `mem://style/visual-aesthetic` and `mem://index.md` so the new system locks in for future sessions.
-2. **Pause** — you scroll, confirm the new tone reads correctly.
-3. **Phase 2 directions** — generate 3 rendered Home rebuild options, you pick.
-4. **Phase 2 build** — implement the chosen direction.
-5. **Phase 3** — interior pages, one at a time, using the now-locked system.
+- File: `src/pages/Home.tsx` lines ~340–639 (FCMB, Renovations, Services, CTA sections).
+- Remove unused Lucide imports left behind (Award, Shield, Users, FileCheck, CheckCircle2, Sparkles, Building2 where they no longer appear). Keep `ArrowRight`, `Star`.
+- Use existing semantic tokens only (`bg-background`, `text-foreground`, `bg-primary`, `text-accent`, `border-accent/30`, `bg-seafoam`). No raw hex.
+- Reuse `RevealAnimation` and the existing `parallax-ligature` background-letter pattern for one moment per band if it adds rhythm (likely just on the FCMB and Difference statements).
+- Keep all copy meaning intact — only tightening for editorial cadence. No new claims, no removed credentials, contact + address unchanged.
 
-### Preserved (untouched)
+### Out of scope
 
-Splash, VideoHero, WalkthroughShowcase, DeliveryShowcase structure, all copy, contact info, FCMB cert, portfolio images and rules, contact form, all routes, SEO, legal pages.
+- Navigation, VideoHero, WalkthroughShowcase, DeliveryShowcase, Footer — locked, untouched.
+- The new Bespoke → Emblem → Philosophy sequence we just built — untouched.
+- Interior pages (Renovations page, About, Process, etc.) — Phase 3.
 
-### What I need to start
+### Ready to ship
 
-Just confirm: **seafoam yes or stay austere?** Then I ship the refinement pass.
+Switch to build mode and I implement all three rebuilds + the closing CTA polish in one pass.
