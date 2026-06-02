@@ -53,11 +53,13 @@ export default {
           ivory: "hsl(37 43% 93%)",
           sand: "hsl(37 33% 82%)",
         },
+        seafoam: "hsl(var(--seafoam))",
       },
       fontFamily: {
         sans: ["Fira Sans", "system-ui", "sans-serif"],
-        serif: ["DM Serif Display", "Georgia", "serif"],
-        display: ["DM Serif Display", "Georgia", "serif"],
+        serif: ["Cormorant Garamond", "Georgia", "serif"],
+        display: ["Cormorant Garamond", "Georgia", "serif"],
+        wordmark: ["DM Serif Display", "Georgia", "serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
