@@ -93,7 +93,9 @@ export const VideoLightbox = ({
       </button>
 
       <div
-        className="relative w-full h-full flex flex-col items-center justify-center px-3 md:px-6 lg:px-10 pt-16 pb-6 md:pt-14 md:pb-6 gap-3 md:gap-4"
+        className={`relative w-full h-full flex flex-col items-center justify-center px-3 md:px-6 lg:px-10 pt-16 md:pt-14 gap-3 md:gap-4 ${
+          items.length > 1 ? "pb-[180px] md:pb-[200px]" : "pb-6"
+        }`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Now playing label */}
@@ -122,8 +124,11 @@ export const VideoLightbox = ({
             <iframe
               src={finalSrc}
               title={item.title}
-              allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+              allow="autoplay; fullscreen; picture-in-picture; encrypted-media; web-share"
               allowFullScreen
+              // @ts-expect-error legacy vendor attributes for iOS/older Safari
+              webkitallowfullscreen="true"
+              mozallowfullscreen="true"
               className="absolute inset-0 h-full w-full"
               style={{ border: 0 }}
             />
