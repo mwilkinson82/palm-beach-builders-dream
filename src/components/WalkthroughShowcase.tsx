@@ -59,7 +59,7 @@ export const WalkthroughShowcase = ({
           <div className="mt-8 md:mt-10 flex items-center justify-center space-x-3 text-primary-foreground/70">
             <div className="h-px w-8 md:w-12 bg-accent" />
             <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] font-light">
-              Palm Beach, Florida
+              An Award-Winning Beau Monde Residence
             </span>
             <div className="h-px w-8 md:w-12 bg-accent" />
           </div>
