@@ -41,28 +41,35 @@ const Home = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* Left: Copy */}
           <div className="relative py-16 md:py-28 lg:py-36 px-6 sm:px-10 lg:px-20 flex flex-col justify-center">
-            <div className="flex items-center space-x-3 mb-6 md:mb-8">
-              <div className="h-px w-12 md:w-16 bg-accent" />
-              <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-accent font-light">
-                The Beau Monde Standard
-              </span>
-            </div>
+            <RevealAnimation animation="fade-up" delay={0}>
+              <div className="flex items-center space-x-3 mb-6 md:mb-8">
+                <div className="h-px w-12 md:w-16 bg-accent" />
+                <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-accent font-light">
+                  The Beau Monde Standard
+                </span>
+              </div>
+            </RevealAnimation>
 
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-thin text-white mb-6 md:mb-8 leading-[0.95] tracking-tight">
-              BESPOKE
-              <br />
-              <span className="font-light italic text-accent">Luxury</span>
-              <br />
-              REDEFINED
-            </h1>
+            <RevealAnimation animation="luxury-reveal" delay={150}>
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-thin text-white mb-6 md:mb-8 leading-[0.95] tracking-tight">
+                BESPOKE
+                <br />
+                <span className="font-light italic text-accent">Luxury</span>
+                <br />
+                REDEFINED
+              </h1>
+            </RevealAnimation>
 
-            <p className="text-base sm:text-lg md:text-xl text-white/70 mb-8 md:mb-12 max-w-xl font-light leading-relaxed">
-              Where architectural excellence meets uncompromising craftsmanship.
-              Three decades of creating Palm Beach's most distinguished estates —
-              custom residences beginning at $5M and rising into the extraordinary.
-            </p>
+            <RevealAnimation animation="fade-up" delay={350}>
+              <p className="text-base sm:text-lg md:text-xl text-white/70 mb-8 md:mb-12 max-w-xl font-light leading-relaxed">
+                Where architectural excellence meets uncompromising craftsmanship.
+                Three decades of creating Palm Beach's most distinguished estates —
+                custom residences beginning at $5M and rising into the extraordinary.
+              </p>
+            </RevealAnimation>
 
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
+            <RevealAnimation animation="fade-up" delay={500}>
+              <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
               <Button
                 variant="default"
                 size="lg"
@@ -82,10 +89,12 @@ const Home = () => {
               >
                 <Link to="/projects">VIEW THE PORTFOLIO</Link>
               </Button>
-            </div>
+              </div>
+            </RevealAnimation>
 
             {/* Google Reviews Badge */}
-            <div className="mt-10 md:mt-14 inline-flex">
+            <RevealAnimation animation="fade-up" delay={650}>
+              <div className="mt-10 md:mt-14 inline-flex">
               <div className="bg-white/5 border border-white/10 px-4 md:px-5 py-3 md:py-4 backdrop-blur-md">
                 <div className="flex items-center gap-3">
                   <div className="flex">
@@ -99,18 +108,21 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-            </div>
+              </div>
+            </RevealAnimation>
           </div>
 
           {/* Right: Editorial image */}
-          <div className="relative min-h-[400px] lg:min-h-full">
-            <img
-              src={heroImage}
-              alt="Ultra Luxury Palm Beach Custom Home by Beau Monde Builders"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-primary/40 lg:to-primary/60" />
-          </div>
+          <RevealAnimation animation="scale-in" delay={200} className="relative min-h-[320px] sm:min-h-[420px] lg:min-h-full">
+            <div className="relative h-full w-full min-h-[320px] sm:min-h-[420px] lg:min-h-[700px]">
+              <img
+                src={heroImage}
+                alt="Ultra Luxury Palm Beach Custom Home by Beau Monde Builders"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-primary/40 lg:to-primary/60" />
+            </div>
+          </RevealAnimation>
         </div>
       </section>
 
