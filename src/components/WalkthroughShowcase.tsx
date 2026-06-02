@@ -22,7 +22,7 @@ export const WalkthroughShowcase = ({
             <div className="h-px w-10 md:w-14 bg-accent/40" />
           </div>
           <h2 className="text-center mb-5 md:mb-7 leading-[0.95]">
-            <span className="block font-display text-primary-foreground text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight">
+            <span className="block font-display text-primary-foreground text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-medium tracking-tight">
               AJ Hoover
             </span>
             <span className="mt-3 md:mt-4 flex items-center justify-center gap-3 md:gap-4">

@@ -28,7 +28,7 @@ export const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="group">
             <div className="flex flex-col">
-              <span className={`text-2xl md:text-[28px] font-display tracking-tight leading-none transition-colors ${
+              <span className={`text-2xl md:text-[28px] font-wordmark tracking-tight leading-none transition-colors ${
                 isScrolled ? "text-foreground" : "text-primary-foreground"
               }`}>
                 Beau Monde
@@ -91,7 +91,7 @@ export const Navigation = () => {
               size="lg"
               className={`uppercase tracking-[0.25em] text-xs font-medium ${
                 isScrolled 
-                  ? "bg-accent hover:bg-accent/90 text-accent-foreground" 
+                  ? "bg-primary hover:bg-primary/90 text-primary-foreground"
                   : "border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground hover:text-foreground"
               }`}
               asChild
@@ -161,7 +161,7 @@ export const Navigation = () => {
               <Button 
                 variant="default"
                 size="lg" 
-                className="w-full bg-accent hover:bg-accent/90 text-accent-foreground uppercase tracking-[0.25em] text-xs font-medium"
+                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground uppercase tracking-[0.25em] text-xs font-medium"
                 asChild
               >
                 <Link to="/contact">Talk to Beau Monde</Link>

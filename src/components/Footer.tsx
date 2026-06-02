@@ -10,7 +10,7 @@ export const Footer = () => {
           {/* Brand Column */}
           <div className="col-span-2 sm:col-span-2 lg:col-span-4 space-y-4 md:space-y-6">
             <div className="flex flex-col">
-              <span className="text-3xl md:text-4xl font-display tracking-tight leading-none text-primary-foreground">
+              <span className="text-3xl md:text-4xl font-wordmark tracking-tight leading-none text-primary-foreground">
                 Beau Monde
               </span>
               <span className="mt-1 text-xs tracking-[0.3em] uppercase text-primary-foreground/60">
@@ -64,20 +64,20 @@ export const Footer = () => {
             <h3 className="text-xs uppercase tracking-[0.3em] font-medium mb-6 text-primary-foreground">Contact</h3>
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
-                <MapPin className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                <MapPin className="h-5 w-5 text-primary-foreground/50 flex-shrink-0 mt-0.5" strokeWidth={1.25} />
                 <div className="text-primary-foreground/65 font-light text-sm">
                   205 Worth Avenue, Suite 120<br />
                   Palm Beach, FL 33480
                 </div>
               </div>
               <div className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 text-accent flex-shrink-0" />
+                <Phone className="h-5 w-5 text-primary-foreground/50 flex-shrink-0" strokeWidth={1.25} />
                 <a href="tel:+15616468992" className="text-primary-foreground/65 hover:text-accent transition-colors font-light text-sm">
                   (561) 646-8992
                 </a>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-accent flex-shrink-0" />
+                <Mail className="h-5 w-5 text-primary-foreground/50 flex-shrink-0" strokeWidth={1.25} />
                 <a href="mailto:ajhoover@mac.com" className="text-primary-foreground/65 hover:text-accent transition-colors font-light text-sm">
                   ajhoover@mac.com
                 </a>
@@ -102,17 +102,17 @@ export const Footer = () => {
               
               {/* Additional Trust Badges */}
               <div className="flex items-center space-x-2 px-3 md:px-4 py-2 md:py-3 bg-primary-foreground/5 border border-primary-foreground/10">
-                <Shield className="h-4 w-4 md:h-5 md:w-5 text-accent flex-shrink-0" />
+                <Shield className="h-4 w-4 md:h-5 md:w-5 text-primary-foreground/50 flex-shrink-0" strokeWidth={1.25} />
                 <span className="text-xs md:text-sm text-primary-foreground/75 font-light whitespace-nowrap">Fully Insured</span>
               </div>
               
               <div className="flex items-center space-x-2 px-3 md:px-4 py-2 md:py-3 bg-primary-foreground/5 border border-primary-foreground/10">
-                <Shield className="h-4 w-4 md:h-5 md:w-5 text-accent flex-shrink-0" />
+                <Shield className="h-4 w-4 md:h-5 md:w-5 text-primary-foreground/50 flex-shrink-0" strokeWidth={1.25} />
                 <span className="text-xs md:text-sm text-primary-foreground/75 font-light whitespace-nowrap">Licensed Contractor</span>
               </div>
               
               <div className="flex items-center space-x-2 px-3 md:px-4 py-2 md:py-3 bg-primary-foreground/5 border border-primary-foreground/10">
-                <Shield className="h-4 w-4 md:h-5 md:w-5 text-accent flex-shrink-0" />
+                <Shield className="h-4 w-4 md:h-5 md:w-5 text-primary-foreground/50 flex-shrink-0" strokeWidth={1.25} />
                 <span className="text-xs md:text-sm text-primary-foreground/75 font-light whitespace-nowrap">30+ Years Experience</span>
               </div>
             </div>
