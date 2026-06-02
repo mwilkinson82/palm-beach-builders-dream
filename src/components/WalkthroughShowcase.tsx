@@ -22,7 +22,7 @@ export const WalkthroughShowcase = ({
             <div className="h-px w-10 md:w-14 bg-accent/40" />
           </div>
           <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold uppercase text-white text-center leading-[0.95] tracking-tight mb-5 md:mb-7">
-            AJ Hoover
+            AJ Hoover, <span className="font-light italic text-accent">CEO</span>
           </h2>
         </RevealAnimation>
 
