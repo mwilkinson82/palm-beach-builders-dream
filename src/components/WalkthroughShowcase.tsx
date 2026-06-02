@@ -1,5 +1,9 @@
+import { useState } from "react";
+import { Play } from "lucide-react";
 import { RevealAnimation } from "@/components/RevealAnimation";
 import { Parallax } from "@/components/Parallax";
+import { VideoLightbox } from "@/components/VideoLightbox";
+import walkthroughPoster from "@/assets/walkthrough-poster.jpg";
 
 interface WalkthroughShowcaseProps {
   iframeSrc?: string;
@@ -8,6 +12,7 @@ interface WalkthroughShowcaseProps {
 export const WalkthroughShowcase = ({
   iframeSrc = "https://media.reelreef.com/videos/019caebd-3875-71e0-b3da-bde3d856926a",
 }: WalkthroughShowcaseProps) => {
+  const [open, setOpen] = useState(false);
   return (
     <section
       aria-label="Newly completed project walkthrough with AJ Hoover"
@@ -44,17 +49,35 @@ export const WalkthroughShowcase = ({
 
         <RevealAnimation animation="luxury-reveal" delay={300}>
           <Parallax speed={0.06}>
-            <div className="relative w-full aspect-video bg-black overflow-hidden md:border md:border-accent/30 shadow-2xl">
-              <iframe
-                src={iframeSrc}
-                title="Newly completed project walkthrough with AJ Hoover, CEO of Beau Monde Builders"
+            <button
+              type="button"
+              onClick={() => setOpen(true)}
+              aria-label="Play walkthrough video with AJ Hoover"
+              className="group relative block w-full aspect-video bg-black overflow-hidden md:border md:border-accent/30 shadow-2xl"
+            >
+              {/* TODO: swap placeholder still for a real frame from the walkthrough video */}
+              <img
+                src={walkthroughPoster}
+                alt="AJ Hoover walkthrough — newly completed Beau Monde residence"
                 loading="lazy"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
-                className="absolute inset-0 h-full w-full"
-                style={{ border: 0 }}
+                width={1600}
+                height={896}
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.02]"
               />
-            </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-black/25 transition-opacity duration-500 group-hover:from-black/40" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="flex items-center justify-center h-20 w-20 md:h-24 md:w-24 rounded-full border border-accent bg-black/30 backdrop-blur-md text-accent transition-transform duration-500 group-hover:scale-110">
+                  <Play className="h-7 w-7 md:h-8 md:w-8 ml-1 fill-accent" strokeWidth={1.25} />
+                </span>
+              </div>
+              <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-3 text-primary-foreground/90">
+                <span className="h-px w-8 bg-accent" />
+                <span className="font-sans uppercase text-[10px] md:text-xs tracking-[0.35em] font-light">
+                  Play Walkthrough
+                </span>
+                <span className="h-px w-8 bg-accent" />
+              </div>
+            </button>
           </Parallax>
         </RevealAnimation>
 
@@ -68,6 +91,12 @@ export const WalkthroughShowcase = ({
           </div>
         </RevealAnimation>
       </div>
+      <VideoLightbox
+        src={iframeSrc}
+        title="Walkthrough with AJ Hoover, CEO of Beau Monde Builders"
+        open={open}
+        onClose={() => setOpen(false)}
+      />
     </section>
   );
 };
