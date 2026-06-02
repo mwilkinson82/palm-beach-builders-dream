@@ -90,7 +90,7 @@ const Home = () => {
       {/* New Delivery Showcase */}
       <DeliveryShowcase />
 
-      {/* Editorial Sequence — Bespoke / Stats / Emblem / Philosophy */}
+      {/* Editorial Sequence — Bespoke hero + Stats */}
       <section className="relative bg-background text-foreground py-20 md:py-28 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 silk-grain opacity-[0.03] pointer-events-none select-none z-0" />
 
