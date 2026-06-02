@@ -10,6 +10,7 @@ import { VideoHero } from "@/components/VideoHero";
 import { DeliveryShowcase } from "@/components/DeliveryShowcase";
 import { WalkthroughShowcase } from "@/components/WalkthroughShowcase";
 import { InterviewShowcase } from "@/components/InterviewShowcase";
+import { Parallax } from "@/components/Parallax";
 import { ArrowRight, Star } from "lucide-react";
 import heroImage from "@/assets/hero-home.jpg";
 import fcmbLogo from "@/assets/fcmb-logo.png";
@@ -123,11 +124,13 @@ const Home = () => {
 
             <RevealAnimation animation="scale-in" delay={200} className="lg:col-span-5 relative">
               <div className="relative">
-                <img
-                  src={heroImage}
-                  alt="Ultra Luxury Palm Beach Custom Home by Beau Monde Builders"
-                  className="w-full aspect-[4/5] object-cover shadow-[40px_40px_80px_-20px_hsl(var(--primary)/0.2)]"
-                />
+                <Parallax speed={0.08} className="block">
+                  <img
+                    src={heroImage}
+                    alt="Ultra Luxury Palm Beach Custom Home by Beau Monde Builders"
+                    className="w-full aspect-[4/5] object-cover shadow-[40px_40px_80px_-20px_hsl(var(--primary)/0.2)]"
+                  />
+                </Parallax>
                 <div className="hidden lg:block absolute -bottom-8 -left-8">
                   <p className="font-display italic text-sm text-accent bg-background px-4 py-3 border border-accent/30 shadow-lg">
                     Turning blueprints to fingerprints
@@ -138,25 +141,25 @@ const Home = () => {
           </div>
 
           {/* Band 2 — Stats */}
-          <RevealAnimation animation="fade-up">
-            <div className="py-12 md:py-14 border-b border-accent/30">
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 divide-x divide-accent/20">
-                {[
-                  { v: "30+", l: "Years Excellence" },
-                  { v: "$150M+", l: "Project Value" },
-                  { v: "25+", l: "Estate Homes" },
-                  { v: "100%", l: "Client Satisfaction" },
-                ].map((s) => (
-                  <div key={s.l} className="text-center first:border-l-0">
+          <div className="py-12 md:py-14 border-b border-accent/30">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 divide-x divide-accent/20">
+              {[
+                { v: "30+", l: "Years Excellence" },
+                { v: "$150M+", l: "Project Value" },
+                { v: "25+", l: "Estate Homes" },
+                { v: "100%", l: "Client Satisfaction" },
+              ].map((s, i) => (
+                <RevealAnimation key={s.l} animation="fade-up" delay={i * 120}>
+                  <div className="text-center first:border-l-0">
                     <div className="font-display text-4xl md:text-5xl font-light mb-1">{s.v}</div>
                     <div className="font-sans text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-accent">
                       {s.l}
                     </div>
                   </div>
-                ))}
-              </div>
+                </RevealAnimation>
+              ))}
             </div>
-          </RevealAnimation>
+          </div>
 
           {/* Band 3 — Emblem */}
           <section className="py-20 md:py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
@@ -185,13 +188,15 @@ const Home = () => {
                 </div>
 
                 <RevealAnimation animation="scale-in" delay={200}>
-                  <div className="w-full aspect-square border border-accent/15 bg-card p-6 shadow-xl">
-                    <img
-                      src={logoSketch}
-                      alt="Beau Monde Builders emblem — classical architecture with lions and palm trees"
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
+                  <Parallax speed={0.1}>
+                    <div className="w-full aspect-square border border-accent/15 bg-card p-6 shadow-xl">
+                      <img
+                        src={logoSketch}
+                        alt="Beau Monde Builders emblem — classical architecture with lions and palm trees"
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                  </Parallax>
                 </RevealAnimation>
               </div>
             </div>
@@ -276,11 +281,13 @@ const Home = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             <RevealAnimation animation="scale-in" className="lg:col-span-5">
               <div>
-                <img
-                  src={fcmbLogo}
-                  alt="Florida Certified Master Builder"
-                  className="w-full max-w-[360px] mx-auto lg:mx-0 h-auto object-contain"
-                />
+                <Parallax speed={0.08}>
+                  <img
+                    src={fcmbLogo}
+                    alt="Florida Certified Master Builder"
+                    className="w-full max-w-[360px] mx-auto lg:mx-0 h-auto object-contain"
+                  />
+                </Parallax>
                 <div className="mt-6 h-px w-full bg-accent/40" />
                 <p className="mt-3 font-sans text-[10px] tracking-[0.25em] uppercase text-accent">
                   Florida Certified · Master Builder
