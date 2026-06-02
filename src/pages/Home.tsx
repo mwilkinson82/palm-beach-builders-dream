@@ -17,6 +17,46 @@ import fcmbLogo from "@/assets/fcmb-logo.png";
 import logoSketch from "@/assets/beau-monde-logo-sketch.jpeg";
 import renovationImage from "@/assets/projects/intracoastal-contemporary.jpg";
 
+const EMBLEM_MEANINGS = [
+  {
+    title: "The Lions",
+    body: "Strength and leadership — protecting the structural and financial integrity of your legacy home.",
+  },
+  {
+    title: "The Parthenon",
+    body: "The golden ratio and timeless quality — every residence transcending temporary trends to remain an architectural landmark.",
+  },
+  {
+    title: "Palm Trees",
+    body: "Our geographical stamp — the tranquility and exclusive heritage of Palm Beach woven into the design itself.",
+  },
+];
+
+const FCMB_CREDENTIALS = [
+  { k: "Experience", v: "7+ years of proven industry practice" },
+  { k: "Record", v: "Clean regulatory and disciplinary history" },
+  { k: "References", v: "Verified by clients and subcontractors" },
+  { k: "Warranty", v: "Written, minimum one-year guarantee" },
+];
+
+const COMMITMENTS = [
+  {
+    n: "I",
+    title: "Bespoke Design",
+    body: "We collaborate with renowned architects to shape a home that embodies your aesthetic and the way you actually live.",
+  },
+  {
+    n: "II",
+    title: "Precision Execution",
+    body: "Disciplined project management. On time, on budget, beyond expectation — measured by the detail you notice last.",
+  },
+  {
+    n: "III",
+    title: "Lifetime Commitment",
+    body: "The relationship outlives the build. Comprehensive warranty support and ongoing care for the home and the investment.",
+  },
+];
+
 const Home = () => {
   const [showSplash, setShowSplash] = useState(true);
 
@@ -50,7 +90,7 @@ const Home = () => {
       {/* New Delivery Showcase */}
       <DeliveryShowcase />
 
-      {/* Editorial Sequence — Bespoke / Stats / Emblem / Philosophy */}
+      {/* Editorial Sequence — Bespoke hero + Stats */}
       <section className="relative bg-background text-foreground py-20 md:py-28 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 silk-grain opacity-[0.03] pointer-events-none select-none z-0" />
 
@@ -161,195 +201,23 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Band 3 — Emblem */}
-          <section className="py-20 md:py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-            <div className="lg:col-span-5">
-              <div className="lg:sticky lg:top-28">
-                <RevealAnimation animation="fade-up">
-                  <span className="block font-sans text-[10px] tracking-[0.25em] text-accent uppercase mb-6">
-                    Our Emblem
-                  </span>
-                </RevealAnimation>
-
-                <div className="relative">
-                  <span
-                    aria-hidden
-                    className="parallax-ligature absolute -top-10 -left-6 md:-top-12 md:-left-8 font-display italic text-[10rem] md:text-[14rem] leading-none text-accent/15 pointer-events-none select-none"
-                    style={{ fontFeatureSettings: "'swsh' 1, 'dlig' 1" }}
-                  >
-                    S
-                  </span>
-                  <RevealAnimation animation="luxury-reveal" delay={100}>
-                    <h2 className="relative z-10 font-display text-4xl md:text-5xl font-light mb-8 leading-[1.05]">
-                      The Symbols of <br />
-                      <span className="italic">Beau Monde</span>
-                    </h2>
-                  </RevealAnimation>
-                </div>
-
-                <RevealAnimation animation="scale-in" delay={200}>
-                  <Parallax speed={0.1}>
-                    <div className="w-full aspect-square border border-accent/15 bg-card p-6 shadow-xl">
-                      <img
-                        src={logoSketch}
-                        alt="Beau Monde Builders emblem — classical architecture with lions and palm trees"
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                  </Parallax>
-                </RevealAnimation>
-              </div>
-            </div>
-
-            <div className="lg:col-span-7 flex flex-col justify-center space-y-14 md:space-y-16">
-              {[
-                {
-                  title: "The Lions",
-                  body: "Symbols of strength and leadership, reflecting our unwavering commitment to protecting the structural and financial integrity of your legacy home.",
-                },
-                {
-                  title: "The Parthenon",
-                  body: "Representing the golden ratio and timeless quality, ensuring that every residence transcends temporary trends to remain an architectural landmark.",
-                },
-                {
-                  title: "Palm Trees",
-                  body: "Our geographical stamp — the tranquility and exclusive heritage of Palm Beach living, woven into the very fabric of our design philosophy.",
-                },
-              ].map((item, i) => (
-                <RevealAnimation key={item.title} animation="fade-up" delay={i * 100}>
-                  <div>
-                    <h4 className="font-sans text-xs font-semibold uppercase tracking-[0.2em] mb-4 flex items-center gap-4 text-foreground">
-                      <span className="w-8 h-px bg-accent" />
-                      {item.title}
-                    </h4>
-                    <p className="font-sans font-light text-base leading-relaxed text-foreground/80 pl-12">
-                      {item.body}
-                    </p>
-                  </div>
-                </RevealAnimation>
-              ))}
-
-              <RevealAnimation animation="fade-up" delay={300}>
-                <div className="pl-12 pt-8 border-t border-accent/20">
-                  <p className="font-display text-xl md:text-2xl font-light italic leading-snug text-foreground/90">
-                    "We don't just build estates; we steward the vision of those who demand nothing less than extraordinary."
-                  </p>
-                </div>
-              </RevealAnimation>
-            </div>
-          </section>
-
-          {/* Band 4 — Philosophy */}
-          <RevealAnimation animation="luxury-reveal">
-            <section className="relative bg-seafoam p-10 sm:p-14 lg:p-20 border border-accent/20 overflow-hidden">
-              <div className="absolute inset-0 silk-grain opacity-[0.04] pointer-events-none select-none" />
-              <div className="relative z-10 max-w-3xl mx-auto">
-                <span className="block font-sans text-[10px] tracking-[0.25em] text-accent uppercase mb-8 text-center">
-                  Our Philosophy
-                </span>
-                <div className="relative flex justify-center min-h-[12rem] md:min-h-[16rem] items-center">
-                  <span
-                    aria-hidden
-                    className="parallax-ligature-centered absolute top-1/2 left-1/2 font-display italic text-[12rem] md:text-[16rem] leading-none text-accent/10 pointer-events-none select-none"
-                    style={{ fontFeatureSettings: "'swsh' 1, 'dlig' 1" }}
-                  >
-                    A
-                  </span>
-                  <h3 className="relative z-10 font-display text-3xl sm:text-4xl lg:text-5xl font-light leading-tight mb-8 md:mb-12 text-center italic text-primary">
-                    Architectural mastery meets personal vision.
-                  </h3>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 font-sans font-light text-[15px] leading-relaxed text-foreground/90">
-                  <p>
-                    Founded on the principle that a custom home is the ultimate expression of its owner, AJ Hoover has spent three
-                    decades refining a hands-on approach that prioritizes the artisanal over the industrial.
-                  </p>
-                  <p>
-                    By limiting our project count, we ensure that every stone, every beam, and every finish receives the meticulous
-                    attention it deserves. Your vision is our blueprint; your satisfaction is our fingerprint.
-                  </p>
-                </div>
-              </div>
-            </section>
-          </RevealAnimation>
         </div>
       </section>
 
-      {/* Florida Certified Master Builder — editorial pair */}
-      <section className="relative bg-background text-foreground py-20 md:py-28 lg:py-32 overflow-hidden">
-        <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            <RevealAnimation animation="scale-in" className="lg:col-span-5">
-              <div>
-                <Parallax speed={0.08}>
-                  <img
-                    src={fcmbLogo}
-                    alt="Florida Certified Master Builder"
-                    className="w-full max-w-[360px] mx-auto lg:mx-0 h-auto object-contain"
-                  />
-                </Parallax>
-                <div className="mt-6 h-px w-full bg-accent/40" />
-                <p className="mt-3 font-sans text-[10px] tracking-[0.25em] uppercase text-accent">
-                  Florida Certified · Master Builder
-                </p>
-              </div>
-            </RevealAnimation>
-
-            <div className="lg:col-span-7">
-              <RevealAnimation animation="fade-up">
-                <span className="block font-sans text-[10px] tracking-[0.25em] uppercase text-accent mb-4">
-                  Elite Certification
-                </span>
-              </RevealAnimation>
-              <RevealAnimation animation="luxury-reveal" delay={120}>
-                <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] mb-8 tracking-tight">
-                  An elite designation. <br />
-                  <span className="italic">Held by the few.</span>
-                </h2>
-              </RevealAnimation>
-              <RevealAnimation animation="fade-up" delay={250}>
-                <p className="font-sans font-light text-base md:text-lg leading-relaxed text-foreground/85 max-w-xl mb-12">
-                  A voluntary credential awarded only to Florida builders with the experience, ethics, and record to back
-                  it. The pinnacle of construction excellence in the state.
-                </p>
-              </RevealAnimation>
-
-              <RevealAnimation animation="fade-up" delay={350}>
-                <dl className="border-t border-accent/30">
-                  {[
-                    { k: "Experience", v: "7+ years of proven industry practice" },
-                    { k: "Record", v: "Clean regulatory and disciplinary history" },
-                    { k: "References", v: "Verified by clients and subcontractors" },
-                    { k: "Warranty", v: "Written, minimum one-year guarantee" },
-                  ].map((row) => (
-                    <div
-                      key={row.k}
-                      className="grid grid-cols-12 gap-4 py-5 border-b border-accent/30"
-                    >
-                      <dt className="col-span-12 sm:col-span-4 font-sans text-[10px] uppercase tracking-[0.25em] text-accent self-center">
-                        {row.k}
-                      </dt>
-                      <dd className="col-span-12 sm:col-span-8 font-sans font-light text-base text-foreground/85 self-center">
-                        {row.v}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              </RevealAnimation>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Luxury Renovations — editorial pair, image right */}
+      {/* Renovations — moved up, subtle NEW badge */}
       <section className="relative bg-background text-foreground py-20 md:py-28 lg:py-32 overflow-hidden border-t border-accent/20">
         <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             <div className="lg:col-span-7 lg:order-1 order-2">
               <RevealAnimation animation="fade-up">
-                <span className="block font-sans text-[10px] tracking-[0.25em] uppercase text-accent mb-4">
-                  Now Offering
-                </span>
+                <div className="flex items-center gap-3 mb-5 flex-wrap">
+                  <span className="inline-flex items-center font-sans text-[9px] tracking-[0.3em] uppercase border border-accent text-primary px-2.5 py-1">
+                    New · 2026
+                  </span>
+                  <span className="font-sans text-[10px] tracking-[0.25em] uppercase text-accent">
+                    A New Beau Monde Offering
+                  </span>
+                </div>
               </RevealAnimation>
               <RevealAnimation animation="luxury-reveal" delay={120}>
                 <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] mb-8 tracking-tight">
@@ -359,8 +227,8 @@ const Home = () => {
               </RevealAnimation>
               <RevealAnimation animation="fade-up" delay={250}>
                 <p className="font-sans font-light text-base md:text-lg leading-relaxed text-foreground/85 max-w-xl mb-10">
-                  From oceanfront condominiums to historic Palm Beach estates, the same craftsmanship that defines a
-                  Beau Monde build — brought to renovation.
+                  The same craftsmanship that defines a Beau Monde custom build — now brought to renovation. From
+                  oceanfront condominiums to historic Palm Beach estates, held to the standard of our ground-up homes.
                 </p>
               </RevealAnimation>
 
@@ -410,9 +278,176 @@ const Home = () => {
         </div>
       </section>
 
-      {/* The Beau Monde Difference — three editorial rows */}
+      {/* Philosophy — lifted to top-level, seafoam editorial card */}
+      <section className="relative bg-background text-foreground py-20 md:py-28 overflow-hidden border-t border-accent/20">
+        <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 lg:px-12">
+          <RevealAnimation animation="luxury-reveal">
+            <div className="relative bg-seafoam p-10 sm:p-14 lg:p-20 border border-accent/20 overflow-hidden">
+              <div className="absolute inset-0 silk-grain opacity-[0.04] pointer-events-none select-none" />
+              <div className="relative z-10 max-w-3xl mx-auto">
+                <span className="block font-sans text-[10px] tracking-[0.25em] text-accent uppercase mb-8 text-center">
+                  Our Philosophy
+                </span>
+                <div className="relative flex justify-center min-h-[12rem] md:min-h-[16rem] items-center">
+                  <span
+                    aria-hidden
+                    className="parallax-ligature-centered absolute top-1/2 left-1/2 font-display italic text-[12rem] md:text-[16rem] leading-none text-accent/10 pointer-events-none select-none"
+                    style={{ fontFeatureSettings: "'swsh' 1, 'dlig' 1" }}
+                  >
+                    A
+                  </span>
+                  <h3 className="relative z-10 font-display text-3xl sm:text-4xl lg:text-5xl font-light leading-tight mb-8 md:mb-12 text-center italic text-primary">
+                    Architectural mastery meets personal vision.
+                  </h3>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 font-sans font-light text-[15px] leading-relaxed text-foreground/90">
+                  <p>
+                    Founded on the principle that a custom home is the ultimate expression of its owner, AJ Hoover has
+                    spent three decades refining a hands-on approach that prioritizes the artisanal over the industrial.
+                  </p>
+                  <p>
+                    By limiting our project count, we ensure that every stone, every beam, and every finish receives the
+                    meticulous attention it deserves. Your vision is our blueprint; your satisfaction is our fingerprint.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </RevealAnimation>
+        </div>
+      </section>
+
+      {/* Our Marks — Emblem + FCMB merged editorial card */}
       <section className="relative bg-background text-foreground py-20 md:py-28 lg:py-32 overflow-hidden border-t border-accent/20">
-        <div className="relative z-10 max-w-5xl mx-auto px-6 sm:px-10 lg:px-12">
+        <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 lg:px-12">
+          <RevealAnimation animation="fade-up">
+            <div className="text-center mb-14 md:mb-16">
+              <span className="block font-sans text-[10px] tracking-[0.3em] uppercase text-accent mb-3">
+                Our Marks
+              </span>
+              <p className="font-display italic text-lg md:text-xl text-foreground/70">
+                The signs that stand behind the work.
+              </p>
+            </div>
+          </RevealAnimation>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            {/* Left — Emblem image and headline */}
+            <div className="lg:col-span-5">
+              <div className="lg:sticky lg:top-28">
+                <RevealAnimation animation="fade-up">
+                  <span className="block font-sans text-[10px] tracking-[0.25em] text-accent uppercase mb-6">
+                    Our Emblem
+                  </span>
+                </RevealAnimation>
+
+                <div className="relative">
+                  <span
+                    aria-hidden
+                    className="parallax-ligature absolute -top-10 -left-6 md:-top-12 md:-left-8 font-display italic text-[10rem] md:text-[14rem] leading-none text-accent/15 pointer-events-none select-none"
+                    style={{ fontFeatureSettings: "'swsh' 1, 'dlig' 1" }}
+                  >
+                    S
+                  </span>
+                  <RevealAnimation animation="luxury-reveal" delay={100}>
+                    <h2 className="relative z-10 font-display text-4xl md:text-5xl font-light mb-8 leading-[1.05]">
+                      The Symbols of <br />
+                      <span className="italic">Beau Monde</span>
+                    </h2>
+                  </RevealAnimation>
+                </div>
+
+                <RevealAnimation animation="scale-in" delay={200}>
+                  <Parallax speed={0.08}>
+                    <div className="w-full aspect-square border border-accent/15 bg-card p-6 shadow-xl">
+                      <img
+                        src={logoSketch}
+                        alt="Beau Monde Builders emblem — classical architecture with lions and palm trees"
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                  </Parallax>
+                </RevealAnimation>
+              </div>
+            </div>
+
+            {/* Right — Meanings + FCMB credentials */}
+            <div className="lg:col-span-7 flex flex-col">
+              <div className="space-y-10 md:space-y-12">
+                {EMBLEM_MEANINGS.map((item, i) => (
+                  <RevealAnimation key={item.title} animation="fade-up" delay={i * 100}>
+                    <div>
+                      <h4 className="font-sans text-xs font-semibold uppercase tracking-[0.2em] mb-3 flex items-center gap-4 text-foreground">
+                        <span className="w-8 h-px bg-accent" />
+                        {item.title}
+                      </h4>
+                      <p className="font-sans font-light text-[15px] leading-relaxed text-foreground/80 pl-12">
+                        {item.body}
+                      </p>
+                    </div>
+                  </RevealAnimation>
+                ))}
+              </div>
+
+              {/* Hairline divider into FCMB */}
+              <div className="my-14 md:my-16 flex items-center gap-4">
+                <span className="h-px flex-1 bg-accent/30" />
+                <span className="font-sans text-[10px] tracking-[0.35em] uppercase text-accent">
+                  Elite Certification
+                </span>
+                <span className="h-px flex-1 bg-accent/30" />
+              </div>
+
+              {/* FCMB block */}
+              <div className="grid grid-cols-1 sm:grid-cols-12 gap-8 items-start">
+                <RevealAnimation animation="scale-in" className="sm:col-span-4">
+                  <Parallax speed={0.06}>
+                    <img
+                      src={fcmbLogo}
+                      alt="Florida Certified Master Builder"
+                      className="w-full max-w-[200px] mx-auto sm:mx-0 h-auto object-contain"
+                    />
+                  </Parallax>
+                </RevealAnimation>
+
+                <div className="sm:col-span-8">
+                  <RevealAnimation animation="luxury-reveal" delay={120}>
+                    <h3 className="font-display text-2xl md:text-3xl font-light leading-[1.1] mb-4 tracking-tight">
+                      Florida Certified Master Builder — <span className="italic">held by the few.</span>
+                    </h3>
+                  </RevealAnimation>
+                  <RevealAnimation animation="fade-up" delay={220}>
+                    <p className="font-sans font-light text-[15px] leading-relaxed text-foreground/80 mb-6">
+                      A voluntary credential awarded only to Florida builders with the experience, ethics, and record to
+                      back it — the pinnacle of construction excellence in the state.
+                    </p>
+                  </RevealAnimation>
+                  <RevealAnimation animation="fade-up" delay={320}>
+                    <dl className="border-t border-accent/30">
+                      {FCMB_CREDENTIALS.map((row) => (
+                        <div
+                          key={row.k}
+                          className="grid grid-cols-12 gap-3 py-3 border-b border-accent/30"
+                        >
+                          <dt className="col-span-4 font-sans text-[10px] uppercase tracking-[0.25em] text-accent self-center">
+                            {row.k}
+                          </dt>
+                          <dd className="col-span-8 font-sans font-light text-[14px] text-foreground/85 self-center">
+                            {row.v}
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </RevealAnimation>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Three Commitments — redesigned card grid */}
+      <section className="relative bg-background text-foreground py-20 md:py-28 lg:py-32 overflow-hidden border-t border-accent/20">
+        <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 lg:px-12">
           <div className="text-center mb-16 md:mb-20">
             <RevealAnimation animation="fade-up">
               <span className="block font-sans text-[10px] tracking-[0.25em] uppercase text-accent mb-4">
@@ -435,36 +470,29 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="border-t border-accent/30">
-            {[
-              {
-                n: "01",
-                title: "Bespoke Design",
-                body: "We collaborate with renowned architects to shape a home that embodies your aesthetic and the way you actually live.",
-              },
-              {
-                n: "02",
-                title: "Precision Execution",
-                body: "Disciplined project management. On time, on budget, beyond expectation — measured by the detail you notice last.",
-              },
-              {
-                n: "03",
-                title: "Lifetime Commitment",
-                body: "The relationship outlives the build. Comprehensive warranty support and ongoing care for the home and the investment.",
-              },
-            ].map((row, i) => (
-              <RevealAnimation key={row.n} animation="fade-up" delay={i * 120}>
-                <div className="grid grid-cols-12 gap-6 md:gap-10 py-10 md:py-14 border-b border-accent/30 items-baseline">
-                  <div className="col-span-12 md:col-span-2 font-sans text-[10px] uppercase tracking-[0.25em] text-accent">
-                    {row.n}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-accent/30 border border-accent/30">
+            {COMMITMENTS.map((row, i) => (
+              <RevealAnimation key={row.n} animation="fade-up" delay={i * 150}>
+                <article className="group relative h-full bg-background p-8 md:p-10 lg:p-12 flex flex-col transition-all duration-500 hover:bg-seafoam/40">
+                  {/* Top brass rule that fills navy on hover */}
+                  <span aria-hidden className="absolute top-0 left-0 h-px w-12 bg-accent transition-all duration-500 group-hover:w-full group-hover:bg-primary" />
+
+                  <div className="flex items-start justify-between mb-8">
+                    <span className="font-display italic text-5xl md:text-6xl font-light text-accent leading-none">
+                      {row.n}
+                    </span>
+                    <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-foreground/40 mt-2">
+                      0{i + 1} / 03
+                    </span>
                   </div>
-                  <h3 className="col-span-12 md:col-span-4 font-display text-3xl md:text-4xl font-light leading-tight">
+
+                  <h3 className="font-display text-2xl md:text-3xl font-light leading-tight mb-4 text-primary">
                     {row.title}
                   </h3>
-                  <p className="col-span-12 md:col-span-6 font-sans font-light text-base md:text-lg leading-relaxed text-foreground/85">
+                  <p className="font-sans font-light text-[15px] leading-relaxed text-foreground/80 flex-1">
                     {row.body}
                   </p>
-                </div>
+                </article>
               </RevealAnimation>
             ))}
           </div>
