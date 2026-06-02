@@ -1,23 +1,45 @@
 import { useEffect, useRef, useState } from "react";
+import Hls from "hls.js";
 import { Volume2, VolumeX } from "lucide-react";
-import heroPoster from "@/assets/hero-home.jpg";
+import { useIsMobile } from "@/hooks/use-mobile";
+
+interface VideoSource {
+  hls: string;
+  mp4: string;
+  poster: string;
+}
+
+const DESKTOP: VideoSource = {
+  hls: "https://stream.mux.com/SzK4tiWJ4hQb3vexGNT007JdU9Yzwp01hn.m3u8",
+  mp4: "https://videos.aryeo.com/listings/01980906-7190-732c-8c9f-77c58527bd80/9f763580-f927-448c-bb1e-52d05458bbde.mp4",
+  poster:
+    "https://image.mux.com/SzK4tiWJ4hQb3vexGNT007JdU9Yzwp01hn/thumbnail.png?width=1920&height=1080&time=1",
+};
+
+const MOBILE: VideoSource = {
+  hls: "https://stream.mux.com/XLvwqDrUK01E8Gqbld701veJ943LIjgr9k.m3u8",
+  mp4: "https://videos.aryeo.com/listings/01980906-7190-732c-8c9f-77c58527bd80/9f763580-f6f1-49f6-8893-c98440ee8d68.mp4",
+  poster:
+    "https://image.mux.com/XLvwqDrUK01E8Gqbld701veJ943LIjgr9k/thumbnail.png?width=1080&height=1920&time=1",
+};
 
 interface VideoHeroProps {
-  youtubeId?: string;
-  mp4Src?: string;
-  posterSrc?: string;
+  desktop?: VideoSource;
+  mobile?: VideoSource;
 }
 
 export const VideoHero = ({
-  youtubeId = "0LDSwhryy7w",
-  mp4Src,
-  posterSrc = heroPoster,
+  desktop = DESKTOP,
+  mobile = MOBILE,
 }: VideoHeroProps) => {
+  const isMobile = useIsMobile();
   const [mounted, setMounted] = useState(false);
+  const [ready, setReady] = useState(false);
   const [muted, setMuted] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  const source = isMobile ? mobile : desktop;
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -26,71 +48,80 @@ export const VideoHero = ({
     return () => clearTimeout(t);
   }, []);
 
-  const toggleMute = () => {
-    const next = !muted;
-    setMuted(next);
-    if (mp4Src && videoRef.current) {
-      videoRef.current.muted = next;
-      if (!next) videoRef.current.play().catch(() => {});
-      return;
-    }
-    const iframe = iframeRef.current;
-    if (!iframe?.contentWindow) return;
-    const command = next ? "mute" : "unMute";
-    iframe.contentWindow.postMessage(
-      JSON.stringify({ event: "command", func: command, args: [] }),
-      "*"
-    );
-  };
+  // Attach HLS (or native fallback) whenever the active source changes
+  useEffect(() => {
+    if (reducedMotion) return;
+    const video = videoRef.current;
+    if (!video) return;
 
-  const ytSrc = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1`;
+    setReady(false);
+    let hls: Hls | null = null;
+
+    const onPlaying = () => setReady(true);
+    video.addEventListener("playing", onPlaying);
+
+    // Safari plays HLS natively; everyone else needs hls.js
+    if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      video.src = source.hls;
+    } else if (Hls.isSupported()) {
+      hls = new Hls({ enableWorker: true, lowLatencyMode: false });
+      hls.loadSource(source.hls);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.ERROR, (_e, data) => {
+        if (data.fatal) {
+          // Fall back to direct MP4 if HLS fails
+          hls?.destroy();
+          hls = null;
+          video.src = source.mp4;
+          video.play().catch(() => {});
+        }
+      });
+    } else {
+      video.src = source.mp4;
+    }
+
+    video.play().catch(() => {});
+
+    return () => {
+      video.removeEventListener("playing", onPlaying);
+      hls?.destroy();
+    };
+  }, [source, reducedMotion]);
+
+  const toggleMute = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    const next = !muted;
+    video.muted = next;
+    setMuted(next);
+    if (!next) video.play().catch(() => {});
+  };
 
   return (
     <section
       aria-label="Cinematic introduction to Beau Monde Builders"
       className="relative h-screen w-full overflow-hidden bg-black"
     >
-      {/* Poster fallback (always rendered behind, visible until video fades in or for reduced motion) */}
+      {/* Poster fallback (visible until video fades in, or always for reduced motion) */}
       <img
-        src={posterSrc}
+        src={source.poster}
         alt=""
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover"
       />
 
-      {/* Video layer */}
       {!reducedMotion && (
-        <div
-          className={`absolute inset-0 transition-opacity duration-[1200ms] ease-out ${
-            mounted ? "opacity-100" : "opacity-0"
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={source.poster}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1200ms] ease-out ${
+            mounted && ready ? "opacity-100" : "opacity-0"
           }`}
-        >
-          {mp4Src ? (
-            <video
-              ref={videoRef}
-              autoPlay
-              muted
-              loop
-              playsInline
-              poster={posterSrc}
-              className="absolute inset-0 h-full w-full object-cover"
-            >
-              <source src={mp4Src} type="video/mp4" />
-            </video>
-          ) : (
-            <div className="absolute inset-0 pointer-events-none">
-              {/* 16:9 cover technique: oversize iframe so it always fills viewport */}
-              <iframe
-                ref={iframeRef}
-                src={ytSrc}
-                title="Beau Monde Builders cinematic"
-                allow="autoplay; encrypted-media; picture-in-picture"
-                allowFullScreen
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[max(100vw,177.78vh)] h-[max(56.25vw,100vh)] border-0"
-              />
-            </div>
-          )}
-        </div>
+        />
       )}
 
       {/* Vignette + bottom gradient for legibility */}
