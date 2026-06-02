@@ -67,8 +67,8 @@ export const DeliveryShowcase = ({
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         <RevealAnimation animation="luxury-reveal">
-          <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-thin text-white text-center leading-[1.0] tracking-tight mb-5 md:mb-7">
-            New <span className="italic font-light text-accent">Beau Monde</span> Delivery
+          <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold uppercase text-white text-center leading-[1.0] tracking-tight mb-5 md:mb-7">
+            New <span className="text-accent">Beau Monde</span> Delivery
           </h2>
         </RevealAnimation>
 
