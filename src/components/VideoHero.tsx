@@ -102,7 +102,7 @@ export const VideoHero = ({
   return (
     <section
       aria-label="Cinematic introduction to Beau Monde Builders"
-      className="relative h-screen w-full overflow-hidden bg-black"
+      className="relative h-[100svh] w-full overflow-hidden bg-black"
     >
       {/* Poster fallback (visible until video fades in, or always for reduced motion) */}
       <img
