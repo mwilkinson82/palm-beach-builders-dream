@@ -21,8 +21,17 @@ export const WalkthroughShowcase = ({
             </span>
             <div className="h-px w-10 md:w-14 bg-accent/40" />
           </div>
-          <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold uppercase text-white text-center leading-[0.95] tracking-tight mb-5 md:mb-7">
-            AJ Hoover, <span className="font-light italic text-accent">CEO</span>
+          <h2 className="text-center mb-5 md:mb-7 leading-[0.95]">
+            <span className="block font-display font-bold uppercase text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-[0.01em]">
+              AJ Hoover
+            </span>
+            <span className="mt-3 md:mt-4 flex items-center justify-center gap-3 md:gap-4">
+              <span className="h-px w-6 md:w-10 bg-accent/40" />
+              <span className="font-display font-light uppercase text-accent text-[10px] sm:text-xs md:text-sm tracking-[0.45em]">
+                Chief Executive Officer
+              </span>
+              <span className="h-px w-6 md:w-10 bg-accent/40" />
+            </span>
           </h2>
         </RevealAnimation>
 
