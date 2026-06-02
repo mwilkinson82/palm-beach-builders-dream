@@ -1,9 +1,8 @@
-import { useState } from "react";
-import { Play } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Maximize2, Volume2 } from "lucide-react";
 import { RevealAnimation } from "@/components/RevealAnimation";
 import { Parallax } from "@/components/Parallax";
 import { VideoLightbox } from "@/components/VideoLightbox";
-import walkthroughPoster from "@/assets/walkthrough-poster.jpg";
 
 interface WalkthroughShowcaseProps {
   iframeSrc?: string;
@@ -13,6 +12,35 @@ export const WalkthroughShowcase = ({
   iframeSrc = "https://media.reelreef.com/videos/019caebd-3875-71e0-b3da-bde3d856926a",
 }: WalkthroughShowcaseProps) => {
   const [open, setOpen] = useState(false);
+  const [inView, setInView] = useState(false);
+  const wrapRef = useRef<HTMLDivElement>(null);
+
+  // Mount the autoplaying iframe only while it's near the viewport, so the
+  // (muted) playback pauses cleanly once the user scrolls past.
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((e) => setInView(e.isIntersecting)),
+      { threshold: 0.25 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Autoplay-muted-loop iframe src. ReelReef respects autoplay & muted query params.
+  let inlineSrc = iframeSrc;
+  try {
+    const url = new URL(iframeSrc);
+    url.searchParams.set("autoplay", "1");
+    url.searchParams.set("muted", "1");
+    url.searchParams.set("loop", "1");
+    url.searchParams.set("controls", "0");
+    inlineSrc = url.toString();
+  } catch {
+    /* ignore */
+  }
+
   return (
     <section
       aria-label="Newly completed project walkthrough with AJ Hoover"
@@ -49,35 +77,38 @@ export const WalkthroughShowcase = ({
 
         <RevealAnimation animation="luxury-reveal" delay={300}>
           <Parallax speed={0.06}>
-            <button
-              type="button"
-              onClick={() => setOpen(true)}
-              aria-label="Play walkthrough video with AJ Hoover"
-              className="group relative block w-full aspect-video bg-black overflow-hidden md:border md:border-accent/30 shadow-2xl"
+            <div
+              ref={wrapRef}
+              className="relative w-full aspect-video bg-black overflow-hidden md:border md:border-accent/30 shadow-2xl"
             >
-              {/* TODO: swap placeholder still for a real frame from the walkthrough video */}
-              <img
-                src={walkthroughPoster}
-                alt="AJ Hoover walkthrough — newly completed Beau Monde residence"
-                loading="lazy"
-                width={1600}
-                height={896}
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.02]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-black/25 transition-opacity duration-500 group-hover:from-black/40" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="flex items-center justify-center h-20 w-20 md:h-24 md:w-24 rounded-full border border-accent bg-black/30 backdrop-blur-md text-accent transition-transform duration-500 group-hover:scale-110">
-                  <Play className="h-7 w-7 md:h-8 md:w-8 ml-1 fill-accent" strokeWidth={1.25} />
+              {inView && (
+                <iframe
+                  src={inlineSrc}
+                  title="Walkthrough with AJ Hoover, autoplay preview"
+                  allow="autoplay; picture-in-picture"
+                  className="absolute inset-0 h-full w-full pointer-events-none"
+                  style={{ border: 0 }}
+                  tabIndex={-1}
+                />
+              )}
+
+              {/* Click-through overlay opens the lightbox with sound */}
+              <button
+                type="button"
+                onClick={() => setOpen(true)}
+                aria-label="Open walkthrough video with sound and full controls"
+                className="group absolute inset-0 flex items-end justify-between p-4 md:p-6 text-primary-foreground bg-gradient-to-t from-black/45 via-transparent to-transparent hover:from-black/55 transition-colors"
+              >
+                <span className="flex items-center gap-2 font-sans uppercase text-[10px] md:text-xs tracking-[0.3em] font-light border border-primary-foreground/30 bg-black/30 backdrop-blur-md px-3 py-2 group-hover:border-accent group-hover:text-accent transition-colors">
+                  <Volume2 className="h-3.5 w-3.5" strokeWidth={1.25} />
+                  Tap to watch with sound
                 </span>
-              </div>
-              <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-3 text-primary-foreground/90">
-                <span className="h-px w-8 bg-accent" />
-                <span className="font-sans uppercase text-[10px] md:text-xs tracking-[0.35em] font-light">
-                  Play Walkthrough
+                <span className="hidden md:flex items-center gap-2 font-sans uppercase text-[10px] tracking-[0.3em] font-light border border-primary-foreground/30 bg-black/30 backdrop-blur-md px-3 py-2 group-hover:border-accent group-hover:text-accent transition-colors">
+                  <Maximize2 className="h-3.5 w-3.5" strokeWidth={1.25} />
+                  Expand
                 </span>
-                <span className="h-px w-8 bg-accent" />
-              </div>
-            </button>
+              </button>
+            </div>
           </Parallax>
         </RevealAnimation>
 
@@ -92,8 +123,14 @@ export const WalkthroughShowcase = ({
         </RevealAnimation>
       </div>
       <VideoLightbox
-        src={iframeSrc}
-        title="Walkthrough with AJ Hoover, CEO of Beau Monde Builders"
+        items={[
+          {
+            src: iframeSrc,
+            title: "Walkthrough with AJ Hoover",
+            caption: "Walkthrough with AJ Hoover",
+            kind: "iframe",
+          },
+        ]}
         open={open}
         onClose={() => setOpen(false)}
       />
