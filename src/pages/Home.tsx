@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { RevealAnimation } from "@/components/RevealAnimation";
 import { SplashScreen } from "@/components/SplashScreen";
 import { SEO } from "@/components/SEO";
+import { VideoHero } from "@/components/VideoHero";
 import { ArrowRight, Award, Building2, Sparkles, CheckCircle2, Shield, Users, FileCheck, Star } from "lucide-react";
 import heroImage from "@/assets/hero-home.jpg";
 import fcmbLogo from "@/assets/fcmb-logo.png";
@@ -32,45 +33,39 @@ const Home = () => {
       <div className="min-h-screen bg-background">
         <Navigation />
 
-      {/* Hero Section - Full Screen Immersive */}
-      <section className="relative h-screen flex items-center">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0">
-          <img
-            src={heroImage}
-            alt="Ultra Luxury Palm Beach Custom Home"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent" />
-        </div>
+      {/* Hero Section - Cinematic Video */}
+      <VideoHero />
 
-        {/* Content */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-4xl">
-            <div className="inline-block mb-6 md:mb-8 animate-fade-in">
-              <div className="flex items-center space-x-2 text-accent">
-                <div className="h-px w-8 md:w-12 bg-accent" />
-                <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] md:tracking-[0.3em] font-light">Palm Beach, Florida</span>
-              </div>
+      {/* Brand Statement - Editorial "Act Two" */}
+      <section className="relative bg-primary text-primary-foreground overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          {/* Left: Copy */}
+          <div className="relative py-16 md:py-28 lg:py-36 px-6 sm:px-10 lg:px-20 flex flex-col justify-center">
+            <div className="flex items-center space-x-3 mb-6 md:mb-8">
+              <div className="h-px w-12 md:w-16 bg-accent" />
+              <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-accent font-light">
+                The Beau Monde Standard
+              </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-display font-thin text-white mb-6 md:mb-8 leading-[0.95] tracking-tight animate-slide-up">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-thin text-white mb-6 md:mb-8 leading-[0.95] tracking-tight">
               BESPOKE
               <br />
-              <span className="font-light italic">Luxury</span>
+              <span className="font-light italic text-accent">Luxury</span>
               <br />
               REDEFINED
             </h1>
 
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-8 md:mb-12 max-w-2xl font-light leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <p className="text-base sm:text-lg md:text-xl text-white/70 mb-8 md:mb-12 max-w-xl font-light leading-relaxed">
               Where architectural excellence meets uncompromising craftsmanship.
-              Three decades of creating Palm Beach's most distinguished estates.
+              Three decades of creating Palm Beach's most distinguished estates —
+              custom residences beginning at $5M and rising into the extraordinary.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-              <Button 
-                variant="default" 
-                size="lg" 
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
+              <Button
+                variant="default"
+                size="lg"
                 className="group bg-accent hover:bg-accent/90 text-black font-medium tracking-wide text-sm md:text-base"
                 asChild
               >
@@ -79,40 +74,42 @@ const Home = () => {
                   <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 size="lg"
                 className="border-white/30 text-white hover:bg-white hover:text-black font-medium tracking-wide text-sm md:text-base"
                 asChild
               >
-                <Link to="/projects">FIND MY STYLE</Link>
+                <Link to="/projects">VIEW THE PORTFOLIO</Link>
               </Button>
             </div>
-          </div>
 
-          {/* Google Reviews Badge */}
-          <div className="absolute bottom-24 md:bottom-32 right-4 sm:right-8 lg:right-16 animate-fade-in hidden sm:block" style={{ animationDelay: '0.6s' }}>
-            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl px-4 md:px-5 py-3 md:py-4 shadow-2xl">
-              <div className="flex items-center gap-2 md:gap-3">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 md:w-5 md:h-5 text-accent fill-accent" />
-                  ))}
-                </div>
-                <div className="text-white">
-                  <div className="text-sm md:text-lg font-semibold">50+ Reviews</div>
-                  <div className="text-[10px] md:text-xs text-white/70 uppercase tracking-wider">Google Verified</div>
+            {/* Google Reviews Badge */}
+            <div className="mt-10 md:mt-14 inline-flex">
+              <div className="bg-white/5 border border-white/10 px-4 md:px-5 py-3 md:py-4 backdrop-blur-md">
+                <div className="flex items-center gap-3">
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 md:w-5 md:h-5 text-accent fill-accent" />
+                    ))}
+                  </div>
+                  <div className="text-white">
+                    <div className="text-sm md:text-base font-medium">50+ Reviews</div>
+                    <div className="text-[10px] md:text-xs text-white/60 uppercase tracking-wider">Google Verified</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 animate-float hidden sm:flex">
-          <div className="flex flex-col items-center text-white/60">
-            <span className="text-[10px] md:text-xs uppercase tracking-widest mb-2">Scroll</span>
-            <div className="w-px h-8 md:h-12 bg-gradient-to-b from-white/60 to-transparent" />
+          {/* Right: Editorial image */}
+          <div className="relative min-h-[400px] lg:min-h-full">
+            <img
+              src={heroImage}
+              alt="Ultra Luxury Palm Beach Custom Home by Beau Monde Builders"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-primary/40 lg:to-primary/60" />
           </div>
         </div>
       </section>
