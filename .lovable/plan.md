@@ -1,74 +1,59 @@
-## Refine three generic sections
+## 1. Copy edits
 
-The Bespoke → Stats → Emblem → Philosophy sequence is now editorial and restrained. The three sections directly below it haven't caught up — they still read as generic luxury template: glowing rings, glassmorphism cards, brass buttons, blurred radial gradients, rounded icon chips, full-width navy slabs. They break the engraved-invitation tone we just established.
+**WalkthroughShowcase footer caption** (`src/components/WalkthroughShowcase.tsx`)
+Replace `Palm Beach, Florida` with a non-geo, brand-forward line. Recommended:
 
-This plan rebuilds all three on the same editorial system, plus a small fix to the closing CTA so the page ends in the same voice it now opens in.
+> **An Award-Winning Beau Monde Residence**
 
-### What's wrong with each (specifics)
+(Alternate if you'd rather: *A Newly Delivered Beau Monde Residence* · *A Beau Monde Custom Build*)
 
-**Florida Certified Master Builder**
-- Glowing blur halo + rounded white badge frame on the logo reads marketing-stock, not credential.
-- 4-up icon-chip requirements grid with rounded-lg accent boxes is identical to every SaaS feature grid.
-- Bottom row of "Background Verified / 5+ Years Licensed / Fully Insured / Board Approved" badges is decorative repetition.
-- Lives on a full navy slab with dot-pattern texture — visually competing with the navy DeliveryShowcase video and the upcoming navy CTA.
+**InterviewShowcase footer caption** (`src/components/InterviewShowcase.tsx`)
+Replace `On Site · Palm Beach, Florida` with:
 
-**Luxury Renovations**
-- Two blurred radial gradient "decorative" blobs (brass + navy) are generic.
-- Brass-filled `EXPLORE RENOVATIONS` CTA violates brass discipline (CTAs must be navy).
-- Right-side "Condo Specialists" navy card with check-list bullets + Shield/Award badge chips with rounded borders is the most template-y element on the page.
-- Two parallel checklists (left grid + right card) say the same thing twice.
+> **On Site · A Pristine Luxury Build**
 
-**The Beau Monde Difference**
-- Full navy slab + radial dot pattern + 3 glassmorphism cards with hover glow rings, oversized translucent "01/02/03" numerals, rounded icon chips, and `w-12 → w-20` underline-grow hover effects — pure 2022 SaaS card grid.
-- Headlines `BESPOKE DESIGN / PRECISION EXECUTION / LIFETIME COMMITMENT` set in uppercase sans serif fight the Cormorant editorial voice established above.
+(Alternates: *On Site · Inside a Beau Monde Delivery* · *On Site · The Day of Handover*)
 
-**Closing CTA (folded in for consistency)**
-- Brass-outline `SCHEDULE YOUR CONSULTATION` button on navy violates brass discipline.
-- Headline still uses brass italic accent on large type.
+Both stay between the brass hairlines, same tracking and treatment — purely a string swap.
 
-### Locked system reminder (no drift)
+## 2. Layout depth — break the centered-video rhythm
 
-Ivory background by default. Navy reserved for one or two intentional editorial moments per page (we already have DeliveryShowcase + closing CTA — that's the budget). Brass = hairlines / eyebrows / hover underlines only, never fills, never large type. Cormorant for display + italics; Fira Sans for UI/eyebrows/body. Seafoam only as section wash, never in type. Icons strokeWidth 1.25, muted.
+You're right: VideoHero → Walkthrough → Interview are three consecutive *centered headline over centered 16:9* compositions before Bespoke finally breaks it. Rather than parallax-ing the entire stack (risky on mobile, fights the editorial calm), the cleanest fix is to **re-lay the Interview band as an asymmetric editorial pair** so the rhythm goes:
 
-### Rebuild — three editorial bands
+```text
+VideoHero          full-bleed cinematic       (centered, immersive)
+Walkthrough        centered video, navy        (centered, formal)
+Interview          asymmetric editorial pair   ← NEW rhythm break
+Bespoke / Stats…   editorial bands             (already asymmetric)
+```
 
-**Band A · Florida Certified Master Builder** — asymmetric editorial pair on ivory.
-- Left 5/12: the FCMB logo at full size, no halo, no rounded frame, no backdrop — sitting in negative space with a single brass hairline running underneath it and a small Fira Sans eyebrow "Florida Certified · Master Builder · 2024".
-- Right 7/12: Cormorant statement "An elite designation. Held by the few." Italic on line two. One short paragraph of copy below.
-- Beneath the paragraph: four single-line credentials separated by brass hairlines (no icon chips, no boxes) — "7+ Years Experience / Clean Regulatory Record / Verified Client & Subcontractor References / Written Warranty Minimum 1 Year". Each line is a row: 8-char tracked label on the left, plain body on the right.
-- No bottom badge cluster (Background Verified / Licensed / Insured / Board Approved). Those are implied by FCMB.
+### Interview re-layout (still navy, still cinematic)
 
-**Band B · Luxury Renovations** — editorial pair, image-led, ivory background.
-- Eyebrow "Now Offering" + Cormorant statement "Renovations, at the same standard."
-- One short paragraph. Below it, a single brass-hairline list of four offerings: Condominium Transformations / Kitchen & Bath / Whole-Home Remodels / Turnkey Packages. No checkmarks, no parallel right-side card.
-- Primary CTA `Explore Renovations` (navy fill, ivory text — matches the new system).
-- Right column: a single ivory-bordered image moment (use an existing project photo or the hero asset) — quiet, no overlay, no hover.
-- Removes the duplicate "Condo Specialists" right card entirely. The trust signals (Insured / Licensed / FCMB) already live in the FCMB band above.
+12-col grid on `lg`:
 
-**Band C · The Beau Monde Difference** — three-row editorial list on ivory (not a navy card grid).
-- Eyebrow "Our Approach" + Cormorant statement "Three commitments, one standard." centered.
-- Below: a single column of three numbered rows separated by brass hairlines. Each row is one line: small navy "01 / 02 / 03" + Cormorant sub-headline (`Bespoke Design` / `Precision Execution` / `Lifetime Commitment`) + one Fira Sans sentence below.
-- No cards, no glassmorphism, no hover glows, no icons, no rounded chips. Whitespace and the hairlines carry the rhythm.
+- **Left, cols 1–7:** the iframe (16:9), unchanged frame and brass hairline border.
+- **Right, cols 8–12, vertically centered:**
+  - Brass eyebrow: `IN CONVERSATION`
+  - Cormorant headline: *The Builder, on the Build* (left-aligned now, not centered)
+  - Italic Cormorant pull-quote (1–2 lines, lifted feel of an interview)
+  - Brass hairline + small caption: *With AJ Hoover · CEO, Beau Monde Builders*
+  - One small navy CTA: `Talk to Beau Monde`
 
-**Closing CTA polish (small)**
-- Drop brass-outline button → navy filled `Schedule Your Consultation`.
-- Headline stays Cormorant; italic accent stays the muted ivory tone the upper sequence uses (no brass on large type).
-- Address line stays.
+On `<lg`: stacks — eyebrow + headline + pull-quote first, then video, then caption. Mobile stays calm.
 
-### Technical details
+The parallax `C` ligature stays, repositioned to sit behind the headline column instead of the right edge, so it reads as a layered editorial mark.
 
-- File: `src/pages/Home.tsx` lines ~340–639 (FCMB, Renovations, Services, CTA sections).
-- Remove unused Lucide imports left behind (Award, Shield, Users, FileCheck, CheckCircle2, Sparkles, Building2 where they no longer appear). Keep `ArrowRight`, `Star`.
-- Use existing semantic tokens only (`bg-background`, `text-foreground`, `bg-primary`, `text-accent`, `border-accent/30`, `bg-seafoam`). No raw hex.
-- Reuse `RevealAnimation` and the existing `parallax-ligature` background-letter pattern for one moment per band if it adds rhythm (likely just on the FCMB and Difference statements).
-- Keep all copy meaning intact — only tightening for editorial cadence. No new claims, no removed credentials, contact + address unchanged.
+### Why not blanket parallax
 
-### Out of scope
+Parallax across three back-to-back video sections compounds motion sickness on scroll and tends to read "agency template" rather than "Worth Avenue editorial." The existing `parallax-ligature` letters already provide the depth signature; one structural rhythm break does more work than ten parallax layers.
 
-- Navigation, VideoHero, WalkthroughShowcase, DeliveryShowcase, Footer — locked, untouched.
-- The new Bespoke → Emblem → Philosophy sequence we just built — untouched.
-- Interior pages (Renovations page, About, Process, etc.) — Phase 3.
+## Out of scope
 
-### Ready to ship
+- VideoHero composition (stays centered/immersive — it's the front door)
+- WalkthroughShowcase composition (stays centered — pairs visually with the hero, then Interview breaks the pattern)
+- Any new pages, nav changes, or copy beyond the two captions above
 
-Switch to build mode and I implement all three rebuilds + the closing CTA polish in one pass.
+## Files touched
+
+- `src/components/WalkthroughShowcase.tsx` — 1 string
+- `src/components/InterviewShowcase.tsx` — 1 string + re-layout to 12-col asymmetric pair, ligature reposition
