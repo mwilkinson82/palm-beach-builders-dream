@@ -1,56 +1,69 @@
-## Site-Wide Redesign: Ivory & Ocean
+## Palm Beach Refinement + Phase 2 Home Rebuild
 
-Refresh the brand system across the whole site without losing copy, data, or the moments you already love. Splash, hero video, AJ Hoover walkthrough, and "New from Beau Monde" stay structurally — they get re-skinned to the new palette and type.
+Palm Beach is the flagship. Space Coast bends to this later. Before rebuilding Home sections, refine the typographic and palette system to match Worth Avenue restraint — then build Phase 2 on the corrected foundation.
 
-### Locked taste
+### Locked refinements (your agreement)
 
-- **Palette:** Ivory `#f5f0e6` · Sand `#e0d5c2` · Atlantic Navy `#0f2a3d` · Brass `#b08a4a`
-- **Type:** DM Serif Display (headlines) · Fira Sans (body & UI)
-- **Layout:** Full-width cinematic bands, generous negative space, editorial pacing
-- **Voice:** Old-money Palm Beach, daylight, coastal — material and quiet, never flashy
+**Typography — swap to Cormorant Garamond as display**
+- `font-display` and `font-serif` → Cormorant Garamond (already loaded in `index.html`, weights 300/400/500 + italics)
+- DM Serif Display demoted to rare brand moments only (kept loaded for the "Beau Monde" wordmark in hero/footer if we want occasional weight contrast — otherwise removed entirely)
+- Fira Sans stays as `font-sans` for UI, body, captions, buttons
+- Effect: "engraved invitation" instead of "magazine cover." Thinner strokes, more breathing room, italic accents that feel handwritten.
 
-### What changes vs. what's preserved
+**Brass discipline**
+- Brass `#b08a4a` restricted to: hairline dividers, small uppercase eyebrows, icon strokes, hover underlines
+- Never brass button fills, never brass large type, never brass blocks
+- Navy and ivory carry all the weight. Brass whispers.
+- Audit Navigation, Footer, Walkthrough, Delivery for any current brass overuse and pull back.
 
-**Preserved (re-skinned only):**
-- Splash screen (untouched, per your note)
-- VideoHero
-- WalkthroughShowcase (AJ Hoover)
-- DeliveryShowcase ("New from Beau Monde")
-- All copy, contact info, FCMB cert, portfolio images, contact form logic, all routes, SEO tags, legal pages
+**Atlantic Navy stays** — `#0f2a3d` is the right depth. Deeper and warmer than Space Coast cobalt. Ocean-at-dusk vs ocean-at-noon differentiation is intentional.
 
-**Reworked:**
-- Global color tokens (`src/index.css`, `tailwind.config.ts`) — full palette swap, light-mode-first
-- Global type — DM Serif Display + Fira Sans wired through Tailwind `font-display` / `font-sans` / `font-serif`
-- Navigation: cleaner, lighter, ivory background with navy ink and brass underline on hover
-- Footer: editorial layout, navy band with ivory type
-- Home page sections below the walkthrough/delivery (Bespoke Luxury Redefined, the icon/stat cards, etc.) — rebuilt as full-width editorial bands; generic Lucide icons replaced with thin custom marks or removed in favor of typography
-- About / Process / Projects / Renovations / Press / Contact pages — re-skinned to the new system, generic cards swapped for editorial layouts (asymmetric splits, oversized type, image-led blocks)
+### Third tonal whisper — my recommendation
 
-### Phased rollout (so we don't bite off too much at once)
+You didn't explicitly weigh in on the seafoam vs coral vs austere question. My recommendation: **soft seafoam** `#dce8e4` (very pale ocean green, ~5% saturation). Used only in:
+- Section divider bands between editorial blocks
+- Subtle image tints on portfolio thumbnails on rest state
+- Hover wash on cards
+- Never in type, never in buttons
 
-**Phase 1 — Brand system foundation** (one focused build)
-- Update `src/index.css` design tokens to the Ivory & Ocean palette (HSL), set ivory as `--background`, navy as `--foreground` / `--primary`, brass as `--accent`. Dark-mode tokens stay as a deep-navy variant.
-- Update `tailwind.config.ts` to load DM Serif Display + Fira Sans, map `font-display` → DM Serif Display, `font-sans` → Fira Sans.
-- Add the fonts via `index.html` `<link>` preconnect + Google Fonts.
-- Refit Navigation + Footer to the new tokens.
-- Re-skin the four preserved sections (Splash stays as-is; Hero, Walkthrough, Delivery get token swaps only — no structural change). Brass replaces gold, navy replaces black backgrounds where appropriate; cinematic video sections keep dark frames for contrast.
-- Output: site shifts to the new palette + type globally; nothing on Home below the delivery section is touched yet.
+Coastal warmth without flash. If you'd rather stay austere (ivory/navy/brass only), say the word and I drop it from the plan.
 
-**Phase 2 — Home page editorial rebuild**
-- Generate 3 rendered design directions for the Home sections under the delivery (Bespoke Luxury Redefined, capabilities, stats, CTAs). You pick one, I build it.
-- Replace generic icon/card grids with editorial bands: oversized serif statements, asymmetric image+text rows, brass hairlines instead of icons.
+### Phase 2 — Home editorial rebuild
 
-**Phase 3 — Interior pages**
-- Apply the same editorial system to About, Process, Projects, Renovations, Press, Contact one by one (smallest meaningful units, easier to review).
+After the foundation refinement above ships, rebuild Home sections below the Delivery showcase as editorial bands. Current structure replaced:
 
-### Technical notes
+**Sections to rework** (Home page only — interior pages come in Phase 3):
+1. "Bespoke Luxury Redefined" + capabilities grid
+2. Stats / numbers band
+3. Closing CTA section
 
-- All colors as HSL in tokens, referenced via semantic Tailwind classes (`bg-background`, `text-foreground`, `text-accent`) — no raw hex in components.
-- Light-mode-first. Dark surfaces (hero, walkthrough, delivery) become deep navy `#0f2a3d`, not pure black, so the palette stays cohesive.
-- Brass `#b08a4a` replaces the current gold `--accent` everywhere; existing `text-accent` / `bg-accent` classes pick this up automatically.
-- DM Serif Display has heavy presence — body sizes capped, used only for headlines and brand moments. Fira Sans handles UI, body, captions, buttons.
-- `mem://style/visual-aesthetic` updated at the end of Phase 1 so future sessions inherit the new system.
+**New editorial system:**
+- Asymmetric image + text rows (60/40 splits, alternating sides)
+- Oversized Cormorant statements (single sentences, generous line-height)
+- Brass hairlines instead of Lucide icon grids
+- Eyebrows in Fira Sans uppercase, tracking-wide, brass color, very small
+- Section transitions use the seafoam divider band (if approved)
+- Full-bleed image moments between text bands for pacing
 
-### What I need from you to start Phase 1
+**Three rendered design directions** generated via the design tool — all three lock the refined Cormorant + Fira Sans + Ivory/Navy/Brass(+Seafoam) system. They vary only in:
+- Composition rhythm (dense editorial vs. spacious gallery vs. cinematic full-bleed)
+- Image-to-type ratio
+- Where the "Talk to Beau Monde" CTA lands
 
-Just a "go" and I'll ship the foundation. Phases 2 and 3 each pause for your direction picks before building.
+You pick one. I build it.
+
+### Execution order
+
+1. **Refinement pass** (one focused build): swap fonts in `tailwind.config.ts`, update `index.css` tokens (add seafoam if approved), audit brass usage across Nav/Footer/Walkthrough/Delivery, update `mem://style/visual-aesthetic` and `mem://index.md` so the new system locks in for future sessions.
+2. **Pause** — you scroll, confirm the new tone reads correctly.
+3. **Phase 2 directions** — generate 3 rendered Home rebuild options, you pick.
+4. **Phase 2 build** — implement the chosen direction.
+5. **Phase 3** — interior pages, one at a time, using the now-locked system.
+
+### Preserved (untouched)
+
+Splash, VideoHero, WalkthroughShowcase, DeliveryShowcase structure, all copy, contact info, FCMB cert, portfolio images and rules, contact form, all routes, SEO, legal pages.
+
+### What I need to start
+
+Just confirm: **seafoam yes or stay austere?** Then I ship the refinement pass.

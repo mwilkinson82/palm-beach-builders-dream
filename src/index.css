@@ -42,6 +42,9 @@ All colors MUST be HSL.
     --input: 37 25% 80%;
     --ring: 37 41% 49%;
 
+    /* Seafoam — pale coastal whisper. Dividers, image tints, hover wash only. Never in type or buttons. */
+    --seafoam: 160 18% 88%;
+
     --radius: 0rem;
 
     /* Editorial Gradients */
@@ -86,6 +89,7 @@ All colors MUST be HSL.
     --border: 205 30% 22%;
     --input: 205 30% 22%;
     --ring: 37 45% 55%;
+    --seafoam: 160 14% 22%;
   }
 }
 
