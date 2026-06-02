@@ -19,12 +19,14 @@ export const audioPreference = {
   },
   subscribe: (l: Listener) => {
     listeners.add(l);
-    return () => listeners.delete(l);
+    return () => {
+      listeners.delete(l);
+    };
   },
 };
 
 export const useAudioPreference = () => {
   const [value, setValue] = useState(unmuted);
-  useEffect(() => audioPreference.subscribe(setValue) as unknown as () => void, []);
+  useEffect(() => audioPreference.subscribe(setValue), []);
   return value;
 };
