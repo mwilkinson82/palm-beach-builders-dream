@@ -17,6 +17,46 @@ import fcmbLogo from "@/assets/fcmb-logo.png";
 import logoSketch from "@/assets/beau-monde-logo-sketch.jpeg";
 import renovationImage from "@/assets/projects/intracoastal-contemporary.jpg";
 
+const EMBLEM_MEANINGS = [
+  {
+    title: "The Lions",
+    body: "Strength and leadership — protecting the structural and financial integrity of your legacy home.",
+  },
+  {
+    title: "The Parthenon",
+    body: "The golden ratio and timeless quality — every residence transcending temporary trends to remain an architectural landmark.",
+  },
+  {
+    title: "Palm Trees",
+    body: "Our geographical stamp — the tranquility and exclusive heritage of Palm Beach woven into the design itself.",
+  },
+];
+
+const FCMB_CREDENTIALS = [
+  { k: "Experience", v: "7+ years of proven industry practice" },
+  { k: "Record", v: "Clean regulatory and disciplinary history" },
+  { k: "References", v: "Verified by clients and subcontractors" },
+  { k: "Warranty", v: "Written, minimum one-year guarantee" },
+];
+
+const COMMITMENTS = [
+  {
+    n: "I",
+    title: "Bespoke Design",
+    body: "We collaborate with renowned architects to shape a home that embodies your aesthetic and the way you actually live.",
+  },
+  {
+    n: "II",
+    title: "Precision Execution",
+    body: "Disciplined project management. On time, on budget, beyond expectation — measured by the detail you notice last.",
+  },
+  {
+    n: "III",
+    title: "Lifetime Commitment",
+    body: "The relationship outlives the build. Comprehensive warranty support and ongoing care for the home and the investment.",
+  },
+];
+
 const Home = () => {
   const [showSplash, setShowSplash] = useState(true);
 
