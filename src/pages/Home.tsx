@@ -8,6 +8,7 @@ import { SplashScreen } from "@/components/SplashScreen";
 import { SEO } from "@/components/SEO";
 import { VideoHero } from "@/components/VideoHero";
 import { DeliveryShowcase } from "@/components/DeliveryShowcase";
+import { WalkthroughShowcase } from "@/components/WalkthroughShowcase";
 import { ArrowRight, Award, Building2, Sparkles, CheckCircle2, Shield, Users, FileCheck, Star } from "lucide-react";
 import heroImage from "@/assets/hero-home.jpg";
 import fcmbLogo from "@/assets/fcmb-logo.png";
@@ -36,6 +37,9 @@ const Home = () => {
 
       {/* Hero Section - Cinematic Video */}
       <VideoHero />
+
+      {/* Founder Walkthrough */}
+      <WalkthroughShowcase />
 
       {/* New Delivery Showcase */}
       <DeliveryShowcase />
