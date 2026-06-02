@@ -108,14 +108,12 @@ export const VideoLightbox = ({
           key={current}
           className="relative aspect-video bg-black border border-accent/40 shadow-2xl animate-scale-in"
           style={{
-            width: "100%",
-            maxHeight: "100%",
-            // Cap width so that height never exceeds available vertical space.
-            // Reserve ~ label(40) + playlist(items>1 ? 170 : 0) + paddings(72).
-            maxWidth:
+            // Explicit width derived from viewport so the 16:9 box always
+            // fits both width and remaining height (label + optional rail).
+            width:
               items.length > 1
-                ? "min(100%, calc((100vh - 280px) * 16 / 9))"
-                : "min(100%, calc((100vh - 130px) * 16 / 9))",
+                ? "min(96vw, calc((100vh - 280px) * 16 / 9))"
+                : "min(96vw, calc((100vh - 140px) * 16 / 9))",
           }}
         >
           {item.kind === "iframe" ? (
