@@ -9,6 +9,8 @@ export interface LightboxVideo {
   title: string;
   /** Short caption shown under thumbnail (e.g. "Recent Delivery · No. 02") */
   caption?: string;
+  /** Optional editorial subtitle rendered under the player (single-video layouts) */
+  subtitle?: string;
   /** Thumbnail image for the playlist rail */
   poster?: string;
   /** How to render */
@@ -91,11 +93,11 @@ export const VideoLightbox = ({
       </button>
 
       <div
-        className="relative w-full h-full flex flex-col items-center px-3 md:px-6 lg:px-10 pt-12 pb-4 md:pt-14 md:pb-6 gap-3 md:gap-4"
+        className="relative w-full h-full flex flex-col items-center justify-center px-3 md:px-6 lg:px-10 pt-16 pb-6 md:pt-14 md:pb-6 gap-3 md:gap-4"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Now playing label */}
-        <div className="flex items-center gap-3 text-primary-foreground/80 shrink-0">
+        <div className="flex items-center gap-3 text-primary-foreground/80 shrink-0 max-w-[calc(100%-7rem)] text-center">
           <span className="h-px w-6 bg-accent" />
           <span className="font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase">
             Now Playing · {item.title}
@@ -137,9 +139,22 @@ export const VideoLightbox = ({
           )}
         </div>
 
+        {/* Editorial caption under the player (single-video layouts only) */}
+        {items.length === 1 && item.subtitle && (
+          <div className="w-full max-w-2xl text-center shrink-0 flex flex-col items-center gap-2 md:gap-3 px-2">
+            <span className="h-px w-10 bg-accent/60" />
+            <p className="font-sans uppercase text-[10px] md:text-xs tracking-[0.35em] text-accent/90">
+              {item.title}
+            </p>
+            <p className="font-display italic text-primary-foreground/85 text-base md:text-lg leading-snug">
+              {item.subtitle}
+            </p>
+          </div>
+        )}
+
         {/* Playlist queue */}
         {items.length > 1 && (
-          <div className="w-full max-w-[1400px] shrink-0 mt-auto">
+          <div className="w-full max-w-[1400px] shrink-0 absolute bottom-4 md:bottom-6 left-0 right-0 px-3 md:px-6 lg:px-10 mx-auto">
             <div className="flex items-center gap-3 mb-3 text-primary-foreground/70">
               <span className="h-px w-6 bg-accent" />
               <span className="font-sans text-[10px] tracking-[0.35em] uppercase">
