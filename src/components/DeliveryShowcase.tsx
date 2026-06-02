@@ -1,69 +1,60 @@
-import { useEffect, useRef, useState } from "react";
-import { Volume2, VolumeX, Play } from "lucide-react";
+import { useState } from "react";
+import { Play } from "lucide-react";
 import { RevealAnimation } from "@/components/RevealAnimation";
-import { VideoLightbox } from "@/components/VideoLightbox";
+import { VideoLightbox, LightboxVideo } from "@/components/VideoLightbox";
 import videoAsset from "@/assets/new-delivery.mp4.asset.json";
 import posterAsset from "@/assets/new-delivery-poster.jpg.asset.json";
+
+const CLOUDFLARE_IFRAME =
+  "https://customer-t8esmyyidbkq6bm8.cloudflarestream.com/eaa200cf9f64ad5d8866238bf13af54b/iframe";
+const CLOUDFLARE_POSTER =
+  "https://customer-t8esmyyidbkq6bm8.cloudflarestream.com/eaa200cf9f64ad5d8866238bf13af54b/thumbnails/thumbnail.jpg?time=15s&height=600";
 
 interface DeliveryShowcaseProps {
   videoSrc?: string;
   posterSrc?: string;
   /** Cloudflare Stream iframe (or any 16:9 embed) shown alongside the MP4. */
   secondaryIframeSrc?: string;
-  eyebrow?: string;
-  heading?: string;
-  subhead?: string;
+  secondaryPoster?: string;
 }
 
 export const DeliveryShowcase = ({
   videoSrc = videoAsset.url,
   posterSrc = posterAsset.url,
-  secondaryIframeSrc = "https://customer-t8esmyyidbkq6bm8.cloudflarestream.com/eaa200cf9f64ad5d8866238bf13af54b/iframe?poster=https%3A%2F%2Fcustomer-t8esmyyidbkq6bm8.cloudflarestream.com%2Feaa200cf9f64ad5d8866238bf13af54b%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D15s%26height%3D600",
-  eyebrow = "New Beau Monde Delivery",
-  heading = "Another Custom Luxury Home",
-  subhead = "Delivered by the Beau Monde Builders team.",
+  secondaryIframeSrc = CLOUDFLARE_IFRAME,
+  secondaryPoster = CLOUDFLARE_POSTER,
 }: DeliveryShowcaseProps) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [muted, setMuted] = useState(true);
-  const [reducedMotion, setReducedMotion] = useState(false);
-  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReducedMotion(mq.matches);
-  }, []);
+  const playlist: LightboxVideo[] = [
+    {
+      src: videoSrc,
+      poster: posterSrc,
+      title: "Recent Delivery · No. 01",
+      caption: "Recent Delivery · No. 01",
+      kind: "mp4",
+    },
+    {
+      src: secondaryIframeSrc,
+      poster: secondaryPoster,
+      title: "Recent Delivery · No. 02",
+      caption: "Recent Delivery · No. 02",
+      kind: "iframe",
+    },
+  ];
 
-  // Play only when visible to save bandwidth and avoid competing with the main hero
-  useEffect(() => {
-    if (reducedMotion) return;
-    const video = videoRef.current;
-    if (!video) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            video.play().catch(() => {});
-          } else {
-            video.pause();
-          }
-        });
-      },
-      { threshold: 0.35 }
-    );
-
-    observer.observe(video);
-    return () => observer.disconnect();
-  }, [reducedMotion]);
-
-  const toggleMute = () => {
-    const video = videoRef.current;
-    if (!video) return;
-    const next = !muted;
-    video.muted = next;
-    setMuted(next);
-    if (!next) video.play().catch(() => {});
-  };
+  const tiles: Array<{ label: string; poster: string; alt: string }> = [
+    {
+      label: "Recent Delivery · No. 01",
+      poster: posterSrc,
+      alt: "Newly delivered Beau Monde Builders custom luxury home — preview one",
+    },
+    {
+      label: "Recent Delivery · No. 02",
+      poster: secondaryPoster,
+      alt: "Newly delivered Beau Monde Builders custom luxury home — preview two",
+    },
+  ];
 
   return (
     <section
@@ -86,94 +77,49 @@ export const DeliveryShowcase = ({
 
         <RevealAnimation animation="fade-up" delay={180}>
           <p className="text-center text-base md:text-lg lg:text-xl font-serif italic font-light text-primary-foreground/75 max-w-3xl mx-auto mb-10 md:mb-14">
-            Two more custom luxury homes, recently delivered by the Beau Monde Builders team.
+            Two more custom luxury homes, recently delivered. Tap either to watch both back-to-back.
           </p>
         </RevealAnimation>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-          {/* Left — autoplaying MP4 with mute toggle */}
-          <RevealAnimation animation="luxury-reveal" delay={200}>
-            <figure className="space-y-3">
-              <div className="relative w-full aspect-video bg-black overflow-hidden md:border md:border-accent/30 shadow-2xl">
-                {!reducedMotion ? (
-                  <video
-                    ref={videoRef}
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    poster={posterSrc}
-                    className="absolute inset-0 h-full w-full object-cover"
-                  >
-                    <source src={videoSrc} type="video/mp4" />
-                  </video>
-                ) : (
+          {tiles.map((tile, i) => (
+            <RevealAnimation key={i} animation="luxury-reveal" delay={200 + i * 120}>
+              <figure className="space-y-3">
+                <button
+                  type="button"
+                  onClick={() => setOpenIndex(i)}
+                  aria-label={`Play ${tile.label}`}
+                  className="group relative block w-full aspect-video bg-black overflow-hidden md:border md:border-accent/30 shadow-2xl"
+                >
                   <img
-                    src={posterSrc}
-                    alt="Newly delivered Beau Monde Builders custom luxury home"
-                    className="absolute inset-0 h-full w-full object-cover"
+                    src={tile.poster}
+                    alt={tile.alt}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.02]"
                   />
-                )}
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/60 to-transparent" />
-                {!reducedMotion && (
-                  <button
-                    type="button"
-                    onClick={toggleMute}
-                    aria-label={muted ? "Unmute video" : "Mute video"}
-                    className="absolute bottom-4 right-4 z-10 min-h-[44px] group flex items-center gap-2 border border-primary-foreground/30 bg-black/40 backdrop-blur-md px-4 py-2.5 text-primary-foreground text-[10px] uppercase tracking-[0.25em] font-light hover:border-accent hover:bg-black/60 transition-colors"
-                  >
-                    {muted ? (
-                      <VolumeX className="h-3.5 w-3.5 text-accent" />
-                    ) : (
-                      <Volume2 className="h-3.5 w-3.5 text-accent" />
-                    )}
-                    <span>{muted ? "Unmute" : "Mute"}</span>
-                  </button>
-                )}
-              </div>
-              <figcaption className="flex items-center gap-3 text-primary-foreground/70">
-                <span className="h-px w-6 bg-accent" />
-                <span className="font-sans uppercase text-[10px] tracking-[0.3em] font-light">
-                  Recent Delivery · No. 01
-                </span>
-              </figcaption>
-            </figure>
-          </RevealAnimation>
-
-          {/* Right — secondary embed, click-to-lightbox */}
-          <RevealAnimation animation="luxury-reveal" delay={320}>
-            <figure className="space-y-3">
-              <button
-                type="button"
-                onClick={() => setLightboxSrc(secondaryIframeSrc)}
-                aria-label="Play second recent delivery video"
-                className="group relative block w-full aspect-video bg-black overflow-hidden md:border md:border-accent/30 shadow-2xl"
-              >
-                <iframe
-                  src={secondaryIframeSrc}
-                  title="Recent Beau Monde Builders delivery — second video"
-                  loading="lazy"
-                  allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
-                  allowFullScreen
-                  className="absolute inset-0 h-full w-full pointer-events-none"
-                  style={{ border: 0 }}
-                  tabIndex={-1}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 opacity-100 group-hover:opacity-80 transition-opacity duration-500" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="flex items-center justify-center h-16 w-16 md:h-20 md:w-20 rounded-full border border-accent bg-black/30 backdrop-blur-md text-accent transition-transform duration-500 group-hover:scale-110">
-                    <Play className="h-6 w-6 md:h-7 md:w-7 ml-0.5 fill-accent" strokeWidth={1.25} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-black/20 transition-opacity duration-500 group-hover:from-black/40" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="flex items-center justify-center h-16 w-16 md:h-20 md:w-20 rounded-full border border-accent bg-black/35 backdrop-blur-md text-accent transition-transform duration-500 group-hover:scale-110">
+                      <Play className="h-6 w-6 md:h-7 md:w-7 ml-0.5 fill-accent" strokeWidth={1.25} />
+                    </span>
+                  </div>
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-3 text-primary-foreground/90">
+                    <span className="h-px w-6 bg-accent" />
+                    <span className="font-sans uppercase text-[10px] tracking-[0.3em] font-light">
+                      Tap to Play · Watch Both
+                    </span>
+                    <span className="h-px w-6 bg-accent" />
+                  </div>
+                </button>
+                <figcaption className="flex items-center gap-3 text-primary-foreground/70">
+                  <span className="h-px w-6 bg-accent" />
+                  <span className="font-sans uppercase text-[10px] tracking-[0.3em] font-light">
+                    {tile.label}
                   </span>
-                </div>
-              </button>
-              <figcaption className="flex items-center gap-3 text-primary-foreground/70">
-                <span className="h-px w-6 bg-accent" />
-                <span className="font-sans uppercase text-[10px] tracking-[0.3em] font-light">
-                  Recent Delivery · No. 02
-                </span>
-              </figcaption>
-            </figure>
-          </RevealAnimation>
+                </figcaption>
+              </figure>
+            </RevealAnimation>
+          ))}
         </div>
 
         <RevealAnimation animation="fade-up" delay={400}>
@@ -188,10 +134,10 @@ export const DeliveryShowcase = ({
       </div>
 
       <VideoLightbox
-        src={lightboxSrc ?? ""}
-        title="Recent Beau Monde Builders delivery"
-        open={!!lightboxSrc}
-        onClose={() => setLightboxSrc(null)}
+        items={playlist}
+        initialIndex={openIndex ?? 0}
+        open={openIndex !== null}
+        onClose={() => setOpenIndex(null)}
       />
     </section>
   );
