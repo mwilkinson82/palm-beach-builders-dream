@@ -9,10 +9,11 @@ import { SEO } from "@/components/SEO";
 import { VideoHero } from "@/components/VideoHero";
 import { DeliveryShowcase } from "@/components/DeliveryShowcase";
 import { WalkthroughShowcase } from "@/components/WalkthroughShowcase";
-import { ArrowRight, Award, Building2, Sparkles, CheckCircle2, Shield, Users, FileCheck, Star } from "lucide-react";
+import { ArrowRight, Star } from "lucide-react";
 import heroImage from "@/assets/hero-home.jpg";
 import fcmbLogo from "@/assets/fcmb-logo.png";
 import logoSketch from "@/assets/beau-monde-logo-sketch.jpeg";
+import renovationImage from "@/assets/projects/intracoastal-contemporary.jpg";
 
 const Home = () => {
   const [showSplash, setShowSplash] = useState(true);
