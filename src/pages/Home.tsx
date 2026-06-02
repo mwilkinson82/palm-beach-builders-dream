@@ -9,6 +9,7 @@ import { SEO } from "@/components/SEO";
 import { VideoHero } from "@/components/VideoHero";
 import { DeliveryShowcase } from "@/components/DeliveryShowcase";
 import { WalkthroughShowcase } from "@/components/WalkthroughShowcase";
+import { InterviewShowcase } from "@/components/InterviewShowcase";
 import { ArrowRight, Star } from "lucide-react";
 import heroImage from "@/assets/hero-home.jpg";
 import fcmbLogo from "@/assets/fcmb-logo.png";
@@ -41,6 +42,9 @@ const Home = () => {
 
       {/* Founder Walkthrough */}
       <WalkthroughShowcase />
+
+      {/* Realtor Interview with AJ — paired with the walkthrough (same home, two lenses) */}
+      <InterviewShowcase />
 
       {/* New Delivery Showcase */}
       <DeliveryShowcase />
