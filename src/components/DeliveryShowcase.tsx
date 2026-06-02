@@ -67,24 +67,14 @@ export const DeliveryShowcase = ({
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         <RevealAnimation animation="luxury-reveal">
-          <div className="flex items-center space-x-3 mb-5 md:mb-7 justify-center">
-            <div className="h-px w-10 md:w-14 bg-accent" />
-            <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-accent font-light">
-              {eyebrow}
-            </span>
-            <div className="h-px w-10 md:w-14 bg-accent" />
-          </div>
-        </RevealAnimation>
-
-        <RevealAnimation animation="luxury-reveal" delay={120}>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-thin text-white text-center leading-[1.05] tracking-tight mb-4 md:mb-6">
-            Another <span className="italic font-light text-accent">Custom Luxury Home</span>
+          <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-thin text-white text-center leading-[1.0] tracking-tight mb-5 md:mb-7">
+            New <span className="italic font-light text-accent">Beau Monde</span> Delivery
           </h2>
         </RevealAnimation>
 
-        <RevealAnimation animation="fade-up" delay={220}>
-          <p className="text-center text-sm md:text-base font-sans font-light tracking-[0.15em] uppercase text-white/70 mb-10 md:mb-14">
-            {subhead}
+        <RevealAnimation animation="fade-up" delay={180}>
+          <p className="text-center text-base md:text-lg lg:text-xl font-serif italic font-light text-white/75 max-w-3xl mx-auto mb-10 md:mb-14">
+            Another custom luxury home, delivered by the Beau Monde Builders team.
           </p>
         </RevealAnimation>
 
