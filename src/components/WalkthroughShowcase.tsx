@@ -132,6 +132,8 @@ export const WalkthroughShowcase = ({
             src: iframeSrc,
             title: "Walkthrough with AJ Hoover",
             caption: "Walkthrough with AJ Hoover",
+            subtitle:
+              "Chief Executive Officer · Newly Completed Project Walkthrough · Beau Monde Builders",
             kind: "iframe",
           },
         ]}
