@@ -1,26 +1,46 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { X } from "lucide-react";
+import { X, Play } from "lucide-react";
+
+export interface LightboxVideo {
+  /** Source URL — iframe embed URL or direct .mp4 */
+  src: string;
+  /** Accessible title / overlay label */
+  title: string;
+  /** Short caption shown under thumbnail (e.g. "Recent Delivery · No. 02") */
+  caption?: string;
+  /** Thumbnail image for the playlist rail */
+  poster?: string;
+  /** How to render */
+  kind: "iframe" | "mp4";
+}
 
 interface VideoLightboxProps {
-  /** iframe src (we'll append autoplay query params on open) */
-  src: string;
-  title?: string;
+  /** Playlist of one or more videos. Renders queue when 2+. */
+  items: LightboxVideo[];
+  initialIndex?: number;
   open: boolean;
   onClose: () => void;
 }
 
 /**
- * Cinematic full-viewport video lightbox. Portaled to body to escape any
- * parent transform/overflow. ESC + backdrop click close. Body scroll locked
- * while open.
+ * Cinematic full-viewport video lightbox with optional playlist queue.
+ * Portaled to body so it escapes any parent transform/overflow.
+ * ESC + backdrop click close. Body scroll locked while open.
  */
 export const VideoLightbox = ({
-  src,
-  title = "Video player",
+  items,
+  initialIndex = 0,
   open,
   onClose,
 }: VideoLightboxProps) => {
+  const [current, setCurrent] = useState(initialIndex);
+
+  // Reset to chosen item every time the lightbox opens
+  useEffect(() => {
+    if (open) setCurrent(initialIndex);
+  }, [open, initialIndex]);
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -35,44 +55,137 @@ export const VideoLightbox = ({
     };
   }, [open, onClose]);
 
-  if (!open || typeof document === "undefined") return null;
+  if (!open || typeof document === "undefined" || items.length === 0) return null;
 
-  // Append autoplay flags. Works for both ReelReef and Cloudflare Stream embeds.
-  const url = new URL(src, window.location.href);
-  url.searchParams.set("autoplay", "1");
-  const finalSrc = url.toString();
+  const item = items[current] ?? items[0];
+
+  // Append autoplay flags for iframe embeds. Works for ReelReef and Cloudflare Stream.
+  let finalSrc = item.src;
+  if (item.kind === "iframe") {
+    try {
+      const url = new URL(item.src, window.location.href);
+      url.searchParams.set("autoplay", "1");
+      finalSrc = url.toString();
+    } catch {
+      /* ignore */
+    }
+  }
 
   return createPortal(
     <div
       role="dialog"
       aria-modal="true"
-      aria-label={title}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-primary/95 backdrop-blur-sm animate-fade-in"
+      aria-label={item.title}
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-sm animate-fade-in"
       onClick={onClose}
     >
-      <div className="absolute inset-0 silk-grain opacity-[0.04] pointer-events-none" />
+      <div className="absolute inset-0 silk-grain opacity-[0.03] pointer-events-none" />
 
       <button
         type="button"
         onClick={onClose}
         aria-label="Close video"
-        className="absolute top-5 right-5 md:top-8 md:right-8 z-10 min-h-[44px] min-w-[44px] flex items-center justify-center border border-primary-foreground/30 bg-black/30 text-primary-foreground hover:border-accent hover:text-accent transition-colors"
+        className="absolute top-5 right-5 md:top-8 md:right-8 z-20 min-h-[44px] min-w-[44px] flex items-center justify-center border border-primary-foreground/30 bg-black/40 text-primary-foreground hover:border-accent hover:text-accent transition-colors"
       >
         <X className="h-5 w-5" strokeWidth={1.25} />
       </button>
 
       <div
-        className="relative w-[92vw] max-w-[1400px] aspect-video bg-black border border-accent/40 shadow-2xl animate-scale-in"
+        className="relative w-full h-full flex flex-col items-center justify-center px-4 md:px-10 lg:px-16 py-16 md:py-20 gap-6 md:gap-8"
         onClick={(e) => e.stopPropagation()}
       >
-        <iframe
-          src={finalSrc}
-          title={title}
-          allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
-          allowFullScreen
-          className="absolute inset-0 h-full w-full"
-          style={{ border: 0 }}
-        />
+        {/* Now playing label */}
+        <div className="flex items-center gap-3 text-primary-foreground/80">
+          <span className="h-px w-6 bg-accent" />
+          <span className="font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase">
+            Now Playing · {item.title}
+          </span>
+          <span className="h-px w-6 bg-accent" />
+        </div>
+
+        {/* Player */}
+        <div
+          key={current}
+          className="relative w-full max-w-[1400px] aspect-video bg-black border border-accent/40 shadow-2xl animate-scale-in"
+        >
+          {item.kind === "iframe" ? (
+            <iframe
+              src={finalSrc}
+              title={item.title}
+              allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+              allowFullScreen
+              className="absolute inset-0 h-full w-full"
+              style={{ border: 0 }}
+            />
+          ) : (
+            <video
+              src={item.src}
+              poster={item.poster}
+              autoPlay
+              controls
+              playsInline
+              className="absolute inset-0 h-full w-full object-contain bg-black"
+            />
+          )}
+        </div>
+
+        {/* Playlist queue */}
+        {items.length > 1 && (
+          <div className="w-full max-w-[1400px]">
+            <div className="flex items-center gap-3 mb-3 text-primary-foreground/70">
+              <span className="h-px w-6 bg-accent" />
+              <span className="font-sans text-[10px] tracking-[0.35em] uppercase">
+                Up Next · Watch Both
+              </span>
+            </div>
+            <div className="flex gap-3 md:gap-4 overflow-x-auto pb-2">
+              {items.map((it, i) => {
+                const active = i === current;
+                return (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => setCurrent(i)}
+                    aria-label={`Play ${it.title}`}
+                    aria-current={active}
+                    className={`group relative flex-shrink-0 w-44 md:w-56 aspect-video bg-black overflow-hidden border transition-all duration-300 ${
+                      active
+                        ? "border-accent shadow-[0_0_0_1px_hsl(var(--accent))]"
+                        : "border-primary-foreground/20 hover:border-accent/70 opacity-80 hover:opacity-100"
+                    }`}
+                  >
+                    {it.poster ? (
+                      <img
+                        src={it.poster}
+                        alt=""
+                        loading="lazy"
+                        className="absolute inset-0 h-full w-full object-cover"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 bg-primary/60" />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                    {!active && (
+                      <span className="absolute inset-0 flex items-center justify-center">
+                        <span className="flex items-center justify-center h-10 w-10 rounded-full border border-accent bg-black/40 text-accent">
+                          <Play className="h-4 w-4 ml-0.5 fill-accent" strokeWidth={1.25} />
+                        </span>
+                      </span>
+                    )}
+                    <div className="absolute bottom-2 left-2 right-2 text-left">
+                      <p className="font-sans uppercase text-[9px] tracking-[0.25em] text-accent mb-0.5">
+                        {active ? "Now Playing" : `Video ${String(i + 1).padStart(2, "0")}`}
+                      </p>
+                      <p className="font-display italic text-sm leading-tight text-primary-foreground truncate">
+                        {it.caption ?? it.title}
+                      </p>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
     </div>,
     document.body
