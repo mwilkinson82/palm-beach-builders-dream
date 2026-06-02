@@ -48,15 +48,16 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
         luxury: {
-          navy: "hsl(220 60% 18%)",
-          gold: "hsl(40 70% 70%)",
-          cream: "hsl(40 30% 97%)",
+          navy: "hsl(205 61% 15%)",
+          brass: "hsl(37 41% 49%)",
+          ivory: "hsl(37 43% 93%)",
+          sand: "hsl(37 33% 82%)",
         },
       },
       fontFamily: {
-        sans: ["Montserrat", "system-ui", "sans-serif"],
-        serif: ["Cormorant Garamond", "Georgia", "serif"],
-        display: ["Montserrat", "system-ui", "sans-serif"],
+        sans: ["Fira Sans", "system-ui", "sans-serif"],
+        serif: ["DM Serif Display", "Georgia", "serif"],
+        display: ["DM Serif Display", "Georgia", "serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
