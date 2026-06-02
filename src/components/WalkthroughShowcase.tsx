@@ -1,4 +1,5 @@
 import { RevealAnimation } from "@/components/RevealAnimation";
+import { Parallax } from "@/components/Parallax";
 
 interface WalkthroughShowcaseProps {
   iframeSrc?: string;
@@ -42,17 +43,19 @@ export const WalkthroughShowcase = ({
         </RevealAnimation>
 
         <RevealAnimation animation="luxury-reveal" delay={300}>
-          <div className="relative w-full aspect-video bg-black overflow-hidden md:border md:border-accent/30 shadow-2xl">
-            <iframe
-              src={iframeSrc}
-              title="Newly completed project walkthrough with AJ Hoover, CEO of Beau Monde Builders"
-              loading="lazy"
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen
-              className="absolute inset-0 h-full w-full"
-              style={{ border: 0 }}
-            />
-          </div>
+          <Parallax speed={0.06}>
+            <div className="relative w-full aspect-video bg-black overflow-hidden md:border md:border-accent/30 shadow-2xl">
+              <iframe
+                src={iframeSrc}
+                title="Newly completed project walkthrough with AJ Hoover, CEO of Beau Monde Builders"
+                loading="lazy"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 h-full w-full"
+                style={{ border: 0 }}
+              />
+            </div>
+          </Parallax>
         </RevealAnimation>
 
         <RevealAnimation animation="fade-up" delay={400}>

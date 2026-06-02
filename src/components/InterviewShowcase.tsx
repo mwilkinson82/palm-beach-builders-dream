@@ -1,6 +1,7 @@
 import { RevealAnimation } from "@/components/RevealAnimation";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Parallax } from "@/components/Parallax";
 
 interface InterviewShowcaseProps {
   iframeSrc?: string;
@@ -19,17 +20,19 @@ export const InterviewShowcase = ({
 
           {/* Video — left, cols 1–7 */}
           <RevealAnimation animation="luxury-reveal" className="lg:col-span-7 order-2 lg:order-1">
-            <div className="relative w-full aspect-video bg-black overflow-hidden md:border md:border-accent/30 shadow-2xl">
-              <iframe
-                src={iframeSrc}
-                title="Realtor interview with AJ Hoover, CEO of Beau Monde Builders, at his newly completed Palm Beach residence"
-                loading="lazy"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
-                className="absolute inset-0 h-full w-full"
-                style={{ border: 0 }}
-              />
-            </div>
+            <Parallax speed={0.06}>
+              <div className="relative w-full aspect-video bg-black overflow-hidden md:border md:border-accent/30 shadow-2xl">
+                <iframe
+                  src={iframeSrc}
+                  title="Realtor interview with AJ Hoover, CEO of Beau Monde Builders, at his newly completed Palm Beach residence"
+                  loading="lazy"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowFullScreen
+                  className="absolute inset-0 h-full w-full"
+                  style={{ border: 0 }}
+                />
+              </div>
+            </Parallax>
           </RevealAnimation>
 
           {/* Editorial column — right, cols 8–12 */}
