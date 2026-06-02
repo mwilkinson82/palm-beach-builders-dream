@@ -7,6 +7,7 @@ import { RevealAnimation } from "@/components/RevealAnimation";
 import { SplashScreen } from "@/components/SplashScreen";
 import { SEO } from "@/components/SEO";
 import { VideoHero } from "@/components/VideoHero";
+import { DeliveryShowcase } from "@/components/DeliveryShowcase";
 import { ArrowRight, Award, Building2, Sparkles, CheckCircle2, Shield, Users, FileCheck, Star } from "lucide-react";
 import heroImage from "@/assets/hero-home.jpg";
 import fcmbLogo from "@/assets/fcmb-logo.png";
@@ -35,6 +36,9 @@ const Home = () => {
 
       {/* Hero Section - Cinematic Video */}
       <VideoHero />
+
+      {/* New Delivery Showcase */}
+      <DeliveryShowcase />
 
       {/* Brand Statement - Editorial "Act Two" */}
       <section className="relative bg-primary text-primary-foreground overflow-hidden">
