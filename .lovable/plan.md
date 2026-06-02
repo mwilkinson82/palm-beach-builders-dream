@@ -1,52 +1,55 @@
-## Goal
+## Plan: "New Beau Monde Delivery" section
 
-Make the homepage open (after the 3s splash) with a full-screen cinematic video hero — autoplay, muted, looped, no YouTube chrome. The existing "BESPOKE / Luxury / REDEFINED" headline is retired from the hero and folded into the next section so the video can carry the moment uninterrupted, matching the $5M+ luxury bespoke positioning.
+### What you'll see
+A new full-width section directly under the main cinematic hero. On scroll into view it gently slides up and fades in (same soft easing as the rest of the site). The section contains:
 
-## What the user will see
+- **Eyebrow:** `NEW BEAU MONDE DELIVERY` (gold, tracked, small caps)
+- **Heading:** `Another Custom Luxury Home` (Cormorant Garamond, large)
+- **Subhead:** `Delivered by the Beau Monde Builders team.`
+- **Video:** the uploaded MP4, full-bleed widescreen frame, autoplay-muted-loop-playsinline, native HTML5 `<video>` (no chrome). A small unmute pill in the corner, matching the main hero's pattern.
+- **Thin gold rule + Palm Beach mark** below the video for continuity.
 
-1. 3-second splash (unchanged)
-2. Full-viewport cinematic video (YouTube `0LDSwhryy7w`) playing silently on loop, edge-to-edge, with a subtle dark vignette and a tasteful bottom-left brand mark + "Scroll" cue
-3. A small floating "Unmute" pill (bottom-right) — one tap to bring sound in, because a video this good deserves audio
-4. Scroll down → new editorial "Bespoke / Luxury / Redefined" intro section (the old hero copy + CTAs, reimagined on a dark cinematic backdrop with the existing hero photo as a side image), then the existing Stats Bar, Logo Story, Philosophy, etc.
+Order on the homepage becomes:
+1. Cinematic main hero (existing)
+2. **New Beau Monde Delivery** (new)
+3. Bespoke Luxury Redefined (existing)
+4. Stats, Logo Story, Philosophy, etc. (existing)
 
-## Why this layout
+### Motion
+- Reuses the existing `RevealAnimation` component with `animation="luxury-reveal"` so the whole section drifts up + fades in on scroll, consistent with the rest of the site.
+- Video itself starts paused with the poster frame visible; once it scrolls into view it begins playing (IntersectionObserver) — saves bandwidth and avoids two videos competing at page load.
+- Respects `prefers-reduced-motion`: shows the poster only, no autoplay, no slide.
 
-- A luxury bespoke brand should let the film breathe. Stacking a headline on top of a powerful video dilutes both.
-- Keeping the headline + CTAs in the very next section preserves SEO (H1 stays above the fold on scroll), conversion (TALK TO BEAU MONDE button is one scroll away), and the Google Reviews badge.
-- Self-hosted MP4 can replace the YouTube embed later with zero layout change — the `VideoHero` component will accept either source.
+### Mobile / tablet
+- Section padding scales (`py-16 md:py-24 lg:py-32`).
+- Video keeps native 16:9 aspect with `aspect-video` and `object-cover`, full-bleed on phones with a thin gold border on desktop for an editorial frame.
+- Unmute pill sized for touch (44px min).
 
-## Technical Details
+### Technical details
 
-**New component: `src/components/VideoHero.tsx`**
-- Full-viewport (`h-screen w-screen`) section
-- YouTube iframe with params: `autoplay=1&mute=1&loop=1&playlist=0LDSwhryy7w&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1`
-- Iframe oversized + transform-scaled to hide black bars (16:9 cover technique using `min-w-[177.77vh] min-h-[56.25vw]` centered absolute)
-- `pointer-events-none` on iframe so it can't be paused; overlay div sits on top
-- Subtle radial vignette + bottom gradient for text legibility
-- Bottom-left: small "BMB" mark + "Palm Beach, Florida" eyebrow
-- Bottom-center: animated "Scroll" indicator (reuse existing pattern)
-- Bottom-right: "Unmute" toggle button — uses YouTube IFrame Player API (`postMessage`) to unmute/mute without reload
-- Fades in 600ms after mount to mask YouTube's initial flash
+**New asset**
+- You'll upload the MP4. I'll host it via Lovable Assets (CDN, no repo bloat) and reference it via a generated `.asset.json` pointer. Recommended file: H.264 MP4, no audio track unless you want sound, ≤30MB.
+- Use the attached aerial still as the `poster` — I'll also push that through Lovable Assets.
 
-**Edits to `src/pages/Home.tsx`**
-- Import & render `<VideoHero />` immediately after `<Navigation />`, replacing the current `<section className="relative h-screen flex items-center">` hero
-- Move the old headline + subhead + CTAs + Google Reviews badge into a new second section ("Bespoke Luxury Redefined") that uses `heroImage` as a large right-side editorial image with the copy on the left, dark background, gold accents — this becomes a powerful "act two" rather than a discarded asset
-- Stats bar, Logo Story, Philosophy, and everything below remain untouched
+**New component: `src/components/DeliveryShowcase.tsx`**
+- Props: `videoSrc`, `posterSrc`, `eyebrow`, `heading`, `subhead`.
+- Wraps content in `<RevealAnimation animation="luxury-reveal">`.
+- IntersectionObserver gates `video.play()` so playback starts only when visible.
+- Native `<video autoplay muted loop playsinline poster={posterSrc}>` — same minimal pattern as `VideoHero` but without the HLS layer (single self-hosted MP4).
+- Unmute toggle identical in style to the main hero pill for visual consistency.
 
-**Accessibility & performance**
-- `aria-label="Cinematic introduction to Beau Monde Builders"` on the video region
-- Respect `prefers-reduced-motion`: fall back to a static poster image (use existing `heroImage`) instead of autoplay
-- Mobile: same approach (YouTube allows muted autoplay inline on iOS/Android with `playsinline=1`); add a tap-to-play fallback overlay if autoplay is blocked
-- Lazy-render iframe only after splash unmounts, so initial paint isn't blocked
+**Edit: `src/pages/Home.tsx`**
+- Import and render `<DeliveryShowcase ... />` immediately after `<VideoHero />`, before the "Bespoke Luxury Redefined" act-two section.
 
-**Later swap to MP4**
-- `VideoHero` will accept an optional `mp4Src` prop. When provided, it renders a native `<video autoplay muted loop playsinline>` instead of the iframe. Zero other changes needed when you send the MP4.
+No design tokens, routes, or backend changes.
 
-## Files touched
-
+### Files touched
 ```text
-src/components/VideoHero.tsx    (new)
-src/pages/Home.tsx              (replace hero section, add "act two" section with old copy)
+src/components/DeliveryShowcase.tsx              (new)
+src/assets/new-delivery.mp4.asset.json           (new, after you upload)
+src/assets/new-delivery-poster.jpg.asset.json    (new, from the attached still)
+src/pages/Home.tsx                               (insert one section)
 ```
 
-No design tokens, routes, backend, or other pages change.
+### What I need from you
+Upload the MP4 in the next message. I'll wire everything up in one pass.
