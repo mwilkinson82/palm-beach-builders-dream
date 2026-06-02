@@ -204,20 +204,52 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Renovations — moved up, subtle NEW badge */}
-      <section className="relative bg-background text-foreground py-20 md:py-28 lg:py-32 overflow-hidden border-t border-accent/20">
-        <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            <div className="lg:col-span-7 lg:order-1 order-2">
-              <RevealAnimation animation="fade-up">
-                <div className="flex items-center gap-3 mb-5 flex-wrap">
-                  <span className="inline-flex items-center font-sans text-[9px] tracking-[0.3em] uppercase border border-accent text-primary px-2.5 py-1">
-                    New · 2026
-                  </span>
-                  <span className="font-sans text-[10px] tracking-[0.25em] uppercase text-accent">
-                    A New Beau Monde Offering
-                  </span>
+      {/* Renovations — NEW announcement + three-commitment treatment */}
+      <section className="relative bg-background text-foreground overflow-hidden border-t border-accent/20">
+        {/* Navy announcement strip */}
+        <RevealAnimation animation="fade-up">
+          <div className="relative bg-primary text-primary-foreground">
+            <div className="absolute inset-0 silk-grain opacity-[0.05] pointer-events-none" />
+            <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 py-6 md:py-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-center">
+              <span className="inline-flex items-center font-sans text-[10px] tracking-[0.35em] uppercase border border-accent text-accent px-3 py-1.5">
+                New · 2026
+              </span>
+              <span className="font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase text-primary-foreground/85">
+                Beau Monde is now offering
+              </span>
+              <span className="font-display italic text-xl md:text-2xl leading-none text-primary-foreground">
+                Renovations.
+              </span>
+            </div>
+          </div>
+        </RevealAnimation>
+
+        <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 py-20 md:py-28 lg:py-32">
+
+          {/* Editorial pair — image + headline / intro */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-20 md:mb-24">
+            <RevealAnimation animation="scale-in" delay={120} className="lg:col-span-5 lg:order-1 order-1">
+              <div className="relative">
+                <Parallax speed={0.08}>
+                  <img
+                    src={renovationImage}
+                    alt="Beau Monde Builders renovation — intracoastal residence"
+                    className="w-full aspect-[4/5] object-cover shadow-[40px_40px_80px_-20px_hsl(var(--primary)/0.2)]"
+                  />
+                </Parallax>
+                <div className="hidden lg:block absolute -bottom-6 -right-6">
+                  <p className="font-display italic text-sm text-accent bg-background px-4 py-3 border border-accent/30 shadow-lg">
+                    Held to the ground-up standard
+                  </p>
                 </div>
+              </div>
+            </RevealAnimation>
+
+            <div className="lg:col-span-7 lg:order-2 order-2">
+              <RevealAnimation animation="fade-up">
+                <span className="block font-sans text-[10px] tracking-[0.3em] uppercase text-accent mb-5">
+                  A New Beau Monde Offering
+                </span>
               </RevealAnimation>
               <RevealAnimation animation="luxury-reveal" delay={120}>
                 <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] mb-8 tracking-tight">
@@ -227,33 +259,13 @@ const Home = () => {
               </RevealAnimation>
               <RevealAnimation animation="fade-up" delay={250}>
                 <p className="font-sans font-light text-base md:text-lg leading-relaxed text-foreground/85 max-w-xl mb-10">
-                  The same craftsmanship that defines a Beau Monde custom build — now brought to renovation. From
-                  oceanfront condominiums to historic Palm Beach estates, held to the standard of our ground-up homes.
+                  The craftsmanship that defines a Beau Monde custom build — brought to renovation. From oceanfront
+                  condominiums to historic Palm Beach estates, every project held to the three commitments that govern
+                  our ground-up homes.
                 </p>
               </RevealAnimation>
 
               <RevealAnimation animation="fade-up" delay={350}>
-                <ul className="border-t border-accent/30 mb-10">
-                  {[
-                    "Condominium Transformations",
-                    "Kitchen & Bath",
-                    "Whole-Home Remodels",
-                    "Turnkey Packages",
-                  ].map((label) => (
-                    <li
-                      key={label}
-                      className="flex items-baseline justify-between gap-6 py-4 border-b border-accent/30 font-display text-xl md:text-2xl font-light"
-                    >
-                      <span>{label}</span>
-                      <span aria-hidden className="font-sans text-[10px] tracking-[0.25em] uppercase text-accent">
-                        Beau Monde
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </RevealAnimation>
-
-              <RevealAnimation animation="fade-up" delay={450}>
                 <Button
                   size="lg"
                   className="group bg-primary text-primary-foreground hover:bg-primary/90 font-sans text-[11px] uppercase tracking-[0.15em] font-semibold rounded-none px-8 md:px-10 py-4"
@@ -266,14 +278,60 @@ const Home = () => {
                 </Button>
               </RevealAnimation>
             </div>
+          </div>
 
-            <RevealAnimation animation="scale-in" delay={200} className="lg:col-span-5 lg:order-2 order-1">
-              <img
-                src={renovationImage}
-                alt="Beau Monde Builders renovation — intracoastal residence"
-                className="w-full aspect-[4/5] object-cover shadow-[40px_40px_80px_-20px_hsl(var(--primary)/0.2)]"
-              />
-            </RevealAnimation>
+          {/* Three commitments — applied to renovations */}
+          <div className="relative">
+            <div className="text-center mb-12 md:mb-14">
+              <RevealAnimation animation="fade-up">
+                <div className="flex items-center justify-center gap-4">
+                  <span className="h-px w-10 md:w-14 bg-accent/50" />
+                  <span className="font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase text-accent">
+                    One Standard · Applied to Renovation
+                  </span>
+                  <span className="h-px w-10 md:w-14 bg-accent/50" />
+                </div>
+              </RevealAnimation>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 border-t border-accent/30">
+              {[
+                {
+                  n: "I",
+                  title: "Discretion",
+                  body: "Worth Avenue addresses, historic estates, occupied condominiums — handled with the privacy our clients expect. Quiet site protocols, vetted crews, no public reels.",
+                },
+                {
+                  n: "II",
+                  title: "Continuity",
+                  body: "We don't grind your home down to studs and disappear. The same project lead from walk-through to punch list, with disciplined sequencing that respects your life inside the building.",
+                },
+                {
+                  n: "III",
+                  title: "Same Standard",
+                  body: "The trades, materials, and tolerances of a Beau Monde ground-up build — applied to a kitchen, a primary suite, a whole floor. No tier-down for the smaller scope.",
+                },
+              ].map((row, i) => (
+                <RevealAnimation key={row.n} animation="fade-up" delay={i * 150}>
+                  <article className="relative h-full p-8 md:p-10 border-b border-accent/30 md:border-b md:border-r md:[&:last-child]:border-r-0 flex flex-col">
+                    <div className="flex items-start justify-between mb-6">
+                      <span className="font-display italic text-5xl md:text-6xl font-light text-accent leading-none">
+                        {row.n}
+                      </span>
+                      <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-foreground/40 mt-2">
+                        0{i + 1} / 03
+                      </span>
+                    </div>
+                    <h3 className="font-display text-2xl md:text-3xl font-light leading-tight mb-4 text-primary">
+                      {row.title}
+                    </h3>
+                    <p className="font-sans font-light text-[15px] leading-relaxed text-foreground/80">
+                      {row.body}
+                    </p>
+                  </article>
+                </RevealAnimation>
+              ))}
+            </div>
           </div>
         </div>
       </section>
