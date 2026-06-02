@@ -74,13 +74,13 @@ export const DeliveryShowcase = ({
             </span>
             <div className="h-px w-10 md:w-14 bg-accent/40" />
           </div>
-          <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold uppercase text-white text-center leading-[0.95] tracking-tight mb-5 md:mb-7">
+          <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display text-primary-foreground text-center leading-[0.95] tracking-tight mb-5 md:mb-7">
             Beau Monde
           </h2>
         </RevealAnimation>
 
         <RevealAnimation animation="fade-up" delay={180}>
-          <p className="text-center text-base md:text-lg lg:text-xl font-serif italic font-light text-white/75 max-w-3xl mx-auto mb-10 md:mb-14">
+          <p className="text-center text-base md:text-lg lg:text-xl font-serif italic font-light text-primary-foreground/75 max-w-3xl mx-auto mb-10 md:mb-14">
             Another custom luxury home, delivered by the Beau Monde Builders team.
           </p>
         </RevealAnimation>
@@ -115,7 +115,7 @@ export const DeliveryShowcase = ({
                 type="button"
                 onClick={toggleMute}
                 aria-label={muted ? "Unmute video" : "Mute video"}
-                className="absolute bottom-4 right-4 md:bottom-6 md:right-6 z-10 min-h-[44px] group flex items-center gap-2 border border-white/30 bg-black/40 backdrop-blur-md px-4 py-2.5 text-white text-[10px] md:text-xs uppercase tracking-[0.25em] font-light hover:border-accent hover:bg-black/60 transition-colors"
+                className="absolute bottom-4 right-4 md:bottom-6 md:right-6 z-10 min-h-[44px] group flex items-center gap-2 border border-primary-foreground/30 bg-black/40 backdrop-blur-md px-4 py-2.5 text-primary-foreground text-[10px] md:text-xs uppercase tracking-[0.25em] font-light hover:border-accent hover:bg-black/60 transition-colors"
               >
                 {muted ? (
                   <VolumeX className="h-3.5 w-3.5 md:h-4 md:w-4 text-accent" />
@@ -129,7 +129,7 @@ export const DeliveryShowcase = ({
         </RevealAnimation>
 
         <RevealAnimation animation="fade-up" delay={400}>
-          <div className="mt-8 md:mt-10 flex items-center justify-center space-x-3 text-white/70">
+          <div className="mt-8 md:mt-10 flex items-center justify-center space-x-3 text-primary-foreground/70">
             <div className="h-px w-8 md:w-12 bg-accent" />
             <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] font-light">
               Palm Beach, Florida

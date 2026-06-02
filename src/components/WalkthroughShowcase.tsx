@@ -22,12 +22,12 @@ export const WalkthroughShowcase = ({
             <div className="h-px w-10 md:w-14 bg-accent/40" />
           </div>
           <h2 className="text-center mb-5 md:mb-7 leading-[0.95]">
-            <span className="block font-display font-bold uppercase text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-[0.01em]">
+            <span className="block font-display text-primary-foreground text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight">
               AJ Hoover
             </span>
             <span className="mt-3 md:mt-4 flex items-center justify-center gap-3 md:gap-4">
               <span className="h-px w-6 md:w-10 bg-accent/40" />
-              <span className="font-display font-light uppercase text-accent text-[10px] sm:text-xs md:text-sm tracking-[0.45em]">
+              <span className="font-sans uppercase text-accent text-[10px] sm:text-xs md:text-sm tracking-[0.45em] font-light">
                 Chief Executive Officer
               </span>
               <span className="h-px w-6 md:w-10 bg-accent/40" />
@@ -36,7 +36,7 @@ export const WalkthroughShowcase = ({
         </RevealAnimation>
 
         <RevealAnimation animation="fade-up" delay={180}>
-          <p className="text-center text-base md:text-lg lg:text-xl font-serif italic font-light text-white/75 max-w-3xl mx-auto mb-10 md:mb-14">
+          <p className="text-center text-base md:text-lg lg:text-xl font-serif italic font-light text-primary-foreground/75 max-w-3xl mx-auto mb-10 md:mb-14">
             Newly completed project walkthrough. CEO, Beau Monde Builders.
           </p>
         </RevealAnimation>
@@ -56,7 +56,7 @@ export const WalkthroughShowcase = ({
         </RevealAnimation>
 
         <RevealAnimation animation="fade-up" delay={400}>
-          <div className="mt-8 md:mt-10 flex items-center justify-center space-x-3 text-white/70">
+          <div className="mt-8 md:mt-10 flex items-center justify-center space-x-3 text-primary-foreground/70">
             <div className="h-px w-8 md:w-12 bg-accent" />
             <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] font-light">
               Palm Beach, Florida

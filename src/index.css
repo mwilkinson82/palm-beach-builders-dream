@@ -8,49 +8,50 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Ultra Modern Palm Beach Palette - Black, White, Gold */
-    --background: 0 0% 100%;
-    --foreground: 0 0% 5%;
+    /* Ivory & Ocean - Palm Beach coastal luxury palette */
+    /* Ivory background, Atlantic Navy ink, Brass accent, Sand secondary */
+    --background: 37 43% 93%;
+    --foreground: 205 61% 15%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 5%;
+    --card: 37 50% 96%;
+    --card-foreground: 205 61% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 5%;
+    --popover: 37 50% 96%;
+    --popover-foreground: 205 61% 15%;
 
-    /* Pure Black Primary */
-    --primary: 0 0% 5%;
-    --primary-foreground: 0 0% 100%;
-    
-    /* Sophisticated Gray Secondary */
-    --secondary: 0 0% 95%;
-    --secondary-foreground: 0 0% 5%;
+    /* Atlantic Navy Primary */
+    --primary: 205 61% 15%;
+    --primary-foreground: 37 43% 93%;
 
-    /* Luxe Gold Accent */
-    --accent: 43 96% 56%;
-    --accent-foreground: 0 0% 5%;
-    
-    /* Refined Neutrals */
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 40%;
+    /* Sand Secondary */
+    --secondary: 37 33% 82%;
+    --secondary-foreground: 205 61% 15%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
+    /* Brass Accent */
+    --accent: 37 41% 49%;
+    --accent-foreground: 37 50% 96%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 0 0% 5%;
+    /* Warm Neutrals */
+    --muted: 37 30% 88%;
+    --muted-foreground: 205 25% 32%;
+
+    --destructive: 0 65% 45%;
+    --destructive-foreground: 37 43% 96%;
+
+    --border: 37 25% 80%;
+    --input: 37 25% 80%;
+    --ring: 37 41% 49%;
 
     --radius: 0rem;
 
-    /* Ultra Luxury Gradients */
-    --gradient-gold: linear-gradient(135deg, hsl(43 96% 56%) 0%, hsl(38 92% 50%) 100%);
-    --gradient-dark: linear-gradient(180deg, hsl(0 0% 5%) 0%, hsl(0 0% 10%) 100%);
-    --gradient-overlay: linear-gradient(90deg, hsl(0 0% 5% / 0.9) 0%, hsl(0 0% 5% / 0.3) 100%);
+    /* Editorial Gradients */
+    --gradient-brass: linear-gradient(135deg, hsl(37 41% 55%) 0%, hsl(37 41% 42%) 100%);
+    --gradient-navy: linear-gradient(180deg, hsl(205 61% 15%) 0%, hsl(205 55% 10%) 100%);
+    --gradient-overlay: linear-gradient(90deg, hsl(205 61% 12% / 0.85) 0%, hsl(205 61% 12% / 0.3) 100%);
 
     /* Dramatic Shadows */
-    --shadow-dramatic: 0 30px 90px -20px hsl(0 0% 0% / 0.4);
-    --shadow-lifted: 0 10px 40px -10px hsl(0 0% 0% / 0.2);
+    --shadow-dramatic: 0 30px 90px -20px hsl(205 61% 8% / 0.35);
+    --shadow-lifted: 0 10px 40px -10px hsl(205 61% 8% / 0.18);
     
     /* Tech Transitions */
     --transition-smooth: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
@@ -58,33 +59,33 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 0 0% 5%;
-    --foreground: 0 0% 100%;
+    --background: 205 61% 10%;
+    --foreground: 37 43% 93%;
 
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 100%;
+    --card: 205 55% 13%;
+    --card-foreground: 37 43% 93%;
 
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 205 55% 13%;
+    --popover-foreground: 37 43% 93%;
 
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 5%;
+    --primary: 37 43% 93%;
+    --primary-foreground: 205 61% 12%;
 
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 205 40% 18%;
+    --secondary-foreground: 37 43% 93%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 205 35% 18%;
+    --muted-foreground: 37 25% 75%;
 
-    --accent: 43 96% 56%;
-    --accent-foreground: 0 0% 5%;
+    --accent: 37 45% 55%;
+    --accent-foreground: 205 61% 10%;
 
     --destructive: 0 62.8% 50.6%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 37 43% 96%;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 43 96% 56%;
+    --border: 205 30% 22%;
+    --input: 205 30% 22%;
+    --ring: 37 45% 55%;
   }
 }
 

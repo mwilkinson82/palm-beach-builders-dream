@@ -19,7 +19,7 @@ export const Navigation = () => {
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? "bg-background/95 backdrop-blur-md border-b border-border shadow-lg" 
+          ? "bg-background/95 backdrop-blur-md border-b border-border/60 shadow-sm" 
           : "bg-transparent"
       }`}
     >
@@ -28,13 +28,13 @@ export const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="group">
             <div className="flex flex-col">
-              <span className={`text-2xl font-display font-bold tracking-tight transition-colors ${
-                isScrolled ? "text-foreground" : "text-white"
+              <span className={`text-2xl md:text-[28px] font-display tracking-tight leading-none transition-colors ${
+                isScrolled ? "text-foreground" : "text-primary-foreground"
               }`}>
-                BEAU MONDE
+                Beau Monde
               </span>
-              <span className={`text-[10px] tracking-[0.3em] uppercase transition-colors ${
-                isScrolled ? "text-muted-foreground" : "text-white/70"
+              <span className={`mt-1 text-[10px] tracking-[0.3em] uppercase font-light transition-colors ${
+                isScrolled ? "text-muted-foreground" : "text-primary-foreground/70"
               }`}>
                 Builders · Palm Beach
               </span>
@@ -45,40 +45,40 @@ export const Navigation = () => {
           <div className="hidden lg:flex items-center space-x-8">
             <Link 
               to="/about" 
-              className={`text-sm uppercase tracking-widest font-light transition-all hover:text-accent ${
-                isScrolled ? "text-foreground" : "text-white"
+              className={`text-xs uppercase tracking-[0.25em] font-normal transition-all hover:text-accent ${
+                isScrolled ? "text-foreground" : "text-primary-foreground"
               }`}
             >
               About
             </Link>
             <Link 
               to="/process" 
-              className={`text-sm uppercase tracking-widest font-light transition-all hover:text-accent ${
-                isScrolled ? "text-foreground" : "text-white"
+              className={`text-xs uppercase tracking-[0.25em] font-normal transition-all hover:text-accent ${
+                isScrolled ? "text-foreground" : "text-primary-foreground"
               }`}
             >
               Process
             </Link>
             <Link 
               to="/projects" 
-              className={`text-sm uppercase tracking-widest font-light transition-all hover:text-accent ${
-                isScrolled ? "text-foreground" : "text-white"
+              className={`text-xs uppercase tracking-[0.25em] font-normal transition-all hover:text-accent ${
+                isScrolled ? "text-foreground" : "text-primary-foreground"
               }`}
             >
               Your Style
             </Link>
             <Link 
               to="/renovations" 
-              className={`text-sm uppercase tracking-widest font-light transition-all hover:text-accent ${
-                isScrolled ? "text-foreground" : "text-white"
+              className={`text-xs uppercase tracking-[0.25em] font-normal transition-all hover:text-accent ${
+                isScrolled ? "text-foreground" : "text-primary-foreground"
               }`}
             >
               Renovations
             </Link>
             <Link 
               to="/contact" 
-              className={`text-sm uppercase tracking-widest font-light transition-all hover:text-accent ${
-                isScrolled ? "text-foreground" : "text-white"
+              className={`text-xs uppercase tracking-[0.25em] font-normal transition-all hover:text-accent ${
+                isScrolled ? "text-foreground" : "text-primary-foreground"
               }`}
             >
               Contact
@@ -89,10 +89,10 @@ export const Navigation = () => {
             <Button 
               variant={isScrolled ? "default" : "outline"} 
               size="lg"
-              className={`uppercase tracking-widest text-xs font-medium ${
+              className={`uppercase tracking-[0.25em] text-xs font-medium ${
                 isScrolled 
-                  ? "bg-accent hover:bg-accent/90 text-black" 
-                  : "border-white/30 text-white hover:bg-white hover:text-black"
+                  ? "bg-accent hover:bg-accent/90 text-accent-foreground" 
+                  : "border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground hover:text-foreground"
               }`}
               asChild
             >
@@ -103,7 +103,7 @@ export const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             className={`lg:hidden p-2 transition-colors ${
-              isScrolled ? "text-foreground" : "text-white"
+              isScrolled ? "text-foreground" : "text-primary-foreground"
             }`}
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
@@ -114,45 +114,45 @@ export const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="lg:hidden py-8 space-y-6 bg-background/95 backdrop-blur-md border-t border-border animate-fade-in">
+          <div className="lg:hidden py-8 space-y-6 bg-background/95 backdrop-blur-md border-t border-border/60 animate-fade-in px-2">
             <Link
               to="/"
-              className="block text-sm uppercase tracking-widest font-light text-foreground hover:text-accent transition-colors"
+              className="block text-xs uppercase tracking-[0.25em] text-foreground hover:text-accent transition-colors"
               onClick={() => setIsOpen(false)}
             >
               Home
             </Link>
             <Link
               to="/about"
-              className="block text-sm uppercase tracking-widest font-light text-foreground hover:text-accent transition-colors"
+              className="block text-xs uppercase tracking-[0.25em] text-foreground hover:text-accent transition-colors"
               onClick={() => setIsOpen(false)}
             >
               About
             </Link>
             <Link
               to="/process"
-              className="block text-sm uppercase tracking-widest font-light text-foreground hover:text-accent transition-colors"
+              className="block text-xs uppercase tracking-[0.25em] text-foreground hover:text-accent transition-colors"
               onClick={() => setIsOpen(false)}
             >
               Process
             </Link>
             <Link
               to="/projects"
-              className="block text-sm uppercase tracking-widest font-light text-foreground hover:text-accent transition-colors"
+              className="block text-xs uppercase tracking-[0.25em] text-foreground hover:text-accent transition-colors"
               onClick={() => setIsOpen(false)}
             >
               Your Style
             </Link>
             <Link
               to="/renovations"
-              className="block text-sm uppercase tracking-widest font-light text-foreground hover:text-accent transition-colors"
+              className="block text-xs uppercase tracking-[0.25em] text-foreground hover:text-accent transition-colors"
               onClick={() => setIsOpen(false)}
             >
               Renovations
             </Link>
             <Link
               to="/contact"
-              className="block text-sm uppercase tracking-widest font-light text-foreground hover:text-accent transition-colors"
+              className="block text-xs uppercase tracking-[0.25em] text-foreground hover:text-accent transition-colors"
               onClick={() => setIsOpen(false)}
             >
               Contact
@@ -161,7 +161,7 @@ export const Navigation = () => {
               <Button 
                 variant="default"
                 size="lg" 
-                className="w-full bg-accent hover:bg-accent/90 text-black uppercase tracking-widest text-xs font-medium"
+                className="w-full bg-accent hover:bg-accent/90 text-accent-foreground uppercase tracking-[0.25em] text-xs font-medium"
                 asChild
               >
                 <Link to="/contact">Talk to Beau Monde</Link>
