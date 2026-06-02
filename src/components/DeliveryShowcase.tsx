@@ -67,10 +67,15 @@ export const DeliveryShowcase = ({
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         <RevealAnimation animation="luxury-reveal">
-          <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold uppercase text-white text-center leading-[1.0] tracking-tight mb-5 md:mb-7">
-            <span className="text-accent">New</span> from
-            <br />
-            <span className="whitespace-nowrap">Beau Monde</span>
+          <div className="flex items-center justify-center gap-4 mb-3 md:mb-4">
+            <div className="h-px w-10 md:w-14 bg-accent/40" />
+            <span className="font-serif italic font-light text-accent text-lg md:text-xl tracking-[0.15em]">
+              New from
+            </span>
+            <div className="h-px w-10 md:w-14 bg-accent/40" />
+          </div>
+          <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold uppercase text-white text-center leading-[0.95] tracking-tight mb-5 md:mb-7">
+            Beau Monde
           </h2>
         </RevealAnimation>
 
