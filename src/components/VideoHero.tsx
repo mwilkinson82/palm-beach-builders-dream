@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Hls from "hls.js";
 import { Volume2, VolumeX } from "lucide-react";
+import { audioPreference } from "@/hooks/useAudioPreference";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 interface VideoSource {
@@ -94,6 +95,7 @@ export const VideoHero = ({
     const next = !muted;
     video.muted = next;
     setMuted(next);
+    audioPreference.set(!next);
     if (!next) video.play().catch(() => {});
   };
 

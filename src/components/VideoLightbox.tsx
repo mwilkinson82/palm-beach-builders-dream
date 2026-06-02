@@ -91,11 +91,11 @@ export const VideoLightbox = ({
       </button>
 
       <div
-        className="relative w-full h-full flex flex-col items-center justify-center px-4 md:px-10 lg:px-16 py-16 md:py-20 gap-6 md:gap-8"
+        className="relative w-full h-full flex flex-col items-center px-3 md:px-6 lg:px-10 pt-12 pb-4 md:pt-14 md:pb-6 gap-3 md:gap-4"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Now playing label */}
-        <div className="flex items-center gap-3 text-primary-foreground/80">
+        <div className="flex items-center gap-3 text-primary-foreground/80 shrink-0">
           <span className="h-px w-6 bg-accent" />
           <span className="font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase">
             Now Playing · {item.title}
@@ -103,10 +103,18 @@ export const VideoLightbox = ({
           <span className="h-px w-6 bg-accent" />
         </div>
 
-        {/* Player */}
+        {/* Player — fills available viewport while preserving 16:9 */}
         <div
           key={current}
-          className="relative w-full max-w-[1400px] aspect-video bg-black border border-accent/40 shadow-2xl animate-scale-in"
+          className="relative aspect-video bg-black border border-accent/40 shadow-2xl animate-scale-in"
+          style={{
+            // Explicit width derived from viewport so the 16:9 box always
+            // fits both width and remaining height (label + optional rail).
+            width:
+              items.length > 1
+                ? "min(96vw, calc((100vh - 280px) * 16 / 9))"
+                : "min(96vw, calc((100vh - 140px) * 16 / 9))",
+          }}
         >
           {item.kind === "iframe" ? (
             <iframe
@@ -131,7 +139,7 @@ export const VideoLightbox = ({
 
         {/* Playlist queue */}
         {items.length > 1 && (
-          <div className="w-full max-w-[1400px]">
+          <div className="w-full max-w-[1400px] shrink-0 mt-auto">
             <div className="flex items-center gap-3 mb-3 text-primary-foreground/70">
               <span className="h-px w-6 bg-accent" />
               <span className="font-sans text-[10px] tracking-[0.35em] uppercase">

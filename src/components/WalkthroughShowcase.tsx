@@ -3,6 +3,7 @@ import { Maximize2, Volume2 } from "lucide-react";
 import { RevealAnimation } from "@/components/RevealAnimation";
 import { Parallax } from "@/components/Parallax";
 import { VideoLightbox } from "@/components/VideoLightbox";
+import { useAudioPreference } from "@/hooks/useAudioPreference";
 
 interface WalkthroughShowcaseProps {
   iframeSrc?: string;
@@ -14,6 +15,7 @@ export const WalkthroughShowcase = ({
   const [open, setOpen] = useState(false);
   const [inView, setInView] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
+  const audioOn = useAudioPreference();
 
   // Mount the autoplaying iframe only while it's near the viewport, so the
   // (muted) playback pauses cleanly once the user scrolls past.
@@ -28,12 +30,13 @@ export const WalkthroughShowcase = ({
     return () => observer.disconnect();
   }, []);
 
-  // Autoplay-muted-loop iframe src. ReelReef respects autoplay & muted query params.
+  // Autoplay loop iframe src. If the user has unmuted the hero, this player
+  // inherits sound when it enters the viewport; otherwise plays muted.
   let inlineSrc = iframeSrc;
   try {
     const url = new URL(iframeSrc);
     url.searchParams.set("autoplay", "1");
-    url.searchParams.set("muted", "1");
+    url.searchParams.set("muted", audioOn ? "0" : "1");
     url.searchParams.set("loop", "1");
     url.searchParams.set("controls", "0");
     inlineSrc = url.toString();
@@ -83,6 +86,7 @@ export const WalkthroughShowcase = ({
             >
               {inView && (
                 <iframe
+                  key={audioOn ? "on" : "off"}
                   src={inlineSrc}
                   title="Walkthrough with AJ Hoover, autoplay preview"
                   allow="autoplay; picture-in-picture"
@@ -101,7 +105,7 @@ export const WalkthroughShowcase = ({
               >
                 <span className="flex items-center gap-2 font-sans uppercase text-[10px] md:text-xs tracking-[0.3em] font-light border border-primary-foreground/30 bg-black/30 backdrop-blur-md px-3 py-2 group-hover:border-accent group-hover:text-accent transition-colors">
                   <Volume2 className="h-3.5 w-3.5" strokeWidth={1.25} />
-                  Tap to watch with sound
+                  {audioOn ? "Tap to expand" : "Tap to watch with sound"}
                 </span>
                 <span className="hidden md:flex items-center gap-2 font-sans uppercase text-[10px] tracking-[0.3em] font-light border border-primary-foreground/30 bg-black/30 backdrop-blur-md px-3 py-2 group-hover:border-accent group-hover:text-accent transition-colors">
                   <Maximize2 className="h-3.5 w-3.5" strokeWidth={1.25} />
