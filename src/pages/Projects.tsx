@@ -407,7 +407,7 @@ const YoursPlate = ({ onRestart }: { onRestart: () => void }) => (
       >
         <span aria-hidden>←</span>
         <span className="relative">
-          Browse the ten idioms again
+          Browse your styles
           <span className="absolute left-0 -bottom-1 h-px w-full bg-accent origin-right scale-x-0 transition-transform duration-500 group-hover:origin-left group-hover:scale-x-100" />
         </span>
       </motion.button>
@@ -415,6 +415,224 @@ const YoursPlate = ({ onRestart }: { onRestart: () => void }) => (
     <motion.span variants={drawX} className="block w-full h-px bg-accent origin-center" />
   </div>
 );
+
+// ---------- Back cover: Begin the Conversation inquiry form ----------
+
+const STYLE_OPTIONS = [
+  ...STYLES.map((s) => s.name),
+  "Yours — something entirely new",
+];
+
+const inquirySchema = z.object({
+  style: z.string().min(1, "Choose a style"),
+  name: z.string().trim().min(1, "Name required").max(100),
+  email: z.string().trim().email("Valid email required").max(255),
+  phone: z.string().trim().max(40).optional(),
+  note: z.string().trim().max(600).optional(),
+});
+
+const InquiryPlate = ({ defaultStyle }: { defaultStyle?: string }) => {
+  const { toast } = useToast();
+  const [submitting, setSubmitting] = useState(false);
+  const [form, setForm] = useState({
+    style: defaultStyle ?? STYLE_OPTIONS[0],
+    name: "",
+    email: "",
+    phone: "",
+    note: "",
+  });
+
+  // Keep selected style in sync with the page the visitor last lingered on,
+  // unless they've already touched the select themselves.
+  const styleTouched = useRef(false);
+  useEffect(() => {
+    if (!styleTouched.current && defaultStyle) {
+      setForm((f) => ({ ...f, style: defaultStyle }));
+    }
+  }, [defaultStyle]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const parsed = inquirySchema.safeParse(form);
+    if (!parsed.success) {
+      const first = Object.values(parsed.error.flatten().fieldErrors)[0]?.[0];
+      toast({
+        title: "Please review",
+        description: first ?? "Some fields need attention.",
+        variant: "destructive",
+      });
+      return;
+    }
+    setSubmitting(true);
+    try {
+      const { error } = await supabase.functions.invoke("send-contact-email", {
+        body: {
+          firstName: parsed.data.name,
+          lastName: "",
+          email: parsed.data.email,
+          phone: parsed.data.phone,
+          message: parsed.data.note,
+          style: parsed.data.style,
+          source: "style-book",
+        },
+      });
+      if (error) throw error;
+      toast({
+        title: "Sent to Beau Monde",
+        description: "We'll be in touch within 24 hours.",
+      });
+      setForm({
+        style: defaultStyle ?? STYLE_OPTIONS[0],
+        name: "",
+        email: "",
+        phone: "",
+        note: "",
+      });
+      styleTouched.current = false;
+    } catch (err) {
+      console.error("Style Book inquiry failed:", err);
+      toast({
+        title: "Something went wrong",
+        description: "Please try again or call (561) 646-8992.",
+        variant: "destructive",
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <div
+      className="w-full h-full flex flex-col items-stretch justify-between px-7 sm:px-10 py-8 sm:py-10 text-center border border-accent/30 overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(135deg, hsl(160 18% 88%) 0%, hsl(160 18% 88%) 55%, hsl(160 16% 82%) 100%)",
+      }}
+    >
+      <motion.p
+        variants={fadeUp}
+        className="font-sans text-[10px] tracking-[0.5em] uppercase text-accent"
+      >
+        Beau Monde · Palm Beach
+      </motion.p>
+
+      <motion.div variants={fadeImg} className="flex flex-col items-center gap-2 mt-2">
+        <h2 className="font-wordmark text-primary text-4xl sm:text-5xl md:text-6xl leading-[0.95] tracking-tight">
+          Beau Monde
+        </h2>
+        <p className="font-display italic font-light text-primary text-xl sm:text-2xl md:text-3xl leading-none mt-1">
+          Begin the conversation.
+        </p>
+      </motion.div>
+
+      <motion.span variants={drawX} className="block w-16 h-px bg-accent mx-auto origin-center" />
+
+      <motion.form
+        variants={fadeUp}
+        onSubmit={handleSubmit}
+        className="flex-1 flex flex-col gap-3 text-left mx-auto w-full max-w-sm"
+      >
+        <div>
+          <Label htmlFor="inq-style" className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent">
+            Style of interest
+          </Label>
+          <Select
+            value={form.style}
+            onValueChange={(v) => {
+              styleTouched.current = true;
+              setForm((f) => ({ ...f, style: v }));
+            }}
+          >
+            <SelectTrigger id="inq-style" className="mt-1 bg-background/70 border-accent/40 rounded-none font-sans text-sm text-primary">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent className="max-h-72">
+              {STYLE_OPTIONS.map((name) => (
+                <SelectItem key={name} value={name} className="font-sans text-sm">
+                  {name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div>
+          <Label htmlFor="inq-name" className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent">
+            Name
+          </Label>
+          <Input
+            id="inq-name"
+            value={form.name}
+            onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+            required
+            maxLength={100}
+            className="mt-1 bg-background/70 border-accent/40 rounded-none font-sans text-sm"
+          />
+        </div>
+
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <Label htmlFor="inq-email" className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent">
+              Email
+            </Label>
+            <Input
+              id="inq-email"
+              type="email"
+              value={form.email}
+              onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+              required
+              maxLength={255}
+              className="mt-1 bg-background/70 border-accent/40 rounded-none font-sans text-sm"
+            />
+          </div>
+          <div>
+            <Label htmlFor="inq-phone" className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent">
+              Phone
+            </Label>
+            <Input
+              id="inq-phone"
+              type="tel"
+              value={form.phone}
+              onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
+              maxLength={40}
+              className="mt-1 bg-background/70 border-accent/40 rounded-none font-sans text-sm"
+            />
+          </div>
+        </div>
+
+        <div>
+          <Label htmlFor="inq-note" className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent">
+            A note <span className="normal-case tracking-normal text-primary/40">(optional)</span>
+          </Label>
+          <Textarea
+            id="inq-note"
+            value={form.note}
+            onChange={(e) => setForm((f) => ({ ...f, note: e.target.value }))}
+            maxLength={600}
+            rows={3}
+            className="mt-1 bg-background/70 border-accent/40 rounded-none font-sans text-sm resize-none"
+          />
+        </div>
+
+        <Button
+          type="submit"
+          disabled={submitting}
+          size="lg"
+          className="mt-1 rounded-none font-sans tracking-[0.2em] uppercase text-xs"
+        >
+          {submitting ? "Sending…" : "Send to Beau Monde"}
+        </Button>
+      </motion.form>
+
+      <motion.p
+        variants={fadeUp}
+        className="font-sans text-[9px] tracking-[0.4em] uppercase text-accent/70 mt-3"
+      >
+        Replies within 24 hours · 205 Worth Avenue
+      </motion.p>
+    </div>
+  );
+};
 
 // ---------- Flip-book shell ----------
 
