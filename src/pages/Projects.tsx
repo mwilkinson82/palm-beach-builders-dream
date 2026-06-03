@@ -433,6 +433,7 @@ const inquirySchema = z.object({
 
 const InquiryPlate = ({ defaultStyle }: { defaultStyle?: string }) => {
   const { toast } = useToast();
+  const formRef = useRef<HTMLFormElement>(null);
   const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({
     style: defaultStyle ?? STYLE_OPTIONS[0],
@@ -450,6 +451,22 @@ const InquiryPlate = ({ defaultStyle }: { defaultStyle?: string }) => {
       setForm((f) => ({ ...f, style: defaultStyle }));
     }
   }, [defaultStyle]);
+
+  useEffect(() => {
+    const node = formRef.current;
+    if (!node) return;
+
+    const stopBookGesture = (event: Event) => {
+      event.stopPropagation();
+    };
+
+    const events = ["mousedown", "touchstart", "pointerdown", "click"] as const;
+    events.forEach((eventName) => node.addEventListener(eventName, stopBookGesture));
+
+    return () => {
+      events.forEach((eventName) => node.removeEventListener(eventName, stopBookGesture));
+    };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -528,6 +545,7 @@ const InquiryPlate = ({ defaultStyle }: { defaultStyle?: string }) => {
       <motion.span variants={drawX} className="block w-16 h-px bg-accent mx-auto origin-center" />
 
       <motion.form
+        ref={formRef}
         variants={fadeUp}
         onSubmit={handleSubmit}
         onMouseDown={(e) => e.stopPropagation()}
