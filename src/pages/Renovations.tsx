@@ -10,7 +10,9 @@ import fcmbLogo from "@/assets/fcmb-logo.png";
 import nahbBadge from "@/assets/nahb-master-building-professional.png.asset.json";
 import renovationBefore from "@/assets/renovation-before.jpg.asset.json";
 import renovationAfter from "@/assets/renovation-after.jpg.asset.json";
+import renovationDetail from "@/assets/renovation-detail-strip.jpg.asset.json";
 import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
+import { CinematicReveal } from "@/components/CinematicReveal";
 
 const services = [
   {
