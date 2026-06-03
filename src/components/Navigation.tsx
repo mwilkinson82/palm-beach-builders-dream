@@ -1,41 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Menu, X } from "lucide-react";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
-    <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? "bg-background/95 backdrop-blur-md border-b border-border/60 shadow-sm" 
-          : "bg-transparent"
-      }`}
-    >
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/60 shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
           <Link to="/" className="group">
             <div className="flex flex-col">
-              <span className={`text-2xl md:text-[28px] font-wordmark tracking-tight leading-none transition-colors ${
-                isScrolled ? "text-foreground" : "text-primary-foreground"
-              }`}>
+              <span className="text-2xl md:text-[28px] font-wordmark tracking-tight leading-none text-foreground">
                 Beau Monde
               </span>
-              <span className={`mt-1 text-[10px] tracking-[0.3em] uppercase font-light transition-colors ${
-                isScrolled ? "text-muted-foreground" : "text-primary-foreground/70"
-              }`}>
+              <span className="mt-1 text-[10px] tracking-[0.3em] uppercase font-light text-muted-foreground">
                 Builders · Palm Beach
               </span>
             </div>
@@ -45,41 +26,31 @@ export const Navigation = () => {
           <div className="hidden lg:flex items-center space-x-8">
             <Link 
               to="/about" 
-              className={`text-xs uppercase tracking-[0.25em] font-normal transition-all hover:text-accent ${
-                isScrolled ? "text-foreground" : "text-primary-foreground"
-              }`}
+              className="text-xs uppercase tracking-[0.25em] font-normal transition-all hover:text-accent text-foreground"
             >
               About
             </Link>
             <Link 
               to="/process" 
-              className={`text-xs uppercase tracking-[0.25em] font-normal transition-all hover:text-accent ${
-                isScrolled ? "text-foreground" : "text-primary-foreground"
-              }`}
+              className="text-xs uppercase tracking-[0.25em] font-normal transition-all hover:text-accent text-foreground"
             >
               Process
             </Link>
             <Link 
               to="/projects" 
-              className={`text-xs uppercase tracking-[0.25em] font-normal transition-all hover:text-accent ${
-                isScrolled ? "text-foreground" : "text-primary-foreground"
-              }`}
+              className="text-xs uppercase tracking-[0.25em] font-normal transition-all hover:text-accent text-foreground"
             >
               Your Style
             </Link>
             <Link 
               to="/renovations" 
-              className={`text-xs uppercase tracking-[0.25em] font-normal transition-all hover:text-accent ${
-                isScrolled ? "text-foreground" : "text-primary-foreground"
-              }`}
+              className="text-xs uppercase tracking-[0.25em] font-normal transition-all hover:text-accent text-foreground"
             >
               Renovations
             </Link>
             <Link 
               to="/contact" 
-              className={`text-xs uppercase tracking-[0.25em] font-normal transition-all hover:text-accent ${
-                isScrolled ? "text-foreground" : "text-primary-foreground"
-              }`}
+              className="text-xs uppercase tracking-[0.25em] font-normal transition-all hover:text-accent text-foreground"
             >
               Contact
             </Link>
@@ -87,13 +58,9 @@ export const Navigation = () => {
 
           <div className="hidden lg:flex items-center space-x-4">
             <Button 
-              variant={isScrolled ? "default" : "outline"} 
+              variant="default"
               size="lg"
-              className={`uppercase tracking-[0.25em] text-xs font-medium ${
-                isScrolled 
-                  ? "bg-primary hover:bg-primary/90 text-primary-foreground"
-                  : "border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground hover:text-foreground"
-              }`}
+              className="uppercase tracking-[0.25em] text-xs font-medium bg-primary hover:bg-primary/90 text-primary-foreground"
               asChild
             >
               <Link to="/contact">Talk to Beau Monde</Link>
@@ -102,9 +69,7 @@ export const Navigation = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className={`lg:hidden p-2 transition-colors ${
-              isScrolled ? "text-foreground" : "text-primary-foreground"
-            }`}
+            className="lg:hidden p-2 text-foreground"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
