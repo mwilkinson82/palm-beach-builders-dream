@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { RevealAnimation } from "@/components/RevealAnimation";
 import { SEO, BreadcrumbSchema, ServicePageSchema } from "@/components/SEO";
 import { Helmet } from "react-helmet-async";
+import { BuildReadyChecklist } from "@/components/BuildReadyChecklist";
 
 const phases = [
   {
@@ -168,10 +169,20 @@ const Process = () => {
 
         {/* Phases */}
         {phases.map((phase, phaseIndex) => (
+        <div key={phase.phase}>
           <section
-            key={phase.phase}
-            className={`py-20 md:py-28 border-t border-accent/15 ${phaseIndex % 2 === 1 ? "bg-[hsl(var(--seafoam))]/35" : ""}`}
+            className={`relative overflow-hidden py-20 md:py-28 border-t border-accent/15 ${phaseIndex % 2 === 1 ? "bg-[hsl(var(--seafoam))]/35" : ""}`}
           >
+            {/* Giant Roman-numeral watermark */}
+            <RevealAnimation animation="fade-in">
+              <span
+                aria-hidden
+                className="pointer-events-none select-none absolute -left-4 md:left-2 lg:left-8 top-10 md:top-14 font-display text-[28vw] md:text-[18vw] lg:text-[14vw] leading-none text-primary/[0.035] italic"
+              >
+                {phase.phase}
+              </span>
+            </RevealAnimation>
+
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
                 <RevealAnimation animation="fade-up" className="lg:col-span-4 lg:sticky lg:top-32 self-start">
@@ -194,8 +205,12 @@ const Process = () => {
                     <RevealAnimation key={step.number} animation="fade-up" delay={i * 100}>
                       <article className="group relative py-8 md:py-10 border-t border-accent/15 first:border-t-0">
                         <div className="flex items-baseline gap-6 md:gap-10">
-                          <span className="font-display text-3xl md:text-4xl text-accent/70 leading-none shrink-0 w-12 md:w-14">
+                          <span className="relative font-display text-3xl md:text-4xl text-accent/70 leading-none shrink-0 w-12 md:w-14">
                             {step.number}
+                            <span
+                              aria-hidden
+                              className="pointer-events-none absolute -bottom-2 left-0 h-px w-6 bg-accent/40 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out"
+                            />
                           </span>
                           <div className="flex-1 min-w-0">
                             <h3 className="font-display text-2xl md:text-3xl lg:text-[34px] text-primary leading-snug mb-3">
@@ -216,6 +231,78 @@ const Process = () => {
               </div>
             </div>
           </section>
+
+          {/* Build-Ready Checklist + Implementation CTA — between Design (II) and Build (III) */}
+          {phaseIndex === 1 && (
+            <>
+              <section className="relative py-24 md:py-32 border-t border-accent/15 bg-background overflow-hidden">
+                <div
+                  aria-hidden
+                  className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[hsl(var(--seafoam))]/30 to-transparent pointer-events-none"
+                />
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl relative">
+                  <RevealAnimation animation="fade-up">
+                    <div className="flex items-center justify-center space-x-3 mb-10 md:mb-14">
+                      <div className="h-px w-10 bg-accent" />
+                      <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-accent font-sans font-light">
+                        The Threshold
+                      </span>
+                      <div className="h-px w-10 bg-accent" />
+                    </div>
+                  </RevealAnimation>
+                  <BuildReadyChecklist />
+                </div>
+              </section>
+
+              {/* Implementation Phase CTA — navy slim band */}
+              <section className="relative py-20 md:py-24 bg-primary text-primary-foreground overflow-hidden">
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 opacity-[0.06] bg-[radial-gradient(ellipse_at_top,hsl(var(--accent))_0%,transparent_60%)]"
+                />
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+                    <RevealAnimation animation="fade-up" className="lg:col-span-7">
+                      <div className="flex items-center space-x-3 mb-6">
+                        <div className="h-px w-10 bg-accent" />
+                        <span className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans font-light">
+                          Implementation Phase
+                        </span>
+                      </div>
+                      <h2 className="font-display text-3xl md:text-4xl lg:text-5xl leading-[1.05] mb-6">
+                        Drawings become a
+                        <br />
+                        <span className="italic text-primary-foreground/70">residence.</span>
+                      </h2>
+                      <p className="font-sans font-light text-base md:text-lg text-primary-foreground/75 leading-relaxed max-w-xl">
+                        Once every checklist item is countersigned, your Master Builder takes
+                        the site. A single point of accountability, a trusted bench of trades,
+                        and weekly walk-throughs until the day we hand you the keys.
+                      </p>
+                    </RevealAnimation>
+
+                    <RevealAnimation animation="fade-up" delay={150} className="lg:col-span-5">
+                      <div className="flex flex-col items-start lg:items-end gap-5">
+                        <Link
+                          to="/contact"
+                          className="group relative inline-flex items-center justify-center bg-background text-primary px-12 md:px-14 py-5 text-[10px] md:text-[11px] font-sans font-light tracking-[0.3em] uppercase ring-1 ring-inset ring-accent/40 hover:ring-accent transition-all duration-500 hover:-translate-y-px"
+                        >
+                          <span className="relative">
+                            Schedule Your Build-Ready Review
+                            <span className="pointer-events-none absolute -bottom-1.5 left-0 h-px w-0 bg-accent transition-all duration-500 group-hover:w-full" />
+                          </span>
+                        </Link>
+                        <span className="font-sans font-light italic text-[12px] text-primary-foreground/50">
+                          A 60-minute, private session with your Master Builder.
+                        </span>
+                      </div>
+                    </RevealAnimation>
+                  </div>
+                </div>
+              </section>
+            </>
+          )}
+        </div>
         ))}
 
         {/* Closing CTA */}
