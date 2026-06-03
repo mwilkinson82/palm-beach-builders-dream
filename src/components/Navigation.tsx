@@ -1,21 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Transparent over the hero (light text), ivory after scroll (dark text).
+  // Mobile menu open also forces the solid surface for legibility.
+  const solid = scrolled || isOpen;
+  const shellClass = solid
+    ? "bg-background/95 backdrop-blur-md border-b border-border/60 shadow-sm"
+    : "bg-transparent border-b border-transparent";
+  const textClass = solid ? "text-foreground" : "text-white";
+  const mutedClass = solid ? "text-muted-foreground" : "text-white/70";
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/60 shadow-sm">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-500 ${shellClass}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
           <Link to="/" className="group">
             <div className="flex flex-col">
-              <span className="text-2xl md:text-[28px] font-wordmark tracking-tight leading-none text-foreground">
+              <span className={`text-2xl md:text-[28px] font-wordmark tracking-tight leading-none transition-colors duration-500 ${textClass}`}>
                 Beau Monde
               </span>
-              <span className="mt-1 text-[10px] tracking-[0.3em] uppercase font-light text-muted-foreground">
+              <span className={`mt-1 text-[10px] tracking-[0.3em] uppercase font-light transition-colors duration-500 ${mutedClass}`}>
                 Builders · Palm Beach
               </span>
             </div>
@@ -25,31 +42,31 @@ export const Navigation = () => {
           <div className="hidden lg:flex items-center space-x-8">
             <Link 
               to="/about" 
-              className="text-xs uppercase tracking-[0.25em] font-normal transition-all hover:text-accent text-foreground"
+              className={`text-xs uppercase tracking-[0.25em] font-normal transition-colors duration-500 hover:text-accent ${textClass}`}
             >
               About
             </Link>
             <Link 
               to="/process" 
-              className="text-xs uppercase tracking-[0.25em] font-normal transition-all hover:text-accent text-foreground"
+              className={`text-xs uppercase tracking-[0.25em] font-normal transition-colors duration-500 hover:text-accent ${textClass}`}
             >
               Process
             </Link>
             <Link 
               to="/projects" 
-              className="text-xs uppercase tracking-[0.25em] font-normal transition-all hover:text-accent text-foreground"
+              className={`text-xs uppercase tracking-[0.25em] font-normal transition-colors duration-500 hover:text-accent ${textClass}`}
             >
               Your Style
             </Link>
             <Link 
               to="/renovations" 
-              className="text-xs uppercase tracking-[0.25em] font-normal transition-all hover:text-accent text-foreground"
+              className={`text-xs uppercase tracking-[0.25em] font-normal transition-colors duration-500 hover:text-accent ${textClass}`}
             >
               Renovations
             </Link>
             <Link 
               to="/contact" 
-              className="text-xs uppercase tracking-[0.25em] font-normal transition-all hover:text-accent text-foreground"
+              className={`text-xs uppercase tracking-[0.25em] font-normal transition-colors duration-500 hover:text-accent ${textClass}`}
             >
               Contact
             </Link>
@@ -69,7 +86,7 @@ export const Navigation = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 text-foreground"
+            className={`lg:hidden p-2 transition-colors duration-500 ${textClass}`}
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
