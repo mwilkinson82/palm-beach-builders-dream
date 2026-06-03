@@ -20,6 +20,10 @@ import bespokePortrait from "@/assets/projects/bespoke-portrait.jpg.asset.json";
 import bespokeDetail from "@/assets/projects/bespoke-detail.jpg.asset.json";
 import nahbBadge from "@/assets/nahb-master-building-professional.png.asset.json";
 import featuredResidence from "@/assets/constellation/c64.jpg.asset.json";
+import bento02 from "@/assets/constellation/c52.jpg.asset.json";
+import bento03 from "@/assets/constellation/c54.jpg.asset.json";
+import bento04 from "@/assets/constellation/c63.jpg.asset.json";
+import bento05 from "@/assets/constellation/c66.jpg.asset.json";
 
 const EMBLEM_MEANINGS = [
   {
