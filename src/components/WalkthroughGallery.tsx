@@ -88,24 +88,56 @@ export const WalkthroughGallery = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const handleScroll = () => {
     const el = scrollerRef.current;
     if (!el) return;
     const max = el.scrollWidth - el.clientWidth;
     setProgress(max > 0 ? el.scrollLeft / max : 0);
+    const center = el.scrollLeft + el.clientWidth / 2;
+    const children = Array.from(el.children) as HTMLElement[];
+    let best = 0;
+    let bestDist = Infinity;
+    children.forEach((c, i) => {
+      const mid = c.offsetLeft + c.offsetWidth / 2;
+      const d = Math.abs(mid - center);
+      if (d < bestDist) {
+        bestDist = d;
+        best = i;
+      }
+    });
+    setActiveIndex(best);
   };
 
   return (
     <section
       aria-label="Walkthrough photo gallery"
-      className="relative bg-primary text-primary-foreground pb-16 md:pb-24 lg:pb-28 -mt-2 overflow-hidden"
+      className="relative text-foreground overflow-hidden"
     >
+      {/* Header row — eyebrow + live counter */}
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 mb-6 md:mb-8">
+        <RevealAnimation animation="fade-up">
+          <div className="flex items-end justify-between gap-6">
+            <div className="flex items-center gap-3 text-primary/85">
+              <span className="h-px w-10 bg-accent" />
+              <span className="font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase">
+                The Residence · Gallery
+              </span>
+            </div>
+            <div className="font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase text-primary/70 tabular-nums">
+              <span className="text-primary">{String(activeIndex + 1).padStart(2, "0")}</span>
+              <span className="text-primary/40"> / {String(PHOTOS.length).padStart(2, "0")}</span>
+            </div>
+          </div>
+        </RevealAnimation>
+      </div>
+
       <RevealAnimation animation="fade-up" delay={120}>
         <div
           ref={scrollerRef}
           onScroll={handleScroll}
-          className="flex gap-px md:gap-[2px] overflow-x-auto snap-x snap-mandatory"
+          className="flex gap-2 md:gap-3 overflow-x-auto snap-x snap-mandatory px-6 sm:px-10 lg:px-16 scroll-px-6 sm:scroll-px-10 lg:scroll-px-16"
         >
           {PHOTOS.map((p, i) => (
             <button
@@ -113,7 +145,7 @@ export const WalkthroughGallery = () => {
               type="button"
               onClick={() => setOpenIndex(i)}
               aria-label={`Open photo ${i + 1} of ${PHOTOS.length}`}
-              className="group relative flex-shrink-0 w-56 md:w-64 lg:w-72 aspect-[3/2] bg-black overflow-hidden ring-1 ring-accent/20 hover:ring-accent/70 transition-[box-shadow] duration-500 snap-start"
+              className="group relative flex-shrink-0 w-72 md:w-96 lg:w-[28rem] aspect-[4/3] bg-primary overflow-hidden ring-1 ring-accent/30 hover:ring-accent/80 transition-[box-shadow] duration-500 snap-start shadow-[0_20px_50px_-25px_rgba(15,42,61,0.45)]"
             >
               <img
                 src={p.url}
@@ -121,6 +153,13 @@ export const WalkthroughGallery = () => {
                 loading="lazy"
                 className="absolute inset-0 h-full w-full object-cover group-hover:scale-[1.02] transition-transform duration-[900ms] ease-out"
               />
+              {/* Magazine plate numeral */}
+              <span
+                aria-hidden
+                className="absolute left-3 bottom-3 md:left-4 md:bottom-4 font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase text-primary-foreground/95 mix-blend-screen"
+              >
+                {String(i + 1).padStart(2, "0")}
+              </span>
               {/* hairline reveal on hover */}
               <span
                 aria-hidden
@@ -134,16 +173,16 @@ export const WalkthroughGallery = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         {/* Brass progress ticker */}
         <RevealAnimation animation="fade-up" delay={180}>
-          <div className="mt-6 md:mt-8 h-px w-full bg-accent/15 overflow-hidden">
+          <div className="mt-6 md:mt-8 h-[2px] w-full bg-accent/20 overflow-hidden">
             <div
-              className="h-full bg-accent/70 origin-left transition-transform duration-150 ease-out"
+              className="h-full bg-accent origin-left transition-transform duration-150 ease-out"
               style={{ transform: `scaleX(${progress})` }}
             />
           </div>
         </RevealAnimation>
 
         <RevealAnimation animation="fade-up" delay={240}>
-          <p className="mt-5 text-center font-sans text-[10px] md:text-xs tracking-[0.3em] uppercase text-primary-foreground/55">
+          <p className="mt-5 text-center font-sans text-[10px] md:text-xs tracking-[0.3em] uppercase text-primary/55">
             Tap any frame to enlarge · Scroll to explore
           </p>
         </RevealAnimation>
