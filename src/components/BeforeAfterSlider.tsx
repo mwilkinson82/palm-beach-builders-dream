@@ -98,23 +98,23 @@ export function BeforeAfterSlider({
       className="relative w-full aspect-[4/5] md:aspect-video overflow-hidden border border-foreground/5 shadow-[0_30px_80px_-30px_rgba(15,42,61,0.45)] select-none touch-none"
       onPointerDown={startDrag}
     >
-      {/* Before image (base) */}
+      {/* After image (base — always fully painted) */}
       <img
-        src={beforeSrc}
-        alt={beforeAlt}
+        src={afterSrc}
+        alt={afterAlt}
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         draggable={false}
         loading="lazy"
       />
 
-      {/* After image (clipped overlay revealed from left as position grows) */}
+      {/* Before image (clipped overlay — fills the LEFT portion up to `position` */}
       <div
         className="absolute inset-0 overflow-hidden pointer-events-none"
         style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
       >
         <img
-          src={afterSrc}
-          alt={afterAlt}
+          src={beforeSrc}
+          alt={beforeAlt}
           className="absolute inset-0 w-full h-full object-cover"
           draggable={false}
           loading="lazy"
