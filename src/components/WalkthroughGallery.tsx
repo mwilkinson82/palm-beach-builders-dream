@@ -13,8 +13,21 @@ import c7 from "@/assets/constellation/c7.jpg.asset.json";
 import c8 from "@/assets/constellation/c8.jpg.asset.json";
 import c9 from "@/assets/constellation/c9.jpg.asset.json";
 import c11 from "@/assets/constellation/c11.jpg.asset.json";
+import c12 from "@/assets/constellation/c12.jpg.asset.json";
+import c13 from "@/assets/constellation/c13.jpg.asset.json";
+import c14 from "@/assets/constellation/c14.jpg.asset.json";
+import c15 from "@/assets/constellation/c15.jpg.asset.json";
+import c16 from "@/assets/constellation/c16.jpg.asset.json";
+import c17 from "@/assets/constellation/c17.jpg.asset.json";
+import c18 from "@/assets/constellation/c18.jpg.asset.json";
+import c19 from "@/assets/constellation/c19.jpg.asset.json";
+import c20 from "@/assets/constellation/c20.jpg.asset.json";
+import c21 from "@/assets/constellation/c21.jpg.asset.json";
 
-const PHOTOS: { url: string }[] = [c1, c2, c3, c4, c5, c6, c7, c8, c9, c11];
+const PHOTOS: { url: string }[] = [
+  c1, c2, c3, c4, c5, c6, c7, c8, c9, c11,
+  c12, c13, c14, c15, c16, c17, c18, c19, c20, c21,
+];
 
 /**
  * Editorial filmstrip of walkthrough stills.
