@@ -246,9 +246,9 @@ const Renovations = () => {
         </section>
 
         {/* Editorial intro */}
-        <section className="py-20 md:py-28 border-t border-accent/15">
+        <section className="pt-6 pb-20 md:pt-10 md:pb-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-end">
               <RevealAnimation animation="fade-up" className="lg:col-span-7">
                 <div className="flex items-center space-x-3 mb-6">
                   <div className="h-px w-10 bg-accent" />
@@ -261,32 +261,30 @@ const Renovations = () => {
                   <br />
                   <span className="italic text-muted-foreground">renovation specialists.</span>
                 </h2>
-                <p className="font-sans font-light text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
-                  The same Florida Certified Master Builder excellence that produces Palm
-                  Beach's most distinguished new estates is available, quietly, for the
+                <p className="font-sans font-light text-base md:text-lg text-muted-foreground leading-relaxed max-w-xl">
+                  The same Florida Certified Master Builder excellence behind Palm
+                  Beach's most distinguished new estates — applied, quietly, to the
                   residences our clients already own.
-                </p>
-                <p className="font-sans font-light text-base md:text-lg text-muted-foreground leading-relaxed">
-                  Whether you've acquired a prestigious condominium on the island or you're
-                  ready to transform your existing home, Beau Monde brings three decades of
-                  expertise — and absolute discretion — to every project.
                 </p>
               </RevealAnimation>
 
               <RevealAnimation animation="fade-up" delay={150} className="lg:col-span-5">
-                <div className="border-l border-accent/30 pl-8 space-y-8">
+                <div className="grid grid-cols-3 gap-6 md:gap-8">
                   {[
-                    { label: "Credentials", value: "Florida Certified Master Builder" },
-                    { label: "Experience", value: "Three decades of Palm Beach building" },
-                    { label: "Office", value: "205 Worth Avenue, Palm Beach" },
-                  ].map((item) => (
-                    <div key={item.label}>
-                      <div className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans font-light mb-2">
-                        {item.label}
-                      </div>
-                      <div className="font-display text-xl md:text-2xl text-primary leading-snug">
-                        {item.value}
-                      </div>
+                    { n: "30+", l: "Years building Palm Beach" },
+                    { n: "0", l: "FCMB disciplinary actions" },
+                    { n: "1", l: "Master builder per project" },
+                  ].map((item, i) => (
+                    <div
+                      key={item.l}
+                      className={`flex flex-col items-start ${i > 0 ? "border-l border-accent/30 pl-6 md:pl-8" : ""}`}
+                    >
+                      <span className="font-display text-5xl md:text-6xl text-primary leading-none mb-3">
+                        {item.n}
+                      </span>
+                      <span className="font-sans font-light text-[10px] tracking-[0.3em] uppercase text-accent leading-snug">
+                        {item.l}
+                      </span>
                     </div>
                   ))}
                 </div>
