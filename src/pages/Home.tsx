@@ -20,10 +20,11 @@ import renovationHero from "@/assets/projects/renovation-hero.jpg.asset.json";
 import bespokePortrait from "@/assets/projects/bespoke-portrait.jpg.asset.json";
 import bespokeDetail from "@/assets/projects/bespoke-detail.jpg.asset.json";
 import nahbBadge from "@/assets/nahb-master-building-professional.png.asset.json";
-import featuredResidence from "@/assets/constellation/c4.jpg.asset.json";
-import bento02 from "@/assets/constellation/c2.jpg.asset.json";
-import bento03 from "@/assets/constellation/c52.jpg.asset.json";
-import bento05 from "@/assets/constellation/c59.jpg.asset.json";
+// Carousel skips c10, so carousel position N>=10 maps to c(N+1).
+import featuredResidence from "@/assets/constellation/c55.jpg.asset.json"; // carousel #54
+import bento02 from "@/assets/constellation/c2.jpg.asset.json";              // carousel #2
+import bento03 from "@/assets/constellation/c53.jpg.asset.json";             // carousel #52
+import bento05 from "@/assets/constellation/c60.jpg.asset.json";             // carousel #59
 
 const EMBLEM_MEANINGS = [
   {
