@@ -24,7 +24,6 @@ export function BeforeAfterSlider({
   const [position, setPosition] = useState(0);
   const [dragging, setDragging] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const revealRan = useRef(false);
 
   const updateFromClientX = useCallback((clientX: number) => {
@@ -66,9 +65,7 @@ export function BeforeAfterSlider({
         entries.forEach((entry) => {
           if (!entry.isIntersecting || revealRan.current) return;
           revealRan.current = true;
-          // Lift the frame in immediately
-          setMounted(true);
-          // Then run the handle sweep after the lift settles
+          // Run the handle sweep after parent's reveal settles
           window.setTimeout(() => {
             const duration = 1500;
             const start = performance.now();
@@ -103,17 +100,7 @@ export function BeforeAfterSlider({
   return (
     <div
       ref={containerRef}
-      className="relative w-full aspect-[4/5] md:aspect-video overflow-hidden border border-foreground/5 select-none touch-none"
-      style={{
-        opacity: mounted ? 1 : 0,
-        transform: mounted ? "translateY(0)" : "translateY(28px)",
-        clipPath: mounted ? "inset(0 0 0 0)" : "inset(0 0 100% 0)",
-        boxShadow: mounted
-          ? "0 40px 100px -30px rgba(15,42,61,0.55)"
-          : "0 0 0 0 rgba(15,42,61,0)",
-        transition:
-          "opacity 900ms cubic-bezier(0.22, 1, 0.36, 1), transform 900ms cubic-bezier(0.22, 1, 0.36, 1), clip-path 1100ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 1100ms cubic-bezier(0.22, 1, 0.36, 1)",
-      }}
+      className="relative w-full aspect-[4/5] md:aspect-video overflow-hidden border border-foreground/5 shadow-[0_40px_100px_-30px_rgba(15,42,61,0.55)] select-none touch-none"
       onPointerDown={startDrag}
     >
       {/* After image (base — always fully painted) */}
