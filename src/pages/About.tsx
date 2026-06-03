@@ -7,7 +7,7 @@ import { SEO, PersonSchema, BreadcrumbSchema } from "@/components/SEO";
 import { Award, Shield, Users, FileCheck, CheckCircle2 } from "lucide-react";
 import ajImage from "@/assets/aj-hoover.png";
 import fcmbLogo from "@/assets/fcmb-logo.png";
-import nahbBadge from "@/assets/nahb-master-building-professional.jpg.asset.json";
+import nahbBadge from "@/assets/nahb-master-building-professional.png.asset.json";
 import michelleImage from "@/assets/michelle-williams.jpg";
 import johnImage from "@/assets/john-colaiacovo.jpg";
 import lindaImage from "@/assets/linda-lucas.jpg";
