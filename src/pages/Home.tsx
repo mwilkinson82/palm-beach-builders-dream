@@ -297,8 +297,11 @@ const Home = () => {
               <div className="cinema-hairline absolute left-6 md:left-12 bottom-6 w-px h-3 bg-accent/70 pointer-events-none" />
               <div className="cinema-hairline absolute right-6 md:right-12 bottom-6 w-px h-3 bg-accent/70 pointer-events-none" />
 
+              {/* Bottom navy gradient — mobile only, lifts wordmark legibility */}
+              <div aria-hidden className="md:hidden absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-primary/70 to-transparent pointer-events-none" />
+
               {/* Headline overlay — bottom-left */}
-              <div className="absolute inset-0 flex flex-col justify-end p-8 sm:p-12 md:p-16 lg:p-20">
+              <div className="absolute inset-0 flex flex-col justify-end p-8 pb-24 sm:p-12 md:p-16 lg:p-20">
                 <div className="max-w-3xl">
                   <RevealAnimation animation="fade-up" delay={450}>
                     <span className="block font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase text-accent mb-5 md:mb-6">
@@ -315,7 +318,7 @@ const Home = () => {
                   <RevealAnimation animation="fade-up" delay={950}>
                     <Link
                       to="/renovations"
-                      className="group/cta relative inline-flex items-center gap-4 pl-7 pr-8 md:pl-8 md:pr-10 py-5 md:py-[1.35rem] font-sans text-[11px] uppercase tracking-[0.32em] font-medium text-primary-foreground bg-transparent transition-colors duration-[600ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] hover:bg-primary/35"
+                      className="group/cta relative inline-flex items-center gap-2.5 md:gap-4 pl-5 pr-6 md:pl-8 md:pr-10 py-3.5 md:py-[1.35rem] font-sans text-[10px] md:text-[11px] uppercase tracking-[0.25em] md:tracking-[0.32em] font-medium text-primary-foreground bg-transparent transition-colors duration-[600ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] hover:bg-primary/35"
                     >
                       {/* Brass hairline frame */}
                       <span aria-hidden className="pointer-events-none absolute inset-0 border border-accent/55 group-hover/cta:border-accent/90 transition-colors duration-[600ms]" />
@@ -330,7 +333,7 @@ const Home = () => {
                       <span aria-hidden className="pointer-events-none absolute -bottom-px -right-px h-3 w-px bg-accent" />
                       <span className="relative">Explore Renovations</span>
                       <span aria-hidden className="relative flex items-center">
-                        <span className="block h-px w-6 bg-accent/70 origin-left transition-transform duration-[700ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] group-hover/cta:scale-x-150" />
+                        <span className="block h-px w-4 md:w-6 bg-accent/70 origin-left transition-transform duration-[700ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] group-hover/cta:scale-x-150" />
                         <ArrowRight className="ml-2 h-3.5 w-3.5 text-accent transition-transform duration-[700ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] group-hover/cta:translate-x-1.5" strokeWidth={1.25} />
                       </span>
                     </Link>
@@ -344,8 +347,8 @@ const Home = () => {
                   Beau Monde
                 </span>
               </div>
-              <div className="absolute bottom-3 left-0 right-0 md:hidden text-center pointer-events-none">
-                <span className="font-wordmark text-base text-primary-foreground/55 tracking-wide">
+              <div className="absolute bottom-5 left-0 right-0 md:hidden text-center pointer-events-none">
+                <span className="font-wordmark text-base text-primary-foreground/40 tracking-wide">
                   Beau Monde
                 </span>
               </div>
