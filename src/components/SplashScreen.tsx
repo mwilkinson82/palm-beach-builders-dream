@@ -56,7 +56,7 @@ export const SplashScreen = ({ duration = 3000, onComplete }: SplashScreenProps)
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#f8f6f1] transition-opacity duration-700 ${
+      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-seafoam transition-opacity duration-700 ${
         phase === "exiting" ? "opacity-0" : "opacity-100"
       }`}
     >
