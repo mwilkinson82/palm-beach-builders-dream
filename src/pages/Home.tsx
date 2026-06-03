@@ -240,9 +240,14 @@ const Home = () => {
               />
               {/* Navy gradient — anchored bottom-left for headline legibility */}
               <div className="cinema-veil absolute inset-0 bg-gradient-to-tr from-primary/80 via-primary/35 to-transparent pointer-events-none" />
-              {/* Brass hairline frame — top & bottom only */}
-              <div className="cinema-hairline absolute left-6 right-6 md:left-12 md:right-12 top-6 h-px bg-accent/40 pointer-events-none" />
-              <div className="cinema-hairline absolute left-6 right-6 md:left-12 md:right-12 bottom-6 h-px bg-accent/40 pointer-events-none" />
+              {/* Brass hairline frame — feathered top & bottom with corner ticks */}
+              <div className="cinema-hairline absolute left-6 right-6 md:left-12 md:right-12 top-6 h-px bg-[linear-gradient(to_right,transparent,hsl(var(--accent)/0.55)_18%,hsl(var(--accent)/0.55)_82%,transparent)] pointer-events-none" />
+              <div className="cinema-hairline absolute left-6 right-6 md:left-12 md:right-12 bottom-6 h-px bg-[linear-gradient(to_right,transparent,hsl(var(--accent)/0.55)_18%,hsl(var(--accent)/0.55)_82%,transparent)] pointer-events-none" />
+              {/* Engraved corner ticks */}
+              <div className="cinema-hairline absolute left-6 md:left-12 top-6 w-px h-3 bg-accent/70 pointer-events-none" />
+              <div className="cinema-hairline absolute right-6 md:right-12 top-6 w-px h-3 bg-accent/70 pointer-events-none" />
+              <div className="cinema-hairline absolute left-6 md:left-12 bottom-6 w-px h-3 bg-accent/70 pointer-events-none" />
+              <div className="cinema-hairline absolute right-6 md:right-12 bottom-6 w-px h-3 bg-accent/70 pointer-events-none" />
 
               {/* Headline overlay — bottom-left */}
               <div className="absolute inset-0 flex flex-col justify-end p-8 sm:p-12 md:p-16 lg:p-20">
@@ -260,16 +265,27 @@ const Home = () => {
                     </h2>
                   </RevealAnimation>
                   <RevealAnimation animation="fade-up" delay={950}>
-                    <Button
-                      size="lg"
-                      className="group bg-primary text-primary-foreground hover:bg-primary/90 border border-accent/60 hover:border-accent font-sans text-[11px] uppercase tracking-[0.15em] font-semibold rounded-none px-8 md:px-10 py-4"
-                      asChild
+                    <Link
+                      to="/renovations"
+                      className="group/cta relative inline-flex items-center gap-4 pl-7 pr-8 md:pl-8 md:pr-10 py-5 md:py-[1.35rem] font-sans text-[11px] uppercase tracking-[0.32em] font-medium text-primary-foreground bg-transparent transition-colors duration-[600ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] hover:bg-primary/35"
                     >
-                      <Link to="/renovations">
-                        Explore Renovations
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" strokeWidth={1.25} />
-                      </Link>
-                    </Button>
+                      {/* Brass hairline frame */}
+                      <span aria-hidden className="pointer-events-none absolute inset-0 border border-accent/55 group-hover/cta:border-accent/90 transition-colors duration-[600ms]" />
+                      {/* Corner ticks */}
+                      <span aria-hidden className="pointer-events-none absolute -top-px -left-px w-3 h-px bg-accent" />
+                      <span aria-hidden className="pointer-events-none absolute -top-px -left-px h-3 w-px bg-accent" />
+                      <span aria-hidden className="pointer-events-none absolute -top-px -right-px w-3 h-px bg-accent" />
+                      <span aria-hidden className="pointer-events-none absolute -top-px -right-px h-3 w-px bg-accent" />
+                      <span aria-hidden className="pointer-events-none absolute -bottom-px -left-px w-3 h-px bg-accent" />
+                      <span aria-hidden className="pointer-events-none absolute -bottom-px -left-px h-3 w-px bg-accent" />
+                      <span aria-hidden className="pointer-events-none absolute -bottom-px -right-px w-3 h-px bg-accent" />
+                      <span aria-hidden className="pointer-events-none absolute -bottom-px -right-px h-3 w-px bg-accent" />
+                      <span className="relative">Explore Renovations</span>
+                      <span aria-hidden className="relative flex items-center">
+                        <span className="block h-px w-6 bg-accent/70 origin-left transition-transform duration-[700ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] group-hover/cta:scale-x-150" />
+                        <ArrowRight className="ml-2 h-3.5 w-3.5 text-accent transition-transform duration-[700ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] group-hover/cta:translate-x-1.5" strokeWidth={1.25} />
+                      </span>
+                    </Link>
                   </RevealAnimation>
                 </div>
               </div>
