@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import fcmbLogo from "@/assets/fcmb-logo.png";
+import nahbBadge from "@/assets/nahb-master-building-professional.png.asset.json";
 
 export const Footer = () => {
   return (
@@ -81,18 +82,33 @@ export const Footer = () => {
         {/* Credentials Row — engraved colophon */}
         <div className="border-t border-b border-accent/15 py-10 mb-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-10 md:gap-6">
-            {/* FCMB Medallion */}
-            <div className="flex items-center gap-5">
-              <div className="w-16 h-16 rounded-full bg-background/5 p-1 ring-1 ring-accent/40 flex items-center justify-center">
-                <img
-                  src={fcmbLogo}
-                  alt="Florida Certified Master Builder"
-                  className="h-full w-full object-contain"
-                />
+            {/* Certification Medallions — FCMB + NAHB */}
+            <div className="flex items-center gap-8">
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 rounded-full bg-background/5 p-1 ring-1 ring-accent/40 flex items-center justify-center">
+                  <img
+                    src={fcmbLogo}
+                    alt="Florida Certified Master Builder"
+                    className="h-full w-full object-contain"
+                  />
+                </div>
+                <span className="text-[10px] uppercase tracking-[0.3em] leading-tight text-primary-foreground/70">
+                  Florida Certified<br />Master Builder
+                </span>
               </div>
-              <span className="text-[10px] uppercase tracking-[0.3em] leading-tight text-primary-foreground/70">
-                Florida Certified<br />Master Builder
-              </span>
+              <div aria-hidden className="hidden md:block w-px h-12 bg-accent/25" />
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 rounded-md bg-background p-1.5 ring-1 ring-accent/40 flex items-center justify-center">
+                  <img
+                    src={nahbBadge.url}
+                    alt="NAHB Certified Master Building Professional"
+                    className="h-full w-full object-contain"
+                  />
+                </div>
+                <span className="text-[10px] uppercase tracking-[0.3em] leading-tight text-primary-foreground/70">
+                  NAHB Certified<br />Master Building Pro
+                </span>
+              </div>
             </div>
 
             {/* Engraved credential set */}
