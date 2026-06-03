@@ -13,20 +13,57 @@ const contactPageSchema = {
   "@type": "ContactPage",
   name: "Contact Beau Monde Builders",
   description: "Schedule a private consultation for your luxury custom home in Palm Beach. Contact us at (561) 646-8992 or visit our Worth Avenue office.",
-  mainEntity: {
-    "@type": "LocalBusiness",
-    name: "Beau Monde Builders",
-    telephone: "+1-561-646-8992",
-    email: "ajhoover@mac.com",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "205 Worth Avenue, Suite 120",
-      addressLocality: "Palm Beach",
-      addressRegion: "FL",
-      postalCode: "33480",
-      addressCountry: "US"
-    }
-  }
+  url: "https://bmbpalmbeach.com/contact",
+};
+
+// LocalBusiness schema — Palm Beach office for local SEO
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "GeneralContractor",
+  "@id": "https://bmbpalmbeach.com/#localbusiness",
+  name: "Beau Monde Builders",
+  description:
+    "Ultra-luxury custom home builder serving Palm Beach, Florida. Private consultations by appointment at our Worth Avenue office.",
+  url: "https://bmbpalmbeach.com",
+  telephone: "+1-561-646-8992",
+  email: "ajhoover@mac.com",
+  priceRange: "$$$$",
+  image: "https://bmbpalmbeach.com/og-image.jpg",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "205 Worth Avenue, Suite 120",
+    addressLocality: "Palm Beach",
+    addressRegion: "FL",
+    postalCode: "33480",
+    addressCountry: "US",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 26.7015,
+    longitude: -80.037,
+  },
+  hasMap:
+    "https://www.google.com/maps/place/205+Worth+Ave,+Palm+Beach,+FL+33480",
+  areaServed: [
+    { "@type": "City", name: "Palm Beach" },
+    { "@type": "City", name: "West Palm Beach" },
+    { "@type": "City", name: "Manalapan" },
+    { "@type": "City", name: "Jupiter Island" },
+    { "@type": "AdministrativeArea", name: "Palm Beach County" },
+  ],
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "17:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      description: "By Appointment",
+    },
+  ],
 };
 
 const Contact = () => {
@@ -95,6 +132,9 @@ const Contact = () => {
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify(contactPageSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(localBusinessSchema)}
         </script>
       </Helmet>
       <div className="min-h-screen bg-background">
