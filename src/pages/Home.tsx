@@ -246,8 +246,8 @@ const Home = () => {
               {/* Engraved corner ticks */}
               <div className="cinema-hairline absolute left-6 md:left-12 top-6 w-px h-3 bg-accent/70 pointer-events-none" />
               <div className="cinema-hairline absolute right-6 md:right-12 top-6 w-px h-3 bg-accent/70 pointer-events-none" />
-              <div className="cinema-hairline absolute left-6 md:left-12 bottom-6 w-px h-3 -translate-y-3 bg-accent/70 pointer-events-none" />
-              <div className="cinema-hairline absolute right-6 md:right-12 bottom-6 w-px h-3 -translate-y-3 bg-accent/70 pointer-events-none" />
+              <div className="cinema-hairline absolute left-6 md:left-12 bottom-6 w-px h-3 bg-accent/70 pointer-events-none" />
+              <div className="cinema-hairline absolute right-6 md:right-12 bottom-6 w-px h-3 bg-accent/70 pointer-events-none" />
 
               {/* Headline overlay — bottom-left */}
               <div className="absolute inset-0 flex flex-col justify-end p-8 sm:p-12 md:p-16 lg:p-20">
