@@ -54,7 +54,7 @@ const handler = async (req: Request): Promise<Response> => {
     // Send notification email to the team
     const teamEmailResponse = await resend.emails.send({
       from: "Beau Monde Builders <onboarding@resend.dev>",
-      to: ["ajhoover@mac.com"],
+      to: ["aj@bmbpalmbeach.com"],
       subject: isStyleBook
         ? `Style Book Inquiry — ${style ?? "Unspecified"} — ${fullName}`
         : `New Contact Form Submission from ${fullName}`,

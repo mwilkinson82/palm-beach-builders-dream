@@ -121,7 +121,7 @@ const Unsubscribe = () => {
                   Link no longer valid
                 </h1>
                 <p className="font-sans text-foreground/70 leading-relaxed">
-                  This unsubscribe link is invalid or has expired. Please reach out to us directly at (561) 646-8992 or ajhoover@mac.com.
+                  This unsubscribe link is invalid or has expired. Please reach out to us directly at (561) 646-8992 or aj@bmbpalmbeach.com.
                 </p>
               </>
             )}
