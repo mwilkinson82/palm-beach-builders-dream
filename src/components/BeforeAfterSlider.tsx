@@ -18,7 +18,7 @@ export function BeforeAfterSlider({
   afterLabel = "Beau Monde Standard",
 }: BeforeAfterSliderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState(55);
+  const [position, setPosition] = useState(0);
   const [dragging, setDragging] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
   const revealRan = useRef(false);
