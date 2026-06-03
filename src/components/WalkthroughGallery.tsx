@@ -63,6 +63,11 @@ import c58 from "@/assets/constellation/c58.jpg.asset.json";
 import c59 from "@/assets/constellation/c59.jpg.asset.json";
 import c60 from "@/assets/constellation/c60.jpg.asset.json";
 import c61 from "@/assets/constellation/c61.jpg.asset.json";
+import c62 from "@/assets/constellation/c62.jpg.asset.json";
+import c63 from "@/assets/constellation/c63.jpg.asset.json";
+import c64 from "@/assets/constellation/c64.jpg.asset.json";
+import c65 from "@/assets/constellation/c65.jpg.asset.json";
+import c66 from "@/assets/constellation/c66.jpg.asset.json";
 
 const PHOTOS: { url: string }[] = [
   c1, c2, c3, c4, c5, c6, c7, c8, c9, c11,
@@ -71,6 +76,7 @@ const PHOTOS: { url: string }[] = [
   c32, c33, c34, c35, c36, c37, c38, c39, c40, c41,
   c42, c43, c44, c45, c46, c47, c48, c49, c50, c51,
   c52, c53, c54, c55, c56, c57, c58, c59, c60, c61,
+  c62, c63, c64, c65, c66,
 ];
 
 /**
