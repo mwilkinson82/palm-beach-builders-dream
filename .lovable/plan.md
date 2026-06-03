@@ -1,64 +1,63 @@
-## Contact Page — Refinement Pass
+## Renovations Page — Brand Alignment Pass
 
-Three targeted refinements, no functional changes (form handler, edge function, schema, SEO, Reveal animations all preserved).
+The current Renovations page violates brand discipline on multiple fronts and uses fabricated stats. The plan is a structural rebuild that mirrors the Contact page's editorial restraint while keeping the renovation-specific content (services, HOA expertise, areas served).
 
-### 1. Replace "Atelier" → "Office"
+### What's wrong with the current page
 
-In `src/pages/Contact.tsx`:
-- Hero copy: "Our atelier accepts a limited number of commissions each year…" → "Our office accepts a limited number of commissions each year…"
-- Eyebrow label "Atelier Location" → "Office Location"
-- Map pin annotation "The Atelier" (if present) → "The Office"
-- Keep all typography, spacing, hierarchy identical.
+- **Brass discipline broken:** brass button fills (`bg-accent text-black`), brass on large type ("Palm Beach Residence" h1 in brass), brass icons everywhere, brass dots/circles around step numbers, brass-tinted glow blurs.
+- **Typography off-brand:** `font-thin` everywhere instead of `font-display` (Cormorant Garamond). No engraved feel.
+- **CTA wording off:** "START YOUR RENOVATION", "SCHEDULE YOUR CONSULTATION" — should be "Talk to Beau Monde" per brand vocab.
+- **Generic stats:** "50+ Renovations Completed", "100% Client Satisfaction", "A+ BBB Rating" — invented numbers; remove unless the client confirms.
+- **Dark-on-dark sections** with white/70 body text — heavy and at odds with the light-mode-first Ivory & Ocean palette.
+- **Lucide icon cards** (Building2, ChefHat, Bath, Sparkles…) — too generic-SaaS for a luxury builder.
 
-### 2. Luxury button refresh (header CTA + Contact submit only)
+### New structure (editorial restraint, matches Contact tone)
 
-Scope: the navy "Talk to Beau Monde" buttons in `src/components/Navigation.tsx` (desktop + mobile) and the submit button in `src/pages/Contact.tsx`. No site-wide button component rewrite.
+1. **Hero band** (Ivory)
+   - Brass eyebrow + hairline: "Renovations"
+   - Cormorant headline split italic/roman: *"Reimagine your"* / "Palm Beach residence"
+   - Short Fira Sans paragraph (restraint-forward, mentions discretion + 30 years).
+   - Single primary CTA: navy "Talk to Beau Monde" (using the new luxe button style from Contact). Secondary: hairline text link "View Our Process →".
 
-New treatment (shared visual language, applied inline to these two surfaces only):
+2. **Editorial intro** (Ivory, no second card-grid)
+   - Two-column 7/5: left has Cormorant subhead "Palm Beach's finest renovation specialists" + body about FCMB-level craftsmanship applied to existing residences. Right has a small stacked panel of three quiet credentials (Florida Certified Master Builder · 30+ years · Worth Avenue office) — no fabricated percentages.
 
-- Navy primary fill (unchanged token: `bg-primary text-primary-foreground`) — brand discipline holds.
-- Refined proportions: slightly taller (py-5 header, py-6 contact submit), generous horizontal padding, tighter letter-spacing on a thinner weight (`font-light tracking-[0.3em]` instead of medium) for an engraved feel.
-- Hairline brass inner outline: `ring-1 ring-inset ring-accent/30` that brightens to `ring-accent/60` on hover.
-- Slow brass underline draw beneath the label on hover (`::after` hairline animating width 0→100% over 600ms, brass color).
-- Subtle lift: `hover:-translate-y-px` with a soft navy shadow (`hover:shadow-[0_18px_40px_-20px_hsl(var(--primary)/0.55)]`).
-- Remove the current full-overlay brass slide-up on the Contact submit (it visually "fills" with brass, which violates brass discipline). Replace with the hairline + underline-draw treatment above.
-- Disabled state: opacity-60, no lift, no underline draw.
-- Mobile header button uses the same treatment at full width.
+3. **Services list** (Ivory, replaces dark card grid)
+   - 6 services rendered as a 2-column editorial list with brass eyebrow numerals (01 — 06), Cormorant service title, Fira Sans description, and a thin brass hairline divider between rows. No icons, no lucide. Features become inline · separated keywords beneath each description.
+   - Services preserved: Luxury Condo Transformations, Whole-Home Remodels, Gourmet Kitchen Design, Spa-Inspired Bathrooms, Interior Redesign, Turnkey Condo Packages.
 
-### 3. Replace framed grayscale map with address card + small static map
+4. **Condo expertise band** (Navy section — first dark band, used sparingly)
+   - Two-column. Left: Cormorant headline "Palm Beach's premier condo specialists" + bullet list of HOA expertise items (hairline left-border list, no Shield icon, no brass dots).
+   - Right: a single quiet "card" on navy with three sections (Property Types · Areas We Serve · Our 4-Step Process) — rendered as typographic columns with brass hairline section labels, no checkmarks, no circle-numbered step badges. The 4-step process is the canonical one from the memory.
 
-Remove the entire `relative group` framed iframe block in `Contact.tsx`. Replace with a single "Location" card:
+5. **Closing CTA band** (Ivory or quiet Sand)
+   - Cormorant: *"Ready to begin?"*
+   - Short line.
+   - Single navy "Talk to Beau Monde" CTA (same luxe button).
 
-```text
-┌─────────────────────────────────────┐
-│  OFFICE                             │  ← brass eyebrow
-│                                     │
-│  205 Worth Avenue, Suite 120        │  ← Cormorant, navy
-│  Palm Beach, FL 33480               │
-│                                     │
-│  [ small static map thumbnail ]     │  ← ~4:3, full color, no frame fuss
-│                                     │
-│  Get Directions  →                  │  ← brass hairline link, opens Google Maps
-└─────────────────────────────────────┘
-```
+### Brand-compliance fixes applied throughout
 
-Implementation details:
-- Card: `bg-card`, hairline `border border-accent/20`, generous inner padding (`p-8 md:p-10`), subtle navy shadow (`shadow-lifted`).
-- Static map image via Google Maps Static API URL (no API key needed for the simple unsigned variant on the existing Maps embed pattern). Source: `https://maps.googleapis.com/maps/api/staticmap?center=205+Worth+Ave,Palm+Beach,FL&zoom=15&size=600x400&scale=2&markers=color:0x0f2a3d%7C205+Worth+Ave,Palm+Beach,FL`. If the unsigned static map fails (Google now generally requires a key), fall back to the existing embed iframe at small size with full color (no grayscale, no frame chrome).
-- "Get Directions" link: `https://www.google.com/maps/dir/?api=1&destination=205+Worth+Avenue,+Palm+Beach,+FL+33480`, opens in new tab, brass hairline underline on hover, Fira Sans uppercase 10px tracked.
-- Remove "Ref · PB-33480" annotation and the brass outer outline frame.
+- All headlines → `font-display` Cormorant, never `font-bold`.
+- Brass restricted to hairlines, eyebrows, numerals (01—06), and underline-on-hover. Never as button fills, never as headline color.
+- Buttons → reuse the new navy + brass-hairline-ring + underline-draw treatment from Contact. CTAs use "Talk to Beau Monde".
+- Lucide icons removed from the services grid and from list items.
+- Fabricated stats removed (50+, 100%, A+).
+- No specific building names or addresses (already compliant; will keep that way).
+- Dark-on-dark used only in the single Condo Expertise band, not three times.
 
-### Files to edit
+### SEO
 
-- `src/pages/Contact.tsx` — copy swap, submit button restyle, map block replacement.
-- `src/components/Navigation.tsx` — desktop + mobile CTA button restyle.
+- Add `<BreadcrumbSchema>` (Home → Renovations) — currently missing.
+- Add a `Service` JSON-LD block listing the six renovation services under the LocalBusiness `@id`, so they associate with the Palm Beach office record we just added on Contact.
+- Keep existing SEO title/description.
+
+### Files
+
+- `src/pages/Renovations.tsx` — rewrite layout & markup; preserve route, SEO title/description, RevealAnimation, Navigation, Footer.
 
 ### Out of scope
 
-- No changes to form handler, edge function, schema, SEO, or Reveal animation timing.
-- No new shared Button variant (kept inline per user's "just these two" choice).
-- No changes to other pages' buttons.
-
-### Note on map fallback
-
-Google's Static Maps API requires an API key for reliable production use. If the unsigned URL returns a "for development purposes only" watermark or fails, I'll swap to a small full-color embed iframe inside the same card layout — same visual outcome, no key needed. I'll verify in the preview after implementing.
+- No new dependencies.
+- No changes to other pages, edge functions, or schema.
+- Stats are removed, not replaced — if the client wants real numbers later, easy to add a single Numbers band back.
+- No imagery added in this pass; the page stays type-led. We can layer in a single hero image or one editorial photo later if desired.
