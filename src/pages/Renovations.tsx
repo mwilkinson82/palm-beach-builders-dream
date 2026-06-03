@@ -5,6 +5,8 @@ import { RevealAnimation } from "@/components/RevealAnimation";
 import { SEO } from "@/components/SEO";
 import { Helmet } from "react-helmet-async";
 import { RenovationsHero } from "@/components/RenovationsHero";
+import renovationMoment from "@/assets/projects/renovation-hero.jpg.asset.json";
+import fcmbLogo from "@/assets/fcmb-logo.png";
 
 const services = [
   {
@@ -71,6 +73,13 @@ const processSteps = [
   "Final Walkthrough",
 ];
 
+const fcmbCredentials = [
+  { k: "Experience", v: "Three decades of Palm Beach building" },
+  { k: "Record", v: "Clean regulatory and disciplinary history" },
+  { k: "References", v: "Verified by clients and subcontractors" },
+  { k: "Warranty", v: "Written, minimum one-year guarantee" },
+];
+
 const ctaClass =
   "group relative inline-flex items-center justify-center bg-primary text-primary-foreground px-12 md:px-16 py-5 text-[10px] md:text-[11px] font-sans font-light tracking-[0.3em] uppercase ring-1 ring-inset ring-accent/30 hover:ring-accent/60 transition-all duration-500 hover:-translate-y-px hover:shadow-[0_18px_40px_-20px_hsl(var(--primary)/0.55)]";
 
@@ -116,6 +125,27 @@ const Renovations = () => {
         <Navigation />
 
         <RenovationsHero />
+
+        {/* Cinematic renovation moment */}
+        <section className="relative">
+          <RevealAnimation animation="fade-up">
+            <figure className="relative w-full overflow-hidden">
+              <img
+                src={renovationMoment.url}
+                alt="A reimagined Palm Beach interior by Beau Monde Builders"
+                className="w-full h-[60vh] md:h-[80vh] object-cover"
+                loading="lazy"
+              />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/55 to-transparent" />
+              <figcaption className="absolute bottom-6 left-4 sm:left-8 lg:left-16 flex items-center space-x-3 text-white/85">
+                <div className="h-px w-8 md:w-12 bg-accent" />
+                <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] font-sans font-light">
+                  A residence, reimagined
+                </span>
+              </figcaption>
+            </figure>
+          </RevealAnimation>
+        </section>
 
         {/* Text hero */}
         <section className="pt-20 pb-20 md:pt-28 md:pb-28">
@@ -211,6 +241,85 @@ const Renovations = () => {
                 </div>
               </RevealAnimation>
             </div>
+          </div>
+        </section>
+
+        {/* FCMB credentials band */}
+        <section className="py-20 md:py-28 border-t border-accent/15 bg-secondary/20">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+            <RevealAnimation animation="fade-up">
+              <div className="flex items-center justify-center space-x-3 mb-6">
+                <span className="h-px w-8 bg-accent" />
+                <span className="font-sans text-[10px] md:text-xs tracking-[0.4em] uppercase text-accent">
+                  Heritage &amp; Accreditation
+                </span>
+                <span className="h-px w-8 bg-accent" />
+              </div>
+            </RevealAnimation>
+            <RevealAnimation animation="fade-up" delay={100}>
+              <h2 className="font-display italic text-3xl md:text-4xl lg:text-5xl text-primary text-center leading-[1.05] mb-12 md:mb-14">
+                Master-builder credentials.
+              </h2>
+            </RevealAnimation>
+
+            <RevealAnimation animation="fade-up" delay={160}>
+              <div className="flex flex-col items-center gap-1.5 mb-12 md:mb-14">
+                <div className="w-full h-px bg-accent/25" />
+                <div className="w-full h-[3px] bg-accent" />
+                <div className="w-full h-px bg-accent/25" />
+              </div>
+            </RevealAnimation>
+
+            <RevealAnimation animation="scale-in" delay={220}>
+              <div className="flex justify-center mb-12 md:mb-14">
+                <div className="flex flex-col items-center gap-5">
+                  <div className="relative">
+                    <span aria-hidden className="absolute inset-0 translate-x-2 translate-y-2 border border-accent/25" />
+                    <div className="relative bg-card border border-accent/25 p-5 shadow-[0_20px_40px_-18px_rgba(15,42,61,0.3)]">
+                      <img
+                        src={fcmbLogo}
+                        alt="Florida Certified Master Builder"
+                        className="h-24 md:h-28 w-auto object-contain"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-primary text-center max-w-[180px] leading-snug">
+                    Florida Certified Master Builder
+                  </span>
+                </div>
+              </div>
+            </RevealAnimation>
+
+            <RevealAnimation animation="fade-up" delay={300}>
+              <p className="font-sans font-light text-[15px] md:text-base leading-relaxed text-primary/80 text-center max-w-2xl mx-auto mb-12 md:mb-14">
+                A voluntary credential awarded only to builders with the experience, ethics, and record
+                to back it — the FCMB is the pinnacle of professional standing in Florida construction.
+              </p>
+            </RevealAnimation>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-3 mb-12 md:mb-14">
+              {fcmbCredentials.map((row, i) => (
+                <RevealAnimation key={row.k} animation="fade-up" delay={360 + i * 60}>
+                  <div className="flex items-baseline justify-between gap-4 border-b border-accent/25 pb-2.5">
+                    <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent shrink-0">
+                      {row.k}
+                    </span>
+                    <span className="font-sans font-light text-[13px] text-primary/85 text-right">
+                      {row.v}
+                    </span>
+                  </div>
+                </RevealAnimation>
+              ))}
+            </div>
+
+            <RevealAnimation animation="fade-up" delay={560}>
+              <div className="flex flex-col items-center gap-1.5">
+                <div className="w-full h-px bg-accent/25" />
+                <div className="w-full h-[3px] bg-accent" />
+                <div className="w-full h-px bg-accent/25" />
+              </div>
+            </RevealAnimation>
           </div>
         </section>
 
