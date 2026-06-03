@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet-async";
 import oceanfront from "@/assets/projects/oceanfront.jpg.asset.json";
 import urbanClassical from "@/assets/projects/urban-classical.jpg.asset.json";
 import waterfrontContemporary from "@/assets/projects/waterfront-contemporary.jpg.asset.json";
-import mediterraneanVilla from "@/assets/projects/mediterranean-villa.jpg";
+import mediterranean from "@/assets/projects/mediterranean.jpg.asset.json";
 import modernMinimalist from "@/assets/projects/modern-minimalist.jpg";
 import classicEstate from "@/assets/projects/classic-estate.jpg";
 import bermudaColonial from "@/assets/projects/bermuda-colonial.jpg.asset.json";
@@ -44,7 +44,7 @@ const STYLES: Style[] = [
     name: "Mediterranean",
     descriptor:
       "Tile, terracotta, and shaded loggias — the old island idiom done with restraint and proportion.",
-    image: mediterraneanVilla,
+    image: mediterranean.url,
   },
   {
     name: "Modern Coastal",
