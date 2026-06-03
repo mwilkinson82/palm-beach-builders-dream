@@ -216,7 +216,7 @@ const Contact = () => {
 
                       {/* Get Directions */}
                       <a
-                        href="https://www.google.com/maps/dir/?api=1&destination=205+Worth+Avenue%2C+Suite+120%2C+Palm+Beach%2C+FL+33480&destination_place_id=ChIJ"
+                        href="https://www.google.com/maps/dir/?api=1&destination=205+Worth+Avenue%2C+Suite+120%2C+Palm+Beach%2C+FL+33480"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="group inline-flex items-center gap-3 text-[10px] tracking-[0.35em] uppercase font-sans font-medium text-foreground hover:text-accent transition-colors duration-500"
