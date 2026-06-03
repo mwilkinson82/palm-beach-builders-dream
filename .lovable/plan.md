@@ -1,86 +1,55 @@
-Four focused changes to make the Renovations page sing.
+## About page — luxury redesign
 
-## 1. Wow-factor entrances for the cinematic moment + the slider
+Strip the dark/gradient hero and the inverted "Our Philosophy" slab, and rebuild About to match the ivory & ocean system we used on Home, Services, and Process. Light-mode first, Cormorant headlines, Fira Sans UI, brass hairlines only, seafoam as whisper.
 
-**Cinematic moment (renovation hero image)**
-- Replace the plain `fade-up` with a layered cinematic reveal:
-  - Image starts at `scale(1.12)` and slowly drifts down to `scale(1)` over ~1.6s as it enters view (Ken Burns).
-  - A thin brass hairline sweeps in from the left, then the eyebrow caption fades up underneath it on a 250ms delay.
-  - A subtle vignette mask animates from `opacity(0)` → final state over the same duration so the photo "develops" instead of pops in.
-- All driven by an IntersectionObserver firing once; uses CSS transforms + opacity (no library needed).
+### New AJ photo
+Please drop the new AJ image into this chat as an attachment. I'll wire it into `src/assets/` and replace the existing `aj-hoover.png` reference. (If you want me to keep the old file as a fallback, say the word.)
 
-**Before/After slider section**
-- New entrance choreography that runs as one composition once the section enters view (~70% threshold):
-  1. The brass eyebrow rule grows from 0 → full width (~600ms).
-  2. The slider frame rises 24px while a clip-path wipes from top to bottom (~900ms, ease-out).
-  3. The intro handle sweep (already there at 0→55%) starts only after the frame finishes mounting, so it now reads as a deliberate "reveal the transformation" beat instead of competing with the lift.
-  4. The Scope / Building Type footer row fades up last with a 200ms stagger.
-- Add a faint navy drop shadow that animates in with the lift to give the slider weight.
+### Section-by-section
 
-Both sequences use existing tokens; no new dependencies.
+**1. Hero — "The Maker"**
+- Remove `bg-gradient-to-b from-black/50` and the centered marketing copy.
+- Editorial split: left column is an oversized `font-wordmark` "Beau Monde" treatment with an eyebrow "The House Of —" and a single-line subhead ("Built by AJ Hoover. Held to one standard."); right column is the new AJ portrait in a tall 4/5 frame with a thin brass hairline border and a faint seafoam wash behind it.
+- Scroll-driven parallax: wordmark drifts up, portrait drifts down a few percent, brass hairline grows into the eyebrow on mount.
+- No CTA in the hero — the page earns the CTA later.
 
-## 2. Reimagine the "Palm Beach's finest renovation specialists" section
+**2. The Story — long-form editorial**
+- Replace the two-column "AJ Hoover / CEO & Founder" block with a single narrow column of Cormorant body (max-w-2xl), drop-cap first paragraph, ornamental brass hairline rule between movements.
+- Rewrite the four paragraphs into three movements with section labels in the margin:
+  - I. Origin (Upstate roots, every trade learned by hand)
+  - II. The Standard (why he built Beau Monde — relationships with Florida's best artisans)
+  - III. Today (still on every job, still answering the phone)
+- Pull-quote in italic Cormorant between II and III.
+- Stagger each movement with `RevealAnimation` fade-up; pull-quote scales in.
 
-The current grid pairs a soft headline + body copy on the left with a Credentials / Experience / Office stat ledger on the right. The user is right — those stats feel borrowed from a corporate "About" block and don't belong this close to the slider.
+**3. Philosophy — flip from dark to light**
+- Delete `bg-foreground text-background` and the SVG dot pattern. Use ivory background with a faint seafoam top wash.
+- Keep the three pillars (Excellence / Integrity / Innovation) but render as a 3-column editorial grid with hairline dividers between columns, brass numerals, Cormorant italic titles, Fira body.
+- Each column reveals in sequence on scroll; brass numeral counts in.
 
-**Replacement: a tighter editorial band that bridges the slider into the credentials moment.**
+**4. Certifications — refined, not glowing**
+- Remove the `bg-accent/10 blur-3xl` halo and the heavy gradient background.
+- Two badges sit on ivory inside thin sand-bordered frames, captions in Fira small-caps.
+- Replace the four "rounded-lg border" requirement cards with a clean 2×2 hairline grid (no rounded corners, no card chrome), brass icons at strokeWidth 1.25.
+- Replace the pill "verification badges" row with a single inline brass-hairline list ("Background verified · 5+ years licensed · Fully insured · Board approved").
 
-- Tighten the vertical rhythm: drop the top padding from `py-20 md:py-28` to `pt-10 md:pt-14 pb-20 md:pb-24` so it sits closer to the slider's footer row.
-- Two-column layout becomes a single asymmetric editorial composition:
-  - Left (7 cols): brass eyebrow `THE STANDARD`, the Cormorant headline `Palm Beach's finest renovation specialists.`, one tightened paragraph (combine the two existing paragraphs into one ~3-line piece — cut filler).
-  - Right (5 cols): **replaced**. Instead of the Credentials/Experience/Office stat ledger, show three discreet numerical proof points stacked with brass hairlines between them:
-    - `30+` · Years building Palm Beach
-    - `0` · Disciplinary actions, FCMB record
-    - `1` · Master builder leading every project
-  - These are presented as oversized Cormorant numerals with tiny Fira Sans labels beneath — visual rhythm, no clunky office-address line, and it carries the discretion theme.
-- No address shown (already a mem constraint anyway).
+**5. The Team**
+- Keep John, Michelle, Linda. Switch portraits from 3/4 muted boxes to 4/5 ivory frames with sand hairline border.
+- Remove the brass hover overlay (it reads as a click affordance — non-interactive per portfolio rule).
+- Names in Cormorant, role in brass small-caps, one-line experience in Fira light.
 
-## 3. Merge & visualize the "Full-Service Renovations / A complete range of work" + "Condo Expertise" sections
+**6. Closing CTA — new**
+- Add a quiet closing band before the footer: brass hairline, eyebrow "Begin a conversation," Cormorant line "Every Beau Monde home starts at the same table.", primary navy button "Talk to Beau Monde" → `/contact`. No seafoam fill, no gradients.
 
-Right now there are two separate heavy sections (six service cards in two columns, then a navy band with HOA copy + property types + areas + process). It's too much reading.
-
-**Restructure into one unified "Scope of Work" section, in two visually distinct halves:**
-
-**Half A — Services as an editorial index, not card paragraphs**
-- Replace the six descriptive cards with a single elegant ledger:
-  - One column on mobile, two on desktop.
-  - Each row: numeral `01–06`, service title in Cormorant, a single tight sub-line (max 8 words) — no paragraph, no keyword tag string.
-  - Hovering a row underlines the title in brass and reveals the keywords as a quiet caption.
-- Reduces ~700 words of copy to ~80 while keeping the SEO via JSON-LD schema (already in place).
-- Add a small renovation-detail image to the left side (kitchen/bath close-up crop) so the section has visual weight, not just type.
-
-**Half B — Condo expertise becomes a horizontal navy strip, not a full band**
-- Collapse the navy section from full text walls + boxed property/area/process panel into a tight three-column navy strip:
-  - Col 1: short headline `Built for Palm Beach's towers.` + one sentence on condo expertise (3 lines max).
-  - Col 2: `Property Types` as a clean two-line list (no box, no border).
-  - Col 3: `Areas Served` as a clean two-line list.
-- Drop the redundant `Our Process` mini-list (it duplicates the `/process` page; keep just the existing "View Our Process" link logic via the closing CTA area).
-- The HOA capabilities list (5 bullets) becomes a single rotating-style inline line: `HOA navigation · Building management · Schedule compliance · Logistics · Neighbor-conscious build`.
-
-**Add an editorial photo bridge between the two halves**
-- A single full-bleed thin strip image (~25vh) of a craftsman detail (millwork, marble seam, or hardware close-up) — cropped tall and cinematic, with the eyebrow `CRAFT IN THE DETAILS` floating top-left.
-- Generated via image gen, brand-consistent (light, ivory/marble tones), uploaded as a Lovable Asset.
-
-This collapses two heavy sections into one cohesive arc: words → image → numbers/lists.
-
-## 4. Small consistency cleanup
-
-- Reduce gap between the slider footer row and the "renovation specialists" section so they feel like one continuous editorial spread.
-- Keep all reveal animations stagger-aware (Card B doesn't start until Card A is ~70% revealed) so the scroll feels orchestrated, not chaotic.
-
----
+### Animation system
+- All sections use `RevealAnimation` (fade-up / luxury-reveal) with the staggered delays the rest of the site uses.
+- Hero gets scroll-driven parallax (wordmark, portrait, seafoam wash) wired off a shared `scrollY` like Process.
+- No card hover scales, no glow halos, no dark overlays anywhere on the page.
 
 ### Files
+- `src/pages/About.tsx` — full rebuild of the page composition.
+- `src/assets/aj-hoover-v2.{jpg|png}` — added when you upload the new photo; old file kept unless you say otherwise.
+- No new components unless the closing CTA gets reused elsewhere (then I'll lift it into `src/components/ClosingCTA.tsx`).
 
-- `src/pages/Renovations.tsx` — restructure sections 245–527, tighten paddings, swap stat ledger for numeric proof points, collapse services + condo into one section with the new layouts, remove `processSteps` array (or keep but unused if process bullets stay elsewhere).
-- `src/components/RevealAnimation.tsx` — add a new `cinematic` animation option (scale-down + masked reveal) for the cinematic image.
-- New: `src/components/CinematicReveal.tsx` (small wrapper that handles the scale-down + sweep entrance for the cinematic moment) — keeps the slider's bespoke choreography inline in `BeforeAfterSlider`'s parent section.
-- `src/components/BeforeAfterSlider.tsx` — add an optional `delayIntroSweep` prop (number, ms) so the existing intro sweep waits until the frame's clip-path lift finishes.
-- 1 new generated image (craft-detail strip) uploaded via `lovable-assets`.
-
-### What I'm explicitly NOT doing
-
-- Not touching the FCMB + NAHB credentials band (you said it's good).
-- Not changing the hero video, slider mechanics, or navigation.
-- Not adding any social icons, addresses, or brass-fill buttons (mem rules).
-- Not adding new CTAs — the existing two CTAs continue to do the work.
+### One thing I need from you
+Drop the new AJ photo in the chat and I'll wire it in as part of the build. If you want, also tell me whether the hero should lead with "Beau Monde" (house-first) or "AJ Hoover" (founder-first) — my default in this plan is house-first with AJ owning the portrait + story.
