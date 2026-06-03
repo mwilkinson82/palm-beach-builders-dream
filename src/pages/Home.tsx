@@ -9,6 +9,7 @@ import { SEO } from "@/components/SEO";
 import { VideoHero } from "@/components/VideoHero";
 import { DeliveryShowcase } from "@/components/DeliveryShowcase";
 import { WalkthroughShowcase } from "@/components/WalkthroughShowcase";
+import { WalkthroughGallery } from "@/components/WalkthroughGallery";
 import { InterviewShowcase } from "@/components/InterviewShowcase";
 import { Parallax } from "@/components/Parallax";
 import { ArrowRight, Star } from "lucide-react";
@@ -83,6 +84,9 @@ const Home = () => {
 
       {/* Founder Walkthrough */}
       <WalkthroughShowcase />
+
+      {/* Walkthrough Gallery — editorial filmstrip of stills from the same residence */}
+      <WalkthroughGallery />
 
       {/* Realtor Interview with AJ — paired with the walkthrough (same home, two lenses) */}
       <InterviewShowcase />
