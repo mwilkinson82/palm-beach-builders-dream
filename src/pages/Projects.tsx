@@ -142,7 +142,7 @@ const Page = forwardRef<HTMLDivElement, PageProps>(
   ({ children, visible, hardCover }, ref) => (
     <div
       ref={ref}
-      className="bg-background overflow-hidden"
+      className="bg-background overflow-hidden w-full h-full"
       data-density={hardCover ? "hard" : "soft"}
     >
       <motion.div
