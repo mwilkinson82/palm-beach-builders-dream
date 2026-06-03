@@ -31,8 +31,10 @@ export const RevealAnimation = ({
         });
       },
       {
-        threshold: 0.1,
-        rootMargin: "0px 0px -100px 0px",
+        // Use a low threshold and a viewport-relative bottom margin so tall
+        // sections still trigger on short mobile viewports.
+        threshold: 0.01,
+        rootMargin: "0px 0px -10% 0px",
       }
     );
 
