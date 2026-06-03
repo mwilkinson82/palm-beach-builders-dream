@@ -7,6 +7,7 @@ import { SEO, PersonSchema, BreadcrumbSchema } from "@/components/SEO";
 import { Award, Shield, Users, FileCheck, CheckCircle2 } from "lucide-react";
 import ajImage from "@/assets/aj-hoover.png";
 import fcmbLogo from "@/assets/fcmb-logo.png";
+import nahbBadge from "@/assets/nahb-master-building-professional.jpg.asset.json";
 import michelleImage from "@/assets/michelle-williams.jpg";
 import johnImage from "@/assets/john-colaiacovo.jpg";
 import lindaImage from "@/assets/linda-lucas.jpg";
@@ -163,21 +164,40 @@ const About = () => {
         <section className="py-16 md:py-32 bg-gradient-to-b from-muted to-background relative overflow-hidden">
           <div className="container mx-auto px-4 sm:px-6 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center max-w-7xl mx-auto">
-              {/* Certification Badge */}
+              {/* Certification Badges — FCMB + NAHB pair */}
               <div className="flex justify-center order-1 lg:order-1">
                 <div className="relative">
                   <div className="absolute inset-0 bg-accent/10 blur-3xl rounded-full scale-125" />
-                  <div className="relative bg-white p-6 md:p-10 rounded-full shadow-2xl border border-border">
-                    <img 
-                      src={fcmbLogo} 
-                      alt="Florida Certified Master Builder" 
-                      loading="lazy"
-                      decoding="async"
-                      onError={(e) => {
-                        e.currentTarget.src = "/placeholder.svg";
-                      }}
-                      className="w-40 h-40 sm:w-52 sm:h-52 md:w-72 md:h-72 object-contain"
-                    />
+                  <div className="relative flex items-center gap-6 md:gap-10">
+                    <div className="flex flex-col items-center">
+                      <div className="bg-white p-5 md:p-8 rounded-full shadow-2xl border border-border">
+                        <img
+                          src={fcmbLogo}
+                          alt="Florida Certified Master Builder"
+                          loading="lazy"
+                          decoding="async"
+                          onError={(e) => { e.currentTarget.src = "/placeholder.svg"; }}
+                          className="w-32 h-32 sm:w-40 sm:h-40 md:w-52 md:h-52 object-contain"
+                        />
+                      </div>
+                      <span className="mt-4 font-sans text-[9px] md:text-[10px] tracking-[0.22em] uppercase text-muted-foreground text-center max-w-[140px] leading-snug">
+                        Florida Certified Master Builder
+                      </span>
+                    </div>
+                    <div className="flex flex-col items-center">
+                      <div className="bg-white p-5 md:p-8 shadow-2xl border border-border">
+                        <img
+                          src={nahbBadge.url}
+                          alt="NAHB Certified Master Building Professional"
+                          loading="lazy"
+                          decoding="async"
+                          className="w-32 h-32 sm:w-40 sm:h-40 md:w-52 md:h-52 object-contain"
+                        />
+                      </div>
+                      <span className="mt-4 font-sans text-[9px] md:text-[10px] tracking-[0.22em] uppercase text-muted-foreground text-center max-w-[140px] leading-snug">
+                        NAHB Certified Master Building Professional
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>

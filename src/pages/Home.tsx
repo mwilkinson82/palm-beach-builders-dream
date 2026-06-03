@@ -18,6 +18,7 @@ import logoSketch from "@/assets/beau-monde-logo-sketch.jpeg";
 import renovationHero from "@/assets/projects/renovation-hero.jpg.asset.json";
 import bespokePortrait from "@/assets/projects/bespoke-portrait.jpg.asset.json";
 import bespokeDetail from "@/assets/projects/bespoke-detail.jpg.asset.json";
+import nahbBadge from "@/assets/nahb-master-building-professional.jpg.asset.json";
 
 const EMBLEM_MEANINGS = [
   {
@@ -524,28 +525,48 @@ const Home = () => {
                 <span className="h-px flex-1 bg-accent/30" />
               </div>
 
-              {/* FCMB block */}
+              {/* Certifications block — FCMB + NAHB paired */}
               <div className="grid grid-cols-1 sm:grid-cols-12 gap-8 items-start">
-                <RevealAnimation animation="scale-in" className="sm:col-span-4">
+                <RevealAnimation animation="scale-in" className="sm:col-span-5">
                   <Parallax speed={0.06}>
-                    <img
-                      src={fcmbLogo}
-                      alt="Florida Certified Master Builder"
-                      className="w-full max-w-[200px] mx-auto sm:mx-0 h-auto object-contain"
-                    />
+                    <div className="flex items-center justify-center sm:justify-start gap-6 md:gap-8">
+                      <div className="flex flex-col items-center">
+                        <img
+                          src={fcmbLogo}
+                          alt="Florida Certified Master Builder"
+                          className="h-24 md:h-28 w-auto object-contain"
+                          loading="lazy"
+                        />
+                        <span className="mt-3 font-sans text-[9px] tracking-[0.22em] uppercase text-foreground/55 text-center max-w-[140px] leading-snug">
+                          Florida Certified Master Builder
+                        </span>
+                      </div>
+                      <div aria-hidden className="hidden md:block w-px h-20 bg-accent/30" />
+                      <div className="flex flex-col items-center">
+                        <img
+                          src={nahbBadge.url}
+                          alt="NAHB Certified Master Building Professional"
+                          className="h-24 md:h-28 w-auto object-contain"
+                          loading="lazy"
+                        />
+                        <span className="mt-3 font-sans text-[9px] tracking-[0.22em] uppercase text-foreground/55 text-center max-w-[140px] leading-snug">
+                          NAHB Certified Master Building Professional
+                        </span>
+                      </div>
+                    </div>
                   </Parallax>
                 </RevealAnimation>
 
-                <div className="sm:col-span-8">
+                <div className="sm:col-span-7">
                   <RevealAnimation animation="luxury-reveal" delay={120}>
                     <h3 className="font-display text-2xl md:text-3xl font-light leading-[1.1] mb-4 tracking-tight">
-                      Florida Certified Master Builder — <span className="italic">held by the few.</span>
+                      Certifications <span className="italic">held by the few.</span>
                     </h3>
                   </RevealAnimation>
                   <RevealAnimation animation="fade-up" delay={220}>
                     <p className="font-sans font-light text-[15px] leading-relaxed text-foreground/80 mb-6">
-                      A voluntary credential awarded only to Florida builders with the experience, ethics, and record to
-                      back it — the pinnacle of construction excellence in the state.
+                      Voluntary credentials awarded only to builders with the experience, ethics, and record to back
+                      them — the FCMB the pinnacle in Florida, the NAHB Master designation the national benchmark.
                     </p>
                   </RevealAnimation>
                   <RevealAnimation animation="fade-up" delay={320}>
