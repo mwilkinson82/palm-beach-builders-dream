@@ -1,31 +1,57 @@
 ## Goal
 
-Turn the Renovations section on the Home page into a single large cinematic image of the attached marble-kitchen interior, with the headline overlaid and a quiet "Beau Monde" wordmark in the bottom-right corner — section-scale, not a card.
+Transform the right column of the "Bespoke Luxury Redefined" block on the Home page into an editorial diptych — the pink-scarf portrait as the dominant image, paired with a small offset architectural detail behind/below. Reads as *the client × the home* — the life and the place built for it.
 
-## Changes — `src/pages/Home.tsx`, Renovations section (lines ~211–341)
+## Layout — `src/pages/Home.tsx` (band 1, lines ~169–184)
 
-**Keep**
-- The navy announcement strip at the top ("New · 2026 · Beau Monde is now offering · Renovations.").
-- The "Three commitments — applied to renovations" grid below the hero (Discretion / Continuity / Same Standard). It's strong content and works as a follow-through.
+Replace the single 4/5 home photo on the right with a layered pair:
 
-**Replace** the editorial image/headline pair (lines ~233–285) with a full-bleed hero:
-- Full viewport-width image of the new uploaded interior, locked to a cinematic 21:9 (`aspect-[21/9]`) on desktop, 4/5 on mobile so it doesn't squash. Uses `object-cover` and `object-center`.
-- Subtle navy gradient overlay (`bg-gradient-to-tr from-primary/75 via-primary/30 to-transparent`) — anchored bottom-left so the headline reads cleanly, the right-side palms/ocean stay visible.
-- A thin brass hairline frame inside the image edge (top/bottom only, `inset-x-12 top/bottom-6 h-px bg-accent/40`) to read as engraved frame, not a stock photo.
-- Headline overlay, bottom-left, padded generously: small brass eyebrow "A New Beau Monde Offering" → `font-display` "Renovations at the same standard." (one line on desktop, breaks at "at the" on mobile, italic on "same standard") → "Explore Renovations" navy button with brass border.
-- "Beau Monde" wordmark in `font-wordmark`, bottom-right of the image, in ivory at 50% opacity — small, no link, no underline. Pure signature.
+```text
+       ┌─────────────────────────────┐
+       │                             │
+       │                             │
+       │      PORTRAIT (3/4)         │
+       │      dominant, front        │
+       │                             │
+       │                             │
+       │         ┌──────────────────┐│
+       │         │  ARCHITECTURAL   ││
+       └─────────│  DETAIL          ││
+                 │  (smaller, offset)│
+                 └──────────────────┘
+       ↑ "Turning blueprints to fingerprints" caption stays, repositioned bottom-left of portrait
+```
 
-**Asset handling**
-- Upload the user's attached image via `lovable-assets create --file /mnt/user-uploads/ChatGPT_Image_Jun_2_2026_10_06_50_PM.png --filename renovation-hero.jpg` → write `src/assets/projects/renovation-hero.jpg.asset.json`.
-- Import that asset, drop the old `renovationImage` import (and check no other file uses it — if it does, leave the old asset alone).
+- **Portrait**: full width of the right column, `aspect-[3/4]`, hard right-aligned. Subtle navy shadow (matches current treatment). Brass hairline frame inset on the bottom-right edge only (engraved corner mark), `cinema-hairline` style.
+- **Detail**: ~55% width of the column, `aspect-[4/5]`, absolutely positioned bottom-left, overlapping the portrait by ~15% on the left/bottom (`-bottom-12 -left-12`). Sits *in front* of the portrait so the eye reads detail → portrait → headline. Same shadow language, lighter weight.
+- **Caption**: the existing "Turning blueprints to fingerprints" tag stays in this section but moves to the top-right of the portrait (out of the way of the detail image), still on ivory with a brass border.
+- **Parallax**: portrait gets `speed={0.08}` (current), detail gets `speed={-0.04}` so they drift opposite directions on scroll — subtle, editorial.
+- **Reveal**: portrait `scale-in` at `delay=200` (current), detail `fade-up` at `delay=420` so the detail settles in after the portrait.
+
+## Mobile (`<lg`)
+
+- Stack vertically below the headline column (as today). Portrait first, detail below offset right by ~40% (no absolute overlap — keeps it readable on small screens). Caption hides on mobile (already does).
+
+## Asset handling
+
+- The user is providing a second image (architectural detail). Once attached, upload via `lovable-assets create --file /mnt/user-uploads/<filename> --filename bespoke-detail.jpg > src/assets/projects/bespoke-detail.jpg.asset.json`.
+- The portrait gets uploaded via `lovable-assets create --file /mnt/user-uploads/Woman.jpeg --filename bespoke-portrait.jpg > src/assets/projects/bespoke-portrait.jpg.asset.json`.
+- Existing `heroImage` import in this block gets removed (no other file uses it for this block).
 
 ## Out of scope
-- No changes to the navy announcement strip text.
-- No changes to the three-commitments grid.
-- No changes to the /renovations page itself.
-- No new animations beyond the existing RevealAnimation wrappers; the image gets a slow parallax (`Parallax speed={0.05}`).
+
+- No changes to the headline, body copy, CTAs, or star-rating row.
+- No changes to the Stats band below.
+- No new sections or pages.
+- The portrait is *not* used elsewhere on the site — single editorial moment.
 
 ## Technical notes
-- Section becomes `relative w-full` and the hero is wrapped in a `relative w-full` div that spans the full section width (not constrained by `max-w-6xl`). Three commitments grid stays inside the existing `max-w-6xl` container, placed in its own wrapper below the hero.
-- Mobile: stack the headline above the wordmark; wordmark moves to bottom-center on `<md`. Headline scales `text-3xl → md:text-5xl → lg:text-6xl`.
-- Brand discipline check: navy CTA (not brass), brass only as eyebrow + hairline frame + button border, `font-display` italic on the headline, `font-wordmark` only on "Beau Monde" signature.
+
+- Right column wrapper becomes `relative` so the detail can position absolutely against the portrait.
+- Detail's overlap uses negative offsets only at `lg:` breakpoint; mobile uses a normal stacked flow.
+- Brand discipline: no brass overlays on the portrait beyond the hairline mark; navy shadows only; no text overlaid on either image.
+- Will use the existing `cinema-hairline` + `.revealed` system from the Renovations hero for the corner mark.
+
+## What I need from you
+
+Drop the architectural detail photo into the next message (the interior/detail shot you mentioned). I'll upload both images and ship the layout in one pass.
