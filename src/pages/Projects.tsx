@@ -642,6 +642,7 @@ const FlipBookView = () => {
   const bookRef = useRef<any>(null);
   const [vp, setVp] = useState({ w: 1200, h: 800, portrait: false, ready: false });
   const [page, setPage] = useState(0);
+  const [lastViewedStyle, setLastViewedStyle] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     const recompute = () => {
@@ -654,15 +655,25 @@ const FlipBookView = () => {
     return () => window.removeEventListener("resize", recompute);
   }, []);
 
-  const totalPages = STYLES.length + 3; // front cover + title + idioms + yours
+  const totalPages = STYLES.length + 4; // front cover + title + idioms + yours + inquiry
 
   const visibleSet = useMemo(() => {
     if (vp.portrait) return new Set([page]);
-    // Pages now: 0 = front cover (left), 1 = title (right), 2+ = styles, last = yours.
-    // Pairs: 0+1, 2+3, 4+5, …
+    // Pages: 0 = front cover, 1 = title, 2..11 = styles, 12 = yours, 13 = inquiry.
+    // Pairs: 0+1, 2+3, 4+5, …, 12+13.
     const left = page % 2 === 0 ? page : page - 1;
     return new Set([left, left + 1]);
   }, [page, vp.portrait]);
+
+  // Track which style the visitor last lingered on, to pre-fill the inquiry form.
+  const handleFlip = (e: any) => {
+    const p = e.data as number;
+    setPage(p);
+    // Style pages are 2..STYLES.length + 1
+    if (p >= 2 && p < STYLES.length + 2) {
+      setLastViewedStyle(STYLES[p - 2].name);
+    }
+  };
 
   const handleRestart = () => {
     bookRef.current?.pageFlip?.()?.turnToPage(0);
@@ -707,7 +718,7 @@ const FlipBookView = () => {
           className="bm-flipbook"
           style={{}}
           startPage={0}
-          onFlip={(e: any) => setPage(e.data)}
+          onFlip={handleFlip}
         >
           <Page visible={visibleSet.has(0)} hardCover>
             <FrontCover />
@@ -722,6 +733,9 @@ const FlipBookView = () => {
           ))}
           <Page visible={visibleSet.has(STYLES.length + 2)} hardCover>
             <YoursPlate onRestart={handleRestart} />
+          </Page>
+          <Page visible={visibleSet.has(STYLES.length + 3)} hardCover>
+            <InquiryPlate defaultStyle={lastViewedStyle} />
           </Page>
         </Book>
         )}
