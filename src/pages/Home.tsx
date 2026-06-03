@@ -18,7 +18,7 @@ import logoSketch from "@/assets/beau-monde-logo-sketch.jpeg";
 import renovationHero from "@/assets/projects/renovation-hero.jpg.asset.json";
 import bespokePortrait from "@/assets/projects/bespoke-portrait.jpg.asset.json";
 import bespokeDetail from "@/assets/projects/bespoke-detail.jpg.asset.json";
-import nahbBadge from "@/assets/nahb-master-building-professional.jpg.asset.json";
+import nahbBadge from "@/assets/nahb-master-building-professional.png.asset.json";
 
 const EMBLEM_MEANINGS = [
   {
