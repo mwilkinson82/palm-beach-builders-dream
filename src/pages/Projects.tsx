@@ -13,6 +13,7 @@ import classicEstate from "@/assets/projects/classic-estate.jpg";
 import bermudaColonial from "@/assets/projects/bermuda-colonial.jpg.asset.json";
 import angloCaribbean from "@/assets/projects/anglo-caribbean.jpg.asset.json";
 import transitional from "@/assets/projects/transitional.jpg.asset.json";
+import regencyGeorgian from "@/assets/projects/regency-georgian.jpg.asset.json";
 
 type Style = {
   name: string;
@@ -79,6 +80,7 @@ const STYLES: Style[] = [
     name: "Regency / Georgian",
     descriptor:
       "Symmetry, fanlights, refined townhouse vocabulary in the Mizner lineage.",
+    image: regencyGeorgian.url,
   },
 ];
 
