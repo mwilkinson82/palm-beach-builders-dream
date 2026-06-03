@@ -7,6 +7,19 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { SEO, BreadcrumbSchema } from "@/components/SEO";
 import { Helmet } from "react-helmet-async";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
 import oceanfront from "@/assets/projects/oceanfront.jpg.asset.json";
 import urbanClassical from "@/assets/projects/urban-classical.jpg.asset.json";
 import waterfrontContemporary from "@/assets/projects/waterfront-contemporary.jpg.asset.json";
