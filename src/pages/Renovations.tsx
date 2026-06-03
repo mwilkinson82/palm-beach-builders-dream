@@ -388,46 +388,60 @@ const Renovations = () => {
           </div>
         </section>
 
-        {/* Services — editorial list */}
+        {/* Scope of work — services ledger */}
         <section className="py-20 md:py-28 border-t border-accent/15">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <RevealAnimation animation="fade-up">
-              <div className="max-w-3xl mb-16 md:mb-20">
-                <div className="flex items-center space-x-3 mb-6">
-                  <div className="h-px w-10 bg-accent" />
-                  <span className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans font-light">
-                    Full-Service Renovations
-                  </span>
+              <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-16">
+                <div>
+                  <div className="flex items-center space-x-3 mb-5">
+                    <div className="h-px w-10 bg-accent" />
+                    <span className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans font-light">
+                      Scope of Work
+                    </span>
+                  </div>
+                  <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-primary leading-[1.05]">
+                    Six disciplines.
+                    <br />
+                    <span className="italic text-muted-foreground">One standard.</span>
+                  </h2>
                 </div>
-                <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-primary leading-[1.1]">
-                  A complete
-                  <br />
-                  <span className="italic text-muted-foreground">range of work.</span>
-                </h2>
+                <p className="font-sans font-light text-sm md:text-base text-muted-foreground max-w-xs leading-relaxed md:text-right">
+                  Every project, every trade — held to the same Master Builder bar.
+                </p>
               </div>
             </RevealAnimation>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16">
               {services.map((service, index) => (
                 <RevealAnimation
                   key={service.title}
                   animation="fade-up"
                   delay={(index % 2) * 100}
                 >
-                  <article className="group py-10 border-t border-accent/15">
-                    <div className="flex items-baseline gap-6 mb-5">
-                      <span className="font-sans font-light text-[10px] tracking-[0.4em] text-accent">
+                  <article className="group relative py-7 md:py-8 border-t border-accent/15 cursor-default">
+                    <div className="flex items-baseline gap-6">
+                      <span className="font-sans font-light text-[10px] tracking-[0.4em] text-accent shrink-0">
                         {String(index + 1).padStart(2, "0")}
                       </span>
-                      <h3 className="font-display text-2xl md:text-3xl text-primary leading-snug">
-                        {service.title}
-                      </h3>
-                    </div>
-                    <p className="font-sans font-light text-base text-muted-foreground leading-relaxed mb-5">
-                      {service.description}
-                    </p>
-                    <div className="font-sans font-light text-[11px] uppercase tracking-[0.25em] text-primary/60">
-                      {service.keywords.join(" · ")}
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-display text-2xl md:text-[28px] text-primary leading-snug">
+                          <span className="relative inline">
+                            {service.title}
+                            <span className="pointer-events-none absolute -bottom-1 left-0 h-px w-0 bg-accent transition-all duration-500 group-hover:w-full" />
+                          </span>
+                        </h3>
+                        <p className="mt-1.5 font-sans font-light text-[13px] md:text-sm text-muted-foreground leading-snug">
+                          {service.description}
+                        </p>
+                        <div className="grid transition-all duration-500 ease-out grid-rows-[0fr] group-hover:grid-rows-[1fr] opacity-0 group-hover:opacity-100">
+                          <div className="overflow-hidden">
+                            <div className="pt-3 font-sans font-light text-[10px] uppercase tracking-[0.3em] text-primary/55">
+                              {service.keywords.join(" · ")}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </article>
                 </RevealAnimation>
@@ -436,85 +450,71 @@ const Renovations = () => {
           </div>
         </section>
 
-        {/* Condo expertise — single navy band */}
-        <section className="py-20 md:py-28 bg-primary text-primary-foreground">
+        {/* Craft-detail photo bridge */}
+        <section className="relative">
+          <CinematicReveal className="w-full" startScale={1.08} duration={1400}>
+            <figure className="relative w-full overflow-hidden">
+              <img
+                src={renovationDetail.url}
+                alt="Hand-honed Calacatta marble and custom millwork by Beau Monde Builders"
+                className="w-full h-[28vh] md:h-[36vh] object-cover"
+                loading="lazy"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background/40 via-transparent to-transparent" />
+              <figcaption className="absolute top-6 left-4 sm:left-8 lg:left-16 flex items-center space-x-3 text-primary/85">
+                <div className="h-px w-8 md:w-12 bg-accent" />
+                <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] font-sans font-light">
+                  Craft in the details
+                </span>
+              </figcaption>
+            </figure>
+          </CinematicReveal>
+        </section>
+
+        {/* Condo expertise — slim navy strip */}
+        <section className="py-16 md:py-20 bg-primary text-primary-foreground">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-              <RevealAnimation animation="fade-up">
-                <div className="flex items-center space-x-3 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12">
+              <RevealAnimation animation="fade-up" className="md:col-span-5">
+                <div className="flex items-center space-x-3 mb-5">
                   <div className="h-px w-10 bg-accent" />
                   <span className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans font-light">
                     Condo Expertise
                   </span>
                 </div>
-                <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-primary-foreground leading-[1.1] mb-8">
-                  Palm Beach's premier
+                <h2 className="font-display text-3xl md:text-4xl text-primary-foreground leading-[1.05] mb-6">
+                  Built for Palm Beach's
                   <br />
-                  <span className="italic text-primary-foreground/70">condo specialists.</span>
+                  <span className="italic text-primary-foreground/70">towers.</span>
                 </h2>
-                <p className="font-sans font-light text-base md:text-lg text-primary-foreground/70 leading-relaxed mb-10 max-w-xl">
-                  Renovating in a luxury condominium asks for a specific kind of expertise. We
-                  understand building regulations, work seamlessly with associations, and manage
-                  the logistics of high-rise construction without ever compromising the standard.
+                <p className="font-sans font-light text-sm md:text-base text-primary-foreground/70 leading-relaxed">
+                  HOA navigation · Building management · Schedule compliance · Logistics ·
+                  Neighbor-conscious build.
                 </p>
+              </RevealAnimation>
 
-                <ul className="space-y-0">
-                  {hoaCapabilities.map((item) => (
-                    <li
-                      key={item}
-                      className="py-4 border-t border-primary-foreground/10 font-sans font-light text-base text-primary-foreground/80"
-                    >
-                      {item}
-                    </li>
+              <RevealAnimation animation="fade-up" delay={120} className="md:col-span-4">
+                <div className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans font-light mb-4">
+                  Property Types
+                </div>
+                <ul className="grid grid-cols-2 gap-y-1.5 font-sans font-light text-sm text-primary-foreground/85">
+                  {propertyTypes.map((p) => (
+                    <li key={p}>{p}</li>
                   ))}
                 </ul>
               </RevealAnimation>
 
-              <RevealAnimation animation="fade-up" delay={150}>
-                <div className="border border-accent/25 p-10 md:p-12 space-y-10">
-                  <div>
-                    <div className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans font-light mb-5">
-                      Property Types
-                    </div>
-                    <ul className="grid grid-cols-2 gap-y-2 font-sans font-light text-sm text-primary-foreground/85">
-                      {propertyTypes.map((p) => (
-                        <li key={p}>{p}</li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="border-t border-primary-foreground/10 pt-10">
-                    <div className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans font-light mb-5">
-                      Areas We Serve
-                    </div>
-                    <ul className="grid grid-cols-2 gap-y-2 font-sans font-light text-sm text-primary-foreground/85">
-                      {areasServed.map((a) => (
-                        <li key={a}>{a}</li>
-                      ))}
-                    </ul>
-                    <div className="font-sans font-light italic text-xs text-primary-foreground/50 mt-3">
-                      And surrounding areas.
-                    </div>
-                  </div>
-
-                  <div className="border-t border-primary-foreground/10 pt-10">
-                    <div className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans font-light mb-5">
-                      Our Process
-                    </div>
-                    <ol className="space-y-3">
-                      {processSteps.map((step, i) => (
-                        <li
-                          key={step}
-                          className="flex items-baseline gap-4 font-sans font-light text-sm text-primary-foreground/85"
-                        >
-                          <span className="text-accent text-[10px] tracking-[0.3em]">
-                            0{i + 1}
-                          </span>
-                          <span>{step}</span>
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
+              <RevealAnimation animation="fade-up" delay={200} className="md:col-span-3">
+                <div className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans font-light mb-4">
+                  Areas Served
+                </div>
+                <ul className="grid grid-cols-1 gap-y-1.5 font-sans font-light text-sm text-primary-foreground/85">
+                  {areasServed.map((a) => (
+                    <li key={a}>{a}</li>
+                  ))}
+                </ul>
+                <div className="font-sans font-light italic text-[11px] text-primary-foreground/50 mt-3">
+                  And surrounding areas.
                 </div>
               </RevealAnimation>
             </div>
