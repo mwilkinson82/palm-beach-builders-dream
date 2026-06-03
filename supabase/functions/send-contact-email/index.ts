@@ -11,10 +11,12 @@ const corsHeaders = {
 
 interface ContactEmailRequest {
   firstName: string;
-  lastName: string;
+  lastName?: string;
   email: string;
   phone?: string;
-  message: string;
+  message?: string;
+  style?: string;
+  source?: string;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -24,10 +26,19 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { firstName, lastName, email, phone, message }: ContactEmailRequest = await req.json();
+    const {
+      firstName,
+      lastName = "",
+      email,
+      phone,
+      message = "",
+      style,
+      source,
+    }: ContactEmailRequest = await req.json();
 
-    // Validate required fields
-    if (!firstName || !lastName || !email || !message) {
+    // Validate required fields. Style Book inquiries don't require lastName or message.
+    const isStyleBook = source === "style-book";
+    if (!firstName || !email || (!isStyleBook && (!lastName || !message))) {
       return new Response(
         JSON.stringify({ error: "Missing required fields" }),
         {
@@ -37,31 +48,40 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    console.log("Sending contact form email for:", firstName, lastName, email);
+    const fullName = `${firstName}${lastName ? " " + lastName : ""}`.trim();
+    console.log("Sending contact form email for:", fullName, email, "source:", source);
 
     // Send notification email to the team
     const teamEmailResponse = await resend.emails.send({
       from: "Beau Monde Builders <onboarding@resend.dev>",
       to: ["wilkinson.marshall@gmail.com"],
-      subject: `New Contact Form Submission from ${firstName} ${lastName}`,
+      subject: isStyleBook
+        ? `Style Book Inquiry — ${style ?? "Unspecified"} — ${fullName}`
+        : `New Contact Form Submission from ${fullName}`,
       html: `
         <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 40px 20px;">
-          <h1 style="color: #B8860B; font-weight: 300; font-size: 28px; margin-bottom: 30px;">New Contact Form Submission</h1>
-          
+          <h1 style="color: #B8860B; font-weight: 300; font-size: 28px; margin-bottom: 30px;">${isStyleBook ? "Style Book Inquiry" : "New Contact Form Submission"}</h1>
+
+          ${isStyleBook && style ? `
+          <div style="background: #f4efe4; padding: 24px 30px; margin-bottom: 20px; border-left: 3px solid #B8860B;">
+            <p style="margin: 0; color: #555; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">Style of Interest</p>
+            <p style="margin: 8px 0 0; color: #0f2a3d; font-size: 22px;">${style}</p>
+          </div>` : ""}
+
           <div style="background: #f9f9f9; padding: 30px; margin-bottom: 30px;">
             <h2 style="color: #333; font-size: 18px; margin-bottom: 20px;">Contact Details</h2>
-            <p style="margin: 10px 0; color: #555;"><strong>Name:</strong> ${firstName} ${lastName}</p>
+            <p style="margin: 10px 0; color: #555;"><strong>Name:</strong> ${fullName}</p>
             <p style="margin: 10px 0; color: #555;"><strong>Email:</strong> <a href="mailto:${email}" style="color: #B8860B;">${email}</a></p>
             ${phone ? `<p style="margin: 10px 0; color: #555;"><strong>Phone:</strong> <a href="tel:${phone}" style="color: #B8860B;">${phone}</a></p>` : ''}
           </div>
-          
-          <div style="background: #f9f9f9; padding: 30px;">
+
+          ${message ? `<div style="background: #f9f9f9; padding: 30px;">
             <h2 style="color: #333; font-size: 18px; margin-bottom: 20px;">Message</h2>
             <p style="color: #555; line-height: 1.6; white-space: pre-wrap;">${message}</p>
-          </div>
-          
+          </div>` : ""}
+
           <p style="color: #999; font-size: 12px; margin-top: 30px; text-align: center;">
-            This email was sent from the Beau Monde Builders contact form.
+            This email was sent from the Beau Monde Builders ${isStyleBook ? "Style Book" : "contact form"}.
           </p>
         </div>
       `,
@@ -73,15 +93,19 @@ const handler = async (req: Request): Promise<Response> => {
     const userEmailResponse = await resend.emails.send({
       from: "Beau Monde Builders <onboarding@resend.dev>",
       to: [email],
-      subject: "Thank You for Contacting Beau Monde Builders",
+      subject: isStyleBook
+        ? "Thank You — Your Style Book Inquiry"
+        : "Thank You for Contacting Beau Monde Builders",
       html: `
         <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 40px 20px;">
           <h1 style="color: #B8860B; font-weight: 300; font-size: 28px; margin-bottom: 30px;">Thank You, ${firstName}</h1>
-          
+
           <p style="color: #555; line-height: 1.8; font-size: 16px;">
-            We have received your message and appreciate you reaching out to Beau Monde Builders.
+            ${isStyleBook && style
+              ? `We've noted your interest in <strong>${style}</strong> and appreciate you reaching out to Beau Monde Builders.`
+              : "We have received your message and appreciate you reaching out to Beau Monde Builders."}
           </p>
-          
+
           <p style="color: #555; line-height: 1.8; font-size: 16px;">
             Our team will review your inquiry and respond within 24 hours to schedule your private consultation.
           </p>
