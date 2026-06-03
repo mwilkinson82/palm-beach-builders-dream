@@ -22,7 +22,6 @@ import nahbBadge from "@/assets/nahb-master-building-professional.png.asset.json
 import featuredResidence from "@/assets/constellation/c64.jpg.asset.json";
 import bento02 from "@/assets/constellation/c52.jpg.asset.json";
 import bento03 from "@/assets/constellation/c54.jpg.asset.json";
-import bento04 from "@/assets/constellation/c63.jpg.asset.json";
 import bento05 from "@/assets/constellation/c66.jpg.asset.json";
 
 const EMBLEM_MEANINGS = [
@@ -145,9 +144,9 @@ const Home = () => {
         {/* Bento mosaic — 4 photos, asymmetric editorial grid */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 mt-12 md:mt-16">
           <RevealAnimation animation="fade-up" delay={160}>
-            <div className="grid grid-cols-12 grid-rows-2 gap-3 md:gap-4 h-[70vh] min-h-[560px] max-h-[760px]">
-              {/* Anchor — tall left */}
-              <figure className="col-span-12 md:col-span-7 row-span-2 relative overflow-hidden ring-1 ring-accent/30 shadow-[0_30px_60px_-25px_rgba(15,42,61,0.45)] group bg-primary hidden md:block">
+            <div className="grid grid-cols-12 gap-3 md:gap-4 md:grid-rows-2 md:h-[70vh] md:min-h-[560px] md:max-h-[760px]">
+              {/* Anchor — tall left on desktop, top on mobile */}
+              <figure className="col-span-12 md:col-span-7 md:row-span-2 relative overflow-hidden ring-1 ring-accent/30 shadow-[0_30px_60px_-25px_rgba(15,42,61,0.45)] group bg-primary aspect-[4/3] md:aspect-auto">
                 <img
                   src={featuredResidence.url}
                   alt="The Shores at Tranquility — a Beau Monde newly completed residence"
@@ -159,20 +158,16 @@ const Home = () => {
                   <span className="font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase">Elevation · East</span>
                 </figcaption>
               </figure>
-              {/* Mobile-only anchor */}
-              <figure className="col-span-12 row-span-1 relative overflow-hidden ring-1 ring-accent/30 bg-primary md:hidden aspect-[4/3]">
-                <img src={featuredResidence.url} alt="The Shores at Tranquility — a Beau Monde newly completed residence" loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
-              </figure>
 
-              <figure className="col-span-12 md:col-span-5 row-span-1 relative overflow-hidden ring-1 ring-accent/30 group bg-primary aspect-[16/9] md:aspect-auto">
+              <figure className="col-span-12 md:col-span-5 relative overflow-hidden ring-1 ring-accent/30 group bg-primary aspect-[16/10] md:aspect-auto">
                 <img src={bento02.url} alt="Interior detail" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.03]" />
               </figure>
 
-              <figure className="col-span-6 md:col-span-3 row-span-1 relative overflow-hidden ring-1 ring-accent/30 group bg-primary aspect-square md:aspect-auto">
+              <figure className="col-span-6 md:col-span-3 relative overflow-hidden ring-1 ring-accent/30 group bg-primary aspect-square md:aspect-auto">
                 <img src={bento03.url} alt="Architectural detail" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.03]" />
               </figure>
 
-              <figure className="col-span-6 md:col-span-2 row-span-1 relative overflow-hidden ring-1 ring-accent/30 group bg-primary aspect-square md:aspect-auto">
+              <figure className="col-span-6 md:col-span-2 relative overflow-hidden ring-1 ring-accent/30 group bg-primary aspect-square md:aspect-auto">
                 <img src={bento05.url} alt="Finish detail" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.03]" />
               </figure>
             </div>
