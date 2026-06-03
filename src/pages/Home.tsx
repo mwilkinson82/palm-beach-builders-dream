@@ -229,37 +229,37 @@ const Home = () => {
         </RevealAnimation>
 
         {/* Full-bleed cinematic hero */}
-        <RevealAnimation animation="fade-up">
+        <RevealAnimation animation="fade-in">
           <div className="relative w-full overflow-hidden">
-            <div className="relative w-full aspect-[4/5] md:aspect-[3/2] lg:aspect-[16/9] xl:aspect-[2/1] min-h-[600px] md:min-h-[720px] lg:min-h-[820px]">
+            <div className="relative w-full aspect-[4/5] md:aspect-[3/2] lg:aspect-[16/9] xl:aspect-[2/1] min-h-[600px] md:min-h-[720px] lg:min-h-[820px] overflow-hidden">
               <img
                 src={renovationHero.url}
                 alt="Beau Monde Builders renovation — interior with marble kitchen, brass lanterns, and ocean view"
-                className="absolute inset-0 w-full h-full object-cover object-center"
+                className="cinema-image absolute inset-0 w-full h-full object-cover object-center"
                 loading="lazy"
               />
               {/* Navy gradient — anchored bottom-left for headline legibility */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/80 via-primary/35 to-transparent pointer-events-none" />
+              <div className="cinema-veil absolute inset-0 bg-gradient-to-tr from-primary/80 via-primary/35 to-transparent pointer-events-none" />
               {/* Brass hairline frame — top & bottom only */}
-              <div className="absolute left-6 right-6 md:left-12 md:right-12 top-6 h-px bg-accent/40 pointer-events-none" />
-              <div className="absolute left-6 right-6 md:left-12 md:right-12 bottom-6 h-px bg-accent/40 pointer-events-none" />
+              <div className="cinema-hairline absolute left-6 right-6 md:left-12 md:right-12 top-6 h-px bg-accent/40 pointer-events-none" />
+              <div className="cinema-hairline absolute left-6 right-6 md:left-12 md:right-12 bottom-6 h-px bg-accent/40 pointer-events-none" />
 
               {/* Headline overlay — bottom-left */}
               <div className="absolute inset-0 flex flex-col justify-end p-8 sm:p-12 md:p-16 lg:p-20">
                 <div className="max-w-3xl">
-                  <RevealAnimation animation="fade-up" delay={120}>
+                  <RevealAnimation animation="fade-up" delay={450}>
                     <span className="block font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase text-accent mb-5 md:mb-6">
                       A New Beau Monde Offering
                     </span>
                   </RevealAnimation>
-                  <RevealAnimation animation="luxury-reveal" delay={200}>
+                  <RevealAnimation animation="luxury-reveal" delay={650}>
                     <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] tracking-tight text-primary-foreground mb-8 md:mb-10">
                       Renovations <span className="hidden md:inline">at the </span>
                       <span className="md:hidden"><br />at the </span>
                       <span className="italic">same standard.</span>
                     </h2>
                   </RevealAnimation>
-                  <RevealAnimation animation="fade-up" delay={320}>
+                  <RevealAnimation animation="fade-up" delay={950}>
                     <Button
                       size="lg"
                       className="group bg-primary text-primary-foreground hover:bg-primary/90 border border-accent/60 hover:border-accent font-sans text-[11px] uppercase tracking-[0.15em] font-semibold rounded-none px-8 md:px-10 py-4"

@@ -183,6 +183,43 @@ All colors MUST be HSL.
   filter: blur(0);
 }
 
+/* Cinematic hero — slow Ken Burns + hairline draw, triggered by ancestor .revealed */
+.cinema-image {
+  transform: scale(1.08);
+  transition: transform 2400ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+.revealed .cinema-image {
+  transform: scale(1);
+}
+.cinema-veil {
+  opacity: 0;
+  transition: opacity 1800ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 200ms;
+}
+.revealed .cinema-veil {
+  opacity: 1;
+}
+.cinema-hairline {
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 1600ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: 500ms;
+  will-change: transform;
+}
+.revealed .cinema-hairline {
+  transform: scaleX(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinema-image,
+  .cinema-veil,
+  .cinema-hairline {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
 /* Editorial parallax for oversized background letters (Home dense editorial) */
 @keyframes editorial-parallax {
   from { transform: translateY(3rem); }
