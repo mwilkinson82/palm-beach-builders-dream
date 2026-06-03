@@ -305,14 +305,14 @@ const Book = HTMLFlipBook as unknown as React.ForwardRefExoticComponent<any>;
 
 const FlipBookView = () => {
   const bookRef = useRef<any>(null);
-  const [vp, setVp] = useState({ w: 1200, h: 800, portrait: false });
+  const [vp, setVp] = useState({ w: 1200, h: 800, portrait: false, ready: false });
   const [page, setPage] = useState(0);
 
   useEffect(() => {
     const recompute = () => {
       const w = window.innerWidth;
       const h = window.innerHeight;
-      setVp({ w, h, portrait: w < 1024 });
+      setVp({ w, h, portrait: w < 1024, ready: true });
     };
     recompute();
     window.addEventListener("resize", recompute);
@@ -334,22 +334,36 @@ const FlipBookView = () => {
     bookRef.current?.pageFlip?.()?.turnToPage(0);
   };
 
-  // base ratio ~ 3:4 portrait page
-  const baseW = 600;
-  const baseH = 820;
+  // Compute concrete page dimensions to fit below the nav.
+  // Desktop spread shows 2 pages side-by-side; mobile shows one.
+  const navH = 96; // 24 * 4
+  const verticalPadding = 48;
+  const availH = Math.max(420, vp.h - navH - verticalPadding);
+  const availW = vp.w - 32;
+  const pageRatio = 0.72; // width / height — slightly taller than 3:4
+  let pageH = availH;
+  let pageW = Math.round(pageH * pageRatio);
+  const spreadW = vp.portrait ? pageW : pageW * 2;
+  if (spreadW > availW) {
+    const scale = availW / spreadW;
+    pageW = Math.round(pageW * scale);
+    pageH = Math.round(pageH * scale);
+  }
 
   return (
     <div className="relative w-full" style={{ height: "calc(100dvh - 6rem)" }}>
       <div className="absolute inset-0 flex items-center justify-center px-2 sm:px-6">
+        {vp.ready && (
         <Book
+          key={`${vp.portrait}-${pageW}-${pageH}`}
           ref={bookRef}
-          width={baseW}
-          height={baseH}
-          size="stretch"
-          minWidth={300}
-          maxWidth={720}
-          minHeight={420}
-          maxHeight={980}
+          width={pageW}
+          height={pageH}
+          size="fixed"
+          minWidth={280}
+          maxWidth={1200}
+          minHeight={400}
+          maxHeight={1600}
           maxShadowOpacity={0.35}
           drawShadow
           showCover
@@ -373,6 +387,7 @@ const FlipBookView = () => {
             <YoursPlate onRestart={handleRestart} />
           </Page>
         </Book>
+        )}
       </div>
 
       {/* Page counter */}
