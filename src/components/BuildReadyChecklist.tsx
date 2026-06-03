@@ -12,6 +12,7 @@ const items = [
 export const BuildReadyChecklist = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [revealed, setRevealed] = useState(false);
+  const [checkedCount, setCheckedCount] = useState(0);
 
   useEffect(() => {
     const el = ref.current;
@@ -30,6 +31,22 @@ export const BuildReadyChecklist = () => {
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
+
+  // Tick the progress counter in sync with each check-mark draw completing.
+  // Each item draws starting at 500 + i*140ms and the SVG stroke takes 700ms.
+  useEffect(() => {
+    if (!revealed) return;
+    const timers: number[] = [];
+    items.forEach((_, i) => {
+      const t = window.setTimeout(() => {
+        setCheckedCount((c) => Math.max(c, i + 1));
+      }, 500 + i * 140 + 700);
+      timers.push(t);
+    });
+    return () => timers.forEach((t) => window.clearTimeout(t));
+  }, [revealed]);
+
+  const progress = (checkedCount / items.length) * 100;
 
   return (
     <div ref={ref} className="relative">
@@ -57,6 +74,46 @@ export const BuildReadyChecklist = () => {
               revealed ? "w-24 opacity-100" : "w-0 opacity-0"
             }`}
           />
+        </div>
+
+        {/* Animated progress rail */}
+        <div className="relative mb-10 md:mb-12">
+          <div className="flex items-baseline justify-between mb-3">
+            <span className="font-sans text-[10px] tracking-[0.4em] uppercase text-accent">
+              Readiness
+            </span>
+            <span className="font-display text-xl md:text-2xl text-primary tabular-nums leading-none">
+              <span className="italic">{String(checkedCount).padStart(2, "0")}</span>
+              <span className="text-muted-foreground/60 mx-1">/</span>
+              <span className="text-muted-foreground/60">{String(items.length).padStart(2, "0")}</span>
+            </span>
+          </div>
+          <div className="relative h-px w-full bg-accent/15 overflow-visible">
+            <div
+              className="absolute inset-y-0 left-0 bg-accent transition-[width] duration-700 ease-out"
+              style={{ width: `${progress}%` }}
+            />
+            <div
+              className="absolute -top-[3px] h-[7px] w-[7px] rounded-full bg-accent shadow-[0_0_0_4px_hsl(var(--background))] transition-[left] duration-700 ease-out"
+              style={{ left: `calc(${progress}% - 3.5px)` }}
+            />
+            {/* Tick marks */}
+            <div className="absolute inset-x-0 -top-1 flex justify-between pointer-events-none">
+              {items.map((_, i) => (
+                <span
+                  key={i}
+                  className={`h-[3px] w-px transition-colors duration-500 ${
+                    i < checkedCount ? "bg-accent" : "bg-accent/30"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="mt-3 font-sans font-light italic text-[11px] text-muted-foreground">
+            {checkedCount < items.length
+              ? "Confirmations in progress…"
+              : "Build-ready. Site mobilization can begin."}
+          </div>
         </div>
 
         {/* Items */}
