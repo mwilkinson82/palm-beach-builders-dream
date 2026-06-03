@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { X, ChevronLeft, ChevronRight, Expand } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { RevealAnimation } from "@/components/RevealAnimation";
 
 import c1 from "@/assets/constellation/c1.jpg.asset.json";
@@ -86,46 +86,64 @@ const PHOTOS: { url: string }[] = [
  */
 export const WalkthroughGallery = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+
+  const handleScroll = () => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    setProgress(max > 0 ? el.scrollLeft / max : 0);
+  };
 
   return (
     <section
       aria-label="Walkthrough photo gallery"
       className="relative bg-primary text-primary-foreground pb-16 md:pb-24 lg:pb-28 -mt-2 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-        <RevealAnimation animation="fade-up" delay={120}>
-          <div className="relative">
+      <RevealAnimation animation="fade-up" delay={120}>
+        <div
+          ref={scrollerRef}
+          onScroll={handleScroll}
+          className="flex gap-px md:gap-[2px] overflow-x-auto snap-x snap-mandatory scroll-px-6 px-6 md:px-10 lg:px-16"
+        >
+          {PHOTOS.map((p, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setOpenIndex(i)}
+              aria-label={`Open photo ${i + 1} of ${PHOTOS.length}`}
+              className="group relative flex-shrink-0 w-56 md:w-64 lg:w-72 aspect-[3/2] bg-black overflow-hidden ring-1 ring-accent/20 hover:ring-accent/70 transition-[box-shadow] duration-500 snap-start"
+            >
+              <img
+                src={p.url}
+                alt=""
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover group-hover:scale-[1.02] transition-transform duration-[900ms] ease-out"
+              />
+              {/* hairline reveal on hover */}
+              <span
+                aria-hidden
+                className="absolute left-0 right-0 bottom-0 h-px bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-500"
+              />
+            </button>
+          ))}
+        </div>
+      </RevealAnimation>
 
-            <div className="flex gap-3 md:gap-4 overflow-x-auto pb-2 snap-x snap-mandatory scroll-px-6 -mx-6 px-6 md:-mx-10 md:px-10 lg:-mx-16 lg:px-16">
-              {PHOTOS.map((p, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => setOpenIndex(i)}
-                  aria-label={`Open photo ${i + 1} of ${PHOTOS.length}`}
-                  className="group relative flex-shrink-0 w-56 md:w-72 lg:w-80 aspect-[3/2] bg-black overflow-hidden border border-primary-foreground/15 hover:border-accent transition-all duration-500 snap-start"
-                >
-                  <img
-                    src={p.url}
-                    alt=""
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="absolute bottom-2 left-2 right-2 flex items-end justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <span className="font-sans uppercase text-[9px] tracking-[0.3em] text-accent">
-                      {String(i + 1).padStart(2, "0")} / {String(PHOTOS.length).padStart(2, "0")}
-                    </span>
-                    <Expand className="h-3.5 w-3.5 text-primary-foreground" strokeWidth={1.25} />
-                  </div>
-                </button>
-              ))}
-            </div>
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+        {/* Brass progress ticker */}
+        <RevealAnimation animation="fade-up" delay={180}>
+          <div className="mt-6 md:mt-8 h-px w-full bg-accent/15 overflow-hidden">
+            <div
+              className="h-full bg-accent/70 origin-left transition-transform duration-150 ease-out"
+              style={{ transform: `scaleX(${progress})` }}
+            />
           </div>
         </RevealAnimation>
 
-        <RevealAnimation animation="fade-up" delay={220}>
-          <p className="mt-6 md:mt-8 text-center font-sans text-[10px] md:text-xs tracking-[0.3em] uppercase text-primary-foreground/55">
+        <RevealAnimation animation="fade-up" delay={240}>
+          <p className="mt-5 text-center font-sans text-[10px] md:text-xs tracking-[0.3em] uppercase text-primary-foreground/55">
             Tap any frame to enlarge · Scroll to explore
           </p>
         </RevealAnimation>
