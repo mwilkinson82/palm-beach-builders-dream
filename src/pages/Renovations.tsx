@@ -246,6 +246,8 @@ const Renovations = () => {
 
         {/* Services — editorial list */}
         <section className="py-20 md:py-28 border-t border-accent/15">
+          {/* FCMB credentials band sits visually before the services list, inside a shared rhythm */}
+        </section>
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <RevealAnimation animation="fade-up">
               <div className="max-w-3xl mb-16 md:mb-20">
