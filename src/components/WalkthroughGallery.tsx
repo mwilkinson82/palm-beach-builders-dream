@@ -95,9 +95,6 @@ export const WalkthroughGallery = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         <RevealAnimation animation="fade-up" delay={120}>
           <div className="relative">
-            {/* edge fades */}
-            <div className="pointer-events-none absolute left-0 top-0 bottom-2 w-12 bg-gradient-to-r from-primary to-transparent z-10" />
-            <div className="pointer-events-none absolute right-0 top-0 bottom-2 w-12 bg-gradient-to-l from-primary to-transparent z-10" />
 
             <div className="flex gap-3 md:gap-4 overflow-x-auto pb-2 snap-x snap-mandatory scroll-px-6 -mx-6 px-6 md:-mx-10 md:px-10 lg:-mx-16 lg:px-16">
               {PHOTOS.map((p, i) => (
