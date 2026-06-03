@@ -102,9 +102,7 @@ export const ScheduleDrivenSection = ({ scrollY }: Props) => {
                 return (
                   <RevealAnimation key={card.k} animation="fade-up" delay={i * 110}>
                     <div
-                      className={`group h-full bg-card p-8 md:p-10 transition-all duration-700 ${
-                        lit ? "bg-card" : "bg-card"
-                      } hover:bg-[hsl(var(--seafoam))]/40`}
+                      className="group h-full bg-card hover:bg-seafoam p-8 md:p-10 transition-all duration-700"
                       style={{
                         transform: lit ? "translateY(0)" : "translateY(6px)",
                       }}
