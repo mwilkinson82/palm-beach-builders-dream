@@ -208,7 +208,7 @@ const Home = () => {
               </RevealAnimation>
 
               {/* Portrait — small offset counterpart, with caption tucked beneath */}
-              <div className="mt-6 lg:mt-0 lg:absolute lg:bottom-[-3rem] lg:left-[-7rem] lg:w-[46%] lg:z-30">
+              <div className="mt-6 lg:mt-0 lg:absolute lg:bottom-[-3rem] lg:left-[-2.5rem] lg:w-[46%] lg:z-30">
                 <RevealAnimation animation="fade-up" delay={420}>
                   <div className="relative">
                     <img
