@@ -46,16 +46,10 @@ export const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
             <Link 
-              to="/about" 
+              to="/renovations" 
               className={`text-xs uppercase tracking-[0.25em] font-normal transition-colors duration-500 hover:text-accent ${textClass}`}
             >
-              About
-            </Link>
-            <Link 
-              to="/process" 
-              className={`text-xs uppercase tracking-[0.25em] font-normal transition-colors duration-500 hover:text-accent ${textClass}`}
-            >
-              Process
+              Renovations
             </Link>
             <Link 
               to="/projects" 
@@ -64,10 +58,16 @@ export const Navigation = () => {
               Your Style
             </Link>
             <Link 
-              to="/renovations" 
+              to="/process" 
               className={`text-xs uppercase tracking-[0.25em] font-normal transition-colors duration-500 hover:text-accent ${textClass}`}
             >
-              Renovations
+              Process
+            </Link>
+            <Link 
+              to="/about" 
+              className={`text-xs uppercase tracking-[0.25em] font-normal transition-colors duration-500 hover:text-accent ${textClass}`}
+            >
+              About
             </Link>
             <Link 
               to="/contact" 
@@ -110,18 +110,11 @@ export const Navigation = () => {
               Home
             </Link>
             <Link
-              to="/about"
+              to="/renovations"
               className="block text-xs uppercase tracking-[0.25em] text-foreground hover:text-accent transition-colors"
               onClick={() => setIsOpen(false)}
             >
-              About
-            </Link>
-            <Link
-              to="/process"
-              className="block text-xs uppercase tracking-[0.25em] text-foreground hover:text-accent transition-colors"
-              onClick={() => setIsOpen(false)}
-            >
-              Process
+              Renovations
             </Link>
             <Link
               to="/projects"
@@ -131,11 +124,18 @@ export const Navigation = () => {
               Your Style
             </Link>
             <Link
-              to="/renovations"
+              to="/process"
               className="block text-xs uppercase tracking-[0.25em] text-foreground hover:text-accent transition-colors"
               onClick={() => setIsOpen(false)}
             >
-              Renovations
+              Process
+            </Link>
+            <Link
+              to="/about"
+              className="block text-xs uppercase tracking-[0.25em] text-foreground hover:text-accent transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              About
             </Link>
             <Link
               to="/contact"
