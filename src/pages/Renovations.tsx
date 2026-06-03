@@ -7,6 +7,10 @@ import { Helmet } from "react-helmet-async";
 import { RenovationsHero } from "@/components/RenovationsHero";
 import renovationMoment from "@/assets/projects/renovation-hero.jpg.asset.json";
 import fcmbLogo from "@/assets/fcmb-logo.png";
+import nahbBadge from "@/assets/nahb-master-building-professional.png.asset.json";
+import renovationBefore from "@/assets/renovation-before.jpg.asset.json";
+import renovationAfter from "@/assets/renovation-after.jpg.asset.json";
+import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 
 const services = [
   {
