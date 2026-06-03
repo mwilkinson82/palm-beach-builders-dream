@@ -1,4 +1,7 @@
+import { forwardRef, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { motion, useReducedMotion } from "framer-motion";
+import HTMLFlipBook from "react-pageflip";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -86,6 +89,9 @@ const STYLES: Style[] = [
 
 const TOTAL = STYLES.length + 1; // +1 for the "Yours." closer
 
+const slugify = (s: string) =>
+  s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
 const projectsSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
@@ -103,144 +109,395 @@ const projectsSchema = {
   })),
 };
 
-const Hero = () => (
-  <section className="relative pt-40 pb-20 md:pt-48 md:pb-28 border-b border-accent/20">
-    <div className="max-w-5xl mx-auto px-6 sm:px-10 lg:px-16 text-center">
-      <div className="flex items-center justify-center gap-3 mb-6">
-        <span className="h-px w-10 bg-accent" />
-        <span className="font-sans text-[10px] md:text-xs tracking-[0.4em] uppercase text-accent">
-          A Film of Styles
-        </span>
-        <span className="h-px w-10 bg-accent" />
-      </div>
-      <h1 className="font-display italic font-light text-primary text-5xl md:text-7xl lg:text-8xl leading-[1.02] tracking-tight">
-        Find Your Style.
-      </h1>
-      <p className="font-sans font-light text-base md:text-lg text-primary/75 max-w-2xl mx-auto mt-8 leading-relaxed">
-        Ten aesthetic worlds we know intimately — and one that's yours alone. Find the one that
-        already feels like home; we'll take it from there.
-      </p>
+// ---------- Reveal variants ----------
+
+const EASE = [0.16, 1, 0.3, 1] as const;
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 14 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
+};
+const fadeImg = {
+  hidden: { opacity: 0, scale: 1.04 },
+  show: { opacity: 1, scale: 1, transition: { duration: 0.95, ease: EASE } },
+};
+const drawX = {
+  hidden: { scaleX: 0 },
+  show: { scaleX: 1, transition: { duration: 0.6, ease: EASE } },
+};
+const stagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.11, delayChildren: 0.18 } },
+};
+
+// ---------- Page wrapper (forwardRef for react-pageflip) ----------
+
+type PageProps = {
+  children: React.ReactNode;
+  visible: boolean;
+  hardCover?: boolean;
+};
+
+const Page = forwardRef<HTMLDivElement, PageProps>(
+  ({ children, visible, hardCover }, ref) => (
+    <div
+      ref={ref}
+      className="bg-background overflow-hidden w-full h-full"
+      data-density={hardCover ? "hard" : "soft"}
+    >
+      <motion.div
+        variants={stagger}
+        initial="hidden"
+        animate={visible ? "show" : "hidden"}
+        className="w-full h-full"
+      >
+        {children}
+      </motion.div>
     </div>
-  </section>
+  )
+);
+Page.displayName = "Page";
+
+// ---------- Plate compositions ----------
+
+const CoverPlate = () => (
+  <div className="w-full h-full flex flex-col items-center justify-center text-center px-8 sm:px-12 py-12 bg-card border border-accent/30">
+    <motion.div variants={fadeUp} className="flex items-center justify-center gap-3 mb-6">
+      <span className="h-px w-8 bg-accent" />
+      <span className="font-sans text-[10px] tracking-[0.4em] uppercase text-accent">
+        A Film of Styles
+      </span>
+      <span className="h-px w-8 bg-accent" />
+    </motion.div>
+    <motion.h1
+      variants={fadeUp}
+      className="font-display italic font-light text-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.02] tracking-tight"
+    >
+      Find Your Style.
+    </motion.h1>
+    <motion.span variants={drawX} className="block w-16 h-px bg-accent mt-8 mb-8 origin-center" />
+    <motion.p
+      variants={fadeUp}
+      className="font-sans font-light text-sm md:text-base text-primary/75 leading-relaxed max-w-md"
+    >
+      Ten aesthetic worlds we know intimately — and one that's yours alone.
+      Turn the page.
+    </motion.p>
+    <motion.p
+      variants={fadeUp}
+      className="font-sans text-[10px] tracking-[0.4em] uppercase text-accent mt-12"
+    >
+      Turn →
+    </motion.p>
+  </div>
 );
 
-const StylePanel = ({ s, index }: { s: Style; index: number }) => {
-  const flipped = index % 2 === 1;
-  return (
-    <section className="snap-start min-h-screen flex items-center border-b border-accent/15">
-      <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-20 items-center py-20">
-        <div
-          className={`lg:col-span-3 ${flipped ? "lg:order-2" : "lg:order-1"}`}
-        >
-          <div className="aspect-[16/11] overflow-hidden shadow-[0_40px_80px_-30px_hsl(var(--primary)/0.35)]">
-            {s.image ? (
-              <img
-                src={s.image}
-                alt={s.name}
-                loading={index < 1 ? "eager" : "lazy"}
-                decoding="async"
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <div className="w-full h-full bg-card border border-accent/30 flex flex-col items-center justify-center text-center px-6">
-                <span className="font-sans text-[10px] tracking-[0.4em] uppercase text-accent mb-3">
-                  Plate Forthcoming
-                </span>
-                <span className="font-display italic font-light text-primary/40 text-3xl md:text-4xl">
-                  {s.name}
-                </span>
-              </div>
-            )}
-          </div>
-        </div>
-        <div
-          className={`lg:col-span-2 ${flipped ? "lg:order-1" : "lg:order-2"}`}
-        >
-          <p className="font-sans text-[10px] md:text-xs tracking-[0.4em] uppercase text-accent mb-6">
-            {String(index + 1).padStart(2, "0")} / {String(TOTAL).padStart(2, "0")}
-          </p>
-          <h2 className="font-display italic font-light text-primary text-5xl md:text-6xl lg:text-7xl leading-[1.02] mb-8">
+const StylePlate = ({ s, index }: { s: Style; index: number }) => (
+  <div className="w-full h-full flex flex-col p-5 sm:p-8 lg:p-10">
+    <motion.p
+      variants={fadeUp}
+      className="font-sans text-[10px] tracking-[0.4em] uppercase text-accent"
+    >
+      {String(index + 1).padStart(2, "0")} / {String(TOTAL).padStart(2, "0")}
+    </motion.p>
+    <motion.div
+      variants={fadeImg}
+      className="mt-4 sm:mt-6 aspect-[16/11] overflow-hidden shadow-[0_24px_60px_-30px_hsl(var(--primary)/0.4)]"
+    >
+      {s.image ? (
+        <img
+          src={s.image}
+          alt={s.name}
+          loading={index < 2 ? "eager" : "lazy"}
+          decoding="async"
+          className="w-full h-full object-cover"
+        />
+      ) : (
+        <div className="w-full h-full bg-card border border-accent/30 flex items-center justify-center">
+          <span className="font-display italic font-light text-primary/40 text-2xl">
             {s.name}
-          </h2>
-          <span className="block w-24 h-px bg-accent mb-8" />
-          <p className="font-sans font-light text-base md:text-lg text-primary/75 leading-relaxed max-w-md">
-            {s.descriptor}
-          </p>
+          </span>
         </div>
+      )}
+    </motion.div>
+    <motion.h2
+      variants={fadeUp}
+      className="font-display italic font-light text-primary text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-[1.05] mt-5 sm:mt-6"
+    >
+      {s.name}
+    </motion.h2>
+    <motion.span
+      variants={drawX}
+      className="block w-14 h-px bg-accent mt-3 sm:mt-4 origin-left"
+    />
+    <motion.p
+      variants={fadeUp}
+      className="font-sans font-light text-[13px] sm:text-sm md:text-base text-primary/75 leading-relaxed mt-3 sm:mt-4 max-w-md"
+    >
+      {s.descriptor}
+    </motion.p>
+    <motion.div variants={fadeUp} className="mt-auto pt-5 sm:pt-6">
+      <Link
+        to={`/contact?style=${slugify(s.name)}`}
+        className="group inline-flex items-center gap-2 font-sans text-[11px] tracking-[0.3em] uppercase text-accent"
+      >
+        <span className="relative">
+          Build in this idiom
+          <span className="absolute left-0 -bottom-1 h-px w-full bg-accent origin-right scale-x-0 transition-transform duration-500 group-hover:origin-left group-hover:scale-x-100" />
+        </span>
+        <span aria-hidden>⟶</span>
+      </Link>
+    </motion.div>
+  </div>
+);
+
+const YoursPlate = ({ onRestart }: { onRestart: () => void }) => (
+  <div className="w-full h-full flex flex-col items-center justify-center text-center px-6 sm:px-10 py-10 bg-card">
+    <motion.p
+      variants={fadeUp}
+      className="font-sans text-[10px] tracking-[0.4em] uppercase text-accent mb-8"
+    >
+      {String(TOTAL).padStart(2, "0")} / {String(TOTAL).padStart(2, "0")} — One of One
+    </motion.p>
+    <motion.span variants={drawX} className="block w-full h-px bg-accent origin-center" />
+    <div className="py-10 sm:py-14">
+      <motion.h2
+        variants={fadeUp}
+        className="font-display italic font-light text-primary text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-none"
+      >
+        Yours.
+      </motion.h2>
+      <motion.span
+        variants={drawX}
+        className="block w-16 h-px bg-accent mx-auto my-8 origin-center"
+      />
+      <motion.p
+        variants={fadeUp}
+        className="font-sans font-light text-sm md:text-base text-primary/75 leading-relaxed max-w-md mx-auto"
+      >
+        If none of these is quite it, that's the point. The most memorable Beau
+        Monde houses begin with a vision no catalogue could hold.
+      </motion.p>
+      <motion.div variants={fadeUp} className="mt-10">
+        <Button asChild size="lg" className="px-10">
+          <Link to="/contact">Talk to Beau Monde</Link>
+        </Button>
+      </motion.div>
+      <motion.button
+        variants={fadeUp}
+        onClick={onRestart}
+        className="group mt-6 inline-flex items-center gap-2 font-sans text-[11px] tracking-[0.3em] uppercase text-accent"
+      >
+        <span aria-hidden>←</span>
+        <span className="relative">
+          Browse the ten idioms again
+          <span className="absolute left-0 -bottom-1 h-px w-full bg-accent origin-right scale-x-0 transition-transform duration-500 group-hover:origin-left group-hover:scale-x-100" />
+        </span>
+      </motion.button>
+    </div>
+    <motion.span variants={drawX} className="block w-full h-px bg-accent origin-center" />
+  </div>
+);
+
+// ---------- Flip-book shell ----------
+
+const Book = HTMLFlipBook as unknown as React.ForwardRefExoticComponent<any>;
+
+const FlipBookView = () => {
+  const bookRef = useRef<any>(null);
+  const [vp, setVp] = useState({ w: 1200, h: 800, portrait: false, ready: false });
+  const [page, setPage] = useState(0);
+
+  useEffect(() => {
+    const recompute = () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      setVp({ w, h, portrait: w < 1024, ready: true });
+    };
+    recompute();
+    window.addEventListener("resize", recompute);
+    return () => window.removeEventListener("resize", recompute);
+  }, []);
+
+  const totalPages = STYLES.length + 2; // cover + idioms + yours
+
+  const visibleSet = useMemo(() => {
+    if (vp.portrait) return new Set([page]);
+    // desktop spread with showCover: cover (0) sits alone on the right;
+    // subsequent spreads pair odd-left + even-right (1+2, 3+4, …).
+    if (page === 0) return new Set([0]);
+    const left = page % 2 === 1 ? page : page - 1;
+    return new Set([left, left + 1]);
+  }, [page, vp.portrait]);
+
+  const handleRestart = () => {
+    bookRef.current?.pageFlip?.()?.turnToPage(0);
+  };
+
+  // Compute concrete page dimensions to fit below the nav.
+  // Desktop spread shows 2 pages side-by-side; mobile shows one.
+  const navH = 96; // 24 * 4
+  const verticalPadding = 48;
+  const availH = Math.max(420, vp.h - navH - verticalPadding);
+  const availW = vp.w - 32;
+  const pageRatio = 0.72; // width / height — slightly taller than 3:4
+  let pageH = availH;
+  let pageW = Math.round(pageH * pageRatio);
+  const spreadW = vp.portrait ? pageW : pageW * 2;
+  if (spreadW > availW) {
+    const scale = availW / spreadW;
+    pageW = Math.round(pageW * scale);
+    pageH = Math.round(pageH * scale);
+  }
+
+  return (
+    <div className="relative w-full" style={{ height: "calc(100dvh - 6rem)" }}>
+      <div className="absolute inset-0 flex items-center justify-center px-2 sm:px-6">
+        {vp.ready && (
+        <Book
+          key={`${vp.portrait}-${pageW}-${pageH}`}
+          ref={bookRef}
+          width={pageW}
+          height={pageH}
+          size="fixed"
+          minWidth={280}
+          maxWidth={1200}
+          minHeight={400}
+          maxHeight={1600}
+          maxShadowOpacity={0.35}
+          drawShadow
+          showCover
+          usePortrait={vp.portrait}
+          flippingTime={900}
+          mobileScrollSupport={false}
+          className="bm-flipbook"
+          style={{}}
+          startPage={0}
+          onFlip={(e: any) => setPage(e.data)}
+        >
+          <Page visible={visibleSet.has(0)} hardCover>
+            <CoverPlate />
+          </Page>
+          {STYLES.map((s, i) => (
+            <Page key={s.name} visible={visibleSet.has(i + 1)}>
+              <StylePlate s={s} index={i} />
+            </Page>
+          ))}
+          <Page visible={visibleSet.has(STYLES.length + 1)} hardCover>
+            <YoursPlate onRestart={handleRestart} />
+          </Page>
+        </Book>
+        )}
       </div>
-    </section>
+
+      {/* Page counter */}
+      <div className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 z-10">
+        <span className="inline-block bg-background/90 border border-accent/40 px-4 py-1.5 font-sans text-[10px] tracking-[0.3em] uppercase text-primary/70">
+          {String(page + 1).padStart(2, "0")} / {String(totalPages).padStart(2, "0")}
+        </span>
+      </div>
+
+      {/* Nav arrows */}
+      <button
+        onClick={() => bookRef.current?.pageFlip?.()?.flipPrev()}
+        aria-label="Previous page"
+        className="hidden md:flex absolute left-2 top-1/2 -translate-y-1/2 z-10 h-12 w-12 items-center justify-center text-primary/50 hover:text-accent transition-colors"
+      >
+        <span className="font-display text-3xl">‹</span>
+      </button>
+      <button
+        onClick={() => bookRef.current?.pageFlip?.()?.flipNext()}
+        aria-label="Next page"
+        className="hidden md:flex absolute right-2 top-1/2 -translate-y-1/2 z-10 h-12 w-12 items-center justify-center text-primary/50 hover:text-accent transition-colors"
+      >
+        <span className="font-display text-3xl">›</span>
+      </button>
+    </div>
   );
 };
 
-const YoursPanel = () => (
-  <section className="snap-start min-h-screen flex items-center border-b border-accent/15">
-    <div className="w-full max-w-3xl mx-auto px-6 text-center py-20">
-      <p className="font-sans text-[10px] md:text-xs tracking-[0.4em] uppercase text-accent mb-8">
-        {String(TOTAL).padStart(2, "0")} / {String(TOTAL).padStart(2, "0")} — One of One
+// ---------- Scroll fallback (reduced-motion + SEO surface) ----------
+
+const ScrollFallback = () => (
+  <div className="pt-32 pb-24">
+    <header className="max-w-4xl mx-auto px-6 text-center mb-16">
+      <h1 className="font-display italic font-light text-primary text-5xl md:text-7xl leading-[1.02]">
+        Find Your Style.
+      </h1>
+      <p className="font-sans font-light text-base md:text-lg text-primary/75 max-w-2xl mx-auto mt-6 leading-relaxed">
+        Ten aesthetic worlds we know intimately — and one that's yours alone.
       </p>
-      <div className="border-y border-accent/40 py-14 md:py-20">
-        <h2 className="font-display italic font-light text-primary text-6xl md:text-7xl lg:text-8xl leading-none mb-10">
+    </header>
+    <div className="max-w-4xl mx-auto px-6 space-y-20">
+      {STYLES.map((s, i) => (
+        <article key={s.name}>
+          <p className="font-sans text-[10px] tracking-[0.4em] uppercase text-accent mb-4">
+            {String(i + 1).padStart(2, "0")} / {String(TOTAL).padStart(2, "0")}
+          </p>
+          {s.image && (
+            <img
+              src={s.image}
+              alt={s.name}
+              loading="lazy"
+              decoding="async"
+              className="w-full aspect-[16/11] object-cover mb-6"
+            />
+          )}
+          <h2 className="font-display italic font-light text-primary text-4xl md:text-5xl mb-4">
+            {s.name}
+          </h2>
+          <span className="block w-16 h-px bg-accent mb-4" />
+          <p className="font-sans font-light text-base text-primary/75 leading-relaxed max-w-2xl">
+            {s.descriptor}
+          </p>
+        </article>
+      ))}
+      <article className="text-center border-y border-accent/40 py-16">
+        <h2 className="font-display italic font-light text-primary text-6xl md:text-8xl mb-8">
           Yours.
         </h2>
-        <span className="block w-16 h-px bg-accent mx-auto mb-10" />
-        <p className="font-sans font-light text-base md:text-lg text-primary/75 leading-relaxed max-w-xl mx-auto">
-          If none of these is quite it, that's the point. The most memorable Beau Monde houses
-          begin with a vision no catalogue could hold.
+        <p className="font-sans font-light text-base text-primary/75 leading-relaxed max-w-md mx-auto mb-8">
+          The most memorable Beau Monde houses begin with a vision no catalogue
+          could hold.
         </p>
-      </div>
+        <Button asChild size="lg" className="px-10">
+          <Link to="/contact">Talk to Beau Monde</Link>
+        </Button>
+      </article>
     </div>
-  </section>
+  </div>
 );
 
-const ClosingPlinth = () => (
-  <section className="border-t border-accent/20 py-24 md:py-32">
-    <div className="max-w-3xl mx-auto px-6 text-center">
-      <div className="flex items-center justify-center gap-3 mb-5">
-        <span className="h-px w-8 bg-accent" />
-        <span className="font-sans text-[10px] tracking-[0.4em] uppercase text-accent">
-          Found your style
-        </span>
-        <span className="h-px w-8 bg-accent" />
-      </div>
-      <h2 className="font-display italic font-light text-primary text-4xl md:text-5xl mb-10">
-        Let's build the one you'll keep.
-      </h2>
-      <Button asChild size="lg" className="px-10">
-        <Link to="/contact">Talk to Beau Monde</Link>
-      </Button>
-    </div>
-  </section>
-);
+const Projects = () => {
+  const prefersReducedMotion = useReducedMotion();
 
-const Projects = () => (
-  <>
-    <SEO
-      title="Find Your Style — Palm Beach Design Studies"
-      description="Ten design idioms — Oceanfront, Mediterranean, Bermuda Colonial, Transitional and more — that shape Beau Monde's bespoke Palm Beach residences."
-      canonical="/projects"
-    />
-    <BreadcrumbSchema items={[
-      { name: "Home", url: "/" },
-      { name: "Find Your Style", url: "/projects" }
-    ]} />
-    <Helmet>
-      <script type="application/ld+json">
-        {JSON.stringify(projectsSchema)}
-      </script>
-    </Helmet>
-    <div className="min-h-screen bg-background text-primary">
-      <Navigation />
-      <Hero />
-      <div className="snap-y snap-mandatory">
-        {STYLES.map((s, i) => (
-          <StylePanel key={s.name} s={s} index={i} />
-        ))}
-        <YoursPanel />
+  return (
+    <>
+      <SEO
+        title="Find Your Style — Palm Beach Design Studies"
+        description="Ten design idioms — Oceanfront, Mediterranean, Bermuda Colonial, Transitional and more — that shape Beau Monde's bespoke Palm Beach residences."
+        canonical="/projects"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Find Your Style", url: "/projects" },
+        ]}
+      />
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(projectsSchema)}
+        </script>
+      </Helmet>
+      <div className="min-h-screen bg-background text-primary">
+        <Navigation />
+        <main className="pt-20 md:pt-24">
+          {prefersReducedMotion ? <ScrollFallback /> : <FlipBookView />}
+        </main>
+        <Footer />
       </div>
-      <ClosingPlinth />
-      <Footer />
-    </div>
-  </>
-);
+    </>
+  );
+};
 
 export default Projects;
