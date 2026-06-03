@@ -17,38 +17,32 @@ import { CinematicReveal } from "@/components/CinematicReveal";
 const services = [
   {
     title: "Luxury Condo Transformations",
-    description:
-      "Complete reimagining of high-rise and beachfront condominiums in Palm Beach and West Palm Beach's most prestigious buildings.",
+    description: "High-rise and beachfront reimaginings.",
     keywords: ["Full gut renovations", "Oceanfront units", "Penthouse redesigns", "Building compliance"],
   },
   {
     title: "Whole-Home Remodels",
-    description:
-      "Comprehensive estate renovations that breathe new life into existing properties while preserving their architectural heritage.",
+    description: "Estate-wide renovations that respect heritage.",
     keywords: ["Historic preservation", "Modern upgrades", "Structural enhancements", "Smart-home integration"],
   },
   {
     title: "Gourmet Kitchen Design",
-    description:
-      "World-class culinary spaces with premium appliances, custom cabinetry, and timeless detailing suited to Palm Beach entertaining.",
+    description: "Culinary spaces built for entertaining.",
     keywords: ["Custom cabinetry", "Premium appliances", "Island configurations", "Butler's pantries"],
   },
   {
     title: "Spa-Inspired Bathrooms",
-    description:
-      "Quiet retreats with imported stone, heated floors, and bespoke fixtures that rival the finest resorts on the island.",
+    description: "Quiet retreats in stone and brass.",
     keywords: ["Imported marble", "Steam showers", "Soaking tubs", "Radiant heating"],
   },
   {
     title: "Interior Redesign",
-    description:
-      "Complete interior transformations including millwork, lighting design, and custom finishes attuned to your personal aesthetic.",
+    description: "Millwork, light, and finish, finely tuned.",
     keywords: ["Custom millwork", "Lighting design", "Flooring upgrades", "Ceiling treatments"],
   },
   {
     title: "Turnkey Condo Packages",
-    description:
-      "Move-in-ready luxury transformations for newly acquired condominiums, timed precisely with your closing.",
+    description: "Move-in-ready, timed to your closing.",
     keywords: ["Pre-purchase planning", "Expedited timelines", "Furniture coordination", "White-glove delivery"],
   },
 ];
