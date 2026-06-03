@@ -7,6 +7,10 @@ import { Helmet } from "react-helmet-async";
 import { RenovationsHero } from "@/components/RenovationsHero";
 import renovationMoment from "@/assets/projects/renovation-hero.jpg.asset.json";
 import fcmbLogo from "@/assets/fcmb-logo.png";
+import nahbBadge from "@/assets/nahb-master-building-professional.png.asset.json";
+import renovationBefore from "@/assets/renovation-before.jpg.asset.json";
+import renovationAfter from "@/assets/renovation-after.jpg.asset.json";
+import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 
 const services = [
   {
@@ -147,6 +151,50 @@ const Renovations = () => {
           </RevealAnimation>
         </section>
 
+        {/* Before / After slider */}
+        <section className="py-24 md:py-32 border-t border-accent/15">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+            <RevealAnimation animation="fade-up">
+              <div className="flex items-center space-x-3 mb-10 md:mb-14">
+                <div className="h-px w-10 bg-accent" />
+                <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-accent font-sans font-light">
+                  A residence, transformed
+                </span>
+              </div>
+            </RevealAnimation>
+
+            <RevealAnimation animation="fade-up" delay={120}>
+              <BeforeAfterSlider
+                beforeSrc={renovationBefore.url}
+                afterSrc={renovationAfter.url}
+                beforeAlt="Original residence before Beau Monde renovation"
+                afterAlt="Same residence after Beau Monde renovation"
+              />
+            </RevealAnimation>
+
+            <RevealAnimation animation="fade-up" delay={220}>
+              <div className="mt-10 md:mt-12 flex flex-col md:flex-row md:items-end gap-8 md:gap-12 border-t border-primary/10 pt-8">
+                <div>
+                  <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent mb-2">
+                    Project Scope
+                  </p>
+                  <p className="font-display text-xl md:text-2xl text-primary leading-snug">
+                    Full Architectural Overhaul
+                  </p>
+                </div>
+                <div>
+                  <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent mb-2">
+                    Building Type
+                  </p>
+                  <p className="font-display text-xl md:text-2xl text-primary leading-snug">
+                    Oceanfront Residence
+                  </p>
+                </div>
+              </div>
+            </RevealAnimation>
+          </div>
+        </section>
+
         {/* Text hero */}
         <section className="pt-20 pb-20 md:pt-28 md:pb-28">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -272,29 +320,51 @@ const Renovations = () => {
 
             <RevealAnimation animation="scale-in" delay={220}>
               <div className="flex justify-center mb-12 md:mb-14">
-                <div className="flex flex-col items-center gap-5">
-                  <div className="relative">
-                    <span aria-hidden className="absolute inset-0 translate-x-2 translate-y-2 border border-accent/25" />
-                    <div className="relative bg-card border border-accent/25 p-5 shadow-[0_20px_40px_-18px_rgba(15,42,61,0.3)]">
-                      <img
-                        src={fcmbLogo}
-                        alt="Florida Certified Master Builder"
-                        className="h-24 md:h-28 w-auto object-contain"
-                        loading="lazy"
-                      />
+                <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center gap-10 md:gap-12 w-full max-w-2xl">
+                  <div className="flex flex-col items-center gap-5">
+                    <div className="relative">
+                      <span aria-hidden className="absolute inset-0 translate-x-2 translate-y-2 border border-accent/25" />
+                      <div className="relative bg-card border border-accent/25 p-5 shadow-[0_20px_40px_-18px_rgba(15,42,61,0.3)]">
+                        <img
+                          src={fcmbLogo}
+                          alt="Florida Certified Master Builder"
+                          className="h-24 md:h-28 w-auto object-contain"
+                          loading="lazy"
+                        />
+                      </div>
                     </div>
+                    <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-primary text-center max-w-[200px] leading-snug">
+                      Florida Certified Master Builder
+                    </span>
                   </div>
-                  <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-primary text-center max-w-[180px] leading-snug">
-                    Florida Certified Master Builder
-                  </span>
+
+                  <span aria-hidden className="hidden md:block h-24 w-px bg-accent/40" />
+
+                  <div className="flex flex-col items-center gap-5">
+                    <div className="relative">
+                      <span aria-hidden className="absolute inset-0 translate-x-2 translate-y-2 border border-accent/25" />
+                      <div className="relative bg-card border border-accent/25 p-5 shadow-[0_20px_40px_-18px_rgba(15,42,61,0.3)]">
+                        <img
+                          src={nahbBadge.url}
+                          alt="NAHB Certified Master Building Professional"
+                          className="h-24 md:h-28 w-auto object-contain"
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                    <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-primary text-center max-w-[200px] leading-snug">
+                      NAHB Certified Master Building Professional
+                    </span>
+                  </div>
                 </div>
               </div>
             </RevealAnimation>
 
             <RevealAnimation animation="fade-up" delay={300}>
               <p className="font-sans font-light text-[15px] md:text-base leading-relaxed text-primary/80 text-center max-w-2xl mx-auto mb-12 md:mb-14">
-                A voluntary credential awarded only to builders with the experience, ethics, and record
-                to back it — the FCMB is the pinnacle of professional standing in Florida construction.
+                Two voluntary credentials awarded only to builders with the experience, ethics, and record
+                to back them — together they represent the pinnacle of professional standing in both Florida
+                and national residential construction.
               </p>
             </RevealAnimation>
 
