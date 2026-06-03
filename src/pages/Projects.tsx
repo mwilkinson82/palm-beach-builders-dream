@@ -417,8 +417,6 @@ const YoursPlate = ({ onRestart }: { onRestart: () => void }) => (
 const Book = HTMLFlipBook as unknown as React.ForwardRefExoticComponent<any>;
 
 const FlipBookView = () => {
-  const [searchParams] = useSearchParams();
-  const coverVariant = (searchParams.get("cover") || "a").toLowerCase();
   const bookRef = useRef<any>(null);
   const [vp, setVp] = useState({ w: 1200, h: 800, portrait: false, ready: false });
   const [page, setPage] = useState(0);
@@ -490,13 +488,7 @@ const FlipBookView = () => {
           onFlip={(e: any) => setPage(e.data)}
         >
           <Page visible={visibleSet.has(0)} hardCover>
-            {coverVariant === "c" ? (
-              <FrontCoverC />
-            ) : coverVariant === "b" ? (
-              <FrontCoverB />
-            ) : (
-              <FrontCoverA />
-            )}
+            <FrontCover />
           </Page>
           <Page visible={visibleSet.has(1)}>
             <CoverPlate />
