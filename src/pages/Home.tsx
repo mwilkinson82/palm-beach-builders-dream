@@ -188,27 +188,23 @@ const Home = () => {
               </RevealAnimation>
 
               {/* Portrait — small offset counterpart, with caption tucked beneath */}
-              <RevealAnimation
-                animation="fade-up"
-                delay={420}
-                className="mt-6 lg:mt-0 lg:absolute lg:-bottom-8 lg:-left-24 lg:w-[40%] lg:z-20"
-              >
-                <Parallax speed={-0.04} className="block">
+              <div className="mt-6 lg:mt-0 lg:absolute lg:bottom-[-3rem] lg:left-[-6rem] lg:w-[38%] lg:z-30">
+                <RevealAnimation animation="fade-up" delay={420}>
                   <div className="relative">
                     <img
                       src={bespokePortrait.url}
                       alt="Portrait of a Beau Monde client — the life behind the residence"
-                      className="w-full aspect-[3/4] object-cover shadow-[30px_30px_60px_-20px_hsl(var(--primary)/0.35)] ring-1 ring-accent/20"
+                      className="w-full aspect-[3/4] object-cover shadow-[30px_30px_60px_-20px_hsl(var(--primary)/0.4)] ring-1 ring-accent/30"
                       loading="lazy"
                     />
-                    <div className="hidden lg:block absolute -bottom-5 -right-8 z-10">
+                    <div className="hidden lg:block absolute -bottom-5 -right-6 z-10">
                       <p className="font-display italic text-sm text-accent bg-background px-4 py-2 border border-accent/40 shadow-md whitespace-nowrap">
                         Turning blueprints to fingerprints
                       </p>
                     </div>
                   </div>
-                </Parallax>
-              </RevealAnimation>
+                </RevealAnimation>
+              </div>
             </div>
           </div>
 
