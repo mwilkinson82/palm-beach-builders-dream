@@ -57,14 +57,15 @@ export const Navigation = () => {
           </div>
 
           <div className="hidden lg:flex items-center space-x-4">
-            <Button 
-              variant="default"
-              size="lg"
-              className="uppercase tracking-[0.25em] text-xs font-medium bg-primary hover:bg-primary/90 text-primary-foreground"
-              asChild
+            <Link
+              to="/contact"
+              className="group relative inline-flex items-center bg-primary text-primary-foreground px-8 py-4 text-[10px] uppercase tracking-[0.3em] font-sans font-light ring-1 ring-inset ring-accent/30 hover:ring-accent/60 transition-all duration-500 hover:-translate-y-px hover:shadow-[0_18px_40px_-20px_hsl(var(--primary)/0.55)]"
             >
-              <Link to="/contact">Talk to Beau Monde</Link>
-            </Button>
+              <span className="relative inline-block">
+                Talk to Beau Monde
+                <span className="pointer-events-none absolute -bottom-1 left-0 h-px w-0 bg-accent transition-all duration-700 ease-out group-hover:w-full" aria-hidden="true" />
+              </span>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -123,14 +124,16 @@ export const Navigation = () => {
               Contact
             </Link>
             <div className="pt-4">
-              <Button 
-                variant="default"
-                size="lg" 
-                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground uppercase tracking-[0.25em] text-xs font-medium"
-                asChild
+              <Link
+                to="/contact"
+                onClick={() => setIsOpen(false)}
+                className="group relative flex items-center justify-center w-full bg-primary text-primary-foreground px-8 py-5 text-[10px] uppercase tracking-[0.3em] font-sans font-light ring-1 ring-inset ring-accent/30 hover:ring-accent/60 transition-all duration-500"
               >
-                <Link to="/contact">Talk to Beau Monde</Link>
-              </Button>
+                <span className="relative inline-block">
+                  Talk to Beau Monde
+                  <span className="pointer-events-none absolute -bottom-1 left-0 h-px w-0 bg-accent transition-all duration-700 ease-out group-hover:w-full" aria-hidden="true" />
+                </span>
+              </Link>
             </div>
           </div>
         )}
