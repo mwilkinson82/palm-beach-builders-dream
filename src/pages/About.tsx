@@ -399,54 +399,62 @@ const About = () => {
                   <div className="h-px w-12 bg-accent" />
                 </div>
                 <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-primary leading-[1.05]">
-                  The principals.
+                  The leadership
                   <br />
-                  <span className="italic text-muted-foreground">The bench is deeper than three.</span>
+                  <span className="italic text-muted-foreground">behind every Beau Monde home.</span>
                 </h2>
-                <p className="font-sans font-light text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto mt-8">
-                  Three principals lead Beau Monde day-to-day. Behind them sits
-                  a vetted network of architects, engineers, masons,
-                  millworkers, mechanical specialists, technology partners, and
-                  project consultants — each invited by AJ, each held to the
-                  same standard.
-                </p>
               </div>
             </RevealAnimation>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 md:gap-14 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10 max-w-6xl mx-auto">
               {[
-                { name: "John Colaiacovo", role: "Senior Project Manager", experience: "Forty years of luxury construction management.", image: johnImage },
-                { name: "Michelle Williams", role: "Director of Finance & Operations", experience: "Twenty years in luxury construction finance.", image: michelleImage },
-                { name: "Linda Lucas", role: "Senior Project Manager", experience: "Twenty-five years turning visions into residences.", image: lindaImage },
+                { name: "John Colaiacovo", role: "Senior Project Manager", metric: "40", unit: "Years", discipline: "Luxury Construction Management", image: johnImage },
+                { name: "Michelle Williams", role: "Director of Finance & Operations", metric: "20", unit: "Years", discipline: "Luxury Construction Finance", image: michelleImage },
+                { name: "Linda Lucas", role: "Senior Project Manager", metric: "25", unit: "Years", discipline: "Turning Visions Into Residences", image: lindaImage },
               ].map((member, i) => (
                 <RevealAnimation key={member.name} animation="fade-up" delay={i * 140}>
-                  <div className="text-center">
-                    <div className="relative">
-                      <div className="absolute inset-0 bg-[hsl(var(--seafoam))]/30 -translate-x-2 translate-y-2" aria-hidden />
-                      <div className="relative aspect-[4/5] overflow-hidden border border-accent/25 bg-muted/20">
-                        <img
-                          src={member.image}
-                          alt={member.name}
-                          loading="lazy"
-                          decoding="async"
-                          onError={(e) => { e.currentTarget.src = "/placeholder.svg"; }}
-                          className="w-full h-full object-cover object-center"
-                        />
+                  <div className="group relative">
+                    {/* Portrait */}
+                    <div className="relative aspect-[4/5] overflow-hidden bg-muted/20">
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        loading="lazy"
+                        decoding="async"
+                        onError={(e) => { e.currentTarget.src = "/placeholder.svg"; }}
+                        className="w-full h-full object-cover object-center grayscale-[35%] group-hover:grayscale-0 transition-[filter] duration-700"
+                      />
+                      {/* Seafoam wash that lifts on hover */}
+                      <div
+                        aria-hidden
+                        className="absolute inset-0 bg-[hsl(var(--seafoam))]/40 mix-blend-multiply opacity-100 group-hover:opacity-0 transition-opacity duration-700 pointer-events-none"
+                      />
+                      {/* Bottom hairline that draws in on reveal */}
+                      <div className="absolute left-0 right-0 bottom-0 h-px bg-accent/0 [.revealed_&]:bg-accent/70 transition-colors duration-700" />
+                      {/* Oversized metric, bottom-left of portrait */}
+                      <div className="absolute left-5 md:left-6 bottom-4 md:bottom-5 flex items-end gap-2 text-background mix-blend-difference">
+                        <span className="font-display leading-[0.85] text-[88px] md:text-[120px] tracking-tight [.revealed_&]:[clip-path:inset(0_0_0_0)] [clip-path:inset(0_100%_0_0)] transition-[clip-path] duration-1000 ease-out">
+                          {member.metric}
+                        </span>
+                        <span className="font-sans text-[10px] tracking-[0.32em] uppercase pb-3 md:pb-4 opacity-0 [.revealed_&]:opacity-100 transition-opacity duration-700 delay-500">
+                          {member.unit}
+                        </span>
                       </div>
                     </div>
+
+                    {/* Caption */}
                     <div className="mt-6">
-                      <h3 className="font-display text-2xl md:text-[28px] text-primary leading-tight mb-2">
-                        {member.name}
-                      </h3>
-                      <div className="flex items-center justify-center gap-3 mb-4">
-                        <div className="h-px w-6 bg-accent" />
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="h-px w-0 bg-accent transition-[width] duration-1000 ease-out [.revealed_&]:w-8" />
                         <p className="text-[10px] tracking-[0.4em] uppercase text-accent font-sans">
                           {member.role}
                         </p>
-                        <div className="h-px w-6 bg-accent" />
                       </div>
-                      <p className="font-sans font-light text-sm md:text-base text-muted-foreground leading-relaxed max-w-xs mx-auto">
-                        {member.experience}
+                      <h3 className="font-display text-2xl md:text-[28px] text-primary leading-tight mb-3">
+                        {member.name}
+                      </h3>
+                      <p className="font-sans font-light text-sm md:text-base text-muted-foreground leading-relaxed">
+                        {member.discipline}
                       </p>
                     </div>
                   </div>
@@ -454,41 +462,25 @@ const About = () => {
               ))}
             </div>
 
-            {/* Extended Bench */}
+            {/* The Beau Monde Organization */}
             <RevealAnimation animation="fade-up" delay={120}>
               <div className="max-w-6xl mx-auto mt-24 md:mt-32 border-t border-accent/20 pt-12 md:pt-16">
-                <div className="text-center mb-10">
+                <div className="text-center mb-8">
                   <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-accent font-sans font-light">
-                    The Extended Bench
+                    The Beau Monde Organization
                   </span>
                 </div>
-                <p className="font-sans font-light text-sm md:text-base text-muted-foreground leading-relaxed text-center max-w-3xl mx-auto mb-14">
+                <h3 className="font-display text-3xl md:text-4xl lg:text-5xl text-primary leading-[1.1] text-center max-w-3xl mx-auto mb-10">
+                  Our strategic partners and subcontractors form an organization of
+                  {" "}
+                  <span className="italic text-muted-foreground">over 50 members</span>
+                  {" "}
+                  working to turn your vision into a residence.
+                </h3>
+                <p className="font-sans font-light text-sm md:text-base text-muted-foreground leading-relaxed text-center max-w-3xl mx-auto">
                   Architects · Structural &amp; Civil Engineers · Master Masons ·
                   Millwork &amp; Cabinetry · Mechanical, Electrical &amp; Plumbing ·
                   Smart-Home &amp; Security · Landscape Architects · Interior Partners
-                </p>
-                <div className="grid grid-cols-3 border-y border-accent/20">
-                  {[
-                    { n: "40+", l: "Vetted trade partners" },
-                    { n: "85+", l: "Years combined leadership" },
-                    { n: "1", l: "Florida Certified Master Builder" },
-                  ].map((s, i) => (
-                    <div
-                      key={s.l}
-                      className={`py-10 md:py-12 px-4 text-center ${i < 2 ? "border-r border-accent/20" : ""}`}
-                    >
-                      <div className="font-display text-primary text-5xl md:text-6xl leading-none mb-4">
-                        {s.n}
-                      </div>
-                      <div className="font-sans text-[10px] md:text-[11px] tracking-[0.28em] uppercase text-muted-foreground max-w-[180px] mx-auto leading-snug">
-                        {s.l}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <p className="font-display italic text-primary text-xl md:text-2xl text-center mt-12 leading-snug">
-                  Small on purpose.
-                  <span className="text-muted-foreground"> Resourced like a firm three times the size.</span>
                 </p>
               </div>
             </RevealAnimation>
