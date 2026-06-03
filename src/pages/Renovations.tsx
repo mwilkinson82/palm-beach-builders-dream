@@ -134,7 +134,7 @@ const Renovations = () => {
 
         {/* Cinematic renovation moment */}
         <section className="relative">
-          <RevealAnimation animation="fade-up">
+          <CinematicReveal className="w-full">
             <figure className="relative w-full overflow-hidden">
               <img
                 src={renovationMoment.url}
@@ -150,7 +150,7 @@ const Renovations = () => {
                 </span>
               </figcaption>
             </figure>
-          </RevealAnimation>
+          </CinematicReveal>
         </section>
 
         {/* Before / After slider */}
