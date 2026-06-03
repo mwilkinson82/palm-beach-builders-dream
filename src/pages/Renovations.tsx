@@ -10,7 +10,6 @@ import fcmbLogo from "@/assets/fcmb-logo.png";
 import nahbBadge from "@/assets/nahb-master-building-professional.png.asset.json";
 import renovationBefore from "@/assets/renovation-before.jpg.asset.json";
 import renovationAfter from "@/assets/renovation-after.jpg.asset.json";
-import renovationDetail from "@/assets/renovation-detail-strip.jpg.asset.json";
 import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 import { CinematicReveal } from "@/components/CinematicReveal";
 
@@ -178,7 +177,7 @@ const Renovations = () => {
         </section>
 
         {/* Text hero */}
-        <section className="pt-20 pb-20 md:pt-28 md:pb-28">
+        <section className="relative pt-20 pb-20 md:pt-28 md:pb-28 bg-[hsl(var(--seafoam))] border-y border-accent/15">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <RevealAnimation animation="fade-up">
               <div className="max-w-4xl">
@@ -227,8 +226,8 @@ const Renovations = () => {
         {/* Editorial intro */}
         <section className="pt-6 pb-20 md:pt-10 md:pb-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-end">
-              <RevealAnimation animation="fade-up" className="lg:col-span-7">
+            <RevealAnimation animation="fade-up">
+              <div className="max-w-3xl">
                 <div className="flex items-center space-x-3 mb-6">
                   <div className="h-px w-10 bg-accent" />
                   <span className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans font-light">
@@ -245,30 +244,8 @@ const Renovations = () => {
                   Beach's most distinguished new estates — applied, quietly, to the
                   residences our clients already own.
                 </p>
-              </RevealAnimation>
-
-              <RevealAnimation animation="fade-up" delay={150} className="lg:col-span-5">
-                <div className="grid grid-cols-3 gap-6 md:gap-8">
-                  {[
-                    { n: "30+", l: "Years building Palm Beach" },
-                    { n: "0", l: "FCMB disciplinary actions" },
-                    { n: "1", l: "Master builder per project" },
-                  ].map((item, i) => (
-                    <div
-                      key={item.l}
-                      className={`flex flex-col items-start ${i > 0 ? "border-l border-accent/30 pl-6 md:pl-8" : ""}`}
-                    >
-                      <span className="font-display text-5xl md:text-6xl text-primary leading-none mb-3">
-                        {item.n}
-                      </span>
-                      <span className="font-sans font-light text-[10px] tracking-[0.3em] uppercase text-accent leading-snug">
-                        {item.l}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </RevealAnimation>
-            </div>
+              </div>
+            </RevealAnimation>
           </div>
         </section>
 
@@ -433,27 +410,6 @@ const Renovations = () => {
               ))}
             </div>
           </div>
-        </section>
-
-        {/* Craft-detail photo bridge */}
-        <section className="relative">
-          <CinematicReveal className="w-full" startScale={1.08} duration={1400}>
-            <figure className="relative w-full overflow-hidden">
-              <img
-                src={renovationDetail.url}
-                alt="Hand-honed Calacatta marble and custom millwork by Beau Monde Builders"
-                className="w-full h-[28vh] md:h-[36vh] object-cover"
-                loading="lazy"
-              />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background/40 via-transparent to-transparent" />
-              <figcaption className="absolute top-6 left-4 sm:left-8 lg:left-16 flex items-center space-x-3 text-primary/85">
-                <div className="h-px w-8 md:w-12 bg-accent" />
-                <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] font-sans font-light">
-                  Craft in the details
-                </span>
-              </figcaption>
-            </figure>
-          </CinematicReveal>
         </section>
 
         {/* Condo expertise — slim navy strip */}
