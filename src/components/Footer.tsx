@@ -1,32 +1,32 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin, Shield } from "lucide-react";
 import fcmbLogo from "@/assets/fcmb-logo.png";
 
 export const Footer = () => {
   return (
-    <footer className="bg-primary text-primary-foreground border-t border-primary-foreground/10">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-12 gap-8 md:gap-16 mb-12 md:mb-16">
-          {/* Brand Column */}
-          <div className="col-span-2 sm:col-span-2 lg:col-span-4 space-y-4 md:space-y-6">
-            <div className="flex flex-col">
-              <span className="text-3xl md:text-4xl font-wordmark tracking-tight leading-none text-primary-foreground">
+    <footer className="bg-primary text-primary-foreground font-sans">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 pt-20 pb-10">
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16 md:mb-20">
+          {/* Brand */}
+          <div className="md:col-span-4">
+            <div className="mb-6">
+              <span className="text-3xl font-wordmark tracking-tight leading-none text-primary-foreground block">
                 Beau Monde
               </span>
-              <span className="mt-1 text-xs tracking-[0.3em] uppercase text-primary-foreground/60">
+              <span className="mt-1 block text-[10px] uppercase tracking-[0.4em] text-accent/90 font-medium">
                 Builders · Palm Beach
               </span>
             </div>
-            <p className="text-primary-foreground/65 font-light leading-relaxed max-w-sm">
+            <p className="text-sm font-light leading-relaxed max-w-sm text-primary-foreground/70">
               Creating Palm Beach's most distinguished estates through architectural excellence
               and uncompromising craftsmanship since 1994.
             </p>
           </div>
 
-          {/* Quick Links */}
-          <div className="col-span-1 lg:col-span-2">
-            <h3 className="text-xs uppercase tracking-[0.3em] font-medium mb-6 text-primary-foreground">Explore</h3>
-            <ul className="space-y-4">
+          {/* Explore */}
+          <div className="md:col-span-2">
+            <h4 className="text-[11px] uppercase tracking-[0.3em] text-accent font-semibold mb-6">Explore</h4>
+            <ul className="space-y-3 text-sm font-light text-primary-foreground/75">
               {[
                 { label: "About", path: "/about" },
                 { label: "Process", path: "/process" },
@@ -36,10 +36,7 @@ export const Footer = () => {
                 { label: "Contact", path: "/contact" },
               ].map((item) => (
                 <li key={item.label}>
-                  <Link
-                    to={item.path}
-                    className="text-primary-foreground/65 hover:text-accent transition-colors font-light text-sm"
-                  >
+                  <Link to={item.path} className="hover:text-primary-foreground transition-colors">
                     {item.label}
                   </Link>
                 </li>
@@ -48,92 +45,88 @@ export const Footer = () => {
           </div>
 
           {/* Services */}
-          <div className="col-span-1 lg:col-span-3">
-            <h3 className="text-xs uppercase tracking-[0.3em] font-medium mb-6 text-primary-foreground">Services</h3>
-            <ul className="space-y-4">
-              <li className="text-primary-foreground/65 font-light text-sm">Custom Home Design</li>
-              <li className="text-primary-foreground/65 font-light text-sm">Architectural Planning</li>
-              <li className="text-primary-foreground/65 font-light text-sm">Luxury Construction</li>
-              <li className="text-primary-foreground/65 font-light text-sm">Project Management</li>
-              <li className="text-primary-foreground/65 font-light text-sm">Interior Design</li>
+          <div className="md:col-span-3">
+            <h4 className="text-[11px] uppercase tracking-[0.3em] text-accent font-semibold mb-6">Services</h4>
+            <ul className="space-y-3 text-sm font-light text-primary-foreground/75">
+              <li>Custom Home Design</li>
+              <li>Architectural Planning</li>
+              <li>Luxury Construction</li>
+              <li>Project Management</li>
+              <li>Interior Design</li>
             </ul>
           </div>
 
           {/* Contact */}
-          <div className="col-span-2 sm:col-span-2 lg:col-span-3">
-            <h3 className="text-xs uppercase tracking-[0.3em] font-medium mb-6 text-primary-foreground">Contact</h3>
-            <div className="space-y-4">
-              <div className="flex items-start space-x-3">
-                <MapPin className="h-5 w-5 text-primary-foreground/50 flex-shrink-0 mt-0.5" strokeWidth={1.25} />
-                <div className="text-primary-foreground/65 font-light text-sm">
-                  205 Worth Avenue, Suite 120<br />
-                  Palm Beach, FL 33480
-                </div>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 text-primary-foreground/50 flex-shrink-0" strokeWidth={1.25} />
-                <a href="tel:+15616468992" className="text-primary-foreground/65 hover:text-accent transition-colors font-light text-sm">
+          <div className="md:col-span-3">
+            <h4 className="text-[11px] uppercase tracking-[0.3em] text-accent font-semibold mb-6">Contact</h4>
+            <address className="not-italic space-y-4 text-sm font-light text-primary-foreground/75">
+              <p className="leading-relaxed">
+                205 Worth Avenue · Suite 120<br />
+                Palm Beach, FL 33480
+              </p>
+              <p>
+                <a href="tel:+15616468992" className="hover:text-primary-foreground transition-colors">
                   (561) 646-8992
                 </a>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-primary-foreground/50 flex-shrink-0" strokeWidth={1.25} />
-                <a href="mailto:ajhoover@mac.com" className="text-primary-foreground/65 hover:text-accent transition-colors font-light text-sm">
+              </p>
+              <p>
+                <a href="mailto:ajhoover@mac.com" className="hover:text-primary-foreground transition-colors">
                   ajhoover@mac.com
                 </a>
-              </div>
-            </div>
+              </p>
+            </address>
           </div>
         </div>
 
-        {/* Trust Badges */}
-        <div className="pt-6 md:pt-8 border-t border-primary-foreground/10 mb-8 md:mb-12">
-          <div className="flex flex-col items-center space-y-4 md:space-y-6">
-            <h3 className="text-xs uppercase tracking-[0.3em] font-medium text-primary-foreground/60">Certified Excellence</h3>
-            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8">
-              {/* FCMB Badge */}
-              <div className="bg-primary-foreground/10 backdrop-blur-sm p-3 md:p-4 border border-primary-foreground/10 hover:border-accent/50 transition-colors">
-                <img 
-                  src={fcmbLogo} 
-                  alt="Florida Certified Master Builder" 
-                  className="h-14 w-14 md:h-20 md:w-20 object-contain"
+        {/* Credentials Row — engraved colophon */}
+        <div className="border-t border-b border-accent/15 py-10 mb-10">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-10 md:gap-6">
+            {/* FCMB Medallion */}
+            <div className="flex items-center gap-5">
+              <div className="w-16 h-16 rounded-full bg-background/5 p-1 ring-1 ring-accent/40 flex items-center justify-center">
+                <img
+                  src={fcmbLogo}
+                  alt="Florida Certified Master Builder"
+                  className="h-full w-full object-contain"
                 />
               </div>
-              
-              {/* Additional Trust Badges */}
-              <div className="flex items-center space-x-2 px-3 md:px-4 py-2 md:py-3 bg-primary-foreground/5 border border-primary-foreground/10">
-                <Shield className="h-4 w-4 md:h-5 md:w-5 text-primary-foreground/50 flex-shrink-0" strokeWidth={1.25} />
-                <span className="text-xs md:text-sm text-primary-foreground/75 font-light whitespace-nowrap">Fully Insured</span>
-              </div>
-              
-              <div className="flex items-center space-x-2 px-3 md:px-4 py-2 md:py-3 bg-primary-foreground/5 border border-primary-foreground/10">
-                <Shield className="h-4 w-4 md:h-5 md:w-5 text-primary-foreground/50 flex-shrink-0" strokeWidth={1.25} />
-                <span className="text-xs md:text-sm text-primary-foreground/75 font-light whitespace-nowrap">Licensed Contractor</span>
-              </div>
-              
-              <div className="flex items-center space-x-2 px-3 md:px-4 py-2 md:py-3 bg-primary-foreground/5 border border-primary-foreground/10">
-                <Shield className="h-4 w-4 md:h-5 md:w-5 text-primary-foreground/50 flex-shrink-0" strokeWidth={1.25} />
-                <span className="text-xs md:text-sm text-primary-foreground/75 font-light whitespace-nowrap">30+ Years Experience</span>
-              </div>
+              <span className="text-[10px] uppercase tracking-[0.3em] leading-tight text-primary-foreground/70">
+                Florida Certified<br />Master Builder
+              </span>
+            </div>
+
+            {/* Engraved credential set */}
+            <div className="flex flex-wrap justify-center gap-x-12 gap-y-6">
+              {[
+                { eyebrow: "Accredited", line: "Fully Insured" },
+                { eyebrow: "State Registered", line: "FL Licensed Contractor" },
+                { eyebrow: "Established", line: "30+ Years · Since 1994" },
+              ].map((c, i, arr) => (
+                <div key={c.eyebrow} className="flex items-center gap-x-12">
+                  <div className="text-center">
+                    <span className="block font-display italic text-[11px] uppercase tracking-[0.25em] text-accent mb-1.5">
+                      {c.eyebrow}
+                    </span>
+                    <span className="text-xs uppercase tracking-[0.2em] text-primary-foreground/85">
+                      {c.line}
+                    </span>
+                  </div>
+                  {i < arr.length - 1 && (
+                    <span aria-hidden className="hidden md:block w-px h-8 bg-accent/25" />
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-6 md:pt-8 border-t border-primary-foreground/10">
-          <div className="flex flex-col md:flex-row justify-between items-center text-xs md:text-sm text-primary-foreground/45 font-light gap-4">
-            <p>&copy; {new Date().getFullYear()} Beau Monde Builders. All rights reserved.</p>
-            <div className="flex space-x-8 mt-4 md:mt-0">
-              <Link to="/privacy" className="hover:text-accent transition-colors">
-                Privacy
-              </Link>
-              <Link to="/terms" className="hover:text-accent transition-colors">
-                Terms
-              </Link>
-              <Link to="/sitemap" className="hover:text-accent transition-colors">
-                Sitemap
-              </Link>
-            </div>
+        {/* Legal */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-[0.2em] text-primary-foreground/40">
+          <p>&copy; {new Date().getFullYear()} Beau Monde Builders. All rights reserved.</p>
+          <div className="flex gap-8">
+            <Link to="/privacy" className="hover:text-primary-foreground/80 transition-colors">Privacy</Link>
+            <Link to="/terms" className="hover:text-primary-foreground/80 transition-colors">Terms</Link>
+            <Link to="/sitemap" className="hover:text-primary-foreground/80 transition-colors">Sitemap</Link>
           </div>
         </div>
       </div>
