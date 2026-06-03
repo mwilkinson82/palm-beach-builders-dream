@@ -216,7 +216,7 @@ const FrontCover = () => (
         </h2>
         <motion.p
           variants={fadeUp}
-          className="font-sans text-[10px] tracking-[0.5em] uppercase text-accent"
+          className="font-display italic font-light text-primary text-2xl sm:text-3xl md:text-4xl leading-[1] mt-2"
         >
           The Style Book
         </motion.p>
