@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { SEO, BreadcrumbSchema } from "@/components/SEO";
 import { Helmet } from "react-helmet-async";
-import oceanfrontEstate from "@/assets/projects/oceanfront-estate.jpg";
+import oceanfront from "@/assets/projects/oceanfront.jpg.asset.json";
 import worthAvenueResidence from "@/assets/projects/worth-avenue-residence.jpg";
 import intracoastalContemporary from "@/assets/projects/intracoastal-contemporary.jpg";
 import mediterraneanVilla from "@/assets/projects/mediterranean-villa.jpg";
@@ -26,7 +26,7 @@ const STYLES: Style[] = [
     name: "Oceanfront",
     descriptor:
       "Sun-bleached limestone, deep verandas, and the quiet authority of a house built to outlast the salt.",
-    image: oceanfrontEstate,
+    image: oceanfront.url,
   },
   {
     name: "Urban Classical",
