@@ -47,14 +47,6 @@ const services = [
   },
 ];
 
-const hoaCapabilities = [
-  "Expert navigation of condo association requirements",
-  "Coordination with building management",
-  "Noise and schedule compliance",
-  "Material delivery logistics",
-  "Neighbor-conscious construction practices",
-];
-
 const propertyTypes = [
   "Luxury Condos",
   "Oceanfront Condos",
@@ -65,13 +57,6 @@ const propertyTypes = [
 ];
 
 const areasServed = ["Palm Beach Island", "West Palm Beach", "Jupiter Island", "Singer Island"];
-
-const processSteps = [
-  "Design Consultation",
-  "Permit Management",
-  "Quality Construction",
-  "Final Walkthrough",
-];
 
 const fcmbCredentials = [
   { k: "Experience", v: "Three decades of Palm Beach building" },
