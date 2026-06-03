@@ -74,6 +74,7 @@ const COMMITMENTS = [
 
 const Home = () => {
   const [showSplash, setShowSplash] = useState(true);
+  const [bentoLightboxIndex, setBentoLightboxIndex] = useState<number | null>(null);
 
   return (
     <>
