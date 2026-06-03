@@ -6,6 +6,7 @@ import { RevealAnimation } from "@/components/RevealAnimation";
 import { SEO, BreadcrumbSchema, ServicePageSchema } from "@/components/SEO";
 import { Helmet } from "react-helmet-async";
 import { BuildReadyChecklist } from "@/components/BuildReadyChecklist";
+import { ScheduleDrivenSection } from "@/components/ScheduleDrivenSection";
 
 const phases = [
   {
