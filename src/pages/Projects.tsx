@@ -11,6 +11,7 @@ import mediterraneanVilla from "@/assets/projects/mediterranean-villa.jpg";
 import modernMinimalist from "@/assets/projects/modern-minimalist.jpg";
 import classicEstate from "@/assets/projects/classic-estate.jpg";
 import bermudaColonial from "@/assets/projects/bermuda-colonial.jpg.asset.json";
+import angloCaribbean from "@/assets/projects/anglo-caribbean.jpg.asset.json";
 
 type Style = {
   name: string;
@@ -65,6 +66,7 @@ const STYLES: Style[] = [
     name: "Anglo-Caribbean / West Indies",
     descriptor:
       "Pecky cypress, coral stone, plantation shutters — a quieter, more breeze-cooled coastal language.",
+    image: angloCaribbean.url,
   },
   {
     name: "Transitional",
