@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { SEO, BreadcrumbSchema } from "@/components/SEO";
 import { Helmet } from "react-helmet-async";
 import oceanfront from "@/assets/projects/oceanfront.jpg.asset.json";
-import worthAvenueResidence from "@/assets/projects/worth-avenue-residence.jpg";
+import urbanClassical from "@/assets/projects/urban-classical.jpg.asset.json";
 import intracoastalContemporary from "@/assets/projects/intracoastal-contemporary.jpg";
 import mediterraneanVilla from "@/assets/projects/mediterranean-villa.jpg";
 import modernMinimalist from "@/assets/projects/modern-minimalist.jpg";
@@ -32,7 +32,7 @@ const STYLES: Style[] = [
     name: "Urban Classical",
     descriptor:
       "Palm Beach gentility in town clothes — symmetry, scaled cornices, and rooms that know how to host.",
-    image: worthAvenueResidence,
+    image: urbanClassical.url,
   },
   {
     name: "Waterfront Contemporary",
