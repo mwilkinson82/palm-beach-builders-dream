@@ -165,7 +165,7 @@ const CoverPlate = () => (
     <motion.div variants={fadeUp} className="flex items-center justify-center gap-3 mb-6">
       <span className="h-px w-8 bg-accent" />
       <span className="font-sans text-[10px] tracking-[0.4em] uppercase text-accent">
-        The Style Book
+        How to read this book
       </span>
       <span className="h-px w-8 bg-accent" />
     </motion.div>
@@ -173,7 +173,7 @@ const CoverPlate = () => (
       variants={fadeUp}
       className="font-display italic font-light text-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.02] tracking-tight"
     >
-      Find Your Style.
+      Ten Idioms.
     </motion.h1>
     <motion.span variants={drawX} className="block w-16 h-px bg-accent mt-8 mb-8 origin-center" />
     <motion.p
@@ -181,7 +181,7 @@ const CoverPlate = () => (
       className="font-sans font-light text-sm md:text-base text-primary/75 leading-relaxed max-w-md"
     >
       Ten aesthetic worlds we know intimately — and one that's yours alone.
-      Turn the page.
+      Turn the page to begin.
     </motion.p>
     <motion.p
       variants={fadeUp}
@@ -192,119 +192,14 @@ const CoverPlate = () => (
   </div>
 );
 
-// ---------- Front-cover plate variants (left-side of the open book on landing) ----------
-
-// Option A — Worth Avenue Monograph: typographic clothbound cover
-const FrontCoverA = () => (
-  <div className="w-full h-full bg-[hsl(var(--card))] p-5 sm:p-7">
-    <div className="w-full h-full border border-accent/60 flex flex-col items-center justify-between px-6 sm:px-10 py-8 sm:py-12 text-center">
-      <motion.div variants={fadeUp} className="flex flex-col items-center gap-3">
-        <span className="block h-px w-12 bg-accent" />
-        <span className="font-sans text-[9px] sm:text-[10px] tracking-[0.5em] uppercase text-accent">
-          Beau Monde Builders · Palm Beach
-        </span>
-        <span className="block h-px w-12 bg-accent" />
-      </motion.div>
-
-      <div className="flex flex-col items-center">
-        <motion.p
-          variants={fadeUp}
-          className="font-sans text-[10px] tracking-[0.4em] uppercase text-accent mb-6"
-        >
-          The Style Book
-        </motion.p>
-        <motion.h1
-          variants={fadeUp}
-          className="font-display italic font-light text-primary text-5xl sm:text-6xl md:text-7xl leading-[0.95] tracking-tight"
-        >
-          Find
-          <br />
-          Your
-          <br />
-          Style.
-        </motion.h1>
-        <motion.span variants={drawX} className="block w-16 h-px bg-accent mt-8 origin-center" />
-      </div>
-
-      <motion.div
-        variants={fadeUp}
-        className="flex items-center justify-between w-full font-sans text-[9px] sm:text-[10px] tracking-[0.4em] uppercase text-accent/80"
-      >
-        <span>Volume I</span>
-        <span className="h-px flex-1 bg-accent/40 mx-4" />
-        <span>MMXXVI</span>
-      </motion.div>
-    </div>
-  </div>
-);
-
-// Option B — Architectural Plate: emblem-led, wordmark dominant
-const FrontCoverB = () => (
-  <div className="w-full h-full bg-[hsl(var(--card))] p-5 sm:p-7">
-    <div className="w-full h-full border border-accent/60 flex flex-col items-center justify-between px-6 sm:px-10 py-8 sm:py-12 text-center">
-      <motion.p
-        variants={fadeUp}
-        className="font-sans text-[10px] tracking-[0.5em] uppercase text-accent"
-      >
-        Palm Beach · Est. 1996
-      </motion.p>
-
-      <div className="flex flex-col items-center gap-6">
-        <motion.div variants={fadeImg} className="text-accent">
-          {/* Loggia emblem — restrained brass linework */}
-          <svg width="180" height="120" viewBox="0 0 180 120" fill="none" strokeWidth="1.25" stroke="currentColor">
-            {/* hipped roof */}
-            <path d="M20 50 L90 18 L160 50" strokeLinecap="round" />
-            <path d="M28 50 L90 26 L152 50" opacity="0.5" />
-            {/* entablature */}
-            <line x1="18" y1="54" x2="162" y2="54" />
-            <line x1="22" y1="58" x2="158" y2="58" opacity="0.5" />
-            {/* columns */}
-            {[30, 60, 90, 120, 150].map((x) => (
-              <g key={x}>
-                <line x1={x} y1="60" x2={x} y2="100" />
-                <line x1={x - 4} y1="100" x2={x + 4} y2="100" />
-                <line x1={x - 3} y1="60" x2={x + 3} y2="60" opacity="0.7" />
-              </g>
-            ))}
-            {/* ground */}
-            <line x1="14" y1="104" x2="166" y2="104" />
-            <line x1="10" y1="108" x2="170" y2="108" opacity="0.4" />
-          </svg>
-        </motion.div>
-
-        <motion.h2
-          variants={fadeUp}
-          className="font-wordmark text-primary text-4xl sm:text-5xl md:text-6xl leading-none"
-        >
-          Beau Monde
-        </motion.h2>
-        <motion.span variants={drawX} className="block w-20 h-px bg-accent origin-center" />
-        <motion.p
-          variants={fadeUp}
-          className="font-display italic font-light text-primary/85 text-2xl sm:text-3xl"
-        >
-          Find Your Style.
-        </motion.p>
-      </div>
-
-      <motion.p
-        variants={fadeUp}
-        className="font-sans text-[9px] sm:text-[10px] tracking-[0.5em] uppercase text-accent/80"
-      >
-        The Style Book · Volume I
-      </motion.p>
-    </div>
-  </div>
-);
-
-// Option C — Closed Volume: deeper sand, debossed BM monogram, single front cover
-const FrontCoverC = () => (
+// ---------- Front cover (left page on landing) ----------
+// "Closed Volume" — seafoam ground, Beau Monde wordmark in lieu of a monogram.
+const FrontCover = () => (
   <div
     className="w-full h-full flex flex-col items-center justify-between px-8 sm:px-14 py-12 sm:py-16 text-center"
     style={{
       background:
-        "linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(var(--secondary)) 60%, hsl(var(--muted)) 100%)",
+        "linear-gradient(135deg, hsl(160 18% 88%) 0%, hsl(160 18% 88%) 55%, hsl(160 16% 82%) 100%)",
     }}
   >
     <motion.p
@@ -315,23 +210,22 @@ const FrontCoverC = () => (
     </motion.p>
 
     <div className="flex flex-col items-center gap-8">
-      {/* Debossed BM monogram */}
-      <motion.div variants={fadeImg} className="relative">
-        <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full border border-accent/70 flex items-center justify-center shadow-[inset_0_2px_8px_rgba(15,42,61,0.12),0_1px_0_rgba(245,240,230,0.6)]">
-          <span className="font-wordmark text-primary text-5xl sm:text-6xl tracking-tight">
-            BM
-          </span>
-        </div>
+      <motion.div variants={fadeImg} className="flex flex-col items-center gap-5">
+        <span className="block w-10 h-px bg-accent/70" />
+        <h2 className="font-wordmark text-primary text-5xl sm:text-6xl md:text-7xl leading-[0.95] tracking-tight">
+          Beau Monde
+        </h2>
+        <span className="block w-10 h-px bg-accent/70" />
       </motion.div>
 
       <motion.span variants={drawX} className="block w-16 h-px bg-accent origin-center" />
 
-      <motion.h2
+      <motion.h3
         variants={fadeUp}
-        className="font-display italic font-light text-primary text-4xl sm:text-5xl md:text-6xl leading-[0.95]"
+        className="font-display italic font-light text-primary text-3xl sm:text-4xl md:text-5xl leading-[0.95]"
       >
         Find Your Style.
-      </motion.h2>
+      </motion.h3>
 
       <motion.p
         variants={fadeUp}
