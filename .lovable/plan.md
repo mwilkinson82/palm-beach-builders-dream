@@ -1,55 +1,76 @@
-## About page — luxury redesign
+## About page — 2026 reframe: modern principal, extended bench
 
-Strip the dark/gradient hero and the inverted "Our Philosophy" slab, and rebuild About to match the ivory & ocean system we used on Home, Services, and Process. Light-mode first, Cormorant headlines, Fira Sans UI, brass hairlines only, seafoam as whisper.
+The current Story reads like an old-school craftsman in a truck. We're rewriting it as a modern principal who married old-world standards with new-world technology. We're also restructuring the team section so three faces clearly read as the **leadership** of a much larger network — not the entire company.
 
-### New AJ photo
-Please drop the new AJ image into this chat as an attachment. I'll wire it into `src/assets/` and replace the existing `aj-hoover.png` reference. (If you want me to keep the old file as a fallback, say the word.)
+### 1. New AJ portrait
+- Upload the attached `AJ_Hoover_Zoom_Profile_Full_View_Retina_1200.PNG` via `lovable-assets` to `src/assets/aj-hoover-v2.png.asset.json`.
+- Swap the hero `<img>` to use the new asset. Keep the old file untouched as a fallback.
+- The new photo is already presented in a square ivory mat with the AJ Hoover signature wordmark inset. To preserve that mat/signature treatment:
+  - Drop the brass hairline border and offset seafoam wash from around the portrait (the photo already has its own ivory frame).
+  - Switch the portrait frame from `aspect-[4/5]` to `aspect-square`.
+  - Remove the small "AJ Hoover · Founder" caption beneath it — the signature in the image does that job.
 
-### Section-by-section
+### 2. Rewrite "The Story" — modern principal, not crusty craftsman
+Keep the three-movement structure (it scans well). Rewrite the copy and the pull quote so the tone reads like a CEO of a $5–20M custom home firm in 2026, not a guy who learned framing from his dad.
 
-**1. Hero — "The Maker"**
-- Remove `bg-gradient-to-b from-black/50` and the centered marketing copy.
-- Editorial split: left column is an oversized `font-wordmark` "Beau Monde" treatment with an eyebrow "The House Of —" and a single-line subhead ("Built by AJ Hoover. Held to one standard."); right column is the new AJ portrait in a tall 4/5 frame with a thin brass hairline border and a faint seafoam wash behind it.
-- Scroll-driven parallax: wordmark drifts up, portrait drifts down a few percent, brass hairline grows into the eyebrow on mount.
-- No CTA in the hero — the page earns the CTA later.
+**I. Origin** — keep current copy. It earns the work ethic without sounding rural-quaint.
 
-**2. The Story — long-form editorial**
-- Replace the two-column "AJ Hoover / CEO & Founder" block with a single narrow column of Cormorant body (max-w-2xl), drop-cap first paragraph, ornamental brass hairline rule between movements.
-- Rewrite the four paragraphs into three movements with section labels in the margin:
-  - I. Origin (Upstate roots, every trade learned by hand)
-  - II. The Standard (why he built Beau Monde — relationships with Florida's best artisans)
-  - III. Today (still on every job, still answering the phone)
-- Pull-quote in italic Cormorant between II and III.
-- Stagger each movement with `RevealAnimation` fade-up; pull-quote scales in.
+**II. The Standard** — rewrite to lead with selection of partners + the standard he holds them to, not "the slow way."
+> "AJ moved to Florida and spent two decades curating the artisans, engineers, and trade partners now behind every Beau Monde home — the masons, millworkers, mechanical and technology specialists who meet a standard most firms can't enforce. Beau Monde isn't a crew. It's a vetted network operating under one signature."
 
-**3. Philosophy — flip from dark to light**
-- Delete `bg-foreground text-background` and the SVG dot pattern. Use ivory background with a faint seafoam top wash.
-- Keep the three pillars (Excellence / Integrity / Innovation) but render as a 3-column editorial grid with hairline dividers between columns, brass numerals, Cormorant italic titles, Fira body.
-- Each column reveals in sequence on scroll; brass numeral counts in.
+**Pull quote** — replace the current "old houses, by hand, by name" line. New quote:
+> "Old-world standards. New-world tools. One signature on every house."
 
-**4. Certifications — refined, not glowing**
-- Remove the `bg-accent/10 blur-3xl` halo and the heavy gradient background.
-- Two badges sit on ivory inside thin sand-bordered frames, captions in Fira small-caps.
-- Replace the four "rounded-lg border" requirement cards with a clean 2×2 hairline grid (no rounded corners, no card chrome), brass icons at strokeWidth 1.25.
-- Replace the pill "verification badges" row with a single inline brass-hairline list ("Background verified · 5+ years licensed · Fully insured · Board approved").
+**III. Today** — rewrite to make it explicit: hands-on principal + modern operating system.
+> "Three decades on, AJ still walks every job and signs every standard — now backed by a technology stack that gives owners full transparency into daily logs, CPM schedules, and the selection process from dream board through procurement and install. Old discipline. Modern instruments."
 
-**5. The Team**
-- Keep John, Michelle, Linda. Switch portraits from 3/4 muted boxes to 4/5 ivory frames with sand hairline border.
-- Remove the brass hover overlay (it reads as a click affordance — non-interactive per portfolio rule).
-- Names in Cormorant, role in brass small-caps, one-line experience in Fira light.
+### 3. Reframe "The Team" → "Leadership"
+The problem: three people on a page implies a three-person company building $20M homes. The fix is to clearly label this as the leadership team and visually anchor it inside a much larger network.
 
-**6. Closing CTA — new**
-- Add a quiet closing band before the footer: brass hairline, eyebrow "Begin a conversation," Cormorant line "Every Beau Monde home starts at the same table.", primary navy button "Talk to Beau Monde" → `/contact`. No seafoam fill, no gradients.
+**Section eyebrow + headline**
+- Change eyebrow from "The Bench" to "Leadership".
+- Change headline from "The Beau Monde team." to "The principals. The bench is deeper than three."
+- Add a short lede paragraph below the headline:
+> "Three principals lead Beau Monde day-to-day. Behind them sits a vetted network of architects, masons, millworkers, mechanical specialists, technology partners, and project consultants — each invited by AJ, each held to the same standard."
 
-### Animation system
-- All sections use `RevealAnimation` (fade-up / luxury-reveal) with the staggered delays the rest of the site uses.
-- Hero gets scroll-driven parallax (wordmark, portrait, seafoam wash) wired off a shared `scrollY` like Process.
-- No card hover scales, no glow halos, no dark overlays anywhere on the page.
+**Role labels** — promote the three to the leadership tier so the titles match the framing:
+- John Colaiacovo → **Senior Project Manager**
+- Michelle Williams → **Director of Finance & Operations**
+- Linda Lucas → **Senior Project Manager**
 
-### Files
-- `src/pages/About.tsx` — full rebuild of the page composition.
-- `src/assets/aj-hoover-v2.{jpg|png}` — added when you upload the new photo; old file kept unless you say otherwise.
-- No new components unless the closing CTA gets reused elsewhere (then I'll lift it into `src/components/ClosingCTA.tsx`).
+**The Extended Bench strip** (new, sits directly under the three cards)
+A single full-width hairline-bordered band showing the network at a glance — counts + categories, no faces. Renders like an editorial colophon, not a logo wall.
 
-### One thing I need from you
-Drop the new AJ photo in the chat and I'll wire it in as part of the build. If you want, also tell me whether the hero should lead with "Beau Monde" (house-first) or "AJ Hoover" (founder-first) — my default in this plan is house-first with AJ owning the portrait + story.
+```text
+─────────────────────────────────────────────────
+THE EXTENDED BENCH
+Architects · Structural & Civil Engineers · Master Masons ·
+Millwork & Cabinetry · Mechanical, Electrical, Plumbing ·
+Smart-Home & Security · Landscape Architects · Interior Partners
+─────────────────────────────────────────────────
+   40+        20+          3
+   Vetted    Years of      Florida
+   Trade     Combined      Certified
+   Partners  Leadership    Master Builder
+─────────────────────────────────────────────────
+```
+
+- Three brass-numeral stats in Cormorant, labels in Fira small-caps.
+- Hairline dividers above/below in `border-accent/20`.
+- Numbers are intentionally conservative + verifiable (40+ trade partners, 20+ years combined leadership tenure, 1 FCMB). I'll flag any number you want me to change before publishing.
+- No logos, no faces, no badges in this strip — keeps the "quiet luxury" rule.
+
+**Closing micro-line under the strip**
+> "Small on purpose. Resourced like a firm three times the size."
+
+### 4. Files
+- `src/assets/aj-hoover-v2.png.asset.json` — new (via `lovable-assets`).
+- `src/pages/About.tsx` — Story copy rewrite, pull-quote rewrite, portrait frame/treatment change, team section reframe + Extended Bench strip + role title updates.
+- Old `aj-hoover.png` stays in place as a fallback.
+
+### Things I want you to confirm before I build
+1. **The three new role titles** — OK to promote John/Linda to "Senior Project Manager" and Michelle to "Director of Finance & Operations"? Or do you want different titles?
+2. **The bench numbers (40+ / 20+ / 1)** — say the word if you want different figures.
+3. **The new pull quote** — "Old-world standards. New-world tools. One signature on every house." — keep or revise?
+
+Once you greenlight (or edit) those three, I'll build it.
