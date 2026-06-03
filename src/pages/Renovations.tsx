@@ -362,8 +362,9 @@ const Renovations = () => {
 
             <RevealAnimation animation="fade-up" delay={300}>
               <p className="font-sans font-light text-[15px] md:text-base leading-relaxed text-primary/80 text-center max-w-2xl mx-auto mb-12 md:mb-14">
-                A voluntary credential awarded only to builders with the experience, ethics, and record
-                to back it — the FCMB is the pinnacle of professional standing in Florida construction.
+                Two voluntary credentials awarded only to builders with the experience, ethics, and record
+                to back them — together they represent the pinnacle of professional standing in both Florida
+                and national residential construction.
               </p>
             </RevealAnimation>
 
