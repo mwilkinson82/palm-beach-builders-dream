@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { X, Play } from "lucide-react";
+import { X, Play, Maximize2 } from "lucide-react";
 
 export interface LightboxVideo {
   /** Source URL — iframe embed URL or direct .mp4 */
@@ -37,6 +37,8 @@ export const VideoLightbox = ({
   onClose,
 }: VideoLightboxProps) => {
   const [current, setCurrent] = useState(initialIndex);
+  const playerRef = useRef<HTMLDivElement | null>(null);
+  const videoElRef = useRef<HTMLVideoElement | null>(null);
 
   // Reset to chosen item every time the lightbox opens
   useEffect(() => {
@@ -60,6 +62,26 @@ export const VideoLightbox = ({
   if (!open || typeof document === "undefined" || items.length === 0) return null;
 
   const item = items[current] ?? items[0];
+
+  // Request fullscreen synchronously from the user tap. iOS Safari doesn't
+  // support iframe fullscreen, but supports element fullscreen (16.4+) and
+  // webkitEnterFullscreen on <video>. We try each in order.
+  const handleFullscreen = () => {
+    const v = videoElRef.current as any;
+    if (v && typeof v.webkitEnterFullscreen === "function") {
+      try { v.webkitEnterFullscreen(); return; } catch { /* fallthrough */ }
+    }
+    const el = playerRef.current as any;
+    if (!el) return;
+    const req =
+      el.requestFullscreen ||
+      el.webkitRequestFullscreen ||
+      el.webkitEnterFullscreen ||
+      el.msRequestFullscreen;
+    if (typeof req === "function") {
+      try { req.call(el); } catch { /* ignore */ }
+    }
+  };
 
   // Append autoplay flags for iframe embeds. Works for ReelReef and Cloudflare Stream.
   let finalSrc = item.src;
@@ -92,6 +114,15 @@ export const VideoLightbox = ({
         <X className="h-5 w-5" strokeWidth={1.25} />
       </button>
 
+      <button
+        type="button"
+        onClick={(e) => { e.stopPropagation(); handleFullscreen(); }}
+        aria-label="Enter fullscreen"
+        className="absolute top-5 right-20 md:top-8 md:right-24 z-20 min-h-[44px] min-w-[44px] flex items-center justify-center border border-primary-foreground/30 bg-black/40 text-primary-foreground hover:border-accent hover:text-accent transition-colors"
+      >
+        <Maximize2 className="h-5 w-5" strokeWidth={1.25} />
+      </button>
+
       <div
         className={`relative w-full h-full flex flex-col items-center justify-center px-3 md:px-6 lg:px-10 pt-16 md:pt-14 gap-3 md:gap-4 ${
           items.length > 1 ? "pb-[180px] md:pb-[200px]" : "pb-6"
@@ -110,6 +141,7 @@ export const VideoLightbox = ({
         {/* Player — fills available viewport while preserving 16:9 */}
         <div
           key={current}
+          ref={playerRef}
           className="relative aspect-video bg-black border border-accent/40 shadow-2xl animate-scale-in"
           style={{
             // Explicit width derived from viewport so the 16:9 box always
@@ -134,6 +166,7 @@ export const VideoLightbox = ({
             />
           ) : (
             <video
+              ref={videoElRef}
               src={item.src}
               poster={item.poster}
               autoPlay
