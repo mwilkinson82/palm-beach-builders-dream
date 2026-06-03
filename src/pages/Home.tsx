@@ -231,7 +231,7 @@ const Home = () => {
         {/* Full-bleed cinematic hero */}
         <RevealAnimation animation="fade-up">
           <div className="relative w-full overflow-hidden">
-            <div className="relative w-full aspect-[4/5] md:aspect-[16/9] lg:aspect-[21/9]">
+            <div className="relative w-full aspect-[4/5] md:aspect-[3/2] lg:aspect-[16/9] xl:aspect-[2/1] min-h-[600px] md:min-h-[720px] lg:min-h-[820px]">
               <img
                 src={renovationHero.url}
                 alt="Beau Monde Builders renovation — interior with marble kitchen, brass lanterns, and ocean view"
