@@ -244,10 +244,87 @@ const Renovations = () => {
           </div>
         </section>
 
+        {/* FCMB credentials band */}
+        <section className="py-20 md:py-28 border-t border-accent/15 bg-secondary/20">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+            <RevealAnimation animation="fade-up">
+              <div className="flex items-center justify-center space-x-3 mb-6">
+                <span className="h-px w-8 bg-accent" />
+                <span className="font-sans text-[10px] md:text-xs tracking-[0.4em] uppercase text-accent">
+                  Heritage &amp; Accreditation
+                </span>
+                <span className="h-px w-8 bg-accent" />
+              </div>
+            </RevealAnimation>
+            <RevealAnimation animation="fade-up" delay={100}>
+              <h2 className="font-display italic text-3xl md:text-4xl lg:text-5xl text-primary text-center leading-[1.05] mb-12 md:mb-14">
+                Master-builder credentials.
+              </h2>
+            </RevealAnimation>
+
+            <RevealAnimation animation="fade-up" delay={160}>
+              <div className="flex flex-col items-center gap-1.5 mb-12 md:mb-14">
+                <div className="w-full h-px bg-accent/25" />
+                <div className="w-full h-[3px] bg-accent" />
+                <div className="w-full h-px bg-accent/25" />
+              </div>
+            </RevealAnimation>
+
+            <RevealAnimation animation="scale-in" delay={220}>
+              <div className="flex justify-center mb-12 md:mb-14">
+                <div className="flex flex-col items-center gap-5">
+                  <div className="relative">
+                    <span aria-hidden className="absolute inset-0 translate-x-2 translate-y-2 border border-accent/25" />
+                    <div className="relative bg-card border border-accent/25 p-5 shadow-[0_20px_40px_-18px_rgba(15,42,61,0.3)]">
+                      <img
+                        src={fcmbLogo}
+                        alt="Florida Certified Master Builder"
+                        className="h-24 md:h-28 w-auto object-contain"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-primary text-center max-w-[180px] leading-snug">
+                    Florida Certified Master Builder
+                  </span>
+                </div>
+              </div>
+            </RevealAnimation>
+
+            <RevealAnimation animation="fade-up" delay={300}>
+              <p className="font-sans font-light text-[15px] md:text-base leading-relaxed text-primary/80 text-center max-w-2xl mx-auto mb-12 md:mb-14">
+                A voluntary credential awarded only to builders with the experience, ethics, and record
+                to back it — the FCMB is the pinnacle of professional standing in Florida construction.
+              </p>
+            </RevealAnimation>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-3 mb-12 md:mb-14">
+              {fcmbCredentials.map((row, i) => (
+                <RevealAnimation key={row.k} animation="fade-up" delay={360 + i * 60}>
+                  <div className="flex items-baseline justify-between gap-4 border-b border-accent/25 pb-2.5">
+                    <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent shrink-0">
+                      {row.k}
+                    </span>
+                    <span className="font-sans font-light text-[13px] text-primary/85 text-right">
+                      {row.v}
+                    </span>
+                  </div>
+                </RevealAnimation>
+              ))}
+            </div>
+
+            <RevealAnimation animation="fade-up" delay={560}>
+              <div className="flex flex-col items-center gap-1.5">
+                <div className="w-full h-px bg-accent/25" />
+                <div className="w-full h-[3px] bg-accent" />
+                <div className="w-full h-px bg-accent/25" />
+              </div>
+            </RevealAnimation>
+          </div>
+        </section>
+
         {/* Services — editorial list */}
         <section className="py-20 md:py-28 border-t border-accent/15">
-          {/* FCMB credentials band sits visually before the services list, inside a shared rhythm */}
-        </section>
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <RevealAnimation animation="fade-up">
               <div className="max-w-3xl mb-16 md:mb-20">
