@@ -205,13 +205,7 @@ const StylePlate = ({ s, index }: { s: Style; index: number }) => (
       className="mt-4 sm:mt-6 aspect-[16/11] overflow-hidden shadow-[0_24px_60px_-30px_hsl(var(--primary)/0.4)]"
     >
       {s.image ? (
-        <img
-          src={s.image}
-          alt={s.name}
-          loading={index < 2 ? "eager" : "lazy"}
-          decoding="async"
-          className="w-full h-full object-cover"
-        />
+        <ImageLoupe src={s.image} alt={s.name} eager={index < 2} />
       ) : (
         <div className="w-full h-full bg-card border border-accent/30 flex items-center justify-center">
           <span className="font-display italic font-light text-primary/40 text-2xl">
@@ -242,7 +236,7 @@ const StylePlate = ({ s, index }: { s: Style; index: number }) => (
         className="group inline-flex items-center gap-2 font-sans text-[11px] tracking-[0.3em] uppercase text-accent"
       >
         <span className="relative">
-          Build in this idiom
+          Talk to Beau Monde about this style
           <span className="absolute left-0 -bottom-1 h-px w-full bg-accent origin-right scale-x-0 transition-transform duration-500 group-hover:origin-left group-hover:scale-x-100" />
         </span>
         <span aria-hidden>⟶</span>
