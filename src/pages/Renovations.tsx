@@ -1,357 +1,378 @@
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { RevealAnimation } from "@/components/RevealAnimation";
 import { SEO } from "@/components/SEO";
-import { ArrowRight, Building2, Home, Sparkles, Bath, ChefHat, Palette, Shield, CheckCircle2, MapPin } from "lucide-react";
+import { Helmet } from "react-helmet-async";
+
+const services = [
+  {
+    title: "Luxury Condo Transformations",
+    description:
+      "Complete reimagining of high-rise and beachfront condominiums in Palm Beach and West Palm Beach's most prestigious buildings.",
+    keywords: ["Full gut renovations", "Oceanfront units", "Penthouse redesigns", "Building compliance"],
+  },
+  {
+    title: "Whole-Home Remodels",
+    description:
+      "Comprehensive estate renovations that breathe new life into existing properties while preserving their architectural heritage.",
+    keywords: ["Historic preservation", "Modern upgrades", "Structural enhancements", "Smart-home integration"],
+  },
+  {
+    title: "Gourmet Kitchen Design",
+    description:
+      "World-class culinary spaces with premium appliances, custom cabinetry, and timeless detailing suited to Palm Beach entertaining.",
+    keywords: ["Custom cabinetry", "Premium appliances", "Island configurations", "Butler's pantries"],
+  },
+  {
+    title: "Spa-Inspired Bathrooms",
+    description:
+      "Quiet retreats with imported stone, heated floors, and bespoke fixtures that rival the finest resorts on the island.",
+    keywords: ["Imported marble", "Steam showers", "Soaking tubs", "Radiant heating"],
+  },
+  {
+    title: "Interior Redesign",
+    description:
+      "Complete interior transformations including millwork, lighting design, and custom finishes attuned to your personal aesthetic.",
+    keywords: ["Custom millwork", "Lighting design", "Flooring upgrades", "Ceiling treatments"],
+  },
+  {
+    title: "Turnkey Condo Packages",
+    description:
+      "Move-in-ready luxury transformations for newly acquired condominiums, timed precisely with your closing.",
+    keywords: ["Pre-purchase planning", "Expedited timelines", "Furniture coordination", "White-glove delivery"],
+  },
+];
+
+const hoaCapabilities = [
+  "Expert navigation of condo association requirements",
+  "Coordination with building management",
+  "Noise and schedule compliance",
+  "Material delivery logistics",
+  "Neighbor-conscious construction practices",
+];
+
+const propertyTypes = [
+  "Luxury Condos",
+  "Oceanfront Condos",
+  "Penthouses",
+  "Historic Estates",
+  "Beachfront Residences",
+  "Private Residences",
+];
+
+const areasServed = ["Palm Beach Island", "West Palm Beach", "Jupiter Island", "Singer Island"];
+
+const processSteps = [
+  "Design Consultation",
+  "Permit Management",
+  "Quality Construction",
+  "Final Walkthrough",
+];
+
+const ctaClass =
+  "group relative inline-flex items-center justify-center bg-primary text-primary-foreground px-12 md:px-16 py-5 text-[10px] md:text-[11px] font-sans font-light tracking-[0.3em] uppercase ring-1 ring-inset ring-accent/30 hover:ring-accent/60 transition-all duration-500 hover:-translate-y-px hover:shadow-[0_18px_40px_-20px_hsl(var(--primary)/0.55)]";
 
 const Renovations = () => {
-  const services = [
-    {
-      icon: Building2,
-      title: "Luxury Condo Transformations",
-      description: "Complete reimagining of high-rise and beachfront condominiums in Palm Beach and West Palm Beach's most prestigious buildings.",
-      features: ["Full gut renovations", "Oceanfront units", "Penthouse redesigns", "Building compliance expertise"]
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://bmbpalmbeach.com/" },
+      { "@type": "ListItem", position: 2, name: "Renovations", item: "https://bmbpalmbeach.com/renovations" },
+    ],
+  };
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "Luxury Renovation",
+    provider: { "@id": "https://bmbpalmbeach.com/#localbusiness" },
+    areaServed: areasServed.map((a) => ({ "@type": "Place", name: a })),
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Renovation Services",
+      itemListElement: services.map((s) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: s.title, description: s.description },
+      })),
     },
-    {
-      icon: Home,
-      title: "Whole-Home Remodels",
-      description: "Comprehensive estate renovations that breathe new life into existing properties while preserving their architectural heritage.",
-      features: ["Historic preservation", "Modern upgrades", "Structural enhancements", "Smart home integration"]
-    },
-    {
-      icon: ChefHat,
-      title: "Gourmet Kitchen Design",
-      description: "World-class culinary spaces featuring premium appliances, custom cabinetry, and timeless design suited for Palm Beach entertaining.",
-      features: ["Custom cabinetry", "Premium appliances", "Island configurations", "Butler's pantries"]
-    },
-    {
-      icon: Bath,
-      title: "Spa-Inspired Bathrooms",
-      description: "Luxurious retreats with imported stone, heated floors, and bespoke fixtures that rival the finest resorts.",
-      features: ["Imported marble", "Steam showers", "Soaking tubs", "Radiant heating"]
-    },
-    {
-      icon: Palette,
-      title: "Interior Redesign",
-      description: "Complete interior transformations including millwork, lighting design, and custom finishes that reflect your personal aesthetic.",
-      features: ["Custom millwork", "Lighting design", "Flooring upgrades", "Ceiling treatments"]
-    },
-    {
-      icon: Sparkles,
-      title: "Turnkey Condo Packages",
-      description: "Move-in ready luxury transformations for newly purchased condominiums, perfectly timed with your closing.",
-      features: ["Pre-purchase planning", "Expedited timelines", "Furniture coordination", "White-glove delivery"]
-    }
-  ];
+  };
 
   return (
     <>
-      <SEO 
+      <SEO
         title="Luxury Renovations | Beau Monde Builders Palm Beach"
         canonical="/renovations"
-        description="Palm Beach's premier luxury renovation specialists. Transform your condo or estate with full-service renovations including kitchens, bathrooms, and whole-home remodels by Florida Certified Master Builders."
+        description="Palm Beach's premier luxury renovation specialists. Discreet, full-service condominium and estate renovations by Florida Certified Master Builders."
       />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
+      </Helmet>
+
       <div className="min-h-screen bg-background">
         <Navigation />
 
-        {/* Hero Section */}
-        <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary/95 to-primary/90" />
-          <div className="absolute inset-0 opacity-[0.03]" style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
-            backgroundSize: '40px 40px'
-          }} />
-          
-          {/* Decorative elements */}
-          <div className="absolute top-20 right-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-10 left-10 w-48 h-48 bg-accent/5 rounded-full blur-2xl" />
-          
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="max-w-4xl">
-              <RevealAnimation animation="fade-up">
-                <div className="flex items-center space-x-3 mb-6">
-                  <div className="h-px w-12 md:w-16 bg-accent" />
-                  <span className="text-xs md:text-sm uppercase tracking-[0.3em] text-accent font-light">Luxury Renovations</span>
+        {/* Hero */}
+        <section className="pt-32 pb-20 md:pt-44 md:pb-28">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <RevealAnimation animation="fade-up">
+              <div className="max-w-4xl">
+                <div className="flex items-center space-x-3 mb-8">
+                  <div className="h-px w-12 bg-accent" />
+                  <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-accent font-sans font-light">
+                    Renovations
+                  </span>
                 </div>
 
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-thin text-white mb-8 leading-[1.1]">
-                  Reimagine Your
+                <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-primary leading-[1.05] mb-10">
+                  <span className="italic">Reimagine</span> your
                   <br />
-                  <span className="italic font-light text-accent">Palm Beach Residence</span>
+                  Palm Beach residence.
                 </h1>
 
-                <p className="text-lg md:text-xl text-white/70 mb-10 font-light leading-relaxed max-w-2xl">
-                  From iconic oceanfront condominiums to historic estates, we bring the same 
-                  uncompromising craftsmanship and attention to detail that defines every Beau Monde project.
+                <p className="font-sans font-light text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mb-12">
+                  Three decades of discreet, master-built craftsmanship — now applied to the
+                  residences you already love. Every renovation is led personally, scheduled
+                  around your life, and finished to the same standard as our ground-up estates.
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button 
-                    variant="default" 
-                    size="lg" 
-                    className="group bg-accent hover:bg-accent/90 text-black font-medium tracking-wide"
-                    asChild
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                  <Link to="/contact" className={ctaClass}>
+                    <span className="relative">
+                      Talk to Beau Monde
+                      <span className="pointer-events-none absolute -bottom-1.5 left-0 h-px w-0 bg-accent transition-all duration-500 group-hover:w-full" />
+                    </span>
+                  </Link>
+                  <Link
+                    to="/process"
+                    className="group inline-flex items-center text-[10px] md:text-xs uppercase tracking-[0.4em] font-sans font-light text-primary"
                   >
-                    <Link to="/contact">
-                      START YOUR RENOVATION
-                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    size="lg"
-                    className="border-white/30 text-white hover:bg-white hover:text-black font-medium tracking-wide"
-                    asChild
-                  >
-                    <Link to="/process">OUR PROCESS</Link>
-                  </Button>
+                    <span className="relative pb-1">
+                      View Our Process
+                      <span className="pointer-events-none absolute bottom-0 left-0 h-px w-full bg-accent/40 group-hover:bg-accent transition-colors duration-500" />
+                    </span>
+                    <span className="ml-3 text-accent">→</span>
+                  </Link>
+                </div>
+              </div>
+            </RevealAnimation>
+          </div>
+        </section>
+
+        {/* Editorial intro */}
+        <section className="py-20 md:py-28 border-t border-accent/15">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+              <RevealAnimation animation="fade-up" className="lg:col-span-7">
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="h-px w-10 bg-accent" />
+                  <span className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans font-light">
+                    The Standard
+                  </span>
+                </div>
+                <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-primary leading-[1.1] mb-8">
+                  Palm Beach's finest
+                  <br />
+                  <span className="italic text-muted-foreground">renovation specialists.</span>
+                </h2>
+                <p className="font-sans font-light text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
+                  The same Florida Certified Master Builder excellence that produces Palm
+                  Beach's most distinguished new estates is available, quietly, for the
+                  residences our clients already own.
+                </p>
+                <p className="font-sans font-light text-base md:text-lg text-muted-foreground leading-relaxed">
+                  Whether you've acquired a prestigious condominium on the island or you're
+                  ready to transform your existing home, Beau Monde brings three decades of
+                  expertise — and absolute discretion — to every project.
+                </p>
+              </RevealAnimation>
+
+              <RevealAnimation animation="fade-up" delay={150} className="lg:col-span-5">
+                <div className="border-l border-accent/30 pl-8 space-y-8">
+                  {[
+                    { label: "Credentials", value: "Florida Certified Master Builder" },
+                    { label: "Experience", value: "Three decades of Palm Beach building" },
+                    { label: "Office", value: "205 Worth Avenue, Palm Beach" },
+                  ].map((item) => (
+                    <div key={item.label}>
+                      <div className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans font-light mb-2">
+                        {item.label}
+                      </div>
+                      <div className="font-display text-xl md:text-2xl text-primary leading-snug">
+                        {item.value}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </RevealAnimation>
             </div>
           </div>
         </section>
 
-        {/* Introduction Section */}
-        <RevealAnimation animation="luxury-reveal">
-          <section className="py-16 md:py-24 bg-secondary">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="max-w-4xl mx-auto text-center">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-thin mb-8 leading-tight">
-                  Palm Beach's Finest
-                  <br />
-                  <span className="italic font-light text-muted-foreground">Renovation Specialists</span>
-                </h2>
-                
-                <p className="text-lg text-muted-foreground font-light leading-relaxed mb-8">
-                  The same Florida Certified Master Builder excellence that creates Palm Beach's most 
-                  distinguished new estates is now available for luxury renovations. Whether you've 
-                  acquired a prestigious condominium on the island or are ready to transform your 
-                  existing residence, Beau Monde brings three decades of expertise to every project.
-                </p>
-
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
-                  <div className="text-center">
-                    <div className="text-3xl md:text-4xl font-thin text-accent mb-2">50+</div>
-                    <div className="text-xs uppercase tracking-widest text-muted-foreground">Renovations Completed</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl md:text-4xl font-thin text-accent mb-2">30+</div>
-                    <div className="text-xs uppercase tracking-widest text-muted-foreground">Years Experience</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl md:text-4xl font-thin text-accent mb-2">100%</div>
-                    <div className="text-xs uppercase tracking-widest text-muted-foreground">Client Satisfaction</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl md:text-4xl font-thin text-accent mb-2">A+</div>
-                    <div className="text-xs uppercase tracking-widest text-muted-foreground">BBB Rating</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        </RevealAnimation>
-
-        {/* Services Grid */}
-        <section className="py-16 md:py-24 bg-primary">
+        {/* Services — editorial list */}
+        <section className="py-20 md:py-28 border-t border-accent/15">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <RevealAnimation animation="fade-up">
-              <div className="text-center mb-12 md:mb-16">
-                <div className="flex items-center justify-center space-x-3 mb-6">
-                  <div className="h-px w-12 bg-accent" />
-                  <span className="text-sm uppercase tracking-[0.3em] text-accent font-light">Full-Service Renovations</span>
-                  <div className="h-px w-12 bg-accent" />
+              <div className="max-w-3xl mb-16 md:mb-20">
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="h-px w-10 bg-accent" />
+                  <span className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans font-light">
+                    Full-Service Renovations
+                  </span>
                 </div>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-thin text-white leading-tight">
-                  Comprehensive Renovation
+                <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-primary leading-[1.1]">
+                  A complete
                   <br />
-                  <span className="italic font-light text-white/70">Services</span>
+                  <span className="italic text-muted-foreground">range of work.</span>
                 </h2>
               </div>
             </RevealAnimation>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-0">
               {services.map((service, index) => (
-                <RevealAnimation key={service.title} animation="fade-up" delay={100 * (index % 3)}>
-                  <div className="group relative h-full">
-                    <div className="absolute -inset-0.5 bg-gradient-to-b from-accent/20 to-transparent rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
-                    
-                    <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 h-full transition-all duration-500 group-hover:bg-white/10 group-hover:border-accent/30">
-                      <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors duration-500">
-                        <service.icon className="h-7 w-7 text-accent" />
-                      </div>
-                      
-                      <h3 className="text-xl font-light text-white mb-3 tracking-wide">
+                <RevealAnimation
+                  key={service.title}
+                  animation="fade-up"
+                  delay={(index % 2) * 100}
+                >
+                  <article className="group py-10 border-t border-accent/15">
+                    <div className="flex items-baseline gap-6 mb-5">
+                      <span className="font-sans font-light text-[10px] tracking-[0.4em] text-accent">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <h3 className="font-display text-2xl md:text-3xl text-primary leading-snug">
                         {service.title}
                       </h3>
-                      
-                      <div className="h-px w-12 bg-accent/50 mb-4 group-hover:w-20 transition-all duration-500" />
-                      
-                      <p className="text-sm text-white/60 font-light leading-relaxed mb-6 group-hover:text-white/80 transition-colors duration-500">
-                        {service.description}
-                      </p>
-
-                      <ul className="space-y-2">
-                        {service.features.map((feature) => (
-                          <li key={feature} className="flex items-center text-sm text-white/50">
-                            <CheckCircle2 className="w-4 h-4 text-accent mr-2 flex-shrink-0" />
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
                     </div>
-                  </div>
+                    <p className="font-sans font-light text-base text-muted-foreground leading-relaxed mb-5">
+                      {service.description}
+                    </p>
+                    <div className="font-sans font-light text-[11px] uppercase tracking-[0.25em] text-primary/60">
+                      {service.keywords.join(" · ")}
+                    </div>
+                  </article>
                 </RevealAnimation>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Condo Expertise Section */}
-        <RevealAnimation animation="luxury-reveal">
-          <section className="py-16 md:py-24 bg-secondary">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
-                  <div className="flex items-center space-x-3 mb-6">
-                    <div className="h-px w-12 bg-accent" />
-                    <span className="text-sm uppercase tracking-[0.3em] text-muted-foreground font-light">Condo Expertise</span>
-                  </div>
-                  
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-thin mb-8 leading-tight">
-                    Palm Beach's Premier
-                    <br />
-                    <span className="italic font-light text-muted-foreground">Condo Specialists</span>
-                  </h2>
-
-                  <p className="text-lg text-muted-foreground font-light leading-relaxed mb-8">
-                    Renovating in a luxury condominium requires specialized expertise. We understand 
-                    building regulations, work seamlessly with condo associations, and manage the 
-                    unique logistics of high-rise construction—all while delivering the same 
-                    exceptional quality that defines Beau Monde.
-                  </p>
-
-                  <div className="space-y-4">
-                    {[
-                      "Expert navigation of condo association requirements",
-                      "Coordination with building management",
-                      "Noise and schedule compliance",
-                      "Material delivery logistics",
-                      "Neighbor-conscious construction practices"
-                    ].map((item) => (
-                      <div key={item} className="flex items-start space-x-3">
-                        <Shield className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
-                        <span className="text-muted-foreground font-light">{item}</span>
-                      </div>
-                    ))}
-                  </div>
+        {/* Condo expertise — single navy band */}
+        <section className="py-20 md:py-28 bg-primary text-primary-foreground">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+              <RevealAnimation animation="fade-up">
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="h-px w-10 bg-accent" />
+                  <span className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans font-light">
+                    Condo Expertise
+                  </span>
                 </div>
-
-                <div className="relative">
-                  <div className="absolute inset-0 bg-accent/10 blur-3xl rounded-full scale-75" />
-                  <div className="relative bg-primary text-white border border-white/10 p-8 md:p-12 space-y-8">
-                    {/* Property Types */}
-                    <div>
-                      <h3 className="text-lg font-light mb-4 text-accent">Property Types</h3>
-                      <div className="grid grid-cols-2 gap-2">
-                        {[
-                          "Luxury Condos",
-                          "Residences",
-                          "Oceanfront Condos",
-                          "Penthouses",
-                          "Historic Estates",
-                          "Beachfront Residences"
-                        ].map((item) => (
-                          <div key={item} className="text-sm text-white/80 font-light py-1.5 flex items-center">
-                            <CheckCircle2 className="w-4 h-4 text-accent mr-2 flex-shrink-0" />
-                            {item}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Areas We Serve */}
-                    <div className="border-t border-white/10 pt-6">
-                      <h3 className="text-lg font-light mb-4 text-accent">Areas We Serve</h3>
-                      <div className="grid grid-cols-2 gap-2">
-                        {[
-                          "Palm Beach Island",
-                          "West Palm Beach",
-                          "Jupiter Island",
-                          "Singer Island"
-                        ].map((item) => (
-                          <div key={item} className="text-sm text-white/80 font-light py-1.5 flex items-center">
-                            <MapPin className="w-4 h-4 text-accent mr-2 flex-shrink-0" />
-                            {item}
-                          </div>
-                        ))}
-                      </div>
-                      <div className="text-sm text-white/60 font-light italic mt-3">
-                        And surrounding areas
-                      </div>
-                    </div>
-
-                    {/* Our Process */}
-                    <div className="border-t border-white/10 pt-6">
-                      <h3 className="text-lg font-light mb-4 text-accent">Our Process</h3>
-                      <div className="space-y-2">
-                        {[
-                          "Design Consultation",
-                          "Permit Management",
-                          "Quality Construction",
-                          "Final Walkthrough"
-                        ].map((item, index) => (
-                          <div key={item} className="text-sm text-white/80 font-light py-1.5 flex items-center">
-                            <span className="w-6 h-6 rounded-full bg-accent/20 text-accent text-xs flex items-center justify-center mr-2 flex-shrink-0">
-                              {index + 1}
-                            </span>
-                            {item}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        </RevealAnimation>
-
-        {/* CTA Section */}
-        <RevealAnimation animation="fade-up">
-          <section className="relative py-20 md:py-32 overflow-hidden">
-            <div className="absolute inset-0 bg-primary" />
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMwLTkuOTQtOC4wNi0xOC0xOC0xOCIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDMpIiBzdHJva2Utd2lkdGg9IjEiLz48L2c+PC9zdmc+')] opacity-20" />
-
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-              <div className="max-w-4xl mx-auto text-center">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-thin text-white mb-8 leading-tight">
-                  Ready to transform
+                <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-primary-foreground leading-[1.1] mb-8">
+                  Palm Beach's premier
                   <br />
-                  <span className="italic font-light text-accent">your residence?</span>
+                  <span className="italic text-primary-foreground/70">condo specialists.</span>
                 </h2>
-
-                <p className="text-lg text-white/70 mb-10 font-light">
-                  Schedule a consultation to discuss your renovation vision with our team.
+                <p className="font-sans font-light text-base md:text-lg text-primary-foreground/70 leading-relaxed mb-10 max-w-xl">
+                  Renovating in a luxury condominium asks for a specific kind of expertise. We
+                  understand building regulations, work seamlessly with associations, and manage
+                  the logistics of high-rise construction without ever compromising the standard.
                 </p>
 
-                <Button 
-                  variant="outline" 
-                  size="lg"
-                  className="border-accent text-accent hover:bg-accent hover:text-black font-medium tracking-wide"
-                  asChild
-                >
-                  <Link to="/contact">
-                    SCHEDULE YOUR CONSULTATION
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-              </div>
+                <ul className="space-y-0">
+                  {hoaCapabilities.map((item) => (
+                    <li
+                      key={item}
+                      className="py-4 border-t border-primary-foreground/10 font-sans font-light text-base text-primary-foreground/80"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </RevealAnimation>
+
+              <RevealAnimation animation="fade-up" delay={150}>
+                <div className="border border-accent/25 p-10 md:p-12 space-y-10">
+                  <div>
+                    <div className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans font-light mb-5">
+                      Property Types
+                    </div>
+                    <ul className="grid grid-cols-2 gap-y-2 font-sans font-light text-sm text-primary-foreground/85">
+                      {propertyTypes.map((p) => (
+                        <li key={p}>{p}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="border-t border-primary-foreground/10 pt-10">
+                    <div className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans font-light mb-5">
+                      Areas We Serve
+                    </div>
+                    <ul className="grid grid-cols-2 gap-y-2 font-sans font-light text-sm text-primary-foreground/85">
+                      {areasServed.map((a) => (
+                        <li key={a}>{a}</li>
+                      ))}
+                    </ul>
+                    <div className="font-sans font-light italic text-xs text-primary-foreground/50 mt-3">
+                      And surrounding areas.
+                    </div>
+                  </div>
+
+                  <div className="border-t border-primary-foreground/10 pt-10">
+                    <div className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans font-light mb-5">
+                      Our Process
+                    </div>
+                    <ol className="space-y-3">
+                      {processSteps.map((step, i) => (
+                        <li
+                          key={step}
+                          className="flex items-baseline gap-4 font-sans font-light text-sm text-primary-foreground/85"
+                        >
+                          <span className="text-accent text-[10px] tracking-[0.3em]">
+                            0{i + 1}
+                          </span>
+                          <span>{step}</span>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                </div>
+              </RevealAnimation>
             </div>
-          </section>
-        </RevealAnimation>
+          </div>
+        </section>
+
+        {/* Closing CTA */}
+        <section className="py-24 md:py-32">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <RevealAnimation animation="fade-up">
+              <div className="max-w-3xl mx-auto text-center">
+                <div className="flex items-center justify-center space-x-3 mb-6">
+                  <div className="h-px w-10 bg-accent" />
+                  <span className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans font-light">
+                    Begin
+                  </span>
+                  <div className="h-px w-10 bg-accent" />
+                </div>
+                <h2 className="font-display text-3xl md:text-5xl text-primary leading-[1.1] mb-8">
+                  Ready to <span className="italic text-muted-foreground">begin?</span>
+                </h2>
+                <p className="font-sans font-light text-base md:text-lg text-muted-foreground leading-relaxed mb-12 max-w-xl mx-auto">
+                  A short conversation is the best way to understand the work. We'll listen
+                  first, then walk you through what's possible in your residence.
+                </p>
+                <Link to="/contact" className={ctaClass}>
+                  <span className="relative">
+                    Talk to Beau Monde
+                    <span className="pointer-events-none absolute -bottom-1.5 left-0 h-px w-0 bg-accent transition-all duration-500 group-hover:w-full" />
+                  </span>
+                </Link>
+              </div>
+            </RevealAnimation>
+          </div>
+        </section>
 
         <Footer />
       </div>
