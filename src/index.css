@@ -100,10 +100,13 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
   }
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   @media (prefers-reduced-motion: reduce) {
