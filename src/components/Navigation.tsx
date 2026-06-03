@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { pathname } = useLocation();
+
+  // Only routes with a full-bleed dark hero get the transparent-over-hero treatment.
+  const transparentRoutes = ["/", "/renovations"];
+  const canBeTransparent = transparentRoutes.includes(pathname);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -14,8 +19,8 @@ export const Navigation = () => {
   }, []);
 
   // Transparent over the hero (light text), ivory after scroll (dark text).
-  // Mobile menu open also forces the solid surface for legibility.
-  const solid = scrolled || isOpen;
+  // Mobile menu open or non-hero routes always force the solid surface for legibility.
+  const solid = !canBeTransparent || scrolled || isOpen;
   const shellClass = solid
     ? "bg-background/95 backdrop-blur-md border-b border-border/60 shadow-sm"
     : "bg-transparent border-b border-transparent";
