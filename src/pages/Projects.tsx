@@ -196,7 +196,7 @@ const CoverPlate = () => (
 // "Closed Volume" — seafoam ground, Beau Monde wordmark in lieu of a monogram.
 const FrontCover = () => (
   <div
-    className="w-full h-full flex flex-col items-center justify-between px-8 sm:px-14 py-12 sm:py-16 text-center"
+    className="w-full h-full flex flex-col items-center justify-between px-8 sm:px-14 py-12 sm:py-16 text-center border border-accent/30"
     style={{
       background:
         "linear-gradient(135deg, hsl(160 18% 88%) 0%, hsl(160 18% 88%) 55%, hsl(160 16% 82%) 100%)",
