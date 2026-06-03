@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { RevealAnimation } from "@/components/RevealAnimation";
 import { SEO } from "@/components/SEO";
 import { Helmet } from "react-helmet-async";
+import { RenovationsHero } from "@/components/RenovationsHero";
 
 const services = [
   {
@@ -114,52 +115,7 @@ const Renovations = () => {
       <div className="min-h-screen bg-background">
         <Navigation />
 
-        {/* Hero */}
-        <section className="pt-32 pb-20 md:pt-44 md:pb-28">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <RevealAnimation animation="fade-up">
-              <div className="max-w-4xl">
-                <div className="flex items-center space-x-3 mb-8">
-                  <div className="h-px w-12 bg-accent" />
-                  <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-accent font-sans font-light">
-                    Renovations
-                  </span>
-                </div>
-
-                <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-primary leading-[1.05] mb-10">
-                  <span className="italic">Reimagine</span> your
-                  <br />
-                  Palm Beach residence.
-                </h1>
-
-                <p className="font-sans font-light text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mb-12">
-                  Three decades of discreet, master-built craftsmanship — now applied to the
-                  residences you already love. Every renovation is led personally, scheduled
-                  around your life, and finished to the same standard as our ground-up estates.
-                </p>
-
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-                  <Link to="/contact" className={ctaClass}>
-                    <span className="relative">
-                      Talk to Beau Monde
-                      <span className="pointer-events-none absolute -bottom-1.5 left-0 h-px w-0 bg-accent transition-all duration-500 group-hover:w-full" />
-                    </span>
-                  </Link>
-                  <Link
-                    to="/process"
-                    className="group inline-flex items-center text-[10px] md:text-xs uppercase tracking-[0.4em] font-sans font-light text-primary"
-                  >
-                    <span className="relative pb-1">
-                      View Our Process
-                      <span className="pointer-events-none absolute bottom-0 left-0 h-px w-full bg-accent/40 group-hover:bg-accent transition-colors duration-500" />
-                    </span>
-                    <span className="ml-3 text-accent">→</span>
-                  </Link>
-                </div>
-              </div>
-            </RevealAnimation>
-          </div>
-        </section>
+        <RenovationsHero />
 
         {/* Editorial intro */}
         <section className="py-20 md:py-28 border-t border-accent/15">
