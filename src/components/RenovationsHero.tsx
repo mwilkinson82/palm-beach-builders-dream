@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import { Volume2, VolumeX } from "lucide-react";
+import { audioPreference } from "@/hooks/useAudioPreference";
 import videoAsset from "@/assets/renovations-hero.mp4.asset.json";
 import posterAsset from "@/assets/renovations-hero-poster.jpg.asset.json";
 
@@ -6,6 +8,7 @@ export const RenovationsHero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [ready, setReady] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [muted, setMuted] = useState(true);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -21,6 +24,16 @@ export const RenovationsHero = () => {
     v.play().catch(() => {});
     return () => v.removeEventListener("playing", onPlaying);
   }, [reducedMotion]);
+
+  const toggleMute = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    const next = !muted;
+    v.muted = next;
+    setMuted(next);
+    audioPreference.set(!next);
+    if (!next) v.play().catch(() => {});
+  };
 
   return (
     <section
@@ -69,6 +82,23 @@ export const RenovationsHero = () => {
         <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] mb-2">Scroll</span>
         <div className="w-px h-10 md:h-14 bg-gradient-to-b from-white/70 to-transparent" />
       </div>
+
+      {/* Bottom-right unmute pill */}
+      {!reducedMotion && (
+        <button
+          type="button"
+          onClick={toggleMute}
+          aria-label={muted ? "Unmute video" : "Mute video"}
+          className="absolute bottom-8 right-4 sm:right-8 lg:right-16 z-10 group flex items-center gap-2 border border-white/30 bg-black/30 backdrop-blur-md px-4 py-2.5 text-white text-[10px] md:text-xs uppercase tracking-[0.25em] font-light hover:border-accent hover:bg-black/50 transition-colors"
+        >
+          {muted ? (
+            <VolumeX className="h-3.5 w-3.5 md:h-4 md:w-4 text-accent" />
+          ) : (
+            <Volume2 className="h-3.5 w-3.5 md:h-4 md:w-4 text-accent" />
+          )}
+          <span>{muted ? "Unmute" : "Mute"}</span>
+        </button>
+      )}
     </section>
   );
 };
