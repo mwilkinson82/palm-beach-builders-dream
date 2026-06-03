@@ -124,13 +124,6 @@ export const WalkthroughShowcase = ({
             </span>
             <div className="h-px w-8 md:w-12 bg-accent" />
           </div>
-          <div className="mt-4 md:mt-5 flex items-center justify-center gap-3 md:gap-4">
-            <span className="h-px w-8 md:w-12 bg-accent/50" />
-            <span className="font-sans uppercase text-[10px] md:text-xs tracking-[0.35em] text-accent">
-              The Residence · In Photographs
-            </span>
-            <span className="h-px w-8 md:w-12 bg-accent/50" />
-          </div>
         </RevealAnimation>
       </div>
       <VideoLightbox
