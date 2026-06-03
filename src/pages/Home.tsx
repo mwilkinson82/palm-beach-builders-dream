@@ -104,7 +104,7 @@ const Home = () => {
 
           {/* Band 1 — Hero editorial */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-0 border-b border-accent/30 pb-16 md:pb-20">
-            <div className="lg:col-span-7 lg:pr-12">
+            <div className="lg:col-span-7 lg:pr-12 order-2 lg:order-1">
               <RevealAnimation animation="fade-up">
                 <span className="block font-sans text-[10px] tracking-[0.25em] text-accent uppercase mb-4">
                   The Beau Monde Standard
@@ -114,7 +114,7 @@ const Home = () => {
               <div className="relative">
                 <span
                   aria-hidden
-                  className="parallax-ligature absolute -top-12 md:-top-16 -left-6 md:-left-12 font-display italic text-[10rem] md:text-[16rem] lg:text-[18rem] leading-none text-accent/15 pointer-events-none select-none"
+                  className="parallax-ligature absolute -top-10 md:-top-16 -left-3 md:-left-12 font-display italic text-[8rem] md:text-[16rem] lg:text-[18rem] leading-none text-accent/15 pointer-events-none select-none"
                   style={{ fontFeatureSettings: "'swsh' 1, 'dlig' 1" }}
                 >
                   B
@@ -187,43 +187,47 @@ const Home = () => {
               </RevealAnimation>
             </div>
 
-            <div className="lg:col-span-5 relative lg:pb-28">
-              {/* Interior — dominant */}
-              <RevealAnimation animation="scale-in" delay={200}>
-                <div className="relative">
-                  <Parallax speed={0.08} className="block">
-                    <img
-                      src={bespokeDetail.url}
-                      alt="Beau Monde interior — coffered ceilings, brass lanterns, marble island"
-                      className="w-full aspect-[4/5] object-cover shadow-[40px_40px_80px_-20px_hsl(var(--primary)/0.25)]"
-                      loading="lazy"
-                    />
-                    {/* engraved corner hairline (brass, bottom-right) */}
-                    <span
-                      aria-hidden
-                      className="hidden lg:block absolute bottom-3 right-3 w-16 h-16 border-b border-r border-accent/70 pointer-events-none"
-                    />
-                  </Parallax>
-                </div>
-              </RevealAnimation>
-
-              {/* Portrait — small offset counterpart, with caption tucked beneath */}
-              <div className="mt-6 lg:mt-0 lg:absolute lg:bottom-[-3rem] lg:left-[-2.5rem] lg:w-[46%] lg:z-30">
-                <RevealAnimation animation="fade-up" delay={420}>
-                  <div className="relative">
-                    <img
-                      src={bespokePortrait.url}
-                      alt="Portrait of a Beau Monde client — the life behind the residence"
-                      className="w-full aspect-[3/4] object-cover object-[center_top] shadow-[30px_30px_60px_-20px_hsl(var(--primary)/0.4)] ring-1 ring-accent/30"
-                      loading="lazy"
-                    />
-                    <div className="hidden lg:block absolute -bottom-5 -right-6 z-10">
-                      <p className="font-display italic text-sm text-accent bg-background px-4 py-2 border border-accent/40 shadow-md whitespace-nowrap">
-                        Turning blueprints to fingerprints
-                      </p>
+            <div className="lg:col-span-5 relative lg:pb-28 order-1 lg:order-2">
+              <div className="flex flex-row items-start gap-3 lg:block">
+                {/* Interior — dominant */}
+                <div className="w-[58%] lg:w-full">
+                  <RevealAnimation animation="scale-in" delay={200}>
+                    <div className="relative">
+                      <Parallax speed={0.08} className="block">
+                        <img
+                          src={bespokeDetail.url}
+                          alt="Beau Monde interior — coffered ceilings, brass lanterns, marble island"
+                          className="w-full aspect-[4/5] object-cover shadow-[40px_40px_80px_-20px_hsl(var(--primary)/0.25)]"
+                          loading="lazy"
+                        />
+                        {/* engraved corner hairline (brass, bottom-right) */}
+                        <span
+                          aria-hidden
+                          className="absolute bottom-2 right-2 lg:bottom-3 lg:right-3 w-10 h-10 lg:w-16 lg:h-16 border-b border-r border-accent/70 pointer-events-none"
+                        />
+                      </Parallax>
                     </div>
-                  </div>
-                </RevealAnimation>
+                  </RevealAnimation>
+                </div>
+
+                {/* Portrait — small offset counterpart */}
+                <div className="w-[42%] mt-8 lg:mt-0 lg:absolute lg:bottom-[-3rem] lg:left-[-2.5rem] lg:w-[46%] lg:z-30">
+                  <RevealAnimation animation="fade-up" delay={420}>
+                    <div className="relative">
+                      <img
+                        src={bespokePortrait.url}
+                        alt="Portrait of a Beau Monde client — the life behind the residence"
+                        className="w-full aspect-[3/4] object-cover object-[center_top] shadow-[30px_30px_60px_-20px_hsl(var(--primary)/0.4)] ring-1 ring-accent/30"
+                        loading="lazy"
+                      />
+                      <div className="hidden lg:block absolute -bottom-5 -right-6 z-10">
+                        <p className="font-display italic text-sm text-accent bg-background px-4 py-2 border border-accent/40 shadow-md whitespace-nowrap">
+                          Turning blueprints to fingerprints
+                        </p>
+                      </div>
+                    </div>
+                  </RevealAnimation>
+                </div>
               </div>
             </div>
           </div>
@@ -293,8 +297,11 @@ const Home = () => {
               <div className="cinema-hairline absolute left-6 md:left-12 bottom-6 w-px h-3 bg-accent/70 pointer-events-none" />
               <div className="cinema-hairline absolute right-6 md:right-12 bottom-6 w-px h-3 bg-accent/70 pointer-events-none" />
 
+              {/* Bottom navy gradient — mobile only, lifts wordmark legibility */}
+              <div aria-hidden className="md:hidden absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-primary/70 to-transparent pointer-events-none" />
+
               {/* Headline overlay — bottom-left */}
-              <div className="absolute inset-0 flex flex-col justify-end p-8 sm:p-12 md:p-16 lg:p-20">
+              <div className="absolute inset-0 flex flex-col justify-end p-8 pb-24 sm:p-12 md:p-16 lg:p-20">
                 <div className="max-w-3xl">
                   <RevealAnimation animation="fade-up" delay={450}>
                     <span className="block font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase text-accent mb-5 md:mb-6">
@@ -311,7 +318,7 @@ const Home = () => {
                   <RevealAnimation animation="fade-up" delay={950}>
                     <Link
                       to="/renovations"
-                      className="group/cta relative inline-flex items-center gap-4 pl-7 pr-8 md:pl-8 md:pr-10 py-5 md:py-[1.35rem] font-sans text-[11px] uppercase tracking-[0.32em] font-medium text-primary-foreground bg-transparent transition-colors duration-[600ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] hover:bg-primary/35"
+                      className="group/cta relative inline-flex items-center gap-2.5 md:gap-4 pl-5 pr-6 md:pl-8 md:pr-10 py-3.5 md:py-[1.35rem] font-sans text-[10px] md:text-[11px] uppercase tracking-[0.25em] md:tracking-[0.32em] font-medium text-primary-foreground bg-transparent transition-colors duration-[600ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] hover:bg-primary/35"
                     >
                       {/* Brass hairline frame */}
                       <span aria-hidden className="pointer-events-none absolute inset-0 border border-accent/55 group-hover/cta:border-accent/90 transition-colors duration-[600ms]" />
@@ -326,7 +333,7 @@ const Home = () => {
                       <span aria-hidden className="pointer-events-none absolute -bottom-px -right-px h-3 w-px bg-accent" />
                       <span className="relative">Explore Renovations</span>
                       <span aria-hidden className="relative flex items-center">
-                        <span className="block h-px w-6 bg-accent/70 origin-left transition-transform duration-[700ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] group-hover/cta:scale-x-150" />
+                        <span className="block h-px w-4 md:w-6 bg-accent/70 origin-left transition-transform duration-[700ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] group-hover/cta:scale-x-150" />
                         <ArrowRight className="ml-2 h-3.5 w-3.5 text-accent transition-transform duration-[700ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] group-hover/cta:translate-x-1.5" strokeWidth={1.25} />
                       </span>
                     </Link>
@@ -340,8 +347,8 @@ const Home = () => {
                   Beau Monde
                 </span>
               </div>
-              <div className="absolute bottom-3 left-0 right-0 md:hidden text-center pointer-events-none">
-                <span className="font-wordmark text-base text-primary-foreground/55 tracking-wide">
+              <div className="absolute bottom-5 left-0 right-0 md:hidden text-center pointer-events-none">
+                <span className="font-wordmark text-base text-primary-foreground/40 tracking-wide">
                   Beau Monde
                 </span>
               </div>

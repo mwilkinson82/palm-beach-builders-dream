@@ -1,29 +1,41 @@
-## Goal
+## Mobile editorial fixes — Home
 
-Stop the portrait from overlapping the "Find My Style" button in the "Bespoke Luxury Redefined" hero. Keep its current width (`lg:w-[46%]`) and aspect ratio.
+### 1. Hero "Bespoke Luxury Redefined" — mobile reorder & editorial pairing
 
-## Change
+Currently on mobile the headline + CTAs render first, then both images stack vertically (interior, then portrait) full-width. We'll restructure the mobile flow only — desktop layout is unchanged.
 
-In `src/pages/Home.tsx` (~line 191), the portrait wrapper currently sits at:
+New mobile sequence inside the `lg:grid-cols-12` block (using `order-*` utilities so desktop stays put):
 
-```
-lg:absolute lg:bottom-[-3rem] lg:left-[-7rem] lg:w-[46%] lg:z-30
-```
+1. **Image pair (editorial)** — interior + portrait side-by-side, asymmetric:
+   - Interior: ~58% width, `aspect-[4/5]`, slightly taller
+   - Portrait: ~42% width, `aspect-[3/4]`, offset downward by ~2rem with `mt-8` and a thin brass hairline ring (already on it)
+   - Tight gap (`gap-3`), brass corner tick on interior's bottom-right kept visible on mobile
+2. **Eyebrow** "The Beau Monde Standard"
+3. **Headline** "Bespoke Luxury / Redefined" (with the oversized italic "B" ligature — repositioned so it doesn't clip on small screens)
+4. **Body paragraph**
+5. **CTAs** "Talk to Beau Monde" / "Find My Style"
+6. **Stars + reviews line**
+7. **Stats band** (unchanged, already below)
 
-The `-7rem` left offset pushes the portrait into the left text column at the buttons' vertical position. Fix by pulling it back so it stays anchored under the interior image (right column) and only kisses the column gutter:
+Desktop (`lg:` and up) keeps current side-by-side text-left / image-right composition with the portrait overlapping into the bottom-left — no visual change.
 
-```
-lg:absolute lg:bottom-[-3rem] lg:left-[-2.5rem] lg:w-[46%] lg:z-30
-```
+### 2. Renovations hero — mobile CTA + wordmark collision
 
-That removes the overlap entirely while preserving the editorial offset feel (still pokes slightly past the column edge, still overlaps the interior image at bottom-left).
+Currently on mobile:
+- "Explore Renovations" button uses `px-7 py-5` + `text-[11px]` + `tracking-[0.32em]` → it wraps wide and tall
+- The mobile "Beau Monde" wordmark is absolutely positioned `bottom-3` centered, sitting directly under/behind the button
 
-## Out of scope
+Fixes (mobile-only, desktop preserved):
+- Shrink the CTA on mobile: tighter padding (`px-5 py-3.5`), smaller type (`text-[10px]`), tighter tracking (`tracking-[0.25em]`), shorter trailing hairline (`w-4` instead of `w-6`), smaller arrow gap
+- Increase the headline overlay's bottom padding on mobile so the CTA sits higher off the frame edge (`pb-20` on the overlay container at the mobile breakpoint)
+- Move the centered mobile wordmark from `bottom-3` to `bottom-4` and reduce opacity slightly (`text-primary-foreground/40`) so it reads as a watermark signature, with the CTA cleanly above it
+- Add a subtle navy gradient bump at the very bottom of the image so the wordmark stays legible without competing with the CTA
 
-- No size change to the portrait.
-- No change to the interior image, caption, or buttons.
-- No mobile changes — overlap only happens at `lg+`.
+### Files
 
-## Verify
+- `src/pages/Home.tsx` — only the two sections above (lines ~99–253 hero, ~275–350 renovations cinematic block). No changes to copy, no changes to desktop, no changes to other sections.
 
-After the edit, screenshot at 1366×768 (current viewport) and confirm the portrait sits clear of the button row.
+### Out of scope
+
+- The turning-blueprints caption and any fingerprint badge stay removed (per current design)
+- No new assets, no animation changes beyond what's needed for the reorder
