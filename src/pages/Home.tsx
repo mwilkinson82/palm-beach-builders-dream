@@ -108,15 +108,7 @@ const Home = () => {
               src={featuredResidence.url}
               alt="The Shores at Tranquility — a Beau Monde newly completed residence"
               loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover cinema-image hidden md:block"
-            />
-            {/* Mobile keeps a softer aspect so the title card can sit beneath if needed */}
-            <img
-              src={featuredResidence.url}
-              alt=""
-              aria-hidden
-              loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover cinema-image md:hidden"
+              className="absolute inset-0 w-full h-full object-cover cinema-image"
             />
 
             {/* Legibility veil — lower-left wash */}
