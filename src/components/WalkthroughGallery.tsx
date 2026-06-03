@@ -124,7 +124,7 @@ export const WalkthroughGallery = () => {
               {/* hairline reveal on hover */}
               <span
                 aria-hidden
-                className="absolute left-0 right-0 bottom-0 h-px bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-500"
+                className="absolute left-0 right-0 bottom-0 h-px bg-accent origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,0.61,0.36,1)]"
               />
             </button>
           ))}
