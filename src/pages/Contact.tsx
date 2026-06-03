@@ -87,11 +87,33 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke("send-contact-email", {
-        body: formData,
-      });
+      const fullName = `${formData.firstName} ${formData.lastName}`.trim();
 
-      if (error) throw error;
+      // 1. Internal notification to the office
+      const { error: notifyError } = await supabase.functions.invoke("send-transactional-email", {
+        body: {
+          templateName: "contact-notification",
+          idempotencyKey: `contact-notify-${Date.now()}-${formData.email}`,
+          templateData: {
+            fullName,
+            email: formData.email,
+            phone: formData.phone,
+            message: formData.message,
+          },
+        },
+      });
+      if (notifyError) throw notifyError;
+
+      // 2. Confirmation back to the submitter
+      const { error: confirmError } = await supabase.functions.invoke("send-transactional-email", {
+        body: {
+          templateName: "contact-confirmation",
+          recipientEmail: formData.email,
+          idempotencyKey: `contact-confirm-${Date.now()}-${formData.email}`,
+          templateData: { firstName: formData.firstName },
+        },
+      });
+      if (confirmError) throw confirmError;
 
       toast({
         title: "Message Sent",
