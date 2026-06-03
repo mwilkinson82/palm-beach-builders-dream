@@ -171,6 +171,7 @@ const Renovations = () => {
                 afterSrc={renovationAfter.url}
                 beforeAlt="Original residence before Beau Monde renovation"
                 afterAlt="Same residence after Beau Monde renovation"
+                delayIntroSweep={900}
               />
             </RevealAnimation>
 
