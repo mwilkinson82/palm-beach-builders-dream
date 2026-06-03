@@ -6,12 +6,14 @@ import { Link } from "react-router-dom";
 import { RevealAnimation } from "@/components/RevealAnimation";
 import { SEO, PersonSchema, BreadcrumbSchema } from "@/components/SEO";
 import { Award, Shield, Users, FileCheck } from "lucide-react";
-import ajImage from "@/assets/aj-hoover.png";
+import ajImageAsset from "@/assets/aj-hoover-v2.png.asset.json";
 import fcmbLogo from "@/assets/fcmb-logo.png";
 import nahbBadge from "@/assets/nahb-master-building-professional.png.asset.json";
 import michelleImage from "@/assets/michelle-williams.jpg";
 import johnImage from "@/assets/john-colaiacovo.jpg";
 import lindaImage from "@/assets/linda-lucas.jpg";
+
+const ajImage = ajImageAsset.url;
 
 const About = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -120,8 +122,7 @@ const About = () => {
                   className="relative will-change-transform"
                   style={{ transform: `translate3d(0, ${portraitY}px, 0)` }}
                 >
-                  <div className="absolute inset-0 bg-[hsl(var(--seafoam))]/40 -translate-x-3 translate-y-3" aria-hidden />
-                  <div className="relative aspect-[4/5] overflow-hidden border border-accent/30">
+                  <div className="relative aspect-square overflow-hidden">
                     <img
                       src={ajImage}
                       alt="AJ Hoover, Founder of Beau Monde Builders"
@@ -130,12 +131,6 @@ const About = () => {
                       onError={(e) => { e.currentTarget.src = "/placeholder.svg"; }}
                       className="w-full h-full object-cover object-center"
                     />
-                  </div>
-                  <div className="mt-4 flex items-center gap-3">
-                    <div className="h-px w-8 bg-accent" />
-                    <span className="text-[10px] tracking-[0.4em] uppercase text-accent font-sans">
-                      AJ Hoover · Founder
-                    </span>
                   </div>
                 </div>
               </RevealAnimation>
@@ -192,11 +187,12 @@ const About = () => {
                     </span>
                   </div>
                   <p className="font-display text-primary text-xl md:text-2xl leading-[1.55]">
-                    AJ moved south and built relationships the slow way — one
-                    artisan, one mason, one millworker at a time. When he
-                    founded Beau Monde, he kept only the trades who shared the
-                    same intolerance for ordinary work. That bench is the
-                    company.
+                    AJ moved to Florida and spent two decades curating the
+                    artisans, engineers, and trade partners now behind every
+                    Beau Monde home — masons, millworkers, mechanical and
+                    technology specialists who meet a standard most firms
+                    can't enforce. Beau Monde isn't a crew. It's a vetted
+                    network operating under one signature.
                   </p>
                 </div>
               </RevealAnimation>
@@ -206,9 +202,9 @@ const About = () => {
                 <div className="my-16 md:my-20 text-center">
                   <div className="h-px w-16 bg-accent mx-auto mb-8" />
                   <p className="font-display italic text-primary text-3xl md:text-4xl leading-[1.25]">
-                    "We build the way old houses were built —
+                    "Old-world standards. New-world tools.
                     <br className="hidden md:block" />
-                    by hand, by name, by standard."
+                    One signature on every house."
                   </p>
                   <div className="h-px w-16 bg-accent mx-auto mt-8" />
                 </div>
@@ -224,10 +220,12 @@ const About = () => {
                     </span>
                   </div>
                   <p className="font-display text-primary text-xl md:text-2xl leading-[1.55]">
-                    Three decades on, AJ still walks every job, still answers
-                    the owner's call, still signs the standard. Beau Monde
-                    stays small on purpose — a Palm Beach house and a few
-                    families a year, each one given the room it deserves.
+                    Three decades on, AJ still walks every job and signs every
+                    standard — now backed by a technology stack that gives
+                    owners full transparency into daily logs, CPM schedules,
+                    and the selection process from dream board through
+                    procurement and install. Old discipline. Modern
+                    instruments.
                   </p>
                 </div>
               </RevealAnimation>
@@ -396,22 +394,30 @@ const About = () => {
                 <div className="flex items-center justify-center space-x-3 mb-6">
                   <div className="h-px w-12 bg-accent" />
                   <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-accent font-sans font-light">
-                    The Bench
+                    Leadership
                   </span>
                   <div className="h-px w-12 bg-accent" />
                 </div>
                 <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-primary leading-[1.05]">
-                  The Beau Monde
-                  <span className="italic text-muted-foreground"> team.</span>
+                  The principals.
+                  <br />
+                  <span className="italic text-muted-foreground">The bench is deeper than three.</span>
                 </h2>
+                <p className="font-sans font-light text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto mt-8">
+                  Three principals lead Beau Monde day-to-day. Behind them sits
+                  a vetted network of architects, engineers, masons,
+                  millworkers, mechanical specialists, technology partners, and
+                  project consultants — each invited by AJ, each held to the
+                  same standard.
+                </p>
               </div>
             </RevealAnimation>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 md:gap-14 max-w-6xl mx-auto">
               {[
-                { name: "John Colaiacovo", role: "Project Manager", experience: "Forty years of luxury construction management.", image: johnImage },
-                { name: "Michelle Williams", role: "Financial Director", experience: "Twenty years in luxury construction finance.", image: michelleImage },
-                { name: "Linda Lucas", role: "Project Manager", experience: "Twenty-five years turning visions into residences.", image: lindaImage },
+                { name: "John Colaiacovo", role: "Senior Project Manager", experience: "Forty years of luxury construction management.", image: johnImage },
+                { name: "Michelle Williams", role: "Director of Finance & Operations", experience: "Twenty years in luxury construction finance.", image: michelleImage },
+                { name: "Linda Lucas", role: "Senior Project Manager", experience: "Twenty-five years turning visions into residences.", image: lindaImage },
               ].map((member, i) => (
                 <RevealAnimation key={member.name} animation="fade-up" delay={i * 140}>
                   <div className="text-center">
@@ -447,6 +453,45 @@ const About = () => {
                 </RevealAnimation>
               ))}
             </div>
+
+            {/* Extended Bench */}
+            <RevealAnimation animation="fade-up" delay={120}>
+              <div className="max-w-6xl mx-auto mt-24 md:mt-32 border-t border-accent/20 pt-12 md:pt-16">
+                <div className="text-center mb-10">
+                  <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-accent font-sans font-light">
+                    The Extended Bench
+                  </span>
+                </div>
+                <p className="font-sans font-light text-sm md:text-base text-muted-foreground leading-relaxed text-center max-w-3xl mx-auto mb-14">
+                  Architects · Structural &amp; Civil Engineers · Master Masons ·
+                  Millwork &amp; Cabinetry · Mechanical, Electrical &amp; Plumbing ·
+                  Smart-Home &amp; Security · Landscape Architects · Interior Partners
+                </p>
+                <div className="grid grid-cols-3 border-y border-accent/20">
+                  {[
+                    { n: "40+", l: "Vetted trade partners" },
+                    { n: "85+", l: "Years combined leadership" },
+                    { n: "1", l: "Florida Certified Master Builder" },
+                  ].map((s, i) => (
+                    <div
+                      key={s.l}
+                      className={`py-10 md:py-12 px-4 text-center ${i < 2 ? "border-r border-accent/20" : ""}`}
+                    >
+                      <div className="font-display text-primary text-5xl md:text-6xl leading-none mb-4">
+                        {s.n}
+                      </div>
+                      <div className="font-sans text-[10px] md:text-[11px] tracking-[0.28em] uppercase text-muted-foreground max-w-[180px] mx-auto leading-snug">
+                        {s.l}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <p className="font-display italic text-primary text-xl md:text-2xl text-center mt-12 leading-snug">
+                  Small on purpose.
+                  <span className="text-muted-foreground"> Resourced like a firm three times the size.</span>
+                </p>
+              </div>
+            </RevealAnimation>
           </div>
         </section>
 
