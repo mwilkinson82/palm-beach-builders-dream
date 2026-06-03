@@ -452,14 +452,18 @@ const InquiryPlate = ({ defaultStyle }: { defaultStyle?: string }) => {
     }
   }, [defaultStyle]);
 
+  const shouldProtectField = (target: EventTarget | null) =>
+    target instanceof HTMLElement && Boolean(target.closest("input, textarea"));
+
+  const stopFieldGesture = (event: { target: EventTarget | null; stopPropagation: () => void }) => {
+    if (shouldProtectField(event.target)) event.stopPropagation();
+  };
+
   useEffect(() => {
     const node = formRef.current;
     if (!node) return;
 
-    const stopBookGesture = (event: Event) => {
-      event.stopPropagation();
-    };
-
+    const stopBookGesture = (event: Event) => stopFieldGesture(event);
     const events = ["mousedown", "touchstart", "pointerdown", "click"] as const;
     events.forEach((eventName) => node.addEventListener(eventName, stopBookGesture));
 
@@ -548,10 +552,10 @@ const InquiryPlate = ({ defaultStyle }: { defaultStyle?: string }) => {
         ref={formRef}
         variants={fadeUp}
         onSubmit={handleSubmit}
-        onMouseDown={(e) => e.stopPropagation()}
-        onTouchStart={(e) => e.stopPropagation()}
-        onPointerDown={(e) => e.stopPropagation()}
-        onClick={(e) => e.stopPropagation()}
+        onMouseDown={stopFieldGesture}
+        onTouchStart={stopFieldGesture}
+        onPointerDown={stopFieldGesture}
+        onClick={stopFieldGesture}
         className="flex-1 flex flex-col gap-3 text-left mx-auto w-full max-w-sm"
       >
         <div>
