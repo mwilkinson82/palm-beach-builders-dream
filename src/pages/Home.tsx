@@ -97,6 +97,68 @@ const Home = () => {
       {/* New Delivery Showcase */}
       <DeliveryShowcase />
 
+      {/* Featured Residence — names the home behind the videos and routes into the portfolio */}
+      <section
+        aria-label="Featured Residence"
+        className="relative bg-background text-foreground border-t border-accent/20 py-20 md:py-28 lg:py-32 overflow-hidden"
+      >
+        <div className="absolute inset-0 silk-grain opacity-[0.03] pointer-events-none select-none" />
+        <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            {/* Image — framed with brass hairline + soft shadow */}
+            <div className="lg:col-span-7 order-2 lg:order-1">
+              <RevealAnimation animation="scale-in">
+                <div className="relative bg-ivory p-3 sm:p-4 md:p-5 ring-1 ring-accent/40 shadow-[0_30px_60px_-20px_rgba(15,42,61,0.35)]">
+                  <img
+                    src={featuredResidence.url}
+                    alt="The Shores at Tranquility — a Beau Monde featured residence in Palm Beach"
+                    loading="lazy"
+                    className="w-full aspect-[4/3] object-cover"
+                  />
+                </div>
+              </RevealAnimation>
+            </div>
+
+            {/* Copy */}
+            <div className="lg:col-span-5 order-1 lg:order-2">
+              <RevealAnimation animation="fade-up">
+                <div className="flex items-center gap-3 mb-5">
+                  <span className="h-px w-8 bg-accent" />
+                  <span className="font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase text-accent">
+                    Featured Residence · Palm Beach
+                  </span>
+                </div>
+              </RevealAnimation>
+
+              <RevealAnimation animation="luxury-reveal" delay={120}>
+                <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] tracking-tight mb-6 text-primary">
+                  The Shores <br />
+                  <span className="italic">at Tranquility.</span>
+                </h2>
+              </RevealAnimation>
+
+              <RevealAnimation animation="fade-up" delay={240}>
+                <p className="font-sans font-light text-[15px] md:text-base leading-relaxed text-foreground/80 mb-10 max-w-md">
+                  The residence behind the films and walkthrough above — a private Palm Beach commission
+                  shown here at the level of craft we bring to every Beau Monde home.
+                </p>
+              </RevealAnimation>
+
+              <RevealAnimation animation="fade-up" delay={360}>
+                <Link
+                  to="/projects"
+                  className="group relative inline-flex items-center gap-3 bg-primary text-primary-foreground font-sans text-[11px] uppercase tracking-[0.28em] font-medium px-10 py-5 transition-[background,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-primary/95 hover:-translate-y-[1px]"
+                >
+                  <span aria-hidden className="pointer-events-none absolute inset-[3px] border border-accent/0 group-hover:border-accent/60 transition-colors duration-500" />
+                  <span className="relative z-10">Find My Style</span>
+                  <ArrowRight className="relative z-10 w-3.5 h-3.5 transition-transform duration-500 ease-out group-hover:translate-x-1" strokeWidth={1.25} />
+                </Link>
+              </RevealAnimation>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Editorial Sequence — Bespoke hero + Stats */}
       <section className="relative bg-background text-foreground py-20 md:py-28 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 silk-grain opacity-[0.03] pointer-events-none select-none z-0" />
