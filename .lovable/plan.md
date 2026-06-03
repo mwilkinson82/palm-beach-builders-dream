@@ -1,56 +1,110 @@
-## Port Cinematic Scroll → `/projects` (Find Your Style)
+# Find Your Style — Flip-Book Edition
 
-Replace the current `/projects` page with the Cinematic Scroll direction from the preview, expand the style roster to **10 panels**, and close with a custom-build panel before the CTA.
+Four moves, ordered by risk. Each is independently shippable.
 
-### Style roster (in order)
+## 1. Nav: solid from the top, site-wide
 
-1. Oceanfront
-2. Urban Classical
-3. Waterfront Contemporary
-4. Mediterranean
-5. Modern Coastal
-6. Traditional Estate
-7. **Bermuda / British Colonial** *(new)*
-8. **Anglo-Caribbean / West Indies** *(new)*
-9. **Transitional** *(new)*
-10. **Regency / Georgian** *(new)*
-11. **"Yours." — One of one** *(closing panel, distinct treatment, no image — or full-bleed brass-hairline plate)*
+`src/components/Navigation.tsx` currently renders transparent until `scrollY > 50`. On any light-hero page (like /projects) the ivory-on-ivory text disappears.
 
-Each panel keeps the cinematic format: full-viewport, 60/40 split, image one side, large Cormorant italic name + numbered eyebrow (`01 / 10`) + brass hairline + single descriptor line on the other. Alternating sides.
+Change: remove the `isScrolled` conditional entirely. Nav always renders with the "scrolled" treatment — ivory background at 95% with backdrop blur, navy text, hairline bottom border. Drop the scroll listener and the `isScrolled` state.
 
-The **"Yours."** panel breaks the pattern intentionally — centered composition, no photograph, brass hairline frame, Cormorant italic headline, body copy:
-> *If none of these is quite it, that's the point. The most memorable Beau Monde houses begin with a vision no catalogue could hold.*
+Effect on home: the home hero loses the "no chrome" opening — nav sits over the dark image from frame one. Text stays legible (ivory bg / navy text reads cleanly over any image). This is what you chose, calling it out so there are no surprises.
 
-It acts as the visual exhale before the "Talk to Beau Monde" plinth.
+## 2. Per-panel CTA — quiet hairline link
 
-### Image handling
+Inside each `StylePanel`, under the descriptor, add a single brass hairline link:
 
-You'll provide images for the four new styles. Until they arrive, panels 7–10 will use a **placeholder treatment**: ivory plate with brass hairline frame, small "Plate forthcoming" eyebrow, and the style name + descriptor visible so the page reads cleanly. Drop in the real `.jpg` files at `src/assets/projects/{slug}.jpg` and I'll swap the imports.
+```
+Build in this idiom  ⟶
+```
 
-Suggested filenames when you're ready:
-- `bermuda-colonial.jpg`
-- `anglo-caribbean.jpg`
-- `transitional.jpg`
-- `regency-georgian.jpg`
+- Fira Sans, 11px, tracked `0.3em`, uppercase, `text-accent`
+- Brass hairline underline that extends on hover (uses `story-link` pattern but brass instead of primary)
+- Links to `/contact?style={slug}` — Contact page already accepts no params today; we just append it. No Contact-page changes required for this ship; the param sits in the URL for future routing/analytics.
+- Respects brass discipline: hairline + small type only, never a brass fill.
 
-### Descriptor copy (draft, editable)
+## 3. "Yours." — elevate in place, inline CTA, kill the plinth
 
-- **Bermuda / British Colonial** — White stucco, hipped tile, louvered shutters, deep verandas — the island idiom done with proportion and restraint.
-- **Anglo-Caribbean / West Indies** — Pecky cypress, coral stone, plantation shutters — a quieter, more breeze-cooled coastal language.
-- **Transitional** — Traditional bones, modern interiors — the way most Palm Beach houses live today.
-- **Regency / Georgian** — Symmetry, fanlights, refined townhouse vocabulary in the Mizner lineage.
+Rewrite `YoursPanel`:
 
-### Technical notes
+- Keep the framed treatment but make it the clear emotional peak: wider plate, deeper brass hairline frame (top + bottom only — no box), `Yours.` set one notch larger than the style headlines (`text-7xl md:text-8xl lg:text-9xl`).
+- Add the navy primary CTA **inside** the frame, directly under the descriptor: `Talk to Beau Monde` → `/contact`.
+- Add a secondary text link below it: `Or browse the ten idioms again →` that jumps back to panel 1 (flip-book: `goTo(0)`).
+- **Remove `ClosingPlinth` entirely.** It's now redundant. The flip-book ends on Yours; that's the finale.
 
-- Edit `src/pages/Projects.tsx` — replace the existing hero/filter/grid/CTA with the Cinematic Scroll structure from `ProjectsPreview.tsx`.
-- Remove the `filter` state, category bar, and `ProjectImage` component (the cinematic version uses native `<img>` with `loading` hints; no hover/zoom per portfolio rule).
-- Keep `SEO`, `BreadcrumbSchema`, `Helmet` JSON-LD intact; update the JSON-LD `ItemList` to reflect the 10 styles (no addresses, no client data).
-- Hero eyebrow updates: "A Film of Styles" → keep, or use "Vol. I — Style Studies". I'll use **"A Film of Styles"** to match the cinematic direction unless you prefer otherwise.
-- Closing plinth: keep "Found your style" eyebrow → "Let's build the one you'll keep." → "Talk to Beau Monde" → `/contact`.
-- Delete `src/pages/ProjectsPreview.tsx` and remove the `/projects-preview` route from `src/App.tsx`.
-- Update `mem://features/portfolio-branding` to record: cinematic scroll format, 10 panels, "Yours." closer, no filters.
+## 4. The flip-book — desktop and mobile
 
-### Out of scope
+This is the big one. Replace the current snap-scroll container with a true page-turn flip-book that owns the whole viewport on /projects.
 
-- Image generation for the four new styles (you're providing them).
-- Any project metadata (sq ft, bedrooms, year) — this is a style inspiration board, not a project list.
+### Library
+
+Use **`page-flip`** (a.k.a. `StPageFlip`), the React wrapper is `react-pageflip`. It's the actively-maintained, framework-agnostic flip engine used by most premium flip-book sites (real curl shadow, hard/soft page, mouse drag, swipe, programmatic `flip()`/`turnToPage()`). MIT-licensed, ~30kb. No paper-sound — that's the line between "luxurious" and "gimmicky."
+
+Install: `react-pageflip`.
+
+### Structure
+
+```text
+/projects route
+├── <Navigation />              ← solid (from move #1)
+├── <FlipBook>                  ← fixed-height viewport, fills screen below nav
+│   ├── <Cover/>                ← "Find Your Style" hero (was the <Hero> section)
+│   ├── <StylePlate × 10>       ← one plate per idiom
+│   └── <YoursPlate/>           ← the finale (move #3)
+└── <Footer />                  ← only visible after closing the book (scroll past)
+```
+
+Each plate is a self-contained spread sized to the flip-book viewport. The plate composition stays close to today's `StylePanel` (image dominant + headline + descriptor + new hairline CTA), but redesigned for a fixed canvas instead of a min-h-screen scroll panel — no internal scrolling inside a page.
+
+### Desktop behavior
+
+- Two-page spread (left page + right page) on screens ≥ `lg`. Cover and Yours render as single hard pages; idiom plates pair up as spreads (image left / type right, alternating). Real page curl, drag-to-turn, click-corner-to-turn.
+- Keyboard: `←` `→` `Space` flip; `Home` / `End` jump to cover / finale.
+- Tiny page counter pill bottom-center: `03 / 12`. Brass hairline, ivory bg, Fira Sans 10px.
+- Bottom-right: discreet "View as scroll" toggle (Fira Sans 10px tracked) — accessibility escape hatch that falls back to today's vertical layout. Persists choice in `localStorage`.
+
+### Mobile behavior
+
+- Single-page mode (one plate fills the viewport). Horizontal swipe to turn. `page-flip` handles this natively.
+- Same page counter. Same "View as scroll" toggle.
+- Plate composition collapses to image-top / type-bottom for portrait orientation.
+
+### Reveal animations (the "luxurious fade-in" you asked for)
+
+Per-plate, triggered on `onFlip` settle (not scroll, since we're not scrolling):
+
+- Image: scale from `1.04 → 1.0` over 900ms `cubic-bezier(0.16, 1, 0.3, 1)` ("ease-out-expo"), opacity `0 → 1` over 600ms.
+- Eyebrow `01 / 11`: opacity + 8px rise, 400ms, 100ms delay.
+- Headline: opacity + 12px rise, 700ms, 250ms delay.
+- Brass hairline divider: scaleX `0 → 1` from left, 600ms, 500ms delay.
+- Descriptor: opacity + 8px rise, 600ms, 650ms delay.
+- CTA link: opacity, 400ms, 850ms delay.
+
+Implemented with Framer Motion `variants` + a `staggerChildren` parent keyed on the active page index. No third library — Framer Motion is already in the project.
+
+### Accessibility & SEO
+
+- `react-pageflip` renders all plates in the DOM (it just transforms them in 3D), so the existing `ItemList` JSON-LD and crawler-visible content all stay intact. No SSR penalty.
+- Each plate has a proper `<h2>` and semantic content. Skip-link at top: "Skip flip-book, view all styles" → scrolls to a hidden-but-rendered linear list at the bottom (or activates scroll fallback).
+- `prefers-reduced-motion`: auto-fallback to scroll mode, no curl animation.
+
+### Performance
+
+- All 12 plate images already lazy-load. Force `eager` on plates 1-2 (cover + first idiom), `lazy` on the rest. The flip-book preloads adjacent pages, so swipes are instant.
+- Fixed viewport sizing uses `dvh` units with a `ResizeObserver` to re-init the flip-book on rotation.
+
+## Technical notes
+
+- New dep: `react-pageflip` (~30kb gz).
+- New component: `src/components/FlipBook.tsx` — wraps `react-pageflip`, handles sizing, keyboard, page counter, scroll-fallback toggle, reduced-motion fallback.
+- New components: `src/components/projects/Cover.tsx`, `StylePlate.tsx`, `YoursPlate.tsx` — extracted from the current `Projects.tsx`.
+- `src/pages/Projects.tsx` becomes the orchestrator: SEO, Nav, FlipBook (or scroll-fallback), Footer. Keep all existing SEO + `BreadcrumbSchema` + `ItemList` JSON-LD untouched.
+- `src/components/Navigation.tsx` — strip `isScrolled` state, scroll listener, and conditional classes. Single solid treatment.
+- No backend changes. No design-token changes (palette and fonts already in place).
+
+## What I'm not doing (call out)
+
+- Not adding sound. You said "not clunky" — sound on auto is clunky.
+- Not changing copy on any of the 10 idiom descriptors.
+- Not removing the `/projects` linear-scroll DOM — it stays as the accessibility fallback and SEO surface.
+- Not touching Contact page routing yet (the `?style=` param sits unused on the receiving end until you want to act on it).
