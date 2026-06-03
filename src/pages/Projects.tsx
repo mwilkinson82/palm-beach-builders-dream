@@ -323,9 +323,10 @@ const FlipBookView = () => {
 
   const visibleSet = useMemo(() => {
     if (vp.portrait) return new Set([page]);
-    // desktop spread: showCover puts cover alone; otherwise pairs (even,even+1)
+    // desktop spread with showCover: cover (0) sits alone on the right;
+    // subsequent spreads pair odd-left + even-right (1+2, 3+4, …).
     if (page === 0) return new Set([0]);
-    const left = page % 2 === 0 ? page : page - 1;
+    const left = page % 2 === 1 ? page : page - 1;
     return new Set([left, left + 1]);
   }, [page, vp.portrait]);
 
