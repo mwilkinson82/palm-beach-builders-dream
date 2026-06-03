@@ -7,6 +7,8 @@ interface BeforeAfterSliderProps {
   afterAlt?: string;
   beforeLabel?: string;
   afterLabel?: string;
+  /** ms to delay the intro handle sweep so a parent's frame reveal can finish first. */
+  delayIntroSweep?: number;
 }
 
 export function BeforeAfterSlider({
@@ -16,6 +18,7 @@ export function BeforeAfterSlider({
   afterAlt = "After",
   beforeLabel = "Original Residence",
   afterLabel = "Beau Monde Standard",
+  delayIntroSweep = 0,
 }: BeforeAfterSliderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState(0);
@@ -62,25 +65,27 @@ export function BeforeAfterSlider({
         entries.forEach((entry) => {
           if (!entry.isIntersecting || revealRan.current) return;
           revealRan.current = true;
-          const duration = 1400;
-          const start = performance.now();
-          const from = 0;
-          const to = 55;
-          const tick = (now: number) => {
-            const t = Math.min(1, (now - start) / duration);
-            // ease-in-out cubic
-            const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-            setPosition(from + (to - from) * eased);
-            if (t < 1) requestAnimationFrame(tick);
-          };
-          requestAnimationFrame(tick);
+          // Run the handle sweep after parent's reveal settles
+          window.setTimeout(() => {
+            const duration = 1500;
+            const start = performance.now();
+            const from = 0;
+            const to = 55;
+            const tick = (now: number) => {
+              const t = Math.min(1, (now - start) / duration);
+              const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+              setPosition(from + (to - from) * eased);
+              if (t < 1) requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+          }, delayIntroSweep);
         });
       },
-      { threshold: 0.35 },
+      { threshold: 0.25 },
     );
     obs.observe(el);
     return () => obs.disconnect();
-  }, []);
+  }, [delayIntroSweep]);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowLeft") {
@@ -95,7 +100,7 @@ export function BeforeAfterSlider({
   return (
     <div
       ref={containerRef}
-      className="relative w-full aspect-[4/5] md:aspect-video overflow-hidden border border-foreground/5 shadow-[0_30px_80px_-30px_rgba(15,42,61,0.45)] select-none touch-none"
+      className="relative w-full aspect-[4/5] md:aspect-video overflow-hidden border border-foreground/5 shadow-[0_40px_100px_-30px_rgba(15,42,61,0.55)] select-none touch-none"
       onPointerDown={startDrag}
     >
       {/* After image (base — always fully painted) */}
