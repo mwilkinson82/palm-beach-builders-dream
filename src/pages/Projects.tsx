@@ -8,7 +8,7 @@ import oceanfront from "@/assets/projects/oceanfront.jpg.asset.json";
 import urbanClassical from "@/assets/projects/urban-classical.jpg.asset.json";
 import waterfrontContemporary from "@/assets/projects/waterfront-contemporary.jpg.asset.json";
 import mediterranean from "@/assets/projects/mediterranean.jpg.asset.json";
-import modernMinimalist from "@/assets/projects/modern-minimalist.jpg";
+import modernCoastal from "@/assets/projects/modern-coastal.jpg.asset.json";
 import classicEstate from "@/assets/projects/classic-estate.jpg";
 import bermudaColonial from "@/assets/projects/bermuda-colonial.jpg.asset.json";
 import angloCaribbean from "@/assets/projects/anglo-caribbean.jpg.asset.json";
@@ -50,7 +50,7 @@ const STYLES: Style[] = [
     name: "Modern Coastal",
     descriptor:
       "Quiet lines, ivory walls, and rooms that hand the view over to the water without competing.",
-    image: modernMinimalist,
+    image: modernCoastal.url,
   },
   {
     name: "Traditional Estate",
