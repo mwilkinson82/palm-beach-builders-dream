@@ -106,7 +106,7 @@ export const Footer = () => {
                   />
                 </div>
                 <span className="text-[10px] uppercase tracking-[0.3em] leading-tight text-primary-foreground/70">
-                  NAHB Certified<br />Master Building Pro
+                  NAHB Certified<br />Master Building Professional
                 </span>
               </div>
             </div>
