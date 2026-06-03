@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Link } from "react-router-dom";
@@ -117,6 +118,20 @@ const processSchema = {
 };
 
 const Process = () => {
+  const [scrollY, setScrollY] = useState(0);
+  useEffect(() => {
+    const onScroll = () => setScrollY(window.scrollY);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  // Clamp parallax to the first ~1 viewport so it doesn't drift forever.
+  const heroScroll = Math.min(scrollY, typeof window !== "undefined" ? window.innerHeight : 900);
+  const wordmarkY = heroScroll * -0.18;
+  const wordmarkOpacity = Math.max(0.15, 1 - heroScroll / 600);
+  const bodyY = heroScroll * 0.08;
+  const bodyOpacity = Math.max(0, 1 - heroScroll / 500);
+
   return (
     <>
       <SEO 
@@ -141,32 +156,99 @@ const Process = () => {
         <Navigation />
 
         {/* Editorial Hero */}
-        <section className="relative pt-36 md:pt-44 pb-16 md:pb-24 bg-background overflow-hidden">
-          <div aria-hidden className="absolute inset-x-0 top-0 h-[60vh] bg-gradient-to-b from-[hsl(var(--seafoam))]/45 via-[hsl(var(--seafoam))]/15 to-transparent pointer-events-none" />
+        <section className="relative pt-36 md:pt-44 pb-20 md:pb-32 bg-background overflow-hidden">
+          {/* Seafoam wash that lifts away on scroll */}
+          <div
+            aria-hidden
+            className="absolute inset-x-0 top-0 h-[70vh] bg-gradient-to-b from-[hsl(var(--seafoam))]/55 via-[hsl(var(--seafoam))]/15 to-transparent pointer-events-none transition-opacity duration-500"
+            style={{ opacity: Math.max(0, 1 - heroScroll / 700) }}
+          />
+          {/* Faint engraved 'OUR PROCESS' watermark, scroll-parallax */}
+          <span
+            aria-hidden
+            className="pointer-events-none select-none absolute -right-6 md:right-2 lg:right-10 top-28 md:top-32 font-display italic text-[22vw] md:text-[16vw] lg:text-[12vw] leading-none text-primary/[0.04]"
+            style={{ transform: `translate3d(0, ${heroScroll * 0.12}px, 0)` }}
+          >
+            Our Process
+          </span>
+
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <RevealAnimation animation="fade-up">
-              <div className="max-w-4xl">
-                <div className="flex items-center space-x-3 mb-8">
-                  <div className="h-px w-12 bg-accent" />
+            <div className="max-w-4xl">
+              {/* Eyebrow — hairline grows in */}
+              <RevealAnimation animation="fade-up">
+                <div className="group flex items-center space-x-3 mb-8">
+                  <div className="h-px w-0 bg-accent transition-[width] duration-[1200ms] ease-out [.revealed_&]:w-12" />
                   <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-accent font-sans font-light">
-                    Beau Monde's Process
+                    Our Process
                   </span>
                 </div>
-                <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-primary leading-[1.05] mb-10">
-                  <span className="block font-wordmark not-italic text-primary text-6xl md:text-7xl lg:text-[112px] leading-[0.95] tracking-tight mb-4 md:mb-6">
+              </RevealAnimation>
+
+              {/* Wordmark — scroll parallax + first-reveal lift */}
+              <RevealAnimation animation="fade-up" delay={120}>
+                <div
+                  className="will-change-transform"
+                  style={{
+                    transform: `translate3d(0, ${wordmarkY}px, 0)`,
+                    opacity: wordmarkOpacity,
+                  }}
+                >
+                  <span className="block font-wordmark not-italic text-primary text-6xl md:text-7xl lg:text-[112px] leading-[0.95] tracking-tight mb-5 md:mb-7">
                     Beau Monde's
                   </span>
-                  nine measured steps,
-                  <br />
-                  <span className="italic text-muted-foreground">one quiet standard.</span>
-                </h1>
-                <p className="font-sans font-light text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl">
-                  From the first private conversation to the final hand-off of the keys,
-                  every Beau Monde residence is guided by the same unhurried, master-built
-                  process — refined over three decades on Palm Beach island.
-                </p>
+                </div>
+              </RevealAnimation>
+
+              {/* Headline — Cormorant, two beats reveal */}
+              <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-primary leading-[1.05] mb-10">
+                <RevealAnimation animation="fade-up" delay={260}>
+                  <span className="block">An unhurried nine-step</span>
+                </RevealAnimation>
+                <RevealAnimation animation="fade-up" delay={420}>
+                  <span className="block italic text-muted-foreground">
+                    journey to a residence.
+                  </span>
+                </RevealAnimation>
+              </h1>
+
+              {/* Body + brass hairline + meta — parallax fade with scroll */}
+              <div
+                className="will-change-transform"
+                style={{
+                  transform: `translate3d(0, ${bodyY}px, 0)`,
+                  opacity: bodyOpacity,
+                }}
+              >
+                <RevealAnimation animation="fade-up" delay={620}>
+                  <p className="font-sans font-light text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl">
+                    Three decades of master-built craft, distilled into a private,
+                    measured cadence — from the first quiet conversation to the day
+                    we hand you the keys.
+                  </p>
+                </RevealAnimation>
+
+                <RevealAnimation animation="fade-up" delay={780}>
+                  <div className="mt-12 flex items-center gap-6">
+                    <div className="h-px w-12 bg-accent" />
+                    <span className="font-sans text-[10px] md:text-xs tracking-[0.4em] uppercase text-accent">
+                      Four phases · Nine steps · One Master Builder
+                    </span>
+                  </div>
+                </RevealAnimation>
               </div>
-            </RevealAnimation>
+            </div>
+          </div>
+
+          {/* Scroll hint — fades out as user scrolls */}
+          <div
+            className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 transition-opacity duration-500"
+            style={{ opacity: Math.max(0, 1 - heroScroll / 200) }}
+            aria-hidden
+          >
+            <span className="font-sans text-[9px] tracking-[0.4em] uppercase text-accent/70">
+              Scroll
+            </span>
+            <span className="h-10 w-px bg-accent/40 animate-[pulse_2.4s_ease-in-out_infinite]" />
           </div>
         </section>
 
