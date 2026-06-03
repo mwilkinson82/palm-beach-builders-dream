@@ -98,13 +98,11 @@ export const Footer = () => {
               </div>
               <div aria-hidden className="hidden md:block w-px h-12 bg-accent/25" />
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-md bg-background p-1.5 ring-1 ring-accent/40 flex items-center justify-center">
-                  <img
-                    src={nahbBadge.url}
-                    alt="NAHB Certified Master Building Professional"
-                    className="h-full w-full object-contain"
-                  />
-                </div>
+                <img
+                  src={nahbBadge.url}
+                  alt="NAHB Certified Master Building Professional"
+                  className="h-16 w-auto object-contain"
+                />
                 <span className="text-[10px] uppercase tracking-[0.3em] leading-tight text-primary-foreground/70">
                   NAHB Certified<br />Master Building Pro
                 </span>
