@@ -16,7 +16,7 @@ import { ArrowRight, Star } from "lucide-react";
 import heroImage from "@/assets/hero-home.jpg";
 import fcmbLogo from "@/assets/fcmb-logo.png";
 import logoSketch from "@/assets/beau-monde-logo-sketch.jpeg";
-import renovationImage from "@/assets/projects/intracoastal-contemporary.jpg";
+import renovationHero from "@/assets/projects/renovation-hero.jpg.asset.json";
 
 const EMBLEM_MEANINGS = [
   {
