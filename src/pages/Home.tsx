@@ -228,62 +228,68 @@ const Home = () => {
           </div>
         </RevealAnimation>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 py-20 md:py-28 lg:py-32">
+        {/* Full-bleed cinematic hero */}
+        <RevealAnimation animation="fade-up">
+          <div className="relative w-full overflow-hidden">
+            <div className="relative w-full aspect-[4/5] md:aspect-[16/9] lg:aspect-[21/9]">
+              <img
+                src={renovationHero.url}
+                alt="Beau Monde Builders renovation — interior with marble kitchen, brass lanterns, and ocean view"
+                className="absolute inset-0 w-full h-full object-cover object-center"
+                loading="lazy"
+              />
+              {/* Navy gradient — anchored bottom-left for headline legibility */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-primary/80 via-primary/35 to-transparent pointer-events-none" />
+              {/* Brass hairline frame — top & bottom only */}
+              <div className="absolute left-6 right-6 md:left-12 md:right-12 top-6 h-px bg-accent/40 pointer-events-none" />
+              <div className="absolute left-6 right-6 md:left-12 md:right-12 bottom-6 h-px bg-accent/40 pointer-events-none" />
 
-          {/* Editorial pair — image + headline / intro */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-20 md:mb-24">
-            <RevealAnimation animation="scale-in" delay={120} className="lg:col-span-5 lg:order-1 order-1">
-              <div className="relative">
-                <Parallax speed={0.08}>
-                  <img
-                    src={renovationImage}
-                    alt="Beau Monde Builders renovation — intracoastal residence"
-                    className="w-full aspect-[4/5] object-cover shadow-[40px_40px_80px_-20px_hsl(var(--primary)/0.2)]"
-                  />
-                </Parallax>
-                <div className="hidden lg:block absolute -bottom-6 -right-6">
-                  <p className="font-display italic text-sm text-accent bg-background px-4 py-3 border border-accent/30 shadow-lg">
-                    Held to the ground-up standard
-                  </p>
+              {/* Headline overlay — bottom-left */}
+              <div className="absolute inset-0 flex flex-col justify-end p-8 sm:p-12 md:p-16 lg:p-20">
+                <div className="max-w-3xl">
+                  <RevealAnimation animation="fade-up" delay={120}>
+                    <span className="block font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase text-accent mb-5 md:mb-6">
+                      A New Beau Monde Offering
+                    </span>
+                  </RevealAnimation>
+                  <RevealAnimation animation="luxury-reveal" delay={200}>
+                    <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] tracking-tight text-primary-foreground mb-8 md:mb-10">
+                      Renovations <span className="hidden md:inline">at the </span>
+                      <span className="md:hidden"><br />at the </span>
+                      <span className="italic">same standard.</span>
+                    </h2>
+                  </RevealAnimation>
+                  <RevealAnimation animation="fade-up" delay={320}>
+                    <Button
+                      size="lg"
+                      className="group bg-primary text-primary-foreground hover:bg-primary/90 border border-accent/60 hover:border-accent font-sans text-[11px] uppercase tracking-[0.15em] font-semibold rounded-none px-8 md:px-10 py-4"
+                      asChild
+                    >
+                      <Link to="/renovations">
+                        Explore Renovations
+                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" strokeWidth={1.25} />
+                      </Link>
+                    </Button>
+                  </RevealAnimation>
                 </div>
               </div>
-            </RevealAnimation>
 
-            <div className="lg:col-span-7 lg:order-2 order-2">
-              <RevealAnimation animation="fade-up">
-                <span className="block font-sans text-[10px] tracking-[0.3em] uppercase text-accent mb-5">
-                  A New Beau Monde Offering
+              {/* Beau Monde wordmark — bottom-right signature */}
+              <div className="absolute bottom-8 right-8 md:bottom-12 md:right-12 hidden md:block pointer-events-none">
+                <span className="font-wordmark text-xl md:text-2xl lg:text-3xl text-primary-foreground/55 tracking-wide">
+                  Beau Monde
                 </span>
-              </RevealAnimation>
-              <RevealAnimation animation="luxury-reveal" delay={120}>
-                <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] mb-8 tracking-tight">
-                  Renovations, <br />
-                  <span className="italic">at the same standard.</span>
-                </h2>
-              </RevealAnimation>
-              <RevealAnimation animation="fade-up" delay={250}>
-                <p className="font-sans font-light text-base md:text-lg leading-relaxed text-foreground/85 max-w-xl mb-10">
-                  The craftsmanship that defines a Beau Monde custom build — brought to renovation. From oceanfront
-                  condominiums to historic Palm Beach estates, every project held to the three commitments that govern
-                  our ground-up homes.
-                </p>
-              </RevealAnimation>
-
-              <RevealAnimation animation="fade-up" delay={350}>
-                <Button
-                  size="lg"
-                  className="group bg-primary text-primary-foreground hover:bg-primary/90 font-sans text-[11px] uppercase tracking-[0.15em] font-semibold rounded-none px-8 md:px-10 py-4"
-                  asChild
-                >
-                  <Link to="/renovations">
-                    Explore Renovations
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" strokeWidth={1.25} />
-                  </Link>
-                </Button>
-              </RevealAnimation>
+              </div>
+              <div className="absolute bottom-3 left-0 right-0 md:hidden text-center pointer-events-none">
+                <span className="font-wordmark text-base text-primary-foreground/55 tracking-wide">
+                  Beau Monde
+                </span>
+              </div>
             </div>
           </div>
+        </RevealAnimation>
 
+        <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 py-20 md:py-28 lg:py-32">
           {/* Three commitments — applied to renovations */}
           <div className="relative">
             <div className="text-center mb-12 md:mb-14">
