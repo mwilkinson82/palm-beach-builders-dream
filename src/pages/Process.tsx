@@ -149,11 +149,14 @@ const Process = () => {
                 <div className="flex items-center space-x-3 mb-8">
                   <div className="h-px w-12 bg-accent" />
                   <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-accent font-sans font-light">
-                    The Process
+                    Beau Monde's Process
                   </span>
                 </div>
                 <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-primary leading-[1.05] mb-10">
-                  Nine measured steps,
+                  <span className="block font-wordmark not-italic text-primary text-6xl md:text-7xl lg:text-[112px] leading-[0.95] tracking-tight mb-4 md:mb-6">
+                    Beau Monde's
+                  </span>
+                  nine measured steps,
                   <br />
                   <span className="italic text-muted-foreground">one quiet standard.</span>
                 </h1>
