@@ -202,7 +202,7 @@ const Process = () => {
               {/* Headline — Cormorant, two beats reveal */}
               <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-primary leading-[1.05] mb-10">
                 <RevealAnimation animation="fade-up" delay={260}>
-                  <span className="block">An unhurried nine-step</span>
+                  <span className="block">Ironclad nine-step</span>
                 </RevealAnimation>
                 <RevealAnimation animation="fade-up" delay={420}>
                   <span className="block italic text-muted-foreground">
@@ -390,13 +390,8 @@ const Process = () => {
 
           {/* Schedule-driven, owner-transparent — after Build (III) */}
           {phaseIndex === 2 && (
-            <section className="relative py-24 md:py-32 border-t border-accent/15 bg-background overflow-hidden">
-              <span
-                aria-hidden
-                className="pointer-events-none select-none absolute -right-6 md:right-6 top-10 font-display italic text-[20vw] md:text-[12vw] leading-none text-primary/[0.035]"
-              >
-                On schedule.
-              </span>
+            <ScheduleDrivenSection scrollY={scrollY} />
+          )}
 
               <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
