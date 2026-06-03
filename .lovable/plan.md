@@ -1,41 +1,49 @@
-## Mobile editorial fixes — Home
+# Tying the Homepage Together
 
-### 1. Hero "Bespoke Luxury Redefined" — mobile reorder & editorial pairing
+Two new sections on the homepage to give it a peak and a proper closing — both built from the existing palette (Ivory, Navy, Brass) and CTA vocabulary.
 
-Currently on mobile the headline + CTAs render first, then both images stack vertically (interior, then portrait) full-width. We'll restructure the mobile flow only — desktop layout is unchanged.
+---
 
-New mobile sequence inside the `lg:grid-cols-12` block (using `order-*` utilities so desktop stays put):
+## 1. Featured Project Band — "The Shores at Tranquility"
 
-1. **Image pair (editorial)** — interior + portrait side-by-side, asymmetric:
-   - Interior: ~58% width, `aspect-[4/5]`, slightly taller
-   - Portrait: ~42% width, `aspect-[3/4]`, offset downward by ~2rem with `mt-8` and a thin brass hairline ring (already on it)
-   - Tight gap (`gap-3`), brass corner tick on interior's bottom-right kept visible on mobile
-2. **Eyebrow** "The Beau Monde Standard"
-3. **Headline** "Bespoke Luxury / Redefined" (with the oversized italic "B" ligature — repositioned so it doesn't clip on small screens)
-4. **Body paragraph**
-5. **CTAs** "Talk to Beau Monde" / "Find My Style"
-6. **Stars + reviews line**
-7. **Stats band** (unchanged, already below)
+A quiet editorial band that names what the videos and walkthrough gallery have been showing all along, and routes visitors into the portfolio.
 
-Desktop (`lg:` and up) keeps current side-by-side text-left / image-right composition with the portrait overlapping into the bottom-left — no visual change.
+**Placement:** Directly after the walkthrough/media block, before the next content section. It acts as a closing caption for the media and a doorway into "Find My Style."
 
-### 2. Renovations hero — mobile CTA + wordmark collision
+**Composition:**
+- Full-width band on `bg-background` (ivory), generous vertical padding
+- Two-column on desktop, stacked on mobile:
+  - **Left:** one large hero still from the existing Shores set (uses an existing `c#.jpg` asset — no new image work), framed with the same brass hairline + soft shadow treatment as the splash image
+  - **Right:** brass eyebrow "Featured Residence · Palm Beach", Cormorant headline "The Shores at Tranquility", one short editorial paragraph, then a navy primary CTA "Find My Style →" linking to `/projects`
+- Brass hairline above and below the band to act as connective tissue between sections
 
-Currently on mobile:
-- "Explore Renovations" button uses `px-7 py-5` + `text-[11px]` + `tracking-[0.32em]` → it wraps wide and tall
-- The mobile "Beau Monde" wordmark is absolutely positioned `bottom-3` centered, sitting directly under/behind the button
+**Why this works:** It gives a name to what the videos and gallery have been depicting (so visitors stop wondering "whose house is this?"), creates the missing peak the page currently lacks, and funnels into the portfolio without adding a new clickable gallery (respects the non-clickable portfolio rule).
 
-Fixes (mobile-only, desktop preserved):
-- Shrink the CTA on mobile: tighter padding (`px-5 py-3.5`), smaller type (`text-[10px]`), tighter tracking (`tracking-[0.25em]`), shorter trailing hairline (`w-4` instead of `w-6`), smaller arrow gap
-- Increase the headline overlay's bottom padding on mobile so the CTA sits higher off the frame edge (`pb-20` on the overlay container at the mobile breakpoint)
-- Move the centered mobile wordmark from `bottom-3` to `bottom-4` and reduce opacity slightly (`text-primary-foreground/40`) so it reads as a watermark signature, with the CTA cleanly above it
-- Add a subtle navy gradient bump at the very bottom of the image so the wordmark stays legible without competing with the CTA
+---
 
-### Files
+## 2. Closing CTA Band — "Begin a Conversation"
 
-- `src/pages/Home.tsx` — only the two sections above (lines ~99–253 hero, ~275–350 renovations cinematic block). No changes to copy, no changes to desktop, no changes to other sections.
+A single, generous navy band immediately before the footer.
 
-### Out of scope
+**Composition:**
+- Full-width `bg-primary` (Atlantic Navy), tall padding (`py-32 md:py-40`)
+- Centered, narrow column:
+  - Small brass eyebrow "By Appointment · Worth Avenue"
+  - Oversized Cormorant headline in ivory: "Begin a conversation."
+  - One sentence of supporting copy in ivory/70
+  - Primary CTA button: "Talk to Beau Monde" → `/contact`
+  - Below the button, a quiet ivory/55 line: phone + email (the existing contact details), separated by a brass dot
+- Optional: faint silk-grain texture overlay at very low opacity for richness
 
-- The turning-blueprints caption and any fingerprint badge stay removed (per current design)
-- No new assets, no animation changes beyond what's needed for the reorder
+**Why this works:** The current homepage drifts into the footer with no peak moment. This gives the page a clear emotional close and a single, unambiguous next action — matching the brand's "by appointment" tone without shouting.
+
+---
+
+## Files Touched
+
+- `src/pages/Home.tsx` — add the two new section blocks in the correct order
+- No new assets, no new routes, no copy changes elsewhere
+
+## Out of Scope
+
+- The other three ideas (rhythm/dividers everywhere, trust-credentials band, oversized italic type moment) — can be revisited after these two land if the page still wants more.

@@ -19,6 +19,7 @@ import renovationHero from "@/assets/projects/renovation-hero.jpg.asset.json";
 import bespokePortrait from "@/assets/projects/bespoke-portrait.jpg.asset.json";
 import bespokeDetail from "@/assets/projects/bespoke-detail.jpg.asset.json";
 import nahbBadge from "@/assets/nahb-master-building-professional.png.asset.json";
+import featuredResidence from "@/assets/constellation/c1.jpg.asset.json";
 
 const EMBLEM_MEANINGS = [
   {
@@ -95,6 +96,68 @@ const Home = () => {
 
       {/* New Delivery Showcase */}
       <DeliveryShowcase />
+
+      {/* Featured Residence — names the home behind the videos and routes into the portfolio */}
+      <section
+        aria-label="Featured Residence"
+        className="relative bg-background text-foreground border-t border-accent/20 py-20 md:py-28 lg:py-32 overflow-hidden"
+      >
+        <div className="absolute inset-0 silk-grain opacity-[0.03] pointer-events-none select-none" />
+        <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            {/* Image — framed with brass hairline + soft shadow */}
+            <div className="lg:col-span-7 order-2 lg:order-1">
+              <RevealAnimation animation="scale-in">
+                <div className="relative bg-ivory p-3 sm:p-4 md:p-5 ring-1 ring-accent/40 shadow-[0_30px_60px_-20px_rgba(15,42,61,0.35)]">
+                  <img
+                    src={featuredResidence.url}
+                    alt="The Shores at Tranquility — a Beau Monde featured residence in Palm Beach"
+                    loading="lazy"
+                    className="w-full aspect-[4/3] object-cover"
+                  />
+                </div>
+              </RevealAnimation>
+            </div>
+
+            {/* Copy */}
+            <div className="lg:col-span-5 order-1 lg:order-2">
+              <RevealAnimation animation="fade-up">
+                <div className="flex items-center gap-3 mb-5">
+                  <span className="h-px w-8 bg-accent" />
+                  <span className="font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase text-accent">
+                    Featured Residence · Palm Beach
+                  </span>
+                </div>
+              </RevealAnimation>
+
+              <RevealAnimation animation="luxury-reveal" delay={120}>
+                <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] tracking-tight mb-6 text-primary">
+                  The Shores <br />
+                  <span className="italic">at Tranquility.</span>
+                </h2>
+              </RevealAnimation>
+
+              <RevealAnimation animation="fade-up" delay={240}>
+                <p className="font-sans font-light text-[15px] md:text-base leading-relaxed text-foreground/80 mb-10 max-w-md">
+                  The residence behind the films and walkthrough above — a private Palm Beach commission
+                  shown here at the level of craft we bring to every Beau Monde home.
+                </p>
+              </RevealAnimation>
+
+              <RevealAnimation animation="fade-up" delay={360}>
+                <Link
+                  to="/projects"
+                  className="group relative inline-flex items-center gap-3 bg-primary text-primary-foreground font-sans text-[11px] uppercase tracking-[0.28em] font-medium px-10 py-5 transition-[background,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-primary/95 hover:-translate-y-[1px]"
+                >
+                  <span aria-hidden className="pointer-events-none absolute inset-[3px] border border-accent/0 group-hover:border-accent/60 transition-colors duration-500" />
+                  <span className="relative z-10">Find My Style</span>
+                  <ArrowRight className="relative z-10 w-3.5 h-3.5 transition-transform duration-500 ease-out group-hover:translate-x-1" strokeWidth={1.25} />
+                </Link>
+              </RevealAnimation>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Editorial Sequence — Bespoke hero + Stats */}
       <section className="relative bg-background text-foreground py-20 md:py-28 lg:py-32 overflow-hidden">
@@ -654,40 +717,62 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Closing CTA — engraved invitation */}
-      <RevealAnimation animation="fade-up">
-        <section className="relative w-full bg-background py-24 md:py-32 px-6 flex justify-center overflow-hidden">
-          <div className="relative z-10 max-w-3xl w-full text-center border border-accent/25 p-12 md:p-20">
-            {/* Ornamental brass corners */}
-            <span aria-hidden className="absolute top-4 left-4 w-8 h-8 border-t border-l border-accent/70" />
-            <span aria-hidden className="absolute top-4 right-4 w-8 h-8 border-t border-r border-accent/70" />
-            <span aria-hidden className="absolute bottom-4 left-4 w-8 h-8 border-b border-l border-accent/70" />
-            <span aria-hidden className="absolute bottom-4 right-4 w-8 h-8 border-b border-r border-accent/70" />
+      {/* Closing CTA — full-width navy invitation */}
+      <section
+        aria-label="Begin a conversation"
+        className="relative w-full bg-primary text-primary-foreground py-32 md:py-40 px-6 overflow-hidden"
+      >
+        <div className="absolute inset-0 silk-grain opacity-[0.05] pointer-events-none select-none" />
+        {/* Brass hairlines top + bottom */}
+        <span aria-hidden className="absolute left-10 right-10 top-8 h-px bg-[linear-gradient(to_right,transparent,hsl(var(--accent)/0.55)_18%,hsl(var(--accent)/0.55)_82%,transparent)] pointer-events-none" />
+        <span aria-hidden className="absolute left-10 right-10 bottom-8 h-px bg-[linear-gradient(to_right,transparent,hsl(var(--accent)/0.55)_18%,hsl(var(--accent)/0.55)_82%,transparent)] pointer-events-none" />
 
-            <span className="block font-sans text-[10px] uppercase tracking-[0.35em] text-accent font-medium mb-8">
-              A Limited Engagement
-            </span>
+        <div className="relative z-10 max-w-3xl mx-auto text-center">
+          <RevealAnimation animation="fade-up">
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <span className="h-px w-10 md:w-14 bg-accent/50" />
+              <span className="font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase text-accent">
+                By Appointment · Worth Avenue
+              </span>
+              <span className="h-px w-10 md:w-14 bg-accent/50" />
+            </div>
+          </RevealAnimation>
 
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-primary font-light leading-[1.1] tracking-tight mb-10">
-              Begin your journey to <br className="hidden md:block" />
-              <span className="italic">architectural excellence</span>
+          <RevealAnimation animation="luxury-reveal" delay={120}>
+            <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-light leading-[1.0] tracking-tight mb-8 text-primary-foreground">
+              Begin a <span className="italic">conversation.</span>
             </h2>
+          </RevealAnimation>
 
-            <div className="mx-auto mb-10 h-px w-24 bg-gradient-to-r from-transparent via-accent to-transparent" />
+          <RevealAnimation animation="fade-up" delay={240}>
+            <p className="font-sans font-light text-base md:text-lg leading-relaxed text-primary-foreground/70 mb-12 max-w-xl mx-auto">
+              A small number of commissions each year, taken on by invitation and considered conversation.
+              We would be honored to hear what you have in mind.
+            </p>
+          </RevealAnimation>
 
-            <Button
-              size="lg"
-              className="group bg-primary text-primary-foreground hover:bg-primary/90 font-sans text-[11px] uppercase tracking-[0.25em] font-medium rounded-none px-10 py-5"
-              asChild
+          <RevealAnimation animation="fade-up" delay={360}>
+            <Link
+              to="/contact"
+              className="group relative inline-flex items-center gap-3 bg-primary-foreground text-primary font-sans text-[11px] uppercase tracking-[0.28em] font-medium px-12 py-5 transition-[background,color,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-[1px]"
             >
-              <Link to="/contact">
-                Talk to Beau Monde
-                <ArrowRight className="ml-3 h-4 w-4 group-hover:translate-x-1 transition-transform" strokeWidth={1.25} />
-              </Link>
-            </Button>
-          </div>
-        </section>
-      </RevealAnimation>
+              <span aria-hidden className="pointer-events-none absolute inset-[3px] border border-accent/0 group-hover:border-accent/70 transition-colors duration-500" />
+              <span className="relative z-10">Talk to Beau Monde</span>
+              <ArrowRight className="relative z-10 w-3.5 h-3.5 transition-transform duration-500 ease-out group-hover:translate-x-1" strokeWidth={1.25} />
+            </Link>
+          </RevealAnimation>
+
+          <RevealAnimation animation="fade-up" delay={480}>
+            <p className="mt-10 font-sans text-[11px] md:text-xs tracking-[0.25em] uppercase text-primary-foreground/55 flex items-center justify-center gap-3 flex-wrap">
+              <a href="tel:+15616468992" className="hover:text-accent transition-colors">(561) 646-8992</a>
+              <span aria-hidden className="inline-block w-1 h-1 rounded-full bg-accent/70" />
+              <a href="mailto:ajhoover@mac.com" className="hover:text-accent transition-colors normal-case tracking-[0.15em]">ajhoover@mac.com</a>
+              <span aria-hidden className="inline-block w-1 h-1 rounded-full bg-accent/70" />
+              <span>205 Worth Ave.</span>
+            </p>
+          </RevealAnimation>
+        </div>
+      </section>
 
       <Footer />
       </div>
