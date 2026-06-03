@@ -11,6 +11,7 @@ import { DeliveryShowcase } from "@/components/DeliveryShowcase";
 import { WalkthroughShowcase } from "@/components/WalkthroughShowcase";
 import { WalkthroughGallery } from "@/components/WalkthroughGallery";
 import { InterviewShowcase } from "@/components/InterviewShowcase";
+import { BentoTile } from "@/components/BentoTile";
 import { Parallax } from "@/components/Parallax";
 import { ArrowRight, Star } from "lucide-react";
 import fcmbLogo from "@/assets/fcmb-logo.png";
