@@ -1,32 +1,49 @@
-## Renovations hero video
+## Two additions to the Renovations page
 
-Replace the current text-only hero on `/renovations` with a cinematic video hero featuring the uploaded `0602.mp4` clip, layered with the same brass eyebrow / Cormorant headline / navy CTA treatment used elsewhere on the site.
+### 1. Before/after slider (Architectural Inset direction)
 
-### What you'll see
+Place a new `<RenovationsBeforeAfter />` section on `src/pages/Renovations.tsx`, slotted **between** the cinematic full-bleed moment and the existing "Reimagine your Palm Beach residence." text hero. The text hero stays as-is — the slider's only header is a brass eyebrow + short caption, not a duplicate headline.
 
-- Full-bleed video band at the top of Renovations (roughly 80vh on desktop, 70svh on mobile), autoplaying muted + looped, with a quiet poster fallback for reduced-motion users.
-- Soft navy gradient + subtle vignette over the video so the type stays legible without dimming the footage too much.
-- Brass hairline + eyebrow "Renovations", split Cormorant headline ("Reimagine your / Palm Beach residence."), short paragraph, and the navy "Talk to Beau Monde" CTA + "View Our Process →" link — same vocabulary as today, just lifted onto the video.
-- Bottom-left "Palm Beach, Florida" wordmark and a small scroll cue, mirroring the home `VideoHero` so the two pages feel like one family.
-- No sound controls on this hero (the clip will be silent/ambient-only) — keeps it restrained and avoids a second unmute pill on the site.
+**Assets (Lovable Assets, uploaded via `lovable-assets` CLI from the two attached photos):**
+- `src/assets/renovation-before.jpg.asset.json` — the warm/dark traditional kitchen
+- `src/assets/renovation-after.jpg.asset.json` — the bright/white renovated kitchen
 
-The rest of the Renovations page (editorial intro, services list, condo expertise navy band, closing CTA) stays exactly as it is.
+**New component:** `src/components/BeforeAfterSlider.tsx`
+- Container: ivory background, contained at `max-w-6xl`, vertical padding matching the page rhythm (`py-24 md:py-32`).
+- Eyebrow row: `——  A RESIDENCE, TRANSFORMED` (brass hairline + Fira Sans eyebrow).
+- Slider frame: `aspect-video`, hairline border `border-foreground/5`, soft shadow.
+- Implementation: pointer + touch drag updates a `clipPath: inset(0 (100-x)% 0 0)` on the **after** image overlay, so the after image is revealed from left as the handle moves right. Default position 55%.
+- Divider: 1px brass vertical line at the split.
+- Handle: circular, 48px, ivory/10 with `backdrop-blur-md`, brass hairline ring, two brass chevrons inside (matches selected prototype). `cursor-col-resize`, full keyboard support (←/→ to nudge 2%, role="slider", aria labels).
+- Labels: bottom-left "ORIGINAL RESIDENCE" on dark glass; bottom-right "BEAU MONDE STANDARD" on solid navy with brass hairline (both Fira Sans, tracked, 10px).
+- "Slide to reveal" hint top-right, fades out on first interaction (not just hover) using a `hasInteracted` state.
+- Footer metadata row under the slider, separated by a hairline top border: two columns — **Scope** "Full Architectural Overhaul" and **Building Type** "Oceanfront Residence" (in Cormorant). **No address, no "View Case Study" link** — removed to honor the renovation-discretion rule. Right side of the row left empty for breathing room.
+- Reveal: wrap in existing `RevealAnimation`. Add a one-time scroll-in sweep where the clip animates from 100% → 55% over ~1.4s using `requestAnimationFrame` once the section enters the viewport (IntersectionObserver, runs once).
+- Mobile: same component, taller aspect (`aspect-[4/5]`), labels shrink, footer stacks.
+
+### 2. Add NAHB credential to the FCMB band
+
+Mirror the Home page's two-badge treatment in the existing credentials band on `Renovations.tsx`:
+
+- Import `nahbBadge` (same asset Home uses) alongside `fcmbLogo`.
+- Replace the single framed logo with a two-up framed pair: side-by-side on `md+`, stacked on mobile, separated by a thin brass hairline gutter.
+- Each badge gets a tiny Fira Sans caption underneath: `FLORIDA CERTIFIED MASTER BUILDER` and `NAHB CERTIFIED MASTER BUILDING PROFESSIONAL`.
+- Keep the existing four-row ledger (Experience / Record / References / Warranty) untouched on the right.
 
 ### Technical notes
 
-- Upload `/mnt/user-uploads/0602.mp4` to the Lovable Assets CDN via `lovable-assets create` and commit `src/assets/renovations-hero.mp4.asset.json`. No binary lands in the repo.
-- Extract one poster frame with `ffmpeg` (~second 1), upload it the same way → `src/assets/renovations-hero-poster.jpg.asset.json`. Used as the `<video poster>` and as the reduced-motion fallback image.
-- New component `src/components/RenovationsHero.tsx`:
-  - `<video autoPlay muted loop playsInline preload="metadata">` with `object-cover` over a full-bleed section.
-  - Honors `prefers-reduced-motion`: renders only the poster `<img>` in that case.
-  - Fades the video in once `playing` fires (matches `VideoHero` pattern) to avoid a black flash.
-  - Overlays: top + bottom gradients, soft radial vignette, all using existing semantic tokens (`primary`, `accent`).
-  - Hosts the eyebrow, headline, paragraph, primary CTA, and secondary link — reusing the existing `ctaClass` string from `Renovations.tsx` (extracted into the component or imported from a shared spot).
-- `src/pages/Renovations.tsx`: replace the current `<section>` hero block with `<RenovationsHero />`. Keep `Navigation`, SEO, JSON-LD, and all downstream sections untouched.
-- Performance: 4K source is heavy; the CDN serves it cached, `preload="metadata"`, and the poster carries the first paint so LCP stays on the image, not the video.
-- No new npm dependencies. No schema or routing changes.
+- New files: `src/components/BeforeAfterSlider.tsx`, two `.asset.json` pointer files for before/after photos.
+- Edited files: `src/pages/Renovations.tsx` (import + render the slider section; import `nahbBadge`; update the credentials band markup).
+- No new dependencies — slider built with native pointer events + `clipPath`.
+- Reuses tokens (`bg-background`, `text-foreground`, `border-accent/25`, etc.). No raw hex in components.
+- Respects mem rules: no client address, no brass on large type, no brass fills, navy for any CTA (none introduced here).
 
-### Out of scope
-
-- No HLS/Mux pipeline for this clip (the existing `VideoHero` keeps its Mux sources). If we want adaptive streaming for Renovations later, we can revisit.
-- No edits to other pages, no changes to the global nav, no copy changes beyond what already lives in the current hero.
+```text
+Renovations page order after this change:
+  [Hero video]
+  [Cinematic moment "A residence, reimagined"]
+  [NEW — Before/After slider]
+  [Existing text hero "Reimagine your Palm Beach residence."]
+  [UPDATED — FCMB + NAHB credentials band]
+  [Services list / rest of page unchanged]
+```
