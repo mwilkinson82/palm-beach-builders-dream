@@ -1,49 +1,86 @@
-## Two additions to the Renovations page
+Four focused changes to make the Renovations page sing.
 
-### 1. Before/after slider (Architectural Inset direction)
+## 1. Wow-factor entrances for the cinematic moment + the slider
 
-Place a new `<RenovationsBeforeAfter />` section on `src/pages/Renovations.tsx`, slotted **between** the cinematic full-bleed moment and the existing "Reimagine your Palm Beach residence." text hero. The text hero stays as-is — the slider's only header is a brass eyebrow + short caption, not a duplicate headline.
+**Cinematic moment (renovation hero image)**
+- Replace the plain `fade-up` with a layered cinematic reveal:
+  - Image starts at `scale(1.12)` and slowly drifts down to `scale(1)` over ~1.6s as it enters view (Ken Burns).
+  - A thin brass hairline sweeps in from the left, then the eyebrow caption fades up underneath it on a 250ms delay.
+  - A subtle vignette mask animates from `opacity(0)` → final state over the same duration so the photo "develops" instead of pops in.
+- All driven by an IntersectionObserver firing once; uses CSS transforms + opacity (no library needed).
 
-**Assets (Lovable Assets, uploaded via `lovable-assets` CLI from the two attached photos):**
-- `src/assets/renovation-before.jpg.asset.json` — the warm/dark traditional kitchen
-- `src/assets/renovation-after.jpg.asset.json` — the bright/white renovated kitchen
+**Before/After slider section**
+- New entrance choreography that runs as one composition once the section enters view (~70% threshold):
+  1. The brass eyebrow rule grows from 0 → full width (~600ms).
+  2. The slider frame rises 24px while a clip-path wipes from top to bottom (~900ms, ease-out).
+  3. The intro handle sweep (already there at 0→55%) starts only after the frame finishes mounting, so it now reads as a deliberate "reveal the transformation" beat instead of competing with the lift.
+  4. The Scope / Building Type footer row fades up last with a 200ms stagger.
+- Add a faint navy drop shadow that animates in with the lift to give the slider weight.
 
-**New component:** `src/components/BeforeAfterSlider.tsx`
-- Container: ivory background, contained at `max-w-6xl`, vertical padding matching the page rhythm (`py-24 md:py-32`).
-- Eyebrow row: `——  A RESIDENCE, TRANSFORMED` (brass hairline + Fira Sans eyebrow).
-- Slider frame: `aspect-video`, hairline border `border-foreground/5`, soft shadow.
-- Implementation: pointer + touch drag updates a `clipPath: inset(0 (100-x)% 0 0)` on the **after** image overlay, so the after image is revealed from left as the handle moves right. Default position 55%.
-- Divider: 1px brass vertical line at the split.
-- Handle: circular, 48px, ivory/10 with `backdrop-blur-md`, brass hairline ring, two brass chevrons inside (matches selected prototype). `cursor-col-resize`, full keyboard support (←/→ to nudge 2%, role="slider", aria labels).
-- Labels: bottom-left "ORIGINAL RESIDENCE" on dark glass; bottom-right "BEAU MONDE STANDARD" on solid navy with brass hairline (both Fira Sans, tracked, 10px).
-- "Slide to reveal" hint top-right, fades out on first interaction (not just hover) using a `hasInteracted` state.
-- Footer metadata row under the slider, separated by a hairline top border: two columns — **Scope** "Full Architectural Overhaul" and **Building Type** "Oceanfront Residence" (in Cormorant). **No address, no "View Case Study" link** — removed to honor the renovation-discretion rule. Right side of the row left empty for breathing room.
-- Reveal: wrap in existing `RevealAnimation`. Add a one-time scroll-in sweep where the clip animates from 100% → 55% over ~1.4s using `requestAnimationFrame` once the section enters the viewport (IntersectionObserver, runs once).
-- Mobile: same component, taller aspect (`aspect-[4/5]`), labels shrink, footer stacks.
+Both sequences use existing tokens; no new dependencies.
 
-### 2. Add NAHB credential to the FCMB band
+## 2. Reimagine the "Palm Beach's finest renovation specialists" section
 
-Mirror the Home page's two-badge treatment in the existing credentials band on `Renovations.tsx`:
+The current grid pairs a soft headline + body copy on the left with a Credentials / Experience / Office stat ledger on the right. The user is right — those stats feel borrowed from a corporate "About" block and don't belong this close to the slider.
 
-- Import `nahbBadge` (same asset Home uses) alongside `fcmbLogo`.
-- Replace the single framed logo with a two-up framed pair: side-by-side on `md+`, stacked on mobile, separated by a thin brass hairline gutter.
-- Each badge gets a tiny Fira Sans caption underneath: `FLORIDA CERTIFIED MASTER BUILDER` and `NAHB CERTIFIED MASTER BUILDING PROFESSIONAL`.
-- Keep the existing four-row ledger (Experience / Record / References / Warranty) untouched on the right.
+**Replacement: a tighter editorial band that bridges the slider into the credentials moment.**
 
-### Technical notes
+- Tighten the vertical rhythm: drop the top padding from `py-20 md:py-28` to `pt-10 md:pt-14 pb-20 md:pb-24` so it sits closer to the slider's footer row.
+- Two-column layout becomes a single asymmetric editorial composition:
+  - Left (7 cols): brass eyebrow `THE STANDARD`, the Cormorant headline `Palm Beach's finest renovation specialists.`, one tightened paragraph (combine the two existing paragraphs into one ~3-line piece — cut filler).
+  - Right (5 cols): **replaced**. Instead of the Credentials/Experience/Office stat ledger, show three discreet numerical proof points stacked with brass hairlines between them:
+    - `30+` · Years building Palm Beach
+    - `0` · Disciplinary actions, FCMB record
+    - `1` · Master builder leading every project
+  - These are presented as oversized Cormorant numerals with tiny Fira Sans labels beneath — visual rhythm, no clunky office-address line, and it carries the discretion theme.
+- No address shown (already a mem constraint anyway).
 
-- New files: `src/components/BeforeAfterSlider.tsx`, two `.asset.json` pointer files for before/after photos.
-- Edited files: `src/pages/Renovations.tsx` (import + render the slider section; import `nahbBadge`; update the credentials band markup).
-- No new dependencies — slider built with native pointer events + `clipPath`.
-- Reuses tokens (`bg-background`, `text-foreground`, `border-accent/25`, etc.). No raw hex in components.
-- Respects mem rules: no client address, no brass on large type, no brass fills, navy for any CTA (none introduced here).
+## 3. Merge & visualize the "Full-Service Renovations / A complete range of work" + "Condo Expertise" sections
 
-```text
-Renovations page order after this change:
-  [Hero video]
-  [Cinematic moment "A residence, reimagined"]
-  [NEW — Before/After slider]
-  [Existing text hero "Reimagine your Palm Beach residence."]
-  [UPDATED — FCMB + NAHB credentials band]
-  [Services list / rest of page unchanged]
-```
+Right now there are two separate heavy sections (six service cards in two columns, then a navy band with HOA copy + property types + areas + process). It's too much reading.
+
+**Restructure into one unified "Scope of Work" section, in two visually distinct halves:**
+
+**Half A — Services as an editorial index, not card paragraphs**
+- Replace the six descriptive cards with a single elegant ledger:
+  - One column on mobile, two on desktop.
+  - Each row: numeral `01–06`, service title in Cormorant, a single tight sub-line (max 8 words) — no paragraph, no keyword tag string.
+  - Hovering a row underlines the title in brass and reveals the keywords as a quiet caption.
+- Reduces ~700 words of copy to ~80 while keeping the SEO via JSON-LD schema (already in place).
+- Add a small renovation-detail image to the left side (kitchen/bath close-up crop) so the section has visual weight, not just type.
+
+**Half B — Condo expertise becomes a horizontal navy strip, not a full band**
+- Collapse the navy section from full text walls + boxed property/area/process panel into a tight three-column navy strip:
+  - Col 1: short headline `Built for Palm Beach's towers.` + one sentence on condo expertise (3 lines max).
+  - Col 2: `Property Types` as a clean two-line list (no box, no border).
+  - Col 3: `Areas Served` as a clean two-line list.
+- Drop the redundant `Our Process` mini-list (it duplicates the `/process` page; keep just the existing "View Our Process" link logic via the closing CTA area).
+- The HOA capabilities list (5 bullets) becomes a single rotating-style inline line: `HOA navigation · Building management · Schedule compliance · Logistics · Neighbor-conscious build`.
+
+**Add an editorial photo bridge between the two halves**
+- A single full-bleed thin strip image (~25vh) of a craftsman detail (millwork, marble seam, or hardware close-up) — cropped tall and cinematic, with the eyebrow `CRAFT IN THE DETAILS` floating top-left.
+- Generated via image gen, brand-consistent (light, ivory/marble tones), uploaded as a Lovable Asset.
+
+This collapses two heavy sections into one cohesive arc: words → image → numbers/lists.
+
+## 4. Small consistency cleanup
+
+- Reduce gap between the slider footer row and the "renovation specialists" section so they feel like one continuous editorial spread.
+- Keep all reveal animations stagger-aware (Card B doesn't start until Card A is ~70% revealed) so the scroll feels orchestrated, not chaotic.
+
+---
+
+### Files
+
+- `src/pages/Renovations.tsx` — restructure sections 245–527, tighten paddings, swap stat ledger for numeric proof points, collapse services + condo into one section with the new layouts, remove `processSteps` array (or keep but unused if process bullets stay elsewhere).
+- `src/components/RevealAnimation.tsx` — add a new `cinematic` animation option (scale-down + masked reveal) for the cinematic image.
+- New: `src/components/CinematicReveal.tsx` (small wrapper that handles the scale-down + sweep entrance for the cinematic moment) — keeps the slider's bespoke choreography inline in `BeforeAfterSlider`'s parent section.
+- `src/components/BeforeAfterSlider.tsx` — add an optional `delayIntroSweep` prop (number, ms) so the existing intro sweep waits until the frame's clip-path lift finishes.
+- 1 new generated image (craft-detail strip) uploaded via `lovable-assets`.
+
+### What I'm explicitly NOT doing
+
+- Not touching the FCMB + NAHB credentials band (you said it's good).
+- Not changing the hero video, slider mechanics, or navigation.
+- Not adding any social icons, addresses, or brass-fill buttons (mem rules).
+- Not adding new CTAs — the existing two CTAs continue to do the work.
