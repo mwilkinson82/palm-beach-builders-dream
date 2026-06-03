@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { RevealAnimation } from "@/components/RevealAnimation";
 import { SEO } from "@/components/SEO";
 import { Helmet } from "react-helmet-async";
+import { RenovationsHero } from "@/components/RenovationsHero";
 
 const services = [
   {
