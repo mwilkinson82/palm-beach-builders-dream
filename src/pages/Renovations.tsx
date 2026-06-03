@@ -5,6 +5,8 @@ import { RevealAnimation } from "@/components/RevealAnimation";
 import { SEO } from "@/components/SEO";
 import { Helmet } from "react-helmet-async";
 import { RenovationsHero } from "@/components/RenovationsHero";
+import renovationMoment from "@/assets/projects/renovation-hero.jpg.asset.json";
+import fcmbLogo from "@/assets/fcmb-logo.png";
 
 const services = [
   {
@@ -69,6 +71,13 @@ const processSteps = [
   "Permit Management",
   "Quality Construction",
   "Final Walkthrough",
+];
+
+const fcmbCredentials = [
+  { k: "Experience", v: "Three decades of Palm Beach building" },
+  { k: "Record", v: "Clean regulatory and disciplinary history" },
+  { k: "References", v: "Verified by clients and subcontractors" },
+  { k: "Warranty", v: "Written, minimum one-year guarantee" },
 ];
 
 const ctaClass =
