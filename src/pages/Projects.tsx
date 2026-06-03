@@ -173,7 +173,7 @@ const CoverPlate = () => (
       variants={fadeUp}
       className="font-display italic font-light text-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.02] tracking-tight"
     >
-      Ten Idioms.
+      Find Your Style.
     </motion.h1>
     <motion.span variants={drawX} className="block w-16 h-px bg-accent mt-8 mb-8 origin-center" />
     <motion.p
@@ -211,28 +211,19 @@ const FrontCover = () => (
 
     <div className="flex flex-col items-center gap-8">
       <motion.div variants={fadeImg} className="flex flex-col items-center gap-5">
-        <span className="block w-10 h-px bg-accent/70" />
         <h2 className="font-wordmark text-primary text-5xl sm:text-6xl md:text-7xl leading-[0.95] tracking-tight">
           Beau Monde
         </h2>
-        <span className="block w-10 h-px bg-accent/70" />
+        <motion.p
+          variants={fadeUp}
+          className="font-sans text-[10px] tracking-[0.5em] uppercase text-accent"
+        >
+          The Style Book
+        </motion.p>
       </motion.div>
 
       <motion.span variants={drawX} className="block w-16 h-px bg-accent origin-center" />
 
-      <motion.h3
-        variants={fadeUp}
-        className="font-display italic font-light text-primary text-3xl sm:text-4xl md:text-5xl leading-[0.95]"
-      >
-        Find Your Style.
-      </motion.h3>
-
-      <motion.p
-        variants={fadeUp}
-        className="font-sans text-[10px] tracking-[0.5em] uppercase text-accent"
-      >
-        The Style Book
-      </motion.p>
     </div>
 
     <motion.div
