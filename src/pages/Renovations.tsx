@@ -151,6 +151,50 @@ const Renovations = () => {
           </RevealAnimation>
         </section>
 
+        {/* Before / After slider */}
+        <section className="py-24 md:py-32 border-t border-accent/15">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+            <RevealAnimation animation="fade-up">
+              <div className="flex items-center space-x-3 mb-10 md:mb-14">
+                <div className="h-px w-10 bg-accent" />
+                <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-accent font-sans font-light">
+                  A residence, transformed
+                </span>
+              </div>
+            </RevealAnimation>
+
+            <RevealAnimation animation="fade-up" delay={120}>
+              <BeforeAfterSlider
+                beforeSrc={renovationBefore.url}
+                afterSrc={renovationAfter.url}
+                beforeAlt="Original residence before Beau Monde renovation"
+                afterAlt="Same residence after Beau Monde renovation"
+              />
+            </RevealAnimation>
+
+            <RevealAnimation animation="fade-up" delay={220}>
+              <div className="mt-10 md:mt-12 flex flex-col md:flex-row md:items-end gap-8 md:gap-12 border-t border-primary/10 pt-8">
+                <div>
+                  <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent mb-2">
+                    Project Scope
+                  </p>
+                  <p className="font-display text-xl md:text-2xl text-primary leading-snug">
+                    Full Architectural Overhaul
+                  </p>
+                </div>
+                <div>
+                  <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent mb-2">
+                    Building Type
+                  </p>
+                  <p className="font-display text-xl md:text-2xl text-primary leading-snug">
+                    Oceanfront Residence
+                  </p>
+                </div>
+              </div>
+            </RevealAnimation>
+          </div>
+        </section>
+
         {/* Text hero */}
         <section className="pt-20 pb-20 md:pt-28 md:pb-28">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
