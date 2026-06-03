@@ -6,7 +6,7 @@ import { SEO, BreadcrumbSchema } from "@/components/SEO";
 import { Helmet } from "react-helmet-async";
 import oceanfront from "@/assets/projects/oceanfront.jpg.asset.json";
 import urbanClassical from "@/assets/projects/urban-classical.jpg.asset.json";
-import intracoastalContemporary from "@/assets/projects/intracoastal-contemporary.jpg";
+import waterfrontContemporary from "@/assets/projects/waterfront-contemporary.jpg.asset.json";
 import mediterraneanVilla from "@/assets/projects/mediterranean-villa.jpg";
 import modernMinimalist from "@/assets/projects/modern-minimalist.jpg";
 import classicEstate from "@/assets/projects/classic-estate.jpg";
@@ -38,7 +38,7 @@ const STYLES: Style[] = [
     name: "Waterfront Contemporary",
     descriptor:
       "Glass framed in pale stone, set lightly against the Intracoastal, scaled for the boat at the dock.",
-    image: intracoastalContemporary,
+    image: waterfrontContemporary.url,
   },
   {
     name: "Mediterranean",
