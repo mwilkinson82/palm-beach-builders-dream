@@ -154,39 +154,17 @@ const Contact = () => {
 
                 {/* Office info + location card */}
                 <aside className="lg:col-span-5 flex flex-col gap-12 md:gap-16 animate-fade-in" style={{ animationDelay: "200ms" }}>
-                  <div className="space-y-10 md:space-y-12">
-                    <InfoBlock eyebrow="Direct Line">
-                      <a href="tel:+15616468992" className="font-display text-2xl md:text-3xl text-foreground hover:text-accent transition-colors duration-500">
-                        (561) 646-8992
-                      </a>
-                      <a href="mailto:ajhoover@mac.com" className="block font-sans text-sm md:text-base text-foreground/70 hover:text-accent transition-colors duration-500 mt-2 font-light">
-                        ajhoover@mac.com
-                      </a>
-                    </InfoBlock>
-
-                    <InfoBlock eyebrow="Studio Hours">
-                      <div className="font-sans text-[13px] md:text-sm space-y-2 text-foreground/75 font-light">
-                        <p className="flex justify-between max-w-[300px]"><span>Monday — Friday</span><span>9:00 — 17:00</span></p>
-                        <p className="flex justify-between max-w-[300px]"><span>Saturday</span><span className="italic">By Appointment</span></p>
-                        <p className="flex justify-between max-w-[300px]"><span>Sunday</span><span>Closed</span></p>
-                      </div>
-                    </InfoBlock>
-                  </div>
-
-                  {/* Location card */}
-                  <div className="bg-card border border-accent/20 shadow-lifted p-8 md:p-10">
-                    <h3 className="text-[9px] md:text-[10px] tracking-[0.35em] uppercase text-accent font-sans font-medium mb-5">Office</h3>
-                    <p className="font-display text-2xl md:text-3xl text-foreground leading-tight mb-6">
-                      205 Worth Avenue, Suite 120<br />Palm Beach, FL 33480
-                    </p>
+                  {/* Unified Palm Beach Office card */}
+                  <div className="bg-card border border-accent/20 shadow-lifted overflow-hidden">
+                    {/* Map */}
                     <a
-                      href="https://www.google.com/maps/dir/?api=1&destination=205+Worth+Avenue,+Palm+Beach,+FL+33480"
+                      href="https://www.google.com/maps/place/205+Worth+Ave,+Palm+Beach,+FL+33480"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block mb-6 overflow-hidden border border-border/60 hover:border-accent/40 transition-colors duration-500"
-                      aria-label="Open 205 Worth Avenue in Google Maps"
+                      className="block relative group overflow-hidden border-b border-accent/15"
+                      aria-label="View 205 Worth Avenue on Google Maps"
                     >
-                      <div className="aspect-[4/3] w-full overflow-hidden bg-muted">
+                      <div className="aspect-[5/3] w-full overflow-hidden bg-muted">
                         <iframe
                           src="https://www.google.com/maps?q=205+Worth+Ave,+Palm+Beach,+FL+33480&output=embed"
                           width="100%"
@@ -199,18 +177,57 @@ const Contact = () => {
                         />
                       </div>
                     </a>
-                    <a
-                      href="https://www.google.com/maps/dir/?api=1&destination=205+Worth+Avenue,+Palm+Beach,+FL+33480"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-3 text-[10px] tracking-[0.35em] uppercase font-sans font-medium text-foreground hover:text-accent transition-colors duration-500"
-                    >
-                      <span className="relative">
-                        Get Directions
-                        <span className="absolute left-0 -bottom-1 h-px w-full bg-accent/40 group-hover:bg-accent transition-colors duration-500" aria-hidden="true" />
-                      </span>
-                      <span aria-hidden="true">→</span>
-                    </a>
+
+                    <div className="p-8 md:p-10 space-y-8">
+                      {/* Address */}
+                      <div>
+                        <h3 className="text-[9px] md:text-[10px] tracking-[0.35em] uppercase text-accent font-sans font-medium mb-4">Palm Beach Office</h3>
+                        <p className="font-display text-2xl md:text-3xl text-foreground leading-tight">
+                          205 Worth Avenue, Suite 120<br />Palm Beach, FL 33480
+                        </p>
+                      </div>
+
+                      <div className="h-px w-full bg-accent/15" aria-hidden="true" />
+
+                      {/* Phone + Email */}
+                      <div>
+                        <h4 className="text-[9px] md:text-[10px] tracking-[0.35em] uppercase text-accent font-sans font-medium mb-3">Direct Line</h4>
+                        <a href="tel:+15616468992" className="font-display text-xl md:text-2xl text-foreground hover:text-accent transition-colors duration-500">
+                          (561) 646-8992
+                        </a>
+                        <a href="mailto:ajhoover@mac.com" className="block font-sans text-sm text-foreground/70 hover:text-accent transition-colors duration-500 mt-1.5 font-light">
+                          ajhoover@mac.com
+                        </a>
+                      </div>
+
+                      <div className="h-px w-full bg-accent/15" aria-hidden="true" />
+
+                      {/* Hours */}
+                      <div>
+                        <h4 className="text-[9px] md:text-[10px] tracking-[0.35em] uppercase text-accent font-sans font-medium mb-3">Hours</h4>
+                        <div className="font-sans text-[13px] md:text-sm space-y-2 text-foreground/75 font-light">
+                          <p className="flex justify-between"><span>Monday — Friday</span><span>9:00 — 17:00</span></p>
+                          <p className="flex justify-between"><span>Saturday</span><span className="italic">By Appointment</span></p>
+                          <p className="flex justify-between"><span>Sunday</span><span>Closed</span></p>
+                        </div>
+                      </div>
+
+                      <div className="h-px w-full bg-accent/15" aria-hidden="true" />
+
+                      {/* Get Directions */}
+                      <a
+                        href="https://www.google.com/maps/dir/?api=1&destination=205+Worth+Avenue%2C+Suite+120%2C+Palm+Beach%2C+FL+33480"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group inline-flex items-center gap-3 text-[10px] tracking-[0.35em] uppercase font-sans font-medium text-foreground hover:text-accent transition-colors duration-500"
+                      >
+                        <span className="relative">
+                          Get Directions
+                          <span className="absolute left-0 -bottom-1 h-px w-full bg-accent/40 group-hover:bg-accent transition-colors duration-500" aria-hidden="true" />
+                        </span>
+                        <span aria-hidden="true" className="transition-transform duration-500 group-hover:translate-x-1">→</span>
+                      </a>
+                    </div>
                   </div>
                 </aside>
               </div>
