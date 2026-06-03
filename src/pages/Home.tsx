@@ -134,22 +134,41 @@ const Home = () => {
               </RevealAnimation>
 
               <RevealAnimation animation="fade-up" delay={400}>
-                <div className="flex flex-wrap items-center gap-3 md:gap-4 mb-10">
-                  <Button
-                    size="lg"
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 font-sans text-[11px] uppercase tracking-[0.15em] font-semibold rounded-none px-8 md:px-10 py-4"
-                    asChild
+                <div className="flex flex-wrap items-center gap-4 md:gap-5 mb-10">
+                  {/* Primary — Navy with engraved brass corner ticks */}
+                  <Link
+                    to="/contact"
+                    className="group relative inline-flex items-center justify-center bg-primary text-primary-foreground font-sans text-[11px] uppercase tracking-[0.28em] font-medium px-10 md:px-12 py-5 overflow-hidden transition-[background,transform,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-primary/95 hover:-translate-y-[1px] hover:shadow-[0_18px_40px_-18px_hsl(var(--primary)/0.55)]"
                   >
-                    <Link to="/contact">Talk to Beau Monde</Link>
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-sans text-[11px] uppercase tracking-[0.15em] font-semibold rounded-none px-8 md:px-10 py-4"
-                    asChild
+                    {/* brass corner ticks */}
+                    <span aria-hidden className="pointer-events-none absolute top-1.5 left-1.5 w-2.5 h-px bg-accent/80" />
+                    <span aria-hidden className="pointer-events-none absolute top-1.5 left-1.5 w-px h-2.5 bg-accent/80" />
+                    <span aria-hidden className="pointer-events-none absolute top-1.5 right-1.5 w-2.5 h-px bg-accent/80" />
+                    <span aria-hidden className="pointer-events-none absolute top-1.5 right-1.5 w-px h-2.5 bg-accent/80" />
+                    <span aria-hidden className="pointer-events-none absolute bottom-1.5 left-1.5 w-2.5 h-px bg-accent/80" />
+                    <span aria-hidden className="pointer-events-none absolute bottom-1.5 left-1.5 w-px h-2.5 bg-accent/80" />
+                    <span aria-hidden className="pointer-events-none absolute bottom-1.5 right-1.5 w-2.5 h-px bg-accent/80" />
+                    <span aria-hidden className="pointer-events-none absolute bottom-1.5 right-1.5 w-px h-2.5 bg-accent/80" />
+                    {/* brass sheen sweep on hover */}
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 bg-gradient-to-r from-transparent via-accent/25 to-transparent -skew-x-12 translate-x-[-120%] group-hover:translate-x-[420%] transition-transform duration-[1100ms] ease-out"
+                    />
+                    <span className="relative z-10 flex items-center gap-3">
+                      Talk to Beau Monde
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-500 ease-out group-hover:translate-x-1" strokeWidth={1.25} />
+                    </span>
+                  </Link>
+
+                  {/* Secondary — Ivory with brass hairline that thickens on hover */}
+                  <Link
+                    to="/projects"
+                    className="group relative inline-flex items-center justify-center bg-transparent text-primary font-sans text-[11px] uppercase tracking-[0.28em] font-medium px-10 md:px-12 py-5 border border-primary/80 transition-[background,color,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-primary hover:text-primary-foreground hover:-translate-y-[1px]"
                   >
-                    <Link to="/projects">Find My Style</Link>
-                  </Button>
+                    {/* brass inner hairline frame, fades in on hover */}
+                    <span aria-hidden className="pointer-events-none absolute inset-[3px] border border-accent/0 group-hover:border-accent/60 transition-colors duration-500" />
+                    <span className="relative z-10">Find My Style</span>
+                  </Link>
                 </div>
               </RevealAnimation>
 
@@ -188,13 +207,13 @@ const Home = () => {
               </RevealAnimation>
 
               {/* Portrait — small offset counterpart, with caption tucked beneath */}
-              <div className="mt-6 lg:mt-0 lg:absolute lg:bottom-[-3rem] lg:left-[-6rem] lg:w-[38%] lg:z-30">
+              <div className="mt-6 lg:mt-0 lg:absolute lg:bottom-[-3rem] lg:left-[-7rem] lg:w-[46%] lg:z-30">
                 <RevealAnimation animation="fade-up" delay={420}>
                   <div className="relative">
                     <img
                       src={bespokePortrait.url}
                       alt="Portrait of a Beau Monde client — the life behind the residence"
-                      className="w-full aspect-[3/4] object-cover shadow-[30px_30px_60px_-20px_hsl(var(--primary)/0.4)] ring-1 ring-accent/30"
+                      className="w-full aspect-[3/4] object-cover object-[center_top] shadow-[30px_30px_60px_-20px_hsl(var(--primary)/0.4)] ring-1 ring-accent/30"
                       loading="lazy"
                     />
                     <div className="hidden lg:block absolute -bottom-5 -right-6 z-10">
