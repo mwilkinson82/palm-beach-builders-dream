@@ -13,10 +13,11 @@ import { WalkthroughGallery } from "@/components/WalkthroughGallery";
 import { InterviewShowcase } from "@/components/InterviewShowcase";
 import { Parallax } from "@/components/Parallax";
 import { ArrowRight, Star } from "lucide-react";
-import heroImage from "@/assets/hero-home.jpg";
 import fcmbLogo from "@/assets/fcmb-logo.png";
 import logoSketch from "@/assets/beau-monde-logo-sketch.jpeg";
 import renovationHero from "@/assets/projects/renovation-hero.jpg.asset.json";
+import bespokePortrait from "@/assets/projects/bespoke-portrait.jpg.asset.json";
+import bespokeDetail from "@/assets/projects/bespoke-detail.jpg.asset.json";
 
 const EMBLEM_MEANINGS = [
   {
@@ -166,22 +167,46 @@ const Home = () => {
               </RevealAnimation>
             </div>
 
-            <RevealAnimation animation="scale-in" delay={200} className="lg:col-span-5 relative">
-              <div className="relative">
-                <Parallax speed={0.08} className="block">
+            <div className="lg:col-span-5 relative lg:pb-24">
+              <RevealAnimation animation="scale-in" delay={200}>
+                <div className="relative">
+                  <Parallax speed={0.08} className="block">
+                    <img
+                      src={bespokePortrait.url}
+                      alt="Portrait of a Beau Monde client — the life behind the residence"
+                      className="w-full aspect-[3/4] object-cover shadow-[40px_40px_80px_-20px_hsl(var(--primary)/0.25)]"
+                      loading="lazy"
+                    />
+                    {/* engraved corner hairline (brass, bottom-right) */}
+                    <span
+                      aria-hidden
+                      className="hidden lg:block absolute bottom-3 right-3 w-16 h-16 border-b border-r border-accent/70 pointer-events-none"
+                    />
+                  </Parallax>
+                  <div className="hidden lg:block absolute top-4 right-4 z-20">
+                    <p className="font-display italic text-sm text-accent bg-background/95 backdrop-blur-sm px-4 py-2 border border-accent/40 shadow-md">
+                      Turning blueprints to fingerprints
+                    </p>
+                  </div>
+                </div>
+              </RevealAnimation>
+
+              {/* Architectural detail — editorial diptych counterpart */}
+              <RevealAnimation
+                animation="fade-up"
+                delay={420}
+                className="mt-6 lg:mt-0 lg:absolute lg:-bottom-4 lg:-left-20 lg:w-[58%] lg:z-10"
+              >
+                <Parallax speed={-0.04} className="block">
                   <img
-                    src={heroImage}
-                    alt="Ultra Luxury Palm Beach Custom Home by Beau Monde Builders"
-                    className="w-full aspect-[4/5] object-cover shadow-[40px_40px_80px_-20px_hsl(var(--primary)/0.2)]"
+                    src={bespokeDetail.url}
+                    alt="Beau Monde interior detail — coffered ceilings, brass lanterns, marble island"
+                    className="w-full aspect-[4/5] object-cover shadow-[30px_30px_60px_-20px_hsl(var(--primary)/0.3)] ring-1 ring-accent/20"
+                    loading="lazy"
                   />
                 </Parallax>
-                <div className="hidden lg:block absolute -bottom-8 -left-8">
-                  <p className="font-display italic text-sm text-accent bg-background px-4 py-3 border border-accent/30 shadow-lg">
-                    Turning blueprints to fingerprints
-                  </p>
-                </div>
-              </div>
-            </RevealAnimation>
+              </RevealAnimation>
+            </div>
           </div>
 
           {/* Band 2 — Stats */}
