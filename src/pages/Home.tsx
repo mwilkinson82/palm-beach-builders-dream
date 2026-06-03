@@ -567,152 +567,177 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Our Marks — Emblem + FCMB merged editorial card */}
-      <section className="relative bg-background text-foreground py-20 md:py-28 lg:py-32 overflow-hidden border-t border-accent/20">
-        <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 lg:px-12">
-          <RevealAnimation animation="fade-up">
-            <div className="text-center mb-14 md:mb-16">
-              <span className="block font-sans text-[10px] tracking-[0.3em] uppercase text-accent mb-3">
-                Our Marks
-              </span>
-              <p className="font-display italic text-lg md:text-xl text-foreground/70">
-                The signs that stand behind the work.
-              </p>
-            </div>
-          </RevealAnimation>
+      {/* Our Marks — Cinematic Emblem Band + Credential Plinth */}
+      <section className="relative bg-background text-foreground overflow-hidden border-t border-accent/20">
+        <div className="absolute inset-0 silk-grain opacity-[0.03] pointer-events-none select-none z-0" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            {/* Left — Emblem image and headline */}
-            <div className="lg:col-span-5">
-              <div className="lg:sticky lg:top-28">
-                <RevealAnimation animation="fade-up">
-                  <span className="block font-sans text-[10px] tracking-[0.25em] text-accent uppercase mb-6">
-                    Our Emblem
-                  </span>
-                </RevealAnimation>
-
-                <div className="relative">
-                  <span
-                    aria-hidden
-                    className="parallax-ligature absolute -top-10 -left-6 md:-top-12 md:-left-8 font-display italic text-[10rem] md:text-[14rem] leading-none text-accent/15 pointer-events-none select-none"
-                    style={{ fontFeatureSettings: "'swsh' 1, 'dlig' 1" }}
-                  >
-                    S
-                  </span>
-                  <RevealAnimation animation="luxury-reveal" delay={100}>
-                    <h2 className="relative z-10 font-display text-4xl md:text-5xl font-light mb-8 leading-[1.05]">
-                      The Symbols of <br />
-                      <span className="italic">Beau Monde</span>
-                    </h2>
-                  </RevealAnimation>
-                </div>
-
-                <RevealAnimation animation="scale-in" delay={200}>
-                  <Parallax speed={0.08}>
-                    <div className="w-full aspect-square border border-accent/15 bg-card p-6 shadow-xl">
-                      <img
-                        src={logoSketch}
-                        alt="Beau Monde Builders emblem — classical architecture with lions and palm trees"
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                  </Parallax>
-                </RevealAnimation>
-              </div>
-            </div>
-
-            {/* Right — Meanings + FCMB credentials */}
-            <div className="lg:col-span-7 flex flex-col">
-              <div className="space-y-10 md:space-y-12">
-                {EMBLEM_MEANINGS.map((item, i) => (
-                  <RevealAnimation key={item.title} animation="fade-up" delay={i * 100}>
-                    <div>
-                      <h4 className="font-sans text-xs font-semibold uppercase tracking-[0.2em] mb-3 flex items-center gap-4 text-foreground">
-                        <span className="w-8 h-px bg-accent" />
-                        {item.title}
-                      </h4>
-                      <p className="font-sans font-light text-[15px] leading-relaxed text-foreground/80 pl-12">
-                        {item.body}
-                      </p>
-                    </div>
-                  </RevealAnimation>
-                ))}
-              </div>
-
-              {/* Hairline divider into FCMB */}
-              <div className="my-14 md:my-16 flex items-center gap-4">
-                <span className="h-px flex-1 bg-accent/30" />
-                <span className="font-sans text-[10px] tracking-[0.35em] uppercase text-accent">
-                  Elite Certification
-                </span>
-                <span className="h-px flex-1 bg-accent/30" />
-              </div>
-
-              {/* Certifications block — FCMB + NAHB paired */}
-              <div className="grid grid-cols-1 sm:grid-cols-12 gap-8 items-start">
-                <RevealAnimation animation="scale-in" className="sm:col-span-5">
-                  <Parallax speed={0.06}>
-                    <div className="flex items-center justify-center sm:justify-start gap-6 md:gap-8">
-                      <div className="flex flex-col items-center">
-                        <img
-                          src={fcmbLogo}
-                          alt="Florida Certified Master Builder"
-                          className="h-24 md:h-28 w-auto object-contain"
-                          loading="lazy"
-                        />
-                        <span className="mt-3 font-sans text-[9px] tracking-[0.22em] uppercase text-foreground/55 text-center max-w-[140px] leading-snug">
-                          Florida Certified Master Builder
-                        </span>
-                      </div>
-                      <div aria-hidden className="hidden md:block w-px h-20 bg-accent/30" />
-                      <div className="flex flex-col items-center">
-                        <img
-                          src={nahbBadge.url}
-                          alt="NAHB Certified Master Building Professional"
-                          className="h-24 md:h-28 w-auto object-contain"
-                          loading="lazy"
-                        />
-                        <span className="mt-3 font-sans text-[9px] tracking-[0.22em] uppercase text-foreground/55 text-center max-w-[140px] leading-snug">
-                          NAHB Certified Master Building Professional
-                        </span>
-                      </div>
-                    </div>
-                  </Parallax>
-                </RevealAnimation>
-
-                <div className="sm:col-span-7">
-                  <RevealAnimation animation="luxury-reveal" delay={120}>
-                    <h3 className="font-display text-2xl md:text-3xl font-light leading-[1.1] mb-4 tracking-tight">
-                      Certifications <span className="italic">held by the few.</span>
-                    </h3>
-                  </RevealAnimation>
-                  <RevealAnimation animation="fade-up" delay={220}>
-                    <p className="font-sans font-light text-[15px] leading-relaxed text-foreground/80 mb-6">
-                      Voluntary credentials awarded only to builders with the experience, ethics, and record to back
-                      them — the FCMB the pinnacle in Florida, the NAHB Master designation the national benchmark.
-                    </p>
-                  </RevealAnimation>
-                  <RevealAnimation animation="fade-up" delay={320}>
-                    <dl className="border-t border-accent/30">
-                      {FCMB_CREDENTIALS.map((row) => (
-                        <div
-                          key={row.k}
-                          className="grid grid-cols-12 gap-3 py-3 border-b border-accent/30"
-                        >
-                          <dt className="col-span-4 font-sans text-[10px] uppercase tracking-[0.25em] text-accent self-center">
-                            {row.k}
-                          </dt>
-                          <dd className="col-span-8 font-sans font-light text-[14px] text-foreground/85 self-center">
-                            {row.v}
-                          </dd>
+        {/* Seafoam band — emblem + meanings */}
+        <div className="relative z-10 bg-seafoam border-y border-accent/20">
+          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-20 lg:py-28">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+              {/* Emblem plate */}
+              <div className="lg:col-span-5">
+                <RevealAnimation animation="scale-in">
+                  <Parallax speed={0.05}>
+                    <div className="relative w-full max-w-md mx-auto lg:mx-0">
+                      {/* Corner ticks */}
+                      <span aria-hidden className="absolute -top-2 -left-2 w-6 h-6 border-t border-l border-accent/70" />
+                      <span aria-hidden className="absolute -top-2 -right-2 w-6 h-6 border-t border-r border-accent/70" />
+                      <span aria-hidden className="absolute -bottom-2 -left-2 w-6 h-6 border-b border-l border-accent/70" />
+                      <span aria-hidden className="absolute -bottom-2 -right-2 w-6 h-6 border-b border-r border-accent/70" />
+                      <div className="border border-accent/25 bg-background p-6 shadow-[0_30px_60px_-30px_rgba(15,42,61,0.35)]">
+                        <div className="w-full aspect-square">
+                          <img
+                            src={logoSketch}
+                            alt="Beau Monde Builders emblem — classical architecture with lions and palm trees"
+                            className="w-full h-full object-contain"
+                            loading="lazy"
+                          />
                         </div>
-                      ))}
-                    </dl>
-                  </RevealAnimation>
+                      </div>
+                    </div>
+                  </Parallax>
+                </RevealAnimation>
+              </div>
+
+              {/* Meanings */}
+              <div className="lg:col-span-7">
+                <RevealAnimation animation="fade-up">
+                  <div className="flex items-center gap-3 mb-6">
+                    <span className="h-px w-10 bg-accent" />
+                    <span className="font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase text-accent">
+                      Our Marks
+                    </span>
+                  </div>
+                </RevealAnimation>
+                <RevealAnimation animation="luxury-reveal" delay={100}>
+                  <h2 className="font-display italic text-4xl md:text-5xl lg:text-6xl font-light text-primary leading-[1.05] mb-12 md:mb-14 max-w-xl">
+                    The signs that stand <br className="hidden md:block" />behind the work.
+                  </h2>
+                </RevealAnimation>
+
+                <div className="space-y-8 md:space-y-10">
+                  {EMBLEM_MEANINGS.map((item, i) => (
+                    <RevealAnimation key={item.title} animation="fade-up" delay={180 + i * 80}>
+                      <div>
+                        <h4 className="font-sans text-xs uppercase tracking-[0.25em] mb-3 flex items-center gap-4 text-primary">
+                          <span className="w-8 h-px bg-accent" />
+                          {item.title}
+                        </h4>
+                        <p className="font-sans font-light text-[15px] leading-relaxed text-primary/80 pl-12 max-w-xl">
+                          {item.body}
+                        </p>
+                      </div>
+                    </RevealAnimation>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Ivory credential plinth */}
+        <div className="relative z-10 max-w-4xl mx-auto px-6 sm:px-10 lg:px-12 py-20 md:py-28 lg:py-32">
+          {/* Eyebrow + headline */}
+          <RevealAnimation animation="fade-up">
+            <div className="flex items-center justify-center gap-3 mb-5">
+              <span className="h-px w-8 bg-accent" />
+              <span className="font-sans text-[10px] md:text-xs tracking-[0.4em] uppercase text-accent">
+                Heritage &amp; Accreditation
+              </span>
+              <span className="h-px w-8 bg-accent" />
+            </div>
+          </RevealAnimation>
+          <RevealAnimation animation="luxury-reveal" delay={100}>
+            <h3 className="font-display italic text-4xl md:text-5xl font-light text-primary text-center leading-[1.05] mb-14 md:mb-16">
+              Certifications held by the few.
+            </h3>
+          </RevealAnimation>
+
+          {/* Architectural triple-rule (top) */}
+          <RevealAnimation animation="fade-up" delay={160}>
+            <div className="flex flex-col items-center gap-1.5 mb-16 md:mb-20 origin-left">
+              <div className="w-full h-px bg-accent/25" />
+              <div className="w-full h-[3px] bg-accent" />
+              <div className="w-full h-px bg-accent/25" />
+            </div>
+          </RevealAnimation>
+
+          {/* Badge pair */}
+          <div className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20 mb-14 md:mb-16">
+            <RevealAnimation animation="scale-in" delay={200}>
+              <div className="flex flex-col items-center gap-5">
+                <div className="relative">
+                  <span aria-hidden className="absolute inset-0 translate-x-2 translate-y-2 border border-accent/25" />
+                  <div className="relative bg-card border border-accent/25 p-5 shadow-[0_20px_40px_-18px_rgba(15,42,61,0.3)]">
+                    <img
+                      src={fcmbLogo}
+                      alt="Florida Certified Master Builder"
+                      className="h-24 md:h-28 w-auto object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+                <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-primary text-center max-w-[180px] leading-snug">
+                  Florida Certified Master Builder
+                </span>
+              </div>
+            </RevealAnimation>
+
+            <div aria-hidden className="hidden md:block w-px h-28 bg-accent/30" />
+
+            <RevealAnimation animation="scale-in" delay={280}>
+              <div className="flex flex-col items-center gap-5">
+                <div className="relative">
+                  <span aria-hidden className="absolute inset-0 translate-x-2 translate-y-2 border border-accent/25" />
+                  <div className="relative bg-card border border-accent/25 p-5 shadow-[0_20px_40px_-18px_rgba(15,42,61,0.3)]">
+                    <img
+                      src={nahbBadge.url}
+                      alt="NAHB Certified Master Building Professional"
+                      className="h-24 md:h-28 w-auto object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+                <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-primary text-center max-w-[200px] leading-snug">
+                  NAHB Certified Master Building Professional
+                </span>
+              </div>
+            </RevealAnimation>
+          </div>
+
+          {/* Narrative */}
+          <RevealAnimation animation="fade-up" delay={340}>
+            <p className="font-sans font-light text-[15px] md:text-base leading-relaxed text-primary/80 text-center max-w-2xl mx-auto mb-14 md:mb-16">
+              Voluntary credentials awarded only to builders with the experience, ethics, and record to back
+              them — the FCMB the pinnacle in Florida, the NAHB Master designation the national benchmark.
+            </p>
+          </RevealAnimation>
+
+          {/* Credentials ledger */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-3 mb-16 md:mb-20">
+            {FCMB_CREDENTIALS.map((row, i) => (
+              <RevealAnimation key={row.k} animation="fade-up" delay={400 + i * 60}>
+                <div className="flex items-baseline justify-between gap-4 border-b border-accent/25 pb-2.5">
+                  <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent shrink-0">
+                    {row.k}
+                  </span>
+                  <span className="font-sans font-light text-[13px] text-primary/85 text-right">
+                    {row.v}
+                  </span>
+                </div>
+              </RevealAnimation>
+            ))}
+          </div>
+
+          {/* Architectural triple-rule (bottom) */}
+          <RevealAnimation animation="fade-up" delay={600}>
+            <div className="flex flex-col items-center gap-1.5 origin-left">
+              <div className="w-full h-px bg-accent/25" />
+              <div className="w-full h-[3px] bg-accent" />
+              <div className="w-full h-px bg-accent/25" />
+            </div>
+          </RevealAnimation>
         </div>
       </section>
 
