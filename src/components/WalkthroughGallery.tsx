@@ -23,10 +23,21 @@ import c18 from "@/assets/constellation/c18.jpg.asset.json";
 import c19 from "@/assets/constellation/c19.jpg.asset.json";
 import c20 from "@/assets/constellation/c20.jpg.asset.json";
 import c21 from "@/assets/constellation/c21.jpg.asset.json";
+import c22 from "@/assets/constellation/c22.jpg.asset.json";
+import c23 from "@/assets/constellation/c23.jpg.asset.json";
+import c24 from "@/assets/constellation/c24.jpg.asset.json";
+import c25 from "@/assets/constellation/c25.jpg.asset.json";
+import c26 from "@/assets/constellation/c26.jpg.asset.json";
+import c27 from "@/assets/constellation/c27.jpg.asset.json";
+import c28 from "@/assets/constellation/c28.jpg.asset.json";
+import c29 from "@/assets/constellation/c29.jpg.asset.json";
+import c30 from "@/assets/constellation/c30.jpg.asset.json";
+import c31 from "@/assets/constellation/c31.jpg.asset.json";
 
 const PHOTOS: { url: string }[] = [
   c1, c2, c3, c4, c5, c6, c7, c8, c9, c11,
   c12, c13, c14, c15, c16, c17, c18, c19, c20, c21,
+  c22, c23, c24, c25, c26, c27, c28, c29, c30, c31,
 ];
 
 /**
