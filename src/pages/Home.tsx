@@ -151,7 +151,6 @@ const Home = () => {
               <BentoTile
                 src={featuredResidence.url}
                 alt="The Shores at Tranquility — a Beau Monde newly completed residence"
-                label="Elevation · East"
                 anchor
                 className="col-span-12 md:col-span-7 md:row-span-6 aspect-[4/5] md:aspect-auto"
               />
@@ -159,21 +158,18 @@ const Home = () => {
               <BentoTile
                 src={bento02.url}
                 alt="Interior detail"
-                label="Interior · Salon"
                 className="col-start-2 col-span-11 md:col-start-auto md:col-span-5 md:row-span-4 aspect-[16/10] md:aspect-auto"
               />
               {/* Lower right — wider */}
               <BentoTile
                 src={bento03.url}
                 alt="Architectural detail"
-                label="Detail · Threshold"
                 className="col-span-7 md:col-span-3 md:row-span-2 aspect-[4/5] md:aspect-auto"
               />
               {/* Lower far right — narrow accent */}
               <BentoTile
                 src={bento05.url}
                 alt="Finish detail"
-                label="Finish · Brass"
                 className="col-span-5 md:col-span-2 md:row-span-2 aspect-[4/5] md:aspect-auto"
               />
             </div>
