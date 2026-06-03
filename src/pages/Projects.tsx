@@ -523,6 +523,8 @@ const YoursPlate = ({ onRestart }: { onRestart: () => void }) => (
 const Book = HTMLFlipBook as unknown as React.ForwardRefExoticComponent<any>;
 
 const FlipBookView = () => {
+  const [searchParams] = useSearchParams();
+  const coverVariant = (searchParams.get("cover") || "a").toLowerCase();
   const bookRef = useRef<any>(null);
   const [vp, setVp] = useState({ w: 1200, h: 800, portrait: false, ready: false });
   const [page, setPage] = useState(0);
@@ -538,14 +540,13 @@ const FlipBookView = () => {
     return () => window.removeEventListener("resize", recompute);
   }, []);
 
-  const totalPages = STYLES.length + 2; // cover + idioms + yours
+  const totalPages = STYLES.length + 3; // front cover + title + idioms + yours
 
   const visibleSet = useMemo(() => {
     if (vp.portrait) return new Set([page]);
-    // desktop spread with showCover: cover (0) sits alone on the right;
-    // subsequent spreads pair odd-left + even-right (1+2, 3+4, …).
-    if (page === 0) return new Set([0]);
-    const left = page % 2 === 1 ? page : page - 1;
+    // Pages now: 0 = front cover (left), 1 = title (right), 2+ = styles, last = yours.
+    // Pairs: 0+1, 2+3, 4+5, …
+    const left = page % 2 === 0 ? page : page - 1;
     return new Set([left, left + 1]);
   }, [page, vp.portrait]);
 
@@ -585,7 +586,7 @@ const FlipBookView = () => {
           maxHeight={1600}
           maxShadowOpacity={0.35}
           drawShadow
-          showCover
+          showCover={false}
           usePortrait={vp.portrait}
           flippingTime={900}
           mobileScrollSupport={false}
@@ -595,14 +596,23 @@ const FlipBookView = () => {
           onFlip={(e: any) => setPage(e.data)}
         >
           <Page visible={visibleSet.has(0)} hardCover>
+            {coverVariant === "c" ? (
+              <FrontCoverC />
+            ) : coverVariant === "b" ? (
+              <FrontCoverB />
+            ) : (
+              <FrontCoverA />
+            )}
+          </Page>
+          <Page visible={visibleSet.has(1)}>
             <CoverPlate />
           </Page>
           {STYLES.map((s, i) => (
-            <Page key={s.name} visible={visibleSet.has(i + 1)}>
+            <Page key={s.name} visible={visibleSet.has(i + 2)}>
               <StylePlate s={s} index={i} />
             </Page>
           ))}
-          <Page visible={visibleSet.has(STYLES.length + 1)} hardCover>
+          <Page visible={visibleSet.has(STYLES.length + 2)} hardCover>
             <YoursPlate onRestart={handleRestart} />
           </Page>
         </Book>
