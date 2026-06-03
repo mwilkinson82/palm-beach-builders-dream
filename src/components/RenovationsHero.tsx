@@ -44,7 +44,7 @@ export const RenovationsHero = () => {
         src={posterAsset.url}
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-contain md:object-cover"
       />
 
       {!reducedMotion && (
@@ -56,7 +56,7 @@ export const RenovationsHero = () => {
           playsInline
           preload="metadata"
           poster={posterAsset.url}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1200ms] ease-out ${
+          className={`absolute inset-0 h-full w-full object-contain md:object-cover transition-opacity duration-[1200ms] ease-out ${
             ready ? "opacity-100" : "opacity-0"
           }`}
         >

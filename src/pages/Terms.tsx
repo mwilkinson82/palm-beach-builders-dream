@@ -195,7 +195,7 @@ const Terms = () => {
                       <p className="text-muted-foreground font-light">205 Worth Avenue, Suite 120</p>
                       <p className="text-muted-foreground font-light">Palm Beach, FL 33480</p>
                       <p className="text-muted-foreground font-light mt-2">
-                        Email: <a href="mailto:ajhoover@mac.com" className="text-accent hover:underline">ajhoover@mac.com</a>
+                        Email: <a href="mailto:aj@bmbpalmbeach.com" className="text-accent hover:underline">aj@bmbpalmbeach.com</a>
                       </p>
                       <p className="text-muted-foreground font-light">
                         Phone: <a href="tel:+15616468992" className="text-accent hover:underline">(561) 646-8992</a>

@@ -52,17 +52,6 @@ export const ScheduleDrivenSection = ({ scrollY }: Props) => {
         On schedule.
       </span>
 
-      {/* Faint horizontal CPM rail — fills with scroll progress */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-0 right-0 top-1/2 h-px bg-accent/10"
-      >
-        <div
-          className="absolute inset-y-0 left-0 bg-accent/40 will-change-[width]"
-          style={{ width: `${progress * 100}%` }}
-        />
-      </div>
-
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
           <RevealAnimation animation="fade-up" className="lg:col-span-5">

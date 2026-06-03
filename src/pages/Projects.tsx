@@ -684,6 +684,7 @@ const FlipBookView = () => {
   const [vp, setVp] = useState({ w: 1200, h: 800, portrait: false, ready: false });
   const [page, setPage] = useState(0);
   const [lastViewedStyle, setLastViewedStyle] = useState<string | undefined>(undefined);
+  const [showSwipeHint, setShowSwipeHint] = useState(true);
 
   useEffect(() => {
     const recompute = () => {
@@ -710,6 +711,7 @@ const FlipBookView = () => {
   const handleFlip = (e: any) => {
     const p = e.data as number;
     setPage(p);
+    setShowSwipeHint(false);
     // Style pages are 2..STYLES.length + 1
     if (p >= 2 && p < STYLES.length + 2) {
       setLastViewedStyle(STYLES[p - 2].name);
@@ -788,6 +790,21 @@ const FlipBookView = () => {
           {String(page + 1).padStart(2, "0")} / {String(totalPages).padStart(2, "0")}
         </span>
       </div>
+
+      {/* Mobile swipe hint — only on portrait, first page, until user interacts */}
+      {vp.portrait && page === 0 && showSwipeHint && (
+        <div
+          className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center gap-3 animate-fade-in"
+          aria-hidden="true"
+        >
+          <div className="flex items-center gap-2 bg-background/95 border border-accent/40 px-5 py-3 shadow-lg">
+            <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-primary/80">
+              Swipe to turn
+            </span>
+            <span className="font-display text-xl text-accent animate-pulse">→</span>
+          </div>
+        </div>
+      )}
 
       {/* Nav arrows */}
       <button

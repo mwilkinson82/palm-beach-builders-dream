@@ -26,7 +26,7 @@ const localBusinessSchema = {
     "Ultra-luxury custom home builder serving Palm Beach, Florida. Private consultations by appointment at our Worth Avenue office.",
   url: "https://bmbpalmbeach.com",
   telephone: "+1-561-646-8992",
-  email: "ajhoover@mac.com",
+  email: "aj@bmbpalmbeach.com",
   priceRange: "$$$$",
   image: "https://bmbpalmbeach.com/og-image.jpg",
   address: {
@@ -54,13 +54,7 @@ const localBusinessSchema = {
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "09:00",
-      closes: "17:00",
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: "Saturday",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
       description: "By Appointment",
     },
   ],
@@ -144,7 +138,7 @@ const Contact = () => {
     <>
       <SEO 
         title="Contact Us"
-        description="Schedule a private consultation with Beau Monde Builders. Visit us at 205 Worth Avenue, Palm Beach or call (561) 646-8992. Office hours: Mon-Fri 9AM-5PM."
+          description="Schedule a private consultation with Beau Monde Builders. Visit us at 205 Worth Avenue, Palm Beach or call (561) 646-8992. By appointment only, Monday through Saturday."
         canonical="/contact"
       />
       <BreadcrumbSchema items={[
@@ -257,8 +251,8 @@ const Contact = () => {
                         <a href="tel:+15616468992" className="font-display text-xl md:text-2xl text-foreground hover:text-accent transition-colors duration-500">
                           (561) 646-8992
                         </a>
-                        <a href="mailto:ajhoover@mac.com" className="block font-sans text-sm text-foreground/70 hover:text-accent transition-colors duration-500 mt-1.5 font-light">
-                          ajhoover@mac.com
+                        <a href="mailto:aj@bmbpalmbeach.com" className="block font-sans text-sm text-foreground/70 hover:text-accent transition-colors duration-500 mt-1.5 font-light">
+                          aj@bmbpalmbeach.com
                         </a>
                       </div>
 
@@ -268,7 +262,7 @@ const Contact = () => {
                       <div>
                         <h4 className="text-[9px] md:text-[10px] tracking-[0.35em] uppercase text-accent font-sans font-medium mb-3">Hours</h4>
                         <div className="font-sans text-[13px] md:text-sm space-y-2 text-foreground/75 font-light">
-                          <p className="flex justify-between"><span>Monday — Friday</span><span>9:00 — 17:00</span></p>
+                          <p className="flex justify-between"><span>Monday — Friday</span><span className="italic">By Appointment</span></p>
                           <p className="flex justify-between"><span>Saturday</span><span className="italic">By Appointment</span></p>
                           <p className="flex justify-between"><span>Sunday</span><span>Closed</span></p>
                         </div>
