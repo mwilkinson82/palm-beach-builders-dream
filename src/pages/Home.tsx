@@ -11,6 +11,7 @@ import { DeliveryShowcase } from "@/components/DeliveryShowcase";
 import { WalkthroughShowcase } from "@/components/WalkthroughShowcase";
 import { WalkthroughGallery } from "@/components/WalkthroughGallery";
 import { InterviewShowcase } from "@/components/InterviewShowcase";
+import { BentoTile } from "@/components/BentoTile";
 import { Parallax } from "@/components/Parallax";
 import { ArrowRight, Star } from "lucide-react";
 import fcmbLogo from "@/assets/fcmb-logo.png";
@@ -146,36 +147,34 @@ const Home = () => {
           <RevealAnimation animation="fade-up" delay={160}>
             <div className="grid grid-cols-12 gap-3 md:gap-4 md:grid-rows-6 md:h-[80vh] md:min-h-[620px] md:max-h-[820px]">
               {/* Anchor — tall portrait left on desktop, offset hero on mobile */}
-              <figure className="col-span-12 md:col-span-7 md:row-span-6 relative overflow-hidden ring-1 ring-accent/30 shadow-[0_40px_70px_-30px_rgba(15,42,61,0.5)] group bg-primary aspect-[4/5] md:aspect-auto">
-                <img
-                  src={featuredResidence.url}
-                  alt="The Shores at Tranquility — a Beau Monde newly completed residence"
-                  loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.03]"
-                />
-                {/* Brass corner ticks — anchor only */}
-                <span aria-hidden className="pointer-events-none absolute top-4 left-4 md:top-6 md:left-6 w-5 h-5 border-t border-l border-accent/70" />
-                <span aria-hidden className="pointer-events-none absolute bottom-4 right-4 md:bottom-6 md:right-6 w-5 h-5 border-b border-r border-accent/70" />
-                <figcaption className="absolute left-5 bottom-5 md:left-8 md:bottom-8 flex items-center gap-2 text-primary-foreground/90">
-                  <span className="h-px w-6 bg-accent" />
-                  <span className="font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase">Elevation · East</span>
-                </figcaption>
-              </figure>
-
+              <BentoTile
+                src={featuredResidence.url}
+                alt="The Shores at Tranquility — a Beau Monde newly completed residence"
+                label="Elevation · East"
+                anchor
+                className="col-span-12 md:col-span-7 md:row-span-6 aspect-[4/5] md:aspect-auto"
+              />
               {/* Wide landscape — top right, dominant */}
-              <figure className="col-start-2 col-span-11 md:col-start-auto md:col-span-5 md:row-span-4 relative overflow-hidden ring-1 ring-accent/30 group bg-primary aspect-[16/10] md:aspect-auto">
-                <img src={bento02.url} alt="Interior detail" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.03]" />
-              </figure>
-
+              <BentoTile
+                src={bento02.url}
+                alt="Interior detail"
+                label="Interior · Salon"
+                className="col-start-2 col-span-11 md:col-start-auto md:col-span-5 md:row-span-4 aspect-[16/10] md:aspect-auto"
+              />
               {/* Lower right — wider */}
-              <figure className="col-span-7 md:col-span-3 md:row-span-2 relative overflow-hidden ring-1 ring-accent/30 group bg-primary aspect-[4/5] md:aspect-auto">
-                <img src={bento03.url} alt="Architectural detail" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.03]" />
-              </figure>
-
+              <BentoTile
+                src={bento03.url}
+                alt="Architectural detail"
+                label="Detail · Threshold"
+                className="col-span-7 md:col-span-3 md:row-span-2 aspect-[4/5] md:aspect-auto"
+              />
               {/* Lower far right — narrow accent */}
-              <figure className="col-span-5 md:col-span-2 md:row-span-2 relative overflow-hidden ring-1 ring-accent/30 group bg-primary aspect-[4/5] md:aspect-auto">
-                <img src={bento05.url} alt="Finish detail" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.03]" />
-              </figure>
+              <BentoTile
+                src={bento05.url}
+                alt="Finish detail"
+                label="Finish · Brass"
+                className="col-span-5 md:col-span-2 md:row-span-2 aspect-[4/5] md:aspect-auto"
+              />
             </div>
           </RevealAnimation>
 
