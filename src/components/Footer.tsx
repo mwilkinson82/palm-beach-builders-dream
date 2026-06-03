@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import fcmbLogo from "@/assets/fcmb-logo.png";
+import nahbBadge from "@/assets/nahb-master-building-professional.png.asset.json";
 
 export const Footer = () => {
   return (
