@@ -6,12 +6,14 @@ import { Link } from "react-router-dom";
 import { RevealAnimation } from "@/components/RevealAnimation";
 import { SEO, PersonSchema, BreadcrumbSchema } from "@/components/SEO";
 import { Award, Shield, Users, FileCheck } from "lucide-react";
-import ajImage from "@/assets/aj-hoover.png";
+import ajImageAsset from "@/assets/aj-hoover-v2.png.asset.json";
 import fcmbLogo from "@/assets/fcmb-logo.png";
 import nahbBadge from "@/assets/nahb-master-building-professional.png.asset.json";
 import michelleImage from "@/assets/michelle-williams.jpg";
 import johnImage from "@/assets/john-colaiacovo.jpg";
 import lindaImage from "@/assets/linda-lucas.jpg";
+
+const ajImage = ajImageAsset.url;
 
 const About = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -120,8 +122,7 @@ const About = () => {
                   className="relative will-change-transform"
                   style={{ transform: `translate3d(0, ${portraitY}px, 0)` }}
                 >
-                  <div className="absolute inset-0 bg-[hsl(var(--seafoam))]/40 -translate-x-3 translate-y-3" aria-hidden />
-                  <div className="relative aspect-[4/5] overflow-hidden border border-accent/30">
+                  <div className="relative aspect-square overflow-hidden">
                     <img
                       src={ajImage}
                       alt="AJ Hoover, Founder of Beau Monde Builders"
@@ -130,12 +131,6 @@ const About = () => {
                       onError={(e) => { e.currentTarget.src = "/placeholder.svg"; }}
                       className="w-full h-full object-cover object-center"
                     />
-                  </div>
-                  <div className="mt-4 flex items-center gap-3">
-                    <div className="h-px w-8 bg-accent" />
-                    <span className="text-[10px] tracking-[0.4em] uppercase text-accent font-sans">
-                      AJ Hoover · Founder
-                    </span>
                   </div>
                 </div>
               </RevealAnimation>
