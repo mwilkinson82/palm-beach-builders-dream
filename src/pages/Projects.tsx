@@ -486,18 +486,33 @@ const InquiryPlate = ({ defaultStyle }: { defaultStyle?: string }) => {
     }
     setSubmitting(true);
     try {
-      const { error } = await supabase.functions.invoke("send-contact-email", {
+      const { error: notifyError } = await supabase.functions.invoke("send-transactional-email", {
         body: {
-          firstName: parsed.data.name,
-          lastName: "",
-          email: parsed.data.email,
-          phone: parsed.data.phone,
-          message: parsed.data.note,
-          style: parsed.data.style,
-          source: "style-book",
+          templateName: "style-book-notification",
+          idempotencyKey: `style-notify-${Date.now()}-${parsed.data.email}`,
+          templateData: {
+            fullName: parsed.data.name,
+            email: parsed.data.email,
+            phone: parsed.data.phone,
+            style: parsed.data.style,
+            message: parsed.data.note,
+          },
         },
       });
-      if (error) throw error;
+      if (notifyError) throw notifyError;
+
+      const { error: confirmError } = await supabase.functions.invoke("send-transactional-email", {
+        body: {
+          templateName: "style-book-confirmation",
+          recipientEmail: parsed.data.email,
+          idempotencyKey: `style-confirm-${Date.now()}-${parsed.data.email}`,
+          templateData: {
+            firstName: parsed.data.name?.split(" ")[0] ?? parsed.data.name,
+            style: parsed.data.style,
+          },
+        },
+      });
+      if (confirmError) throw confirmError;
       toast({
         title: "Sent to Beau Monde",
         description: "We'll be in touch within 24 hours.",
