@@ -320,21 +320,42 @@ const Renovations = () => {
 
             <RevealAnimation animation="scale-in" delay={220}>
               <div className="flex justify-center mb-12 md:mb-14">
-                <div className="flex flex-col items-center gap-5">
-                  <div className="relative">
-                    <span aria-hidden className="absolute inset-0 translate-x-2 translate-y-2 border border-accent/25" />
-                    <div className="relative bg-card border border-accent/25 p-5 shadow-[0_20px_40px_-18px_rgba(15,42,61,0.3)]">
-                      <img
-                        src={fcmbLogo}
-                        alt="Florida Certified Master Builder"
-                        className="h-24 md:h-28 w-auto object-contain"
-                        loading="lazy"
-                      />
+                <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center gap-10 md:gap-12 w-full max-w-2xl">
+                  <div className="flex flex-col items-center gap-5">
+                    <div className="relative">
+                      <span aria-hidden className="absolute inset-0 translate-x-2 translate-y-2 border border-accent/25" />
+                      <div className="relative bg-card border border-accent/25 p-5 shadow-[0_20px_40px_-18px_rgba(15,42,61,0.3)]">
+                        <img
+                          src={fcmbLogo}
+                          alt="Florida Certified Master Builder"
+                          className="h-24 md:h-28 w-auto object-contain"
+                          loading="lazy"
+                        />
+                      </div>
                     </div>
+                    <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-primary text-center max-w-[200px] leading-snug">
+                      Florida Certified Master Builder
+                    </span>
                   </div>
-                  <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-primary text-center max-w-[180px] leading-snug">
-                    Florida Certified Master Builder
-                  </span>
+
+                  <span aria-hidden className="hidden md:block h-24 w-px bg-accent/40" />
+
+                  <div className="flex flex-col items-center gap-5">
+                    <div className="relative">
+                      <span aria-hidden className="absolute inset-0 translate-x-2 translate-y-2 border border-accent/25" />
+                      <div className="relative bg-card border border-accent/25 p-5 shadow-[0_20px_40px_-18px_rgba(15,42,61,0.3)]">
+                        <img
+                          src={nahbBadge.url}
+                          alt="NAHB Certified Master Building Professional"
+                          className="h-24 md:h-28 w-auto object-contain"
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                    <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-primary text-center max-w-[200px] leading-snug">
+                      NAHB Certified Master Building Professional
+                    </span>
+                  </div>
                 </div>
               </div>
             </RevealAnimation>
