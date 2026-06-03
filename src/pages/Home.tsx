@@ -20,6 +20,9 @@ import bespokePortrait from "@/assets/projects/bespoke-portrait.jpg.asset.json";
 import bespokeDetail from "@/assets/projects/bespoke-detail.jpg.asset.json";
 import nahbBadge from "@/assets/nahb-master-building-professional.png.asset.json";
 import featuredResidence from "@/assets/constellation/c64.jpg.asset.json";
+import bento02 from "@/assets/constellation/c52.jpg.asset.json";
+import bento03 from "@/assets/constellation/c54.jpg.asset.json";
+import bento05 from "@/assets/constellation/c66.jpg.asset.json";
 
 const EMBLEM_MEANINGS = [
   {
@@ -97,72 +100,90 @@ const Home = () => {
       {/* Featured Residence — cinematic band on a seafoam wash */}
       <section
         aria-label="Featured Residence"
-        className="relative bg-seafoam text-foreground border-y border-accent/30 overflow-hidden"
+        className="relative bg-seafoam text-foreground border-y border-accent/30 overflow-hidden pt-20 md:pt-28 lg:pt-32"
       >
         <div className="absolute inset-0 silk-grain opacity-[0.04] pointer-events-none select-none" />
 
-        {/* Cinematic hero with overlaid title card */}
-        <RevealAnimation animation="fade-in">
-          <div className="relative w-full h-[70vh] min-h-[520px] max-h-[780px] md:h-[72vh] overflow-hidden bg-primary">
-            <img
-              src={featuredResidence.url}
-              alt="The Shores at Tranquility — a Beau Monde newly completed residence"
-              loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover cinema-image"
-            />
-
-            {/* Legibility veil — lower-left wash */}
-            <div
-              aria-hidden
-              className="absolute inset-0 bg-gradient-to-tr from-primary/80 via-primary/30 to-transparent"
-            />
-
-            {/* Brass corner ticks — "framed photograph" cue */}
-            <span aria-hidden className="pointer-events-none absolute top-5 left-5 md:top-8 md:left-8 w-6 h-6 border-t border-l border-accent/80" />
-            <span aria-hidden className="pointer-events-none absolute top-5 right-5 md:top-8 md:right-8 w-6 h-6 border-t border-r border-accent/80" />
-            <span aria-hidden className="pointer-events-none absolute bottom-5 left-5 md:bottom-8 md:left-8 w-6 h-6 border-b border-l border-accent/80" />
-            <span aria-hidden className="pointer-events-none absolute bottom-5 right-5 md:bottom-8 md:right-8 w-6 h-6 border-b border-r border-accent/80" />
-
-            {/* Title card — lower left */}
-            <div className="absolute inset-x-0 bottom-0 z-10">
-              <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pb-10 md:pb-16 lg:pb-20">
-                <div className="max-w-2xl text-primary-foreground">
-                  <RevealAnimation animation="fade-up" delay={120}>
-                    <div className="flex items-center gap-3 mb-5">
-                      <span className="h-px w-10 bg-accent" />
-                      <span className="font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase text-accent">
-                        Featured · Newly Completed Residence
-                      </span>
-                    </div>
-                  </RevealAnimation>
-
-                  <RevealAnimation animation="luxury-reveal" delay={200}>
-                    <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] tracking-tight mb-5 text-primary-foreground">
-                      The Shores <span className="italic">at Tranquility.</span>
-                    </h2>
-                  </RevealAnimation>
-
-                  <RevealAnimation animation="fade-up" delay={300}>
-                    <p className="font-sans font-light text-[15px] md:text-base leading-relaxed text-primary-foreground/85 mb-8 max-w-xl">
-                      The home behind the films above — every detail at the level we bring to every Beau Monde residence.
-                    </p>
-                  </RevealAnimation>
-
-                  <RevealAnimation animation="fade-up" delay={400}>
-                    <Link
-                      to="/projects"
-                      className="group relative inline-flex items-center gap-3 bg-primary-foreground text-primary font-sans text-[11px] uppercase tracking-[0.28em] font-medium px-10 py-5 transition-[background,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-primary-foreground/95 hover:-translate-y-[1px]"
-                    >
-                      <span aria-hidden className="pointer-events-none absolute inset-[3px] border border-accent/0 group-hover:border-accent/70 transition-colors duration-500" />
-                      <span className="relative z-10">Find My Style</span>
-                      <ArrowRight className="relative z-10 w-3.5 h-3.5 transition-transform duration-500 ease-out group-hover:translate-x-1" strokeWidth={1.25} />
-                    </Link>
-                  </RevealAnimation>
+        {/* Editorial header — sits above the bento */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
+            <div className="lg:col-span-7">
+              <RevealAnimation animation="fade-up">
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="h-px w-10 bg-accent" />
+                  <span className="font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase text-accent">
+                    Featured · Newly Completed Residence
+                  </span>
                 </div>
-              </div>
+              </RevealAnimation>
+              <RevealAnimation animation="luxury-reveal" delay={120}>
+                <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-light leading-[1.02] tracking-tight text-primary">
+                  The Shores <span className="italic">at Tranquility.</span>
+                </h2>
+              </RevealAnimation>
+            </div>
+            <div className="lg:col-span-5">
+              <RevealAnimation animation="fade-up" delay={240}>
+                <p className="font-sans font-light text-[15px] md:text-base leading-relaxed text-foreground/80 mb-7 max-w-lg">
+                  An intracoastal estate completed this season — every threshold, joint, and finish
+                  shaped by seven years of Beau Monde craftsmanship.
+                </p>
+                <Link
+                  to="/projects"
+                  className="group relative inline-flex items-center gap-3 bg-primary text-primary-foreground font-sans text-[11px] uppercase tracking-[0.28em] font-medium px-10 py-5 transition-[background,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-primary/95 hover:-translate-y-[1px]"
+                >
+                  <span aria-hidden className="pointer-events-none absolute inset-[3px] border border-accent/0 group-hover:border-accent/60 transition-colors duration-500" />
+                  <span className="relative z-10">Find My Style</span>
+                  <ArrowRight className="relative z-10 w-3.5 h-3.5 transition-transform duration-500 ease-out group-hover:translate-x-1" strokeWidth={1.25} />
+                </Link>
+              </RevealAnimation>
             </div>
           </div>
-        </RevealAnimation>
+        </div>
+
+        {/* Bento mosaic — 4 photos, asymmetric editorial grid */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 mt-12 md:mt-16">
+          <RevealAnimation animation="fade-up" delay={160}>
+            <div className="grid grid-cols-12 gap-3 md:gap-4 md:grid-rows-2 md:h-[70vh] md:min-h-[560px] md:max-h-[760px]">
+              {/* Anchor — tall left on desktop, top on mobile */}
+              <figure className="col-span-12 md:col-span-7 md:row-span-2 relative overflow-hidden ring-1 ring-accent/30 shadow-[0_30px_60px_-25px_rgba(15,42,61,0.45)] group bg-primary aspect-[4/3] md:aspect-auto">
+                <img
+                  src={featuredResidence.url}
+                  alt="The Shores at Tranquility — a Beau Monde newly completed residence"
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.03]"
+                />
+                <figcaption className="absolute left-5 bottom-5 md:left-7 md:bottom-7 flex items-center gap-2 text-primary-foreground/90">
+                  <span className="h-px w-6 bg-accent" />
+                  <span className="font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase">Elevation · East</span>
+                </figcaption>
+              </figure>
+
+              <figure className="col-span-12 md:col-span-5 relative overflow-hidden ring-1 ring-accent/30 group bg-primary aspect-[16/10] md:aspect-auto">
+                <img src={bento02.url} alt="Interior detail" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.03]" />
+              </figure>
+
+              <figure className="col-span-6 md:col-span-3 relative overflow-hidden ring-1 ring-accent/30 group bg-primary aspect-square md:aspect-auto">
+                <img src={bento03.url} alt="Architectural detail" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.03]" />
+              </figure>
+
+              <figure className="col-span-6 md:col-span-2 relative overflow-hidden ring-1 ring-accent/30 group bg-primary aspect-square md:aspect-auto">
+                <img src={bento05.url} alt="Finish detail" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.03]" />
+              </figure>
+            </div>
+          </RevealAnimation>
+
+          {/* Caption rail under the mosaic */}
+          <div className="mt-5 flex items-center justify-between gap-6">
+            <div className="flex items-center gap-3 text-primary/70">
+              <span className="h-px w-8 bg-accent" />
+              <span className="font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase">Selected frames · The Shores</span>
+            </div>
+            <span className="font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase text-primary/55 hidden md:block">
+              Scroll for the full walkthrough ↓
+            </span>
+          </div>
+        </div>
 
         {/* Indexed filmstrip — the second act */}
         <div className="pt-12 md:pt-16 lg:pt-20 pb-16 md:pb-24">
