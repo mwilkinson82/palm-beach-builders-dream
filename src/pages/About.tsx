@@ -394,22 +394,30 @@ const About = () => {
                 <div className="flex items-center justify-center space-x-3 mb-6">
                   <div className="h-px w-12 bg-accent" />
                   <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-accent font-sans font-light">
-                    The Bench
+                    Leadership
                   </span>
                   <div className="h-px w-12 bg-accent" />
                 </div>
                 <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-primary leading-[1.05]">
-                  The Beau Monde
-                  <span className="italic text-muted-foreground"> team.</span>
+                  The principals.
+                  <br />
+                  <span className="italic text-muted-foreground">The bench is deeper than three.</span>
                 </h2>
+                <p className="font-sans font-light text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto mt-8">
+                  Three principals lead Beau Monde day-to-day. Behind them sits
+                  a vetted network of architects, engineers, masons,
+                  millworkers, mechanical specialists, technology partners, and
+                  project consultants — each invited by AJ, each held to the
+                  same standard.
+                </p>
               </div>
             </RevealAnimation>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 md:gap-14 max-w-6xl mx-auto">
               {[
-                { name: "John Colaiacovo", role: "Project Manager", experience: "Forty years of luxury construction management.", image: johnImage },
-                { name: "Michelle Williams", role: "Financial Director", experience: "Twenty years in luxury construction finance.", image: michelleImage },
-                { name: "Linda Lucas", role: "Project Manager", experience: "Twenty-five years turning visions into residences.", image: lindaImage },
+                { name: "John Colaiacovo", role: "Senior Project Manager", experience: "Forty years of luxury construction management.", image: johnImage },
+                { name: "Michelle Williams", role: "Director of Finance & Operations", experience: "Twenty years in luxury construction finance.", image: michelleImage },
+                { name: "Linda Lucas", role: "Senior Project Manager", experience: "Twenty-five years turning visions into residences.", image: lindaImage },
               ].map((member, i) => (
                 <RevealAnimation key={member.name} animation="fade-up" delay={i * 140}>
                   <div className="text-center">
@@ -445,6 +453,45 @@ const About = () => {
                 </RevealAnimation>
               ))}
             </div>
+
+            {/* Extended Bench */}
+            <RevealAnimation animation="fade-up" delay={120}>
+              <div className="max-w-6xl mx-auto mt-24 md:mt-32 border-t border-accent/20 pt-12 md:pt-16">
+                <div className="text-center mb-10">
+                  <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-accent font-sans font-light">
+                    The Extended Bench
+                  </span>
+                </div>
+                <p className="font-sans font-light text-sm md:text-base text-muted-foreground leading-relaxed text-center max-w-3xl mx-auto mb-14">
+                  Architects · Structural &amp; Civil Engineers · Master Masons ·
+                  Millwork &amp; Cabinetry · Mechanical, Electrical &amp; Plumbing ·
+                  Smart-Home &amp; Security · Landscape Architects · Interior Partners
+                </p>
+                <div className="grid grid-cols-3 border-y border-accent/20">
+                  {[
+                    { n: "40+", l: "Vetted trade partners" },
+                    { n: "85+", l: "Years combined leadership" },
+                    { n: "1", l: "Florida Certified Master Builder" },
+                  ].map((s, i) => (
+                    <div
+                      key={s.l}
+                      className={`py-10 md:py-12 px-4 text-center ${i < 2 ? "border-r border-accent/20" : ""}`}
+                    >
+                      <div className="font-display text-primary text-5xl md:text-6xl leading-none mb-4">
+                        {s.n}
+                      </div>
+                      <div className="font-sans text-[10px] md:text-[11px] tracking-[0.28em] uppercase text-muted-foreground max-w-[180px] mx-auto leading-snug">
+                        {s.l}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <p className="font-display italic text-primary text-xl md:text-2xl text-center mt-12 leading-snug">
+                  Small on purpose.
+                  <span className="text-muted-foreground"> Resourced like a firm three times the size.</span>
+                </p>
+              </div>
+            </RevealAnimation>
           </div>
         </section>
 
