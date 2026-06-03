@@ -73,7 +73,7 @@ export const SplashScreen = ({ duration = 3000, onComplete }: SplashScreenProps)
           <img
             src={logoSketch}
             alt="Beau Monde Builders"
-            className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 object-contain bg-ivory p-4 sm:p-5 md:p-6 ring-1 ring-primary/60 shadow-[0_25px_50px_-12px_rgba(15,42,61,0.45)] rounded-sm"
+            className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 object-contain ring-1 ring-accent shadow-[0_25px_50px_-12px_rgba(15,42,61,0.45)] rounded-sm"
           />
         </div>
 
