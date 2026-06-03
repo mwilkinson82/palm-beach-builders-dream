@@ -167,14 +167,15 @@ const Home = () => {
               </RevealAnimation>
             </div>
 
-            <div className="lg:col-span-5 relative lg:pb-24">
+            <div className="lg:col-span-5 relative lg:pb-28">
+              {/* Interior — dominant */}
               <RevealAnimation animation="scale-in" delay={200}>
                 <div className="relative">
                   <Parallax speed={0.08} className="block">
                     <img
-                      src={bespokePortrait.url}
-                      alt="Portrait of a Beau Monde client — the life behind the residence"
-                      className="w-full aspect-[3/4] object-cover shadow-[40px_40px_80px_-20px_hsl(var(--primary)/0.25)]"
+                      src={bespokeDetail.url}
+                      alt="Beau Monde interior — coffered ceilings, brass lanterns, marble island"
+                      className="w-full aspect-[4/5] object-cover shadow-[40px_40px_80px_-20px_hsl(var(--primary)/0.25)]"
                       loading="lazy"
                     />
                     {/* engraved corner hairline (brass, bottom-right) */}
@@ -183,27 +184,29 @@ const Home = () => {
                       className="hidden lg:block absolute bottom-3 right-3 w-16 h-16 border-b border-r border-accent/70 pointer-events-none"
                     />
                   </Parallax>
-                  <div className="hidden lg:block absolute top-4 right-4 z-20">
-                    <p className="font-display italic text-sm text-accent bg-background/95 backdrop-blur-sm px-4 py-2 border border-accent/40 shadow-md">
-                      Turning blueprints to fingerprints
-                    </p>
-                  </div>
                 </div>
               </RevealAnimation>
 
-              {/* Architectural detail — editorial diptych counterpart */}
+              {/* Portrait — small offset counterpart, with caption tucked beneath */}
               <RevealAnimation
                 animation="fade-up"
                 delay={420}
-                className="mt-6 lg:mt-0 lg:absolute lg:-bottom-4 lg:-left-20 lg:w-[58%] lg:z-10"
+                className="mt-6 lg:mt-0 lg:absolute lg:-bottom-8 lg:-left-24 lg:w-[40%] lg:z-20"
               >
                 <Parallax speed={-0.04} className="block">
-                  <img
-                    src={bespokeDetail.url}
-                    alt="Beau Monde interior detail — coffered ceilings, brass lanterns, marble island"
-                    className="w-full aspect-[4/5] object-cover shadow-[30px_30px_60px_-20px_hsl(var(--primary)/0.3)] ring-1 ring-accent/20"
-                    loading="lazy"
-                  />
+                  <div className="relative">
+                    <img
+                      src={bespokePortrait.url}
+                      alt="Portrait of a Beau Monde client — the life behind the residence"
+                      className="w-full aspect-[3/4] object-cover shadow-[30px_30px_60px_-20px_hsl(var(--primary)/0.35)] ring-1 ring-accent/20"
+                      loading="lazy"
+                    />
+                    <div className="hidden lg:block absolute -bottom-5 -right-8 z-10">
+                      <p className="font-display italic text-sm text-accent bg-background px-4 py-2 border border-accent/40 shadow-md whitespace-nowrap">
+                        Turning blueprints to fingerprints
+                      </p>
+                    </div>
+                  </div>
                 </Parallax>
               </RevealAnimation>
             </div>
