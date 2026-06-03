@@ -192,6 +192,72 @@ const CoverPlate = () => (
   </div>
 );
 
+const ImageLoupe = ({
+  src,
+  alt,
+  eager,
+}: {
+  src: string;
+  alt: string;
+  eager?: boolean;
+}) => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const lensRef = useRef<HTMLDivElement | null>(null);
+  const [active, setActive] = useState(false);
+  const reduceMotion = useReducedMotion();
+
+  const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = containerRef.current;
+    const lens = lensRef.current;
+    if (!el || !lens) return;
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const lensSize = lens.offsetWidth;
+    const half = lensSize / 2;
+    // clamp lens within image
+    const lx = Math.max(half, Math.min(rect.width - half, x));
+    const ly = Math.max(half, Math.min(rect.height - half, y));
+    lens.style.left = `${lx - half}px`;
+    lens.style.top = `${ly - half}px`;
+    // background-position for 2x zoom: percentage based on cursor relative position
+    const px = (x / rect.width) * 100;
+    const py = (y / rect.height) * 100;
+    lens.style.backgroundPosition = `${px}% ${py}%`;
+    lens.style.backgroundSize = `${rect.width * 2}px ${rect.height * 2}px`;
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative w-full h-full overflow-hidden [@media(hover:hover)]:cursor-zoom-in"
+      onMouseEnter={() => !reduceMotion && setActive(true)}
+      onMouseLeave={() => setActive(false)}
+      onMouseMove={handleMove}
+    >
+      <img
+        src={src}
+        alt={alt}
+        loading={eager ? "eager" : "lazy"}
+        decoding="async"
+        className="w-full h-full object-cover select-none pointer-events-none"
+        draggable={false}
+      />
+      <div
+        ref={lensRef}
+        aria-hidden
+        className="hidden [@media(hover:hover)]:block absolute pointer-events-none rounded-full border border-background/80 shadow-[0_18px_40px_-12px_hsl(var(--primary)/0.55)] bg-no-repeat transition-opacity duration-200"
+        style={{
+          width: 160,
+          height: 160,
+          opacity: active ? 1 : 0,
+          backgroundImage: `url(${src})`,
+        }}
+      />
+    </div>
+  );
+};
+
 const StylePlate = ({ s, index }: { s: Style; index: number }) => (
   <div className="w-full h-full flex flex-col p-5 sm:p-8 lg:p-10">
     <motion.p
@@ -205,13 +271,7 @@ const StylePlate = ({ s, index }: { s: Style; index: number }) => (
       className="mt-4 sm:mt-6 aspect-[16/11] overflow-hidden shadow-[0_24px_60px_-30px_hsl(var(--primary)/0.4)]"
     >
       {s.image ? (
-        <img
-          src={s.image}
-          alt={s.name}
-          loading={index < 2 ? "eager" : "lazy"}
-          decoding="async"
-          className="w-full h-full object-cover"
-        />
+        <ImageLoupe src={s.image} alt={s.name} eager={index < 2} />
       ) : (
         <div className="w-full h-full bg-card border border-accent/30 flex items-center justify-center">
           <span className="font-display italic font-light text-primary/40 text-2xl">
@@ -242,7 +302,7 @@ const StylePlate = ({ s, index }: { s: Style; index: number }) => (
         className="group inline-flex items-center gap-2 font-sans text-[11px] tracking-[0.3em] uppercase text-accent"
       >
         <span className="relative">
-          Build in this idiom
+          Talk to Beau Monde about this style
           <span className="absolute left-0 -bottom-1 h-px w-full bg-accent origin-right scale-x-0 transition-transform duration-500 group-hover:origin-left group-hover:scale-x-100" />
         </span>
         <span aria-hidden>⟶</span>
