@@ -159,24 +159,28 @@ const Home = () => {
                 src={featuredResidence.url}
                 alt="The Shores at Tranquility — a Beau Monde newly completed residence"
                 anchor
+                onClick={() => setBentoLightboxIndex(BENTO_ANCHOR_INDEX)}
                 className="col-span-12 md:col-span-7 md:row-span-6 aspect-[4/5] md:aspect-auto"
               />
               {/* Wide landscape — top right, dominant */}
               <BentoTile
                 src={bento02.url}
                 alt="Interior detail"
+                onClick={() => setBentoLightboxIndex(BENTO_02_INDEX)}
                 className="col-start-2 col-span-11 md:col-start-auto md:col-span-5 md:row-span-4 aspect-[16/10] md:aspect-auto"
               />
               {/* Lower right — wider */}
               <BentoTile
                 src={bento03.url}
                 alt="Architectural detail"
+                onClick={() => setBentoLightboxIndex(BENTO_03_INDEX)}
                 className="col-span-7 md:col-span-3 md:row-span-2 aspect-[4/5] md:aspect-auto"
               />
               {/* Lower far right — narrow accent */}
               <BentoTile
                 src={bento05.url}
                 alt="Finish detail"
+                onClick={() => setBentoLightboxIndex(BENTO_05_INDEX)}
                 className="col-span-5 md:col-span-2 md:row-span-2 aspect-[4/5] md:aspect-auto"
               />
             </div>
@@ -199,6 +203,14 @@ const Home = () => {
           <WalkthroughGallery />
         </div>
       </section>
+
+      {bentoLightboxIndex !== null && (
+        <PhotoLightbox
+          photos={WALKTHROUGH_PHOTOS}
+          initialIndex={bentoLightboxIndex}
+          onClose={() => setBentoLightboxIndex(null)}
+        />
+      )}
 
       {/* Editorial Sequence — Bespoke hero + Stats */}
       <section className="relative bg-background text-foreground py-20 md:py-28 lg:py-32 overflow-hidden">
