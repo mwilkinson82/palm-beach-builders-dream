@@ -93,16 +93,6 @@ export const WalkthroughGallery = () => {
       className="relative bg-primary text-primary-foreground pb-16 md:pb-24 lg:pb-28 -mt-2 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-        <RevealAnimation animation="fade-up">
-          <div className="flex items-center justify-center gap-3 md:gap-4 mb-6 md:mb-8">
-            <span className="h-px w-8 md:w-12 bg-accent/50" />
-            <span className="font-sans uppercase text-[10px] md:text-xs tracking-[0.35em] text-accent">
-              The Residence · In Photographs
-            </span>
-            <span className="h-px w-8 md:w-12 bg-accent/50" />
-          </div>
-        </RevealAnimation>
-
         <RevealAnimation animation="fade-up" delay={120}>
           <div className="relative">
             {/* edge fades */}
