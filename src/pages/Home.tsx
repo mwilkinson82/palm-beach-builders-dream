@@ -262,8 +262,8 @@ const Home = () => {
                 className="cinema-image absolute inset-0 w-full h-full object-cover object-center"
                 loading="lazy"
               />
-              {/* Navy gradient — anchored bottom-left for headline legibility */}
-              <div className="cinema-veil absolute inset-0 bg-gradient-to-tr from-primary/80 via-primary/35 to-transparent pointer-events-none" />
+              {/* Navy scrim — soft, focused on bottom-left for headline legibility only */}
+              <div className="cinema-veil absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,hsl(var(--primary)/0.55),hsl(var(--primary)/0.18)_45%,transparent_70%)] pointer-events-none" />
               {/* Brass hairline frame — feathered top & bottom with corner ticks */}
               <div className="cinema-hairline absolute left-6 right-6 md:left-12 md:right-12 top-6 h-px bg-[linear-gradient(to_right,transparent,hsl(var(--accent)/0.55)_18%,hsl(var(--accent)/0.55)_82%,transparent)] pointer-events-none" />
               <div className="cinema-hairline absolute left-6 right-6 md:left-12 md:right-12 bottom-6 h-px bg-[linear-gradient(to_right,transparent,hsl(var(--accent)/0.55)_18%,hsl(var(--accent)/0.55)_82%,transparent)] pointer-events-none" />
