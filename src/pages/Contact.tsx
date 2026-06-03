@@ -115,7 +115,7 @@ const Contact = () => {
               </div>
               <div className="md:w-1/3">
                 <p className="font-sans text-foreground/70 font-light leading-relaxed text-base md:text-lg">
-                  Our atelier accepts a limited number of commissions each year. Share your vision and we will respond within twenty-four hours to arrange a private consultation on Worth Avenue.
+                  Our office accepts a limited number of commissions each year. Share your vision and we will respond within twenty-four hours to arrange a private consultation on Worth Avenue.
                 </p>
               </div>
             </div>
@@ -142,23 +142,19 @@ const Contact = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="relative overflow-hidden group bg-primary text-primary-foreground px-12 md:px-16 py-5 md:py-6 text-[10px] md:text-[11px] font-sans font-medium tracking-[0.35em] uppercase transition-all hover:shadow-2xl hover:shadow-primary/20 disabled:opacity-60 disabled:cursor-not-allowed touch-manipulation"
+                      className="group relative bg-primary text-primary-foreground px-14 md:px-20 py-5 md:py-6 text-[10px] md:text-[11px] font-sans font-light tracking-[0.3em] uppercase ring-1 ring-inset ring-accent/30 hover:ring-accent/60 transition-all duration-500 hover:-translate-y-px hover:shadow-[0_18px_40px_-20px_hsl(var(--primary)/0.55)] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none touch-manipulation"
                     >
-                      <span className="relative z-10">{isSubmitting ? "Sending…" : "Talk to Beau Monde"}</span>
-                      <span className="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-500" aria-hidden="true" />
+                      <span className="relative inline-block">
+                        {isSubmitting ? "Sending…" : "Talk to Beau Monde"}
+                        <span className="pointer-events-none absolute -bottom-1.5 left-0 h-px w-0 bg-accent transition-all duration-700 ease-out group-hover:w-full group-disabled:w-0" aria-hidden="true" />
+                      </span>
                     </button>
                   </div>
                 </form>
 
-                {/* Atelier info + map */}
+                {/* Office info + location card */}
                 <aside className="lg:col-span-5 flex flex-col gap-12 md:gap-16 animate-fade-in" style={{ animationDelay: "200ms" }}>
                   <div className="space-y-10 md:space-y-12">
-                    <InfoBlock eyebrow="Atelier Location">
-                      <p className="font-display text-2xl md:text-3xl text-foreground leading-tight">
-                        205 Worth Avenue, Suite 120<br />Palm Beach, FL 33480
-                      </p>
-                    </InfoBlock>
-
                     <InfoBlock eyebrow="Direct Line">
                       <a href="tel:+15616468992" className="font-display text-2xl md:text-3xl text-foreground hover:text-accent transition-colors duration-500">
                         (561) 646-8992
@@ -177,27 +173,44 @@ const Contact = () => {
                     </InfoBlock>
                   </div>
 
-                  {/* Framed map */}
-                  <div className="relative group">
-                    <div className="absolute -inset-3 md:-inset-4 border border-accent/15 pointer-events-none group-hover:border-accent/35 transition-colors duration-700" aria-hidden="true" />
-                    <div className="relative bg-card p-2 shadow-2xl shadow-primary/5 overflow-hidden">
-                      <div className="absolute top-3 left-3 z-10 text-foreground/40 font-sans text-[8px] md:text-[9px] tracking-[0.25em] uppercase pointer-events-none">
-                        Ref · PB-33480
-                      </div>
-                      <div className="aspect-square w-full overflow-hidden">
+                  {/* Location card */}
+                  <div className="bg-card border border-accent/20 shadow-lifted p-8 md:p-10">
+                    <h3 className="text-[9px] md:text-[10px] tracking-[0.35em] uppercase text-accent font-sans font-medium mb-5">Office</h3>
+                    <p className="font-display text-2xl md:text-3xl text-foreground leading-tight mb-6">
+                      205 Worth Avenue, Suite 120<br />Palm Beach, FL 33480
+                    </p>
+                    <a
+                      href="https://www.google.com/maps/dir/?api=1&destination=205+Worth+Avenue,+Palm+Beach,+FL+33480"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block mb-6 overflow-hidden border border-border/60 hover:border-accent/40 transition-colors duration-500"
+                      aria-label="Open 205 Worth Avenue in Google Maps"
+                    >
+                      <div className="aspect-[4/3] w-full overflow-hidden bg-muted">
                         <iframe
-                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3565.8876!2d-80.0370!3d26.7015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d8d7a3d1234567%3A0x1234567890abcdef!2s205%20Worth%20Ave%2C%20Palm%20Beach%2C%20FL%2033480!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+                          src="https://www.google.com/maps?q=205+Worth+Ave,+Palm+Beach,+FL+33480&output=embed"
                           width="100%"
                           height="100%"
-                          style={{ border: 0 }}
-                          allowFullScreen
+                          style={{ border: 0, pointerEvents: "none" }}
                           loading="lazy"
                           referrerPolicy="no-referrer-when-downgrade"
-                          title="Beau Monde Builders — 205 Worth Avenue, Palm Beach"
-                          className="grayscale group-hover:grayscale-0 transition-all duration-1000 w-full h-full"
+                          title="205 Worth Avenue, Palm Beach"
+                          className="w-full h-full"
                         />
                       </div>
-                    </div>
+                    </a>
+                    <a
+                      href="https://www.google.com/maps/dir/?api=1&destination=205+Worth+Avenue,+Palm+Beach,+FL+33480"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group inline-flex items-center gap-3 text-[10px] tracking-[0.35em] uppercase font-sans font-medium text-foreground hover:text-accent transition-colors duration-500"
+                    >
+                      <span className="relative">
+                        Get Directions
+                        <span className="absolute left-0 -bottom-1 h-px w-full bg-accent/40 group-hover:bg-accent transition-colors duration-500" aria-hidden="true" />
+                      </span>
+                      <span aria-hidden="true">→</span>
+                    </a>
                   </div>
                 </aside>
               </div>
