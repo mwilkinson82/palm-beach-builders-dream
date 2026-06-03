@@ -429,14 +429,24 @@ const About = () => {
                         aria-hidden
                         className="absolute inset-0 bg-[hsl(var(--seafoam))]/40 mix-blend-multiply opacity-100 group-hover:opacity-0 transition-opacity duration-700 pointer-events-none"
                       />
-                      {/* Bottom hairline that draws in on reveal */}
-                      <div className="absolute left-0 right-0 bottom-0 h-px bg-accent/0 [.revealed_&]:bg-accent/70 transition-colors duration-700" />
+                      {/* Subtle bottom gradient so the numeral sits cleanly on any portrait */}
+                      <div
+                        aria-hidden
+                        className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-primary/45 via-primary/15 to-transparent pointer-events-none"
+                      />
+                      {/* Hairline that draws in left-to-right under the metric */}
+                      <div
+                        aria-hidden
+                        className="absolute left-5 md:left-6 bottom-3 md:bottom-4 h-px bg-accent/70 origin-left scale-x-0 [.revealed_&]:scale-x-100 transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] delay-[600ms] w-20 md:w-28"
+                      />
                       {/* Oversized metric, bottom-left of portrait */}
-                      <div className="absolute left-5 md:left-6 bottom-4 md:bottom-5 flex items-end gap-2 text-background mix-blend-difference">
-                        <span className="font-display leading-[0.85] text-[88px] md:text-[120px] tracking-tight [.revealed_&]:[clip-path:inset(0_0_0_0)] [clip-path:inset(0_100%_0_0)] transition-[clip-path] duration-1000 ease-out">
+                      <div className="absolute left-5 md:left-6 bottom-5 md:bottom-7 flex items-end gap-2.5">
+                        <span
+                          className="font-display leading-[0.85] text-[88px] md:text-[120px] tracking-tight text-background/95 [text-shadow:0_1px_24px_hsl(var(--primary)/0.35)] opacity-0 translate-y-2 [.revealed_&]:opacity-100 [.revealed_&]:translate-y-0 [.revealed_&]:[clip-path:inset(0_0_0_0)] [clip-path:inset(0_100%_0_0)] transition-[clip-path,opacity,transform] duration-[1600ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+                        >
                           {member.metric}
                         </span>
-                        <span className="font-sans text-[10px] tracking-[0.32em] uppercase pb-3 md:pb-4 opacity-0 [.revealed_&]:opacity-100 transition-opacity duration-700 delay-500">
+                        <span className="font-sans text-[10px] tracking-[0.38em] uppercase text-background/85 pb-3 md:pb-4 opacity-0 translate-y-1 [.revealed_&]:opacity-100 [.revealed_&]:translate-y-0 transition-[opacity,transform] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] delay-[900ms]">
                           {member.unit}
                         </span>
                       </div>
@@ -445,7 +455,7 @@ const About = () => {
                     {/* Caption */}
                     <div className="mt-6">
                       <div className="flex items-center gap-3 mb-3">
-                        <div className="h-px w-0 bg-accent transition-[width] duration-1000 ease-out [.revealed_&]:w-8" />
+                        <div className="h-px w-0 bg-accent transition-[width] duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] delay-[300ms] [.revealed_&]:w-8" />
                         <p className="text-[10px] tracking-[0.4em] uppercase text-accent font-sans">
                           {member.role}
                         </p>
