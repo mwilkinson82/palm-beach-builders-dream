@@ -12,6 +12,7 @@ import modernMinimalist from "@/assets/projects/modern-minimalist.jpg";
 import classicEstate from "@/assets/projects/classic-estate.jpg";
 import bermudaColonial from "@/assets/projects/bermuda-colonial.jpg.asset.json";
 import angloCaribbean from "@/assets/projects/anglo-caribbean.jpg.asset.json";
+import transitional from "@/assets/projects/transitional.jpg.asset.json";
 
 type Style = {
   name: string;
@@ -72,6 +73,7 @@ const STYLES: Style[] = [
     name: "Transitional",
     descriptor:
       "Traditional bones, modern interiors — the way most Palm Beach houses live today.",
+    image: transitional.url,
   },
   {
     name: "Regency / Georgian",
