@@ -126,6 +126,27 @@ const Renovations = () => {
 
         <RenovationsHero />
 
+        {/* Cinematic renovation moment */}
+        <section className="relative">
+          <RevealAnimation animation="fade-up">
+            <figure className="relative w-full overflow-hidden">
+              <img
+                src={renovationMoment.url}
+                alt="A reimagined Palm Beach interior by Beau Monde Builders"
+                className="w-full h-[60vh] md:h-[80vh] object-cover"
+                loading="lazy"
+              />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/55 to-transparent" />
+              <figcaption className="absolute bottom-6 left-4 sm:left-8 lg:left-16 flex items-center space-x-3 text-white/85">
+                <div className="h-px w-8 md:w-12 bg-accent" />
+                <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] font-sans font-light">
+                  A residence, reimagined
+                </span>
+              </figcaption>
+            </figure>
+          </RevealAnimation>
+        </section>
+
         {/* Text hero */}
         <section className="pt-20 pb-20 md:pt-28 md:pb-28">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
