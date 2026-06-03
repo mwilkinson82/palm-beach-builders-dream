@@ -9,7 +9,7 @@ import { SEO } from "@/components/SEO";
 import { VideoHero } from "@/components/VideoHero";
 import { DeliveryShowcase } from "@/components/DeliveryShowcase";
 import { WalkthroughShowcase } from "@/components/WalkthroughShowcase";
-import { WalkthroughGallery } from "@/components/WalkthroughGallery";
+import { WalkthroughGallery, PhotoLightbox, PHOTOS as WALKTHROUGH_PHOTOS } from "@/components/WalkthroughGallery";
 import { InterviewShowcase } from "@/components/InterviewShowcase";
 import { BentoTile } from "@/components/BentoTile";
 import { Parallax } from "@/components/Parallax";
@@ -25,6 +25,12 @@ import featuredResidence from "@/assets/constellation/c55.jpg.asset.json"; // ca
 import bento02 from "@/assets/constellation/c2.jpg.asset.json";              // carousel #2
 import bento03 from "@/assets/constellation/c53.jpg.asset.json";             // carousel #52
 import bento05 from "@/assets/constellation/c60.jpg.asset.json";             // carousel #59
+
+// Zero-based indices into WALKTHROUGH_PHOTOS for the four bento tiles.
+const BENTO_ANCHOR_INDEX = 53; // #54
+const BENTO_02_INDEX = 1;      // #2
+const BENTO_03_INDEX = 51;     // #52
+const BENTO_05_INDEX = 58;     // #59
 
 const EMBLEM_MEANINGS = [
   {
@@ -68,6 +74,7 @@ const COMMITMENTS = [
 
 const Home = () => {
   const [showSplash, setShowSplash] = useState(true);
+  const [bentoLightboxIndex, setBentoLightboxIndex] = useState<number | null>(null);
 
   return (
     <>
@@ -152,24 +159,28 @@ const Home = () => {
                 src={featuredResidence.url}
                 alt="The Shores at Tranquility — a Beau Monde newly completed residence"
                 anchor
+                onClick={() => setBentoLightboxIndex(BENTO_ANCHOR_INDEX)}
                 className="col-span-12 md:col-span-7 md:row-span-6 aspect-[4/5] md:aspect-auto"
               />
               {/* Wide landscape — top right, dominant */}
               <BentoTile
                 src={bento02.url}
                 alt="Interior detail"
+                onClick={() => setBentoLightboxIndex(BENTO_02_INDEX)}
                 className="col-start-2 col-span-11 md:col-start-auto md:col-span-5 md:row-span-4 aspect-[16/10] md:aspect-auto"
               />
               {/* Lower right — wider */}
               <BentoTile
                 src={bento03.url}
                 alt="Architectural detail"
+                onClick={() => setBentoLightboxIndex(BENTO_03_INDEX)}
                 className="col-span-7 md:col-span-3 md:row-span-2 aspect-[4/5] md:aspect-auto"
               />
               {/* Lower far right — narrow accent */}
               <BentoTile
                 src={bento05.url}
                 alt="Finish detail"
+                onClick={() => setBentoLightboxIndex(BENTO_05_INDEX)}
                 className="col-span-5 md:col-span-2 md:row-span-2 aspect-[4/5] md:aspect-auto"
               />
             </div>
@@ -192,6 +203,14 @@ const Home = () => {
           <WalkthroughGallery />
         </div>
       </section>
+
+      {bentoLightboxIndex !== null && (
+        <PhotoLightbox
+          photos={WALKTHROUGH_PHOTOS}
+          initialIndex={bentoLightboxIndex}
+          onClose={() => setBentoLightboxIndex(null)}
+        />
+      )}
 
       {/* Editorial Sequence — Bespoke hero + Stats */}
       <section className="relative bg-background text-foreground py-20 md:py-28 lg:py-32 overflow-hidden">

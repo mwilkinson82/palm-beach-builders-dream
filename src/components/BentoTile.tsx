@@ -8,6 +8,7 @@ interface BentoTileProps {
   /** Anchor tile gets corner ticks, persistent caption, and a stronger lift. */
   anchor?: boolean;
   className?: string;
+  onClick?: () => void;
 }
 
 /**
@@ -33,11 +34,26 @@ export const BentoTile = ({
   label,
   anchor = false,
   className,
+  onClick,
 }: BentoTileProps) => (
   <figure
     tabIndex={0}
+    role={onClick ? "button" : undefined}
+    aria-label={onClick ? alt : undefined}
+    onClick={onClick}
+    onKeyDown={
+      onClick
+        ? (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              onClick();
+            }
+          }
+        : undefined
+    }
     className={cn(
       "group/tile relative overflow-hidden bg-primary outline-none",
+      onClick && "cursor-pointer",
       "ring-1 ring-accent/30",
       anchor
         ? "shadow-[0_40px_70px_-30px_rgba(15,42,61,0.5)]"

@@ -69,7 +69,7 @@ import c64 from "@/assets/constellation/c64.jpg.asset.json";
 import c65 from "@/assets/constellation/c65.jpg.asset.json";
 import c66 from "@/assets/constellation/c66.jpg.asset.json";
 
-const PHOTOS: { url: string }[] = [
+export const PHOTOS: { url: string }[] = [
   c1, c2, c3, c4, c5, c6, c7, c8, c9, c11,
   c12, c13, c14, c15, c16, c17, c18, c19, c20, c21,
   c22, c23, c24, c25, c26, c27, c28, c29, c30, c31,
@@ -207,7 +207,7 @@ interface PhotoLightboxProps {
   onClose: () => void;
 }
 
-const PhotoLightbox = ({ photos, initialIndex, onClose }: PhotoLightboxProps) => {
+export const PhotoLightbox = ({ photos, initialIndex, onClose }: PhotoLightboxProps) => {
   const [current, setCurrent] = useState(initialIndex);
   const total = photos.length;
 
