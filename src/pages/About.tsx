@@ -187,11 +187,12 @@ const About = () => {
                     </span>
                   </div>
                   <p className="font-display text-primary text-xl md:text-2xl leading-[1.55]">
-                    AJ moved south and built relationships the slow way — one
-                    artisan, one mason, one millworker at a time. When he
-                    founded Beau Monde, he kept only the trades who shared the
-                    same intolerance for ordinary work. That bench is the
-                    company.
+                    AJ moved to Florida and spent two decades curating the
+                    artisans, engineers, and trade partners now behind every
+                    Beau Monde home — masons, millworkers, mechanical and
+                    technology specialists who meet a standard most firms
+                    can't enforce. Beau Monde isn't a crew. It's a vetted
+                    network operating under one signature.
                   </p>
                 </div>
               </RevealAnimation>
@@ -201,9 +202,9 @@ const About = () => {
                 <div className="my-16 md:my-20 text-center">
                   <div className="h-px w-16 bg-accent mx-auto mb-8" />
                   <p className="font-display italic text-primary text-3xl md:text-4xl leading-[1.25]">
-                    "We build the way old houses were built —
+                    "Old-world standards. New-world tools.
                     <br className="hidden md:block" />
-                    by hand, by name, by standard."
+                    One signature on every house."
                   </p>
                   <div className="h-px w-16 bg-accent mx-auto mt-8" />
                 </div>
@@ -219,10 +220,12 @@ const About = () => {
                     </span>
                   </div>
                   <p className="font-display text-primary text-xl md:text-2xl leading-[1.55]">
-                    Three decades on, AJ still walks every job, still answers
-                    the owner's call, still signs the standard. Beau Monde
-                    stays small on purpose — a Palm Beach house and a few
-                    families a year, each one given the room it deserves.
+                    Three decades on, AJ still walks every job and signs every
+                    standard — now backed by a technology stack that gives
+                    owners full transparency into daily logs, CPM schedules,
+                    and the selection process from dream board through
+                    procurement and install. Old discipline. Modern
+                    instruments.
                   </p>
                 </div>
               </RevealAnimation>
