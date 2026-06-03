@@ -530,6 +530,10 @@ const InquiryPlate = ({ defaultStyle }: { defaultStyle?: string }) => {
       <motion.form
         variants={fadeUp}
         onSubmit={handleSubmit}
+        onMouseDown={(e) => e.stopPropagation()}
+        onTouchStart={(e) => e.stopPropagation()}
+        onPointerDown={(e) => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}
         className="flex-1 flex flex-col gap-3 text-left mx-auto w-full max-w-sm"
       >
         <div>
