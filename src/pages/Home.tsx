@@ -601,7 +601,7 @@ const Home = () => {
       </section>
 
       {/* Three Commitments — redesigned card grid */}
-      <section className="relative bg-seafoam text-foreground py-20 md:py-28 lg:py-32 overflow-hidden border-t border-accent/20">
+      <section className="relative bg-background text-foreground py-20 md:py-28 lg:py-32 overflow-hidden border-t border-accent/20">
         <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 lg:px-12">
           <div className="text-center mb-16 md:mb-20">
             <RevealAnimation animation="fade-up">
@@ -628,7 +628,7 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-accent/30 border border-accent/30">
             {COMMITMENTS.map((row, i) => (
               <RevealAnimation key={row.n} animation="fade-up" delay={i * 150}>
-                <article className="group relative h-full bg-background p-8 md:p-10 lg:p-12 flex flex-col transition-all duration-500 hover:bg-seafoam/40">
+                <article className="group relative h-full bg-background p-8 md:p-10 lg:p-12 flex flex-col transition-all duration-500 hover:bg-seafoam">
                   {/* Top brass rule that fills navy on hover */}
                   <span aria-hidden className="absolute top-0 left-0 h-px w-12 bg-accent transition-all duration-500 group-hover:w-full group-hover:bg-primary" />
 
