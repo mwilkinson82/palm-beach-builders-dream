@@ -64,7 +64,7 @@ export function BeforeAfterSlider({
           revealRan.current = true;
           const duration = 1400;
           const start = performance.now();
-          const from = 100;
+          const from = 0;
           const to = 55;
           const tick = (now: number) => {
             const t = Math.min(1, (now - start) / duration);
