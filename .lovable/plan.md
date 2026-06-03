@@ -1,46 +1,56 @@
-## Goal
-A throwaway preview route at `/projects-preview` that renders all three Your Style directions (A, B, C) behind a small fixed switcher, so you can flip between them instantly on the same content. No changes to the live `/projects` route — pure side-by-side comparison.
+## Port Cinematic Scroll → `/projects` (Find Your Style)
 
-## Scope
+Replace the current `/projects` page with the Cinematic Scroll direction from the preview, expand the style roster to **10 panels**, and close with a custom-build panel before the CTA.
 
-**New file: `src/pages/ProjectsPreview.tsx`**
-- Imports the existing 6 style images from `@/assets/projects/*` (oceanfront, worth-avenue, intracoastal, mediterranean, modern, classic) — same source data so comparison is apples-to-apples.
-- Renames them to inspiration-board style names: Oceanfront, Urban Classical, Waterfront Contemporary, Mediterranean, Modern Coastal, Traditional Estate. Each gets a 1-sentence Cormorant-friendly descriptor.
-- Renders `<Navigation />` and `<Footer />` so the page sits in real chrome.
-- Below the navigation: a fixed floating switcher (top-right, ivory card, brass hairline) with three pills — `A · Editorial Plate Book`, `B · Museum Wall`, `C · Cinematic Scroll`. Active pill = navy fill + ivory text; inactive = navy text on ivory with brass hairline. Pure local `useState`, no router.
-- Renders ONE of three components based on state. All three share an eyebrow + Cormorant italic hero ("Find Your Style.") and a closing "Talk to Beau Monde" plinth so only the body composition varies.
+### Style roster (in order)
 
-**Direction A — `EditorialPlateBook`**
-- Vol. I eyebrow + Cormorant italic hero, brass hairline divider.
-- 6 alternating full-bleed rows: `lg:grid-cols-12`, image spans 7 cols, text spans 5 cols. Even rows flip image-right/text-left.
-- Each row: large brass Roman numeral (I–VI) in `font-display` italic at ~`text-7xl` opacity-30, style name in `font-display italic text-4xl/5xl text-primary`, single-line descriptor in `font-sans text-primary/75`, brass hairline `w-16 h-px bg-accent`.
-- Generous `py-20 lg:py-28` between rows. Images in `aspect-[4/5]` with subtle `shadow-[0_30px_60px_-30px_rgba(15,42,61,0.25)]`. No hover.
+1. Oceanfront
+2. Urban Classical
+3. Waterfront Contemporary
+4. Mediterranean
+5. Modern Coastal
+6. Traditional Estate
+7. **Bermuda / British Colonial** *(new)*
+8. **Anglo-Caribbean / West Indies** *(new)*
+9. **Transitional** *(new)*
+10. **Regency / Georgian** *(new)*
+11. **"Yours." — One of one** *(closing panel, distinct treatment, no image — or full-bleed brass-hairline plate)*
 
-**Direction B — `MuseumWall`**
-- Asymmetric hand-placed grid using a 12-col grid with explicit `col-span` + `row-span` per item to produce uneven heights (two tall, two wide, two square — hand-tuned, not masonry).
-- Each plate: image inside a `border border-accent/30 p-3 bg-card` frame, then a small caption card directly below — eyebrow brass style name + 1-line descriptor in Fira Sans. Brass hairline above caption.
-- `max-w-7xl mx-auto`, `gap-8 md:gap-12`. No hover, no overlay (per portfolio constraint).
+Each panel keeps the cinematic format: full-viewport, 60/40 split, image one side, large Cormorant italic name + numbered eyebrow (`01 / 10`) + brass hairline + single descriptor line on the other. Alternating sides.
 
-**Direction C — `CinematicScroll`**
-- 6 stacked full-viewport panels (`min-h-screen snap-start`) inside a `snap-y snap-mandatory` container.
-- Each panel: 2-column split — image fills 60% (with very subtle CSS `transform: scale` parallax via `will-change`), text 40% centered vertically. Huge style name in `font-display italic text-6xl/7xl/8xl text-primary`, brass hairline `w-24 h-px bg-accent`, one descriptor line, small "0X / 06" counter in brass Fira Sans.
-- Soft scroll-snap between panels for the film-reel feel. No hover.
+The **"Yours."** panel breaks the pattern intentionally — centered composition, no photograph, brass hairline frame, Cormorant italic headline, body copy:
+> *If none of these is quite it, that's the point. The most memorable Beau Monde houses begin with a vision no catalogue could hold.*
 
-**Routing**
-- Add a single route in `src/App.tsx`: `<Route path="/projects-preview" element={<ProjectsPreview />} />`. Keep `/projects` untouched.
+It acts as the visual exhale before the "Talk to Beau Monde" plinth.
 
-## Brand discipline (applies to all three)
-- Background: `bg-background` (ivory). Text: `text-primary` (navy). Brass `text-accent` only for eyebrows / hairlines / numerals — never as button fills, never as large headlines.
-- Headlines: `font-display italic font-light`. Body/UI: `font-sans font-light`.
-- Closing CTA in every direction: navy primary button "Talk to Beau Monde" linking to `/contact`. No brass buttons.
-- No hover scale, no overlays on portfolio images (per Portfolio Gallery memory). Images are non-clickable.
-- No seafoam (saved exclusively for Shores of Tranquility + Philosophy whisper).
+### Image handling
 
-## Out of scope
-- No edits to live `/projects` page yet — that comes after you pick a direction.
-- No new image assets. Reusing existing 6.
-- No filter logic, no real project metadata (sqft/bedrooms/year) — this is a style board.
-- No SEO meta on the preview route (it's a scratch page).
+You'll provide images for the four new styles. Until they arrive, panels 7–10 will use a **placeholder treatment**: ivory plate with brass hairline frame, small "Plate forthcoming" eyebrow, and the style name + descriptor visible so the page reads cleanly. Drop in the real `.jpg` files at `src/assets/projects/{slug}.jpg` and I'll swap the imports.
 
-## Cleanup later
-Once you pick A, B, or C, I'll port that direction onto `/projects` (replacing the current implementation) and delete `ProjectsPreview.tsx` + the preview route.
+Suggested filenames when you're ready:
+- `bermuda-colonial.jpg`
+- `anglo-caribbean.jpg`
+- `transitional.jpg`
+- `regency-georgian.jpg`
+
+### Descriptor copy (draft, editable)
+
+- **Bermuda / British Colonial** — White stucco, hipped tile, louvered shutters, deep verandas — the island idiom done with proportion and restraint.
+- **Anglo-Caribbean / West Indies** — Pecky cypress, coral stone, plantation shutters — a quieter, more breeze-cooled coastal language.
+- **Transitional** — Traditional bones, modern interiors — the way most Palm Beach houses live today.
+- **Regency / Georgian** — Symmetry, fanlights, refined townhouse vocabulary in the Mizner lineage.
+
+### Technical notes
+
+- Edit `src/pages/Projects.tsx` — replace the existing hero/filter/grid/CTA with the Cinematic Scroll structure from `ProjectsPreview.tsx`.
+- Remove the `filter` state, category bar, and `ProjectImage` component (the cinematic version uses native `<img>` with `loading` hints; no hover/zoom per portfolio rule).
+- Keep `SEO`, `BreadcrumbSchema`, `Helmet` JSON-LD intact; update the JSON-LD `ItemList` to reflect the 10 styles (no addresses, no client data).
+- Hero eyebrow updates: "A Film of Styles" → keep, or use "Vol. I — Style Studies". I'll use **"A Film of Styles"** to match the cinematic direction unless you prefer otherwise.
+- Closing plinth: keep "Found your style" eyebrow → "Let's build the one you'll keep." → "Talk to Beau Monde" → `/contact`.
+- Delete `src/pages/ProjectsPreview.tsx` and remove the `/projects-preview` route from `src/App.tsx`.
+- Update `mem://features/portfolio-branding` to record: cinematic scroll format, 10 panels, "Yours." closer, no filters.
+
+### Out of scope
+
+- Image generation for the four new styles (you're providing them).
+- Any project metadata (sq ft, bedrooms, year) — this is a style inspiration board, not a project list.
