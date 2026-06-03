@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { X, ChevronLeft, ChevronRight, Expand } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { RevealAnimation } from "@/components/RevealAnimation";
 
 import c1 from "@/assets/constellation/c1.jpg.asset.json";
