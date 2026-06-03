@@ -105,7 +105,7 @@ export const WalkthroughGallery = () => {
         <div
           ref={scrollerRef}
           onScroll={handleScroll}
-          className="flex gap-px md:gap-[2px] overflow-x-auto snap-x snap-mandatory scroll-px-6 px-6 md:px-10 lg:px-16"
+          className="flex gap-px md:gap-[2px] overflow-x-auto snap-x snap-mandatory"
         >
           {PHOTOS.map((p, i) => (
             <button
