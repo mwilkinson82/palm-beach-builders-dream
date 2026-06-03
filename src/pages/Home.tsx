@@ -301,7 +301,7 @@ const Home = () => {
               <div aria-hidden className="md:hidden absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-primary/70 to-transparent pointer-events-none" />
 
               {/* Headline overlay — bottom-left */}
-              <div className="absolute inset-0 flex flex-col justify-end p-8 pb-24 sm:p-12 md:p-16 lg:p-20">
+              <div className="absolute inset-0 flex flex-col justify-end p-8 pb-48 sm:p-12 md:p-16 lg:p-20">
                 <div className="max-w-3xl">
                   <RevealAnimation animation="fade-up" delay={450}>
                     <span className="block font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase text-accent mb-5 md:mb-6">
