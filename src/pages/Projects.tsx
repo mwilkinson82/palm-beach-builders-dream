@@ -10,6 +10,7 @@ import intracoastalContemporary from "@/assets/projects/intracoastal-contemporar
 import mediterraneanVilla from "@/assets/projects/mediterranean-villa.jpg";
 import modernMinimalist from "@/assets/projects/modern-minimalist.jpg";
 import classicEstate from "@/assets/projects/classic-estate.jpg";
+import bermudaColonial from "@/assets/projects/bermuda-colonial.jpg.asset.json";
 
 type Style = {
   name: string;
@@ -58,6 +59,7 @@ const STYLES: Style[] = [
     name: "Bermuda / British Colonial",
     descriptor:
       "White stucco, hipped tile, louvered shutters, deep verandas — the island idiom done with proportion and restraint.",
+    image: bermudaColonial.url,
   },
   {
     name: "Anglo-Caribbean / West Indies",
