@@ -571,8 +571,8 @@ const Home = () => {
       <section className="relative bg-background text-foreground overflow-hidden border-t border-accent/20">
         <div className="absolute inset-0 silk-grain opacity-[0.03] pointer-events-none select-none z-0" />
 
-        {/* Seafoam band — emblem + meanings */}
-        <div className="relative z-10 bg-seafoam border-y border-accent/20">
+        {/* Emblem band — ivory, no seafoam wrapper */}
+        <div className="relative z-10">
           <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-20 lg:py-28">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
               {/* Emblem plate */}
@@ -585,7 +585,7 @@ const Home = () => {
                       <span aria-hidden className="absolute -top-2 -right-2 w-6 h-6 border-t border-r border-accent/70" />
                       <span aria-hidden className="absolute -bottom-2 -left-2 w-6 h-6 border-b border-l border-accent/70" />
                       <span aria-hidden className="absolute -bottom-2 -right-2 w-6 h-6 border-b border-r border-accent/70" />
-                      <div className="border border-accent/25 bg-background p-6 shadow-[0_30px_60px_-30px_rgba(15,42,61,0.35)]">
+                      <div className="border border-accent/30 bg-card p-6 shadow-[0_30px_60px_-30px_rgba(15,42,61,0.35)]">
                         <div className="w-full aspect-square">
                           <img
                             src={logoSketch}
@@ -634,6 +634,11 @@ const Home = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Hairline divider between emblem band and credential plinth */}
+        <div className="relative z-10 flex justify-center">
+          <span aria-hidden className="block w-24 h-px bg-accent/40" />
         </div>
 
         {/* Ivory credential plinth */}
