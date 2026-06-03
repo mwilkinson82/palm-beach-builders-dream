@@ -240,9 +240,9 @@ const Process = () => {
             </div>
           </div>
 
-          {/* Scroll hint — fades out as user scrolls */}
+          {/* Scroll hint — fades out as user scrolls. Hidden on mobile to avoid collision with stacked hero copy. */}
           <div
-            className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 transition-opacity duration-500"
+            className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 transition-opacity duration-500"
             style={{ opacity: Math.max(0, 1 - heroScroll / 200) }}
             aria-hidden
           >
