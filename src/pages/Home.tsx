@@ -561,29 +561,35 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Closing CTA — restrained navy band */}
+      {/* Closing CTA — engraved invitation */}
       <RevealAnimation animation="fade-up">
-        <section className="relative bg-primary text-primary-foreground py-20 md:py-32 overflow-hidden">
-          <div className="relative z-10 max-w-4xl mx-auto px-6 sm:px-10 lg:px-12 text-center">
-            <span className="block font-sans text-[10px] tracking-[0.25em] uppercase text-accent mb-6">
-              Begin
+        <section className="relative w-full bg-background py-24 md:py-32 px-6 flex justify-center overflow-hidden">
+          <div className="relative z-10 max-w-3xl w-full text-center border border-accent/25 p-12 md:p-20">
+            {/* Ornamental brass corners */}
+            <span aria-hidden className="absolute top-4 left-4 w-8 h-8 border-t border-l border-accent/70" />
+            <span aria-hidden className="absolute top-4 right-4 w-8 h-8 border-t border-r border-accent/70" />
+            <span aria-hidden className="absolute bottom-4 left-4 w-8 h-8 border-b border-l border-accent/70" />
+            <span aria-hidden className="absolute bottom-4 right-4 w-8 h-8 border-b border-r border-accent/70" />
+
+            <span className="block font-sans text-[10px] uppercase tracking-[0.35em] text-accent font-medium mb-8">
+              A Limited Engagement
             </span>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] tracking-tight mb-8">
-              Begin your journey to <br />
-              <span className="italic text-primary-foreground/80">architectural excellence.</span>
+
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-primary font-light leading-[1.1] tracking-tight mb-10">
+              Begin your journey to <br className="hidden md:block" />
+              <span className="italic">architectural excellence</span>
             </h2>
-            <div className="mx-auto h-px w-16 bg-accent/60 mb-8" />
-            <p className="font-sans font-light text-base md:text-lg text-primary-foreground/70 mb-12">
-              205 Worth Avenue · Palm Beach, Florida
-            </p>
+
+            <div className="mx-auto mb-10 h-px w-24 bg-gradient-to-r from-transparent via-accent to-transparent" />
+
             <Button
               size="lg"
-              className="group bg-background text-primary hover:bg-background/90 font-sans text-[11px] uppercase tracking-[0.15em] font-semibold rounded-none px-10 py-4"
+              className="group bg-primary text-primary-foreground hover:bg-primary/90 font-sans text-[11px] uppercase tracking-[0.25em] font-medium rounded-none px-10 py-5"
               asChild
             >
               <Link to="/contact">
-                Schedule Your Consultation
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" strokeWidth={1.25} />
+                Talk to Beau Monde
+                <ArrowRight className="ml-3 h-4 w-4 group-hover:translate-x-1 transition-transform" strokeWidth={1.25} />
               </Link>
             </Button>
           </div>
