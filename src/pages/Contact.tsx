@@ -1,12 +1,8 @@
 import { useState } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { RevealAnimation } from "@/components/RevealAnimation";
 import { SEO, BreadcrumbSchema } from "@/components/SEO";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Helmet } from "react-helmet-async";
@@ -104,208 +100,159 @@ const Contact = () => {
       <div className="min-h-screen bg-background">
         <Navigation />
 
-      {/* Hero Section */}
-      <section className="relative min-h-[50vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-background z-0" />
-        <div className="container mx-auto px-4 sm:px-6 relative z-10 pt-24 md:pt-32 pb-12 md:pb-20">
-          <div className="max-w-5xl mx-auto text-center animate-fade-in">
-            <p className="text-xs md:text-sm uppercase tracking-[0.2em] md:tracking-[0.3em] text-accent font-light mb-4 md:mb-6">
-              Begin Your Journey
-            </p>
-            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-display font-light text-foreground mb-6 md:mb-8 tracking-tight">
-              Let's Create <span className="font-serif italic">Something Extraordinary</span>
-            </h1>
-            <p className="text-base md:text-xl text-muted-foreground font-light leading-relaxed max-w-3xl mx-auto">
-              Schedule a private consultation to discuss your vision for luxury living in Palm Beach.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <RevealAnimation animation="luxury-reveal">
-        <section className="py-16 md:py-32">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 max-w-7xl mx-auto">
-              {/* Contact Form */}
-              <div className="space-y-8 md:space-y-12 animate-fade-in">
-                <div className="space-y-4 md:space-y-6">
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif italic text-foreground">Talk to Beau Monde Today</h2>
-                  <p className="text-sm md:text-base text-muted-foreground font-light leading-relaxed">
-                    Share your vision with us. Our team will respond within 24 hours to schedule 
-                    your private consultation.
-                  </p>
-                </div>
-
-                <form onSubmit={handleSubmit} className="space-y-6 md:space-y-8">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-                    <div className="space-y-2 md:space-y-3">
-                      <label htmlFor="firstName" className="text-xs md:text-sm uppercase tracking-[0.15em] md:tracking-[0.2em] font-light text-foreground block">
-                        First Name
-                      </label>
-                      <Input 
-                        id="firstName" 
-                        value={formData.firstName}
-                        onChange={handleInputChange}
-                        required 
-                        className="bg-transparent border-border/30 focus:border-accent transition-colors duration-500" 
-                      />
-                    </div>
-                    <div className="space-y-2 md:space-y-3">
-                      <label htmlFor="lastName" className="text-xs md:text-sm uppercase tracking-[0.15em] md:tracking-[0.2em] font-light text-foreground block">
-                        Last Name
-                      </label>
-                      <Input 
-                        id="lastName" 
-                        value={formData.lastName}
-                        onChange={handleInputChange}
-                        required 
-                        className="bg-transparent border-border/30 focus:border-accent transition-colors duration-500" 
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-2 md:space-y-3">
-                    <label htmlFor="email" className="text-xs md:text-sm uppercase tracking-[0.15em] md:tracking-[0.2em] font-light text-foreground block">
-                      Email
-                    </label>
-                    <Input 
-                      id="email" 
-                      type="email" 
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required 
-                      className="bg-transparent border-border/30 focus:border-accent transition-colors duration-500" 
-                    />
-                  </div>
-
-                  <div className="space-y-2 md:space-y-3">
-                    <label htmlFor="phone" className="text-xs md:text-sm uppercase tracking-[0.15em] md:tracking-[0.2em] font-light text-foreground block">
-                      Phone
-                    </label>
-                    <Input 
-                      id="phone" 
-                      type="tel" 
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="bg-transparent border-border/30 focus:border-accent transition-colors duration-500" 
-                    />
-                  </div>
-
-                  <div className="space-y-2 md:space-y-3">
-                    <label htmlFor="message" className="text-xs md:text-sm uppercase tracking-[0.15em] md:tracking-[0.2em] font-light text-foreground block">
-                      Tell Us About Your Vision
-                    </label>
-                    <Textarea 
-                      id="message" 
-                      rows={6} 
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      required 
-                      className="bg-transparent border-border/30 focus:border-accent transition-colors duration-500" 
-                    />
-                  </div>
-
-                  <Button 
-                    type="submit"
-                    variant="outline" 
-                    size="lg" 
-                    disabled={isSubmitting}
-                    className="w-full h-14 md:h-12 text-base border-accent text-accent hover:bg-accent hover:text-background transition-all duration-500 touch-manipulation"
-                  >
-                    {isSubmitting ? "Sending..." : "Send Message"}
-                  </Button>
-                </form>
+        {/* Editorial atelier layout */}
+        <section className="pt-32 md:pt-40 pb-10 md:pb-16">
+          <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+            <div className="flex flex-col md:flex-row items-baseline gap-10 md:gap-24 border-b border-accent/20 pb-16 md:pb-20 animate-fade-in">
+              <div className="flex-1">
+                <p className="text-[10px] md:text-[11px] tracking-[0.4em] uppercase text-accent font-sans font-medium mb-6 md:mb-8">
+                  Begin Your Journey
+                </p>
+                <h1 className="font-display italic font-light leading-[0.9] tracking-tight text-foreground text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
+                  Let's Create Something
+                  <span className="block not-italic font-light opacity-90">Extraordinary</span>
+                </h1>
               </div>
-
-              {/* Contact Information */}
-              <div className="space-y-12 animate-fade-in" style={{ animationDelay: "200ms" }}>
-                <div className="space-y-6">
-                  <h2 className="text-4xl md:text-5xl font-serif italic text-foreground">
-                    Visit Our Offices
-                  </h2>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    Experience the Beau Monde Builders difference at our Palm Beach location.
-                  </p>
-                </div>
-
-                <div className="space-y-10">
-                  <div className="flex items-start space-x-6 group">
-                    <div className="flex items-center justify-center w-14 h-14 bg-accent/10 group-hover:bg-accent/20 transition-colors duration-500 flex-shrink-0">
-                      <MapPin className="h-6 w-6 text-accent" />
-                    </div>
-                    <div className="space-y-2">
-                      <h3 className="text-sm uppercase tracking-[0.2em] font-light text-foreground">Location</h3>
-                      <p className="text-muted-foreground font-light leading-relaxed">
-                        205 Worth Avenue, Suite 120<br />
-                        Palm Beach, FL 33480
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-6 group">
-                    <div className="flex items-center justify-center w-14 h-14 bg-accent/10 group-hover:bg-accent/20 transition-colors duration-500 flex-shrink-0">
-                      <Phone className="h-6 w-6 text-accent" />
-                    </div>
-                    <div className="space-y-2">
-                      <h3 className="text-sm uppercase tracking-[0.2em] font-light text-foreground">Phone</h3>
-                      <a href="tel:+15616468992" className="text-muted-foreground hover:text-accent transition-colors duration-500 font-light">
-                        (561) 646-8992
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-6 group">
-                    <div className="flex items-center justify-center w-14 h-14 bg-accent/10 group-hover:bg-accent/20 transition-colors duration-500 flex-shrink-0">
-                      <Mail className="h-6 w-6 text-accent" />
-                    </div>
-                    <div className="space-y-2">
-                      <h3 className="text-sm uppercase tracking-[0.2em] font-light text-foreground">Email</h3>
-                      <a href="mailto:ajhoover@mac.com" className="text-muted-foreground hover:text-accent transition-colors duration-500 font-light">
-                        ajhoover@mac.com
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-6 group">
-                    <div className="flex items-center justify-center w-14 h-14 bg-accent/10 group-hover:bg-accent/20 transition-colors duration-500 flex-shrink-0">
-                      <Clock className="h-6 w-6 text-accent" />
-                    </div>
-                    <div className="space-y-2">
-                      <h3 className="text-sm uppercase tracking-[0.2em] font-light text-foreground">Hours</h3>
-                      <p className="text-muted-foreground font-light leading-relaxed">
-                        Monday – Friday: 9:00 AM – 5:00 PM<br />
-                        Saturday: By Appointment<br />
-                        Sunday: Closed
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Google Maps Embed */}
-                <div className="aspect-video overflow-hidden">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3565.8876!2d-80.0370!3d26.7015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d8d7a3d1234567%3A0x1234567890abcdef!2s205%20Worth%20Ave%2C%20Palm%20Beach%2C%20FL%2033480!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Beau Monde Builders Location - 205 Worth Avenue, Palm Beach"
-                    className="grayscale hover:grayscale-0 transition-all duration-700"
-                  />
-                </div>
+              <div className="md:w-1/3">
+                <p className="font-sans text-foreground/70 font-light leading-relaxed text-base md:text-lg">
+                  Our atelier accepts a limited number of commissions each year. Share your vision and we will respond within twenty-four hours to arrange a private consultation on Worth Avenue.
+                </p>
               </div>
             </div>
           </div>
         </section>
-      </RevealAnimation>
 
-      <Footer />
+        <RevealAnimation animation="luxury-reveal">
+          <section className="pb-20 md:pb-32">
+            <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+              <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+                {/* Form */}
+                <form onSubmit={handleSubmit} className="lg:col-span-7 space-y-12 md:space-y-14">
+                  <div className="grid md:grid-cols-2 gap-10 md:gap-12">
+                    <FieldUnderline id="firstName" label="First Name" value={formData.firstName} onChange={handleInputChange} required />
+                    <FieldUnderline id="lastName" label="Last Name" value={formData.lastName} onChange={handleInputChange} required />
+                  </div>
+                  <div className="grid md:grid-cols-2 gap-10 md:gap-12">
+                    <FieldUnderline id="email" type="email" label="Direct Email" value={formData.email} onChange={handleInputChange} required placeholder="you@example.com" />
+                    <FieldUnderline id="phone" type="tel" label="Contact Phone" value={formData.phone} onChange={handleInputChange} placeholder="(561) 000-0000" />
+                  </div>
+                  <FieldUnderline id="message" label="Tell Us About Your Vision" value={formData.message} onChange={handleInputChange} required textarea placeholder="A few notes about your project, location, and timeline…" />
+
+                  <div className="pt-2">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="relative overflow-hidden group bg-primary text-primary-foreground px-12 md:px-16 py-5 md:py-6 text-[10px] md:text-[11px] font-sans font-medium tracking-[0.35em] uppercase transition-all hover:shadow-2xl hover:shadow-primary/20 disabled:opacity-60 disabled:cursor-not-allowed touch-manipulation"
+                    >
+                      <span className="relative z-10">{isSubmitting ? "Sending…" : "Talk to Beau Monde"}</span>
+                      <span className="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-500" aria-hidden="true" />
+                    </button>
+                  </div>
+                </form>
+
+                {/* Atelier info + map */}
+                <aside className="lg:col-span-5 flex flex-col gap-12 md:gap-16 animate-fade-in" style={{ animationDelay: "200ms" }}>
+                  <div className="space-y-10 md:space-y-12">
+                    <InfoBlock eyebrow="Atelier Location">
+                      <p className="font-display text-2xl md:text-3xl text-foreground leading-tight">
+                        205 Worth Avenue, Suite 120<br />Palm Beach, FL 33480
+                      </p>
+                    </InfoBlock>
+
+                    <InfoBlock eyebrow="Direct Line">
+                      <a href="tel:+15616468992" className="font-display text-2xl md:text-3xl text-foreground hover:text-accent transition-colors duration-500">
+                        (561) 646-8992
+                      </a>
+                      <a href="mailto:ajhoover@mac.com" className="block font-sans text-sm md:text-base text-foreground/70 hover:text-accent transition-colors duration-500 mt-2 font-light">
+                        ajhoover@mac.com
+                      </a>
+                    </InfoBlock>
+
+                    <InfoBlock eyebrow="Studio Hours">
+                      <div className="font-sans text-[13px] md:text-sm space-y-2 text-foreground/75 font-light">
+                        <p className="flex justify-between max-w-[300px]"><span>Monday — Friday</span><span>9:00 — 17:00</span></p>
+                        <p className="flex justify-between max-w-[300px]"><span>Saturday</span><span className="italic">By Appointment</span></p>
+                        <p className="flex justify-between max-w-[300px]"><span>Sunday</span><span>Closed</span></p>
+                      </div>
+                    </InfoBlock>
+                  </div>
+
+                  {/* Framed map */}
+                  <div className="relative group">
+                    <div className="absolute -inset-3 md:-inset-4 border border-accent/15 pointer-events-none group-hover:border-accent/35 transition-colors duration-700" aria-hidden="true" />
+                    <div className="relative bg-card p-2 shadow-2xl shadow-primary/5 overflow-hidden">
+                      <div className="absolute top-3 left-3 z-10 text-foreground/40 font-sans text-[8px] md:text-[9px] tracking-[0.25em] uppercase pointer-events-none">
+                        Ref · PB-33480
+                      </div>
+                      <div className="aspect-square w-full overflow-hidden">
+                        <iframe
+                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3565.8876!2d-80.0370!3d26.7015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d8d7a3d1234567%3A0x1234567890abcdef!2s205%20Worth%20Ave%2C%20Palm%20Beach%2C%20FL%2033480!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+                          width="100%"
+                          height="100%"
+                          style={{ border: 0 }}
+                          allowFullScreen
+                          loading="lazy"
+                          referrerPolicy="no-referrer-when-downgrade"
+                          title="Beau Monde Builders — 205 Worth Avenue, Palm Beach"
+                          className="grayscale group-hover:grayscale-0 transition-all duration-1000 w-full h-full"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </aside>
+              </div>
+            </div>
+          </section>
+        </RevealAnimation>
+
+        <Footer />
       </div>
     </>
   );
 };
+
+const FieldUnderline = ({
+  id,
+  label,
+  value,
+  onChange,
+  required,
+  type = "text",
+  placeholder,
+  textarea,
+}: {
+  id: string;
+  label: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  required?: boolean;
+  type?: string;
+  placeholder?: string;
+  textarea?: boolean;
+}) => {
+  const sharedClasses =
+    "w-full bg-transparent border-b border-foreground/15 py-3 md:py-4 font-sans font-light text-base md:text-lg text-foreground placeholder:text-foreground/30 focus:outline-none transition-colors duration-500 peer";
+  return (
+    <div className="group relative">
+      <label htmlFor={id} className="block text-[9px] md:text-[10px] tracking-[0.35em] uppercase text-accent font-sans font-medium mb-1">
+        {label}
+      </label>
+      {textarea ? (
+        <textarea id={id} rows={4} value={value} onChange={onChange} required={required} placeholder={placeholder} className={`${sharedClasses} resize-none`} />
+      ) : (
+        <input id={id} type={type} value={value} onChange={onChange} required={required} placeholder={placeholder} className={sharedClasses} />
+      )}
+      <span className="pointer-events-none absolute bottom-0 left-0 h-px w-0 bg-accent transition-all duration-500 peer-focus:w-full" aria-hidden="true" />
+    </div>
+  );
+};
+
+const InfoBlock = ({ eyebrow, children }: { eyebrow: string; children: React.ReactNode }) => (
+  <div className="relative pl-6 md:pl-8">
+    <span className="absolute left-0 top-1 bottom-1 w-px bg-accent/40" aria-hidden="true" />
+    <h3 className="text-[9px] md:text-[10px] tracking-[0.35em] uppercase text-accent font-sans font-medium mb-3">{eyebrow}</h3>
+    {children}
+  </div>
+);
 
 export default Contact;
