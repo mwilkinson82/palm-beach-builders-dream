@@ -1,10 +1,11 @@
+import { useEffect, useState } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { RevealAnimation } from "@/components/RevealAnimation";
 import { SEO, PersonSchema, BreadcrumbSchema } from "@/components/SEO";
-import { Award, Shield, Users, FileCheck, CheckCircle2 } from "lucide-react";
+import { Award, Shield, Users, FileCheck } from "lucide-react";
 import ajImage from "@/assets/aj-hoover.png";
 import fcmbLogo from "@/assets/fcmb-logo.png";
 import nahbBadge from "@/assets/nahb-master-building-professional.png.asset.json";
@@ -13,6 +14,22 @@ import johnImage from "@/assets/john-colaiacovo.jpg";
 import lindaImage from "@/assets/linda-lucas.jpg";
 
 const About = () => {
+  const [scrollY, setScrollY] = useState(0);
+  useEffect(() => {
+    const onScroll = () => setScrollY(window.scrollY);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  const heroScroll = Math.min(
+    scrollY,
+    typeof window !== "undefined" ? window.innerHeight : 900,
+  );
+  const wordmarkY = heroScroll * -0.18;
+  const wordmarkOpacity = Math.max(0.2, 1 - heroScroll / 600);
+  const portraitY = heroScroll * 0.08;
+  const washOpacity = Math.max(0, 1 - heroScroll / 700);
+
   return (
     <>
       <SEO 
@@ -33,295 +50,440 @@ const About = () => {
       <div className="min-h-screen bg-background">
         <Navigation />
 
-      {/* Hero Section */}
-      <section className="relative min-h-[50vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-background z-0" />
-        <div className="container mx-auto px-4 sm:px-6 relative z-10 pt-24 md:pt-32 pb-12 md:pb-20">
-          <div className="max-w-5xl mx-auto text-center animate-fade-in">
-            <p className="text-xs md:text-sm uppercase tracking-[0.2em] md:tracking-[0.3em] text-accent font-light mb-4 md:mb-6">
-              The Visionary Behind Excellence
-            </p>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-display font-light text-foreground mb-6 md:mb-8 tracking-tight">
-              AJ Hoover &<br />
-              <span className="font-serif italic">Beau Monde Builders</span>
-            </h1>
-          </div>
-        </div>
-      </section>
+        {/* Editorial Hero */}
+        <section className="relative pt-36 md:pt-44 pb-20 md:pb-28 bg-background overflow-hidden">
+          {/* Seafoam wash that lifts away on scroll */}
+          <div
+            aria-hidden
+            className="absolute inset-x-0 top-0 h-[70vh] bg-gradient-to-b from-[hsl(var(--seafoam))]/55 via-[hsl(var(--seafoam))]/15 to-transparent pointer-events-none transition-opacity duration-500"
+            style={{ opacity: washOpacity }}
+          />
+          {/* Italic 'The House Of' watermark */}
+          <span
+            aria-hidden
+            className="pointer-events-none select-none absolute -left-4 md:left-2 lg:left-8 top-32 md:top-36 font-display italic text-[22vw] md:text-[16vw] lg:text-[13vw] leading-none text-primary/[0.04]"
+            style={{ transform: `translate3d(0, ${heroScroll * 0.1}px, 0)` }}
+          >
+            The House Of
+          </span>
 
-      {/* AJ's Story */}
-      <RevealAnimation animation="luxury-reveal">
-        <section className="py-16 md:py-32 bg-background relative">
-        <div className="absolute inset-0 opacity-5 bg-[radial-gradient(circle_at_30%_50%,_var(--accent),transparent_50%)]" />
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20 items-center max-w-7xl mx-auto">
-            <div className="animate-slide-up order-2 lg:order-1">
-              <div className="relative">
-                <div className="absolute -inset-4 bg-accent/20 blur-2xl" />
-                <img
-                  src={ajImage}
-                  alt="AJ Hoover, CEO of Beau Monde Builders"
-                  loading="eager"
-                  decoding="async"
-                  onError={(e) => {
-                    e.currentTarget.src = "/placeholder.svg";
-                  }}
-                  className="rounded-none shadow-2xl w-full relative z-10"
-                />
-              </div>
-            </div>
-            
-            <div className="space-y-6 md:space-y-8 animate-fade-in order-1 lg:order-2">
-              <div>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-light text-foreground mb-3 md:mb-4 tracking-tight">
-                  AJ Hoover
-                </h2>
-                <p className="text-xs md:text-sm uppercase tracking-[0.2em] md:tracking-[0.3em] text-accent font-light">
-                  CEO & Founder
-                </p>
-              </div>
-              
-              <div className="space-y-4 md:space-y-6 text-muted-foreground leading-relaxed text-base md:text-lg font-light">
-                <p>
-                  Under AJ Hoover's visionary leadership, Beau Monde Builders has emerged as 
-                  Florida's preeminent custom luxury home builder, distinguished by uncompromising 
-                  excellence and meticulous craftsmanship.
-                </p>
-                
-                <p>
-                  From humble beginnings in rural Upstate New York, AJ's journey embodies the 
-                  quintessential American Dream. Raised in a single-parent household, he cultivated 
-                  an unparalleled work ethic, mastering every construction trade through hands-on experience.
-                </p>
-                
-                <p>
-                  With unwavering vision, AJ committed himself to establishing a brand that would 
-                  redefine luxury homebuilding standards. Through strategic relationship building 
-                  with Florida's finest artisans and subcontractors, he launched Beau Monde Builders.
-                </p>
-                
-                <p>
-                  Today, AJ remains intimately involved in every project, ensuring each residence 
-                  reflects the uncompromising quality synonymous with the Beau Monde Builders legacy.
-                </p>
-              </div>
-              
-              <div className="pt-4 md:pt-6">
-                <Button variant="outline" size="lg" className="border-accent text-accent hover:bg-accent hover:text-background transition-all duration-500" asChild>
-                  <Link to="/contact">Schedule Private Consultation</Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      </RevealAnimation>
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-end">
+              {/* Left — wordmark + intro */}
+              <div className="lg:col-span-7">
+                <RevealAnimation animation="fade-up">
+                  <div className="group flex items-center space-x-3 mb-8">
+                    <div className="h-px w-0 bg-accent transition-[width] duration-[1200ms] ease-out [.revealed_&]:w-12" />
+                    <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-accent font-sans font-light">
+                      The House Of —
+                    </span>
+                  </div>
+                </RevealAnimation>
 
-      {/* Philosophy */}
-      <RevealAnimation animation="fade-up" delay={100}>
-        <section className="py-16 md:py-32 bg-foreground text-background relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNiIgc3Ryb2tlPSIjZmZmIi8+PC9nPjwvc3ZnPg==')]" />
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center space-y-8 md:space-y-12 animate-fade-in">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-display font-light tracking-tight mb-6 md:mb-8">
-              Our Philosophy
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-              <div className="space-y-3 md:space-y-4">
-                <div className="text-accent text-lg md:text-xl font-light tracking-[0.3em]">01</div>
-                <h3 className="text-xl md:text-2xl font-serif italic">Excellence</h3>
-                <p className="text-background/70 font-light leading-relaxed text-sm md:text-base">
-                  Unwavering commitment to perfection in every detail, ensuring each project 
-                  exceeds the highest standards of luxury craftsmanship.
-                </p>
-              </div>
-              
-              <div className="space-y-3 md:space-y-4">
-                <div className="text-accent text-lg md:text-xl font-light tracking-[0.3em]">02</div>
-                <h3 className="text-xl md:text-2xl font-serif italic">Integrity</h3>
-                <p className="text-background/70 font-light leading-relaxed text-sm md:text-base">
-                  Transparent relationships built on trust, honesty, and mutual respect 
-                  throughout every phase of your building journey.
-                </p>
-              </div>
-              
-              <div className="space-y-3 md:space-y-4">
-                <div className="text-accent text-lg md:text-xl font-light tracking-[0.3em]">03</div>
-                <h3 className="text-xl md:text-2xl font-serif italic">Innovation</h3>
-                <p className="text-background/70 font-light leading-relaxed text-sm md:text-base">
-                  Embracing cutting-edge technology and timeless design to create 
-                  homes that are both contemporary and enduring.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      </RevealAnimation>
+                <RevealAnimation animation="fade-up" delay={120}>
+                  <div
+                    className="will-change-transform"
+                    style={{
+                      transform: `translate3d(0, ${wordmarkY}px, 0)`,
+                      opacity: wordmarkOpacity,
+                    }}
+                  >
+                    <span className="block font-wordmark not-italic text-primary text-6xl md:text-7xl lg:text-[120px] leading-[0.9] tracking-tight">
+                      Beau Monde
+                    </span>
+                  </div>
+                </RevealAnimation>
 
-      {/* Florida Certified Master Builder Section */}
-      <RevealAnimation animation="scale-in" delay={150}>
-        <section className="py-16 md:py-32 bg-gradient-to-b from-muted to-background relative overflow-hidden">
-          <div className="container mx-auto px-4 sm:px-6 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center max-w-7xl mx-auto">
-              {/* Certification Badges — FCMB + NAHB pair */}
-              <div className="flex justify-center order-1 lg:order-1">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-accent/10 blur-3xl rounded-full scale-125" />
-                  <div className="relative flex items-center gap-6 md:gap-10">
-                    <div className="flex flex-col items-center">
-                      <div className="bg-white p-5 md:p-8 rounded-full shadow-2xl border border-border">
-                        <img
-                          src={fcmbLogo}
-                          alt="Florida Certified Master Builder"
-                          loading="lazy"
-                          decoding="async"
-                          onError={(e) => { e.currentTarget.src = "/placeholder.svg"; }}
-                          className="w-32 h-32 sm:w-40 sm:h-40 md:w-52 md:h-52 object-contain"
-                        />
-                      </div>
-                      <span className="mt-4 font-sans text-[9px] md:text-[10px] tracking-[0.22em] uppercase text-muted-foreground text-center max-w-[140px] leading-snug">
-                        Florida Certified Master Builder
-                      </span>
-                    </div>
-                    <div className="flex flex-col items-center">
-                      <div className="bg-white p-5 md:p-8 shadow-2xl border border-border">
-                        <img
-                          src={nahbBadge.url}
-                          alt="NAHB Certified Master Building Professional"
-                          loading="lazy"
-                          decoding="async"
-                          className="w-32 h-32 sm:w-40 sm:h-40 md:w-52 md:h-52 object-contain"
-                        />
-                      </div>
-                      <span className="mt-4 font-sans text-[9px] md:text-[10px] tracking-[0.22em] uppercase text-muted-foreground text-center max-w-[140px] leading-snug">
-                        NAHB Certified Master Building Professional
-                      </span>
-                    </div>
+                <h1 className="font-display text-3xl md:text-4xl lg:text-5xl text-primary leading-[1.1] mt-8 md:mt-10 max-w-xl">
+                  <RevealAnimation animation="fade-up" delay={300}>
+                    <span className="block">Built by AJ Hoover.</span>
+                  </RevealAnimation>
+                  <RevealAnimation animation="fade-up" delay={460}>
+                    <span className="block italic text-muted-foreground">
+                      Held to one standard.
+                    </span>
+                  </RevealAnimation>
+                </h1>
+
+                <RevealAnimation animation="fade-up" delay={640}>
+                  <div className="mt-10 flex items-center gap-4 text-[10px] md:text-xs tracking-[0.4em] uppercase text-muted-foreground/70 font-sans">
+                    <span>Palm Beach</span>
+                    <span className="h-px w-6 bg-accent/50" />
+                    <span>Est. by AJ Hoover</span>
+                  </div>
+                </RevealAnimation>
+              </div>
+
+              {/* Right — portrait */}
+              <RevealAnimation animation="fade-up" delay={220} className="lg:col-span-5">
+                <div
+                  className="relative will-change-transform"
+                  style={{ transform: `translate3d(0, ${portraitY}px, 0)` }}
+                >
+                  <div className="absolute inset-0 bg-[hsl(var(--seafoam))]/40 -translate-x-3 translate-y-3" aria-hidden />
+                  <div className="relative aspect-[4/5] overflow-hidden border border-accent/30">
+                    <img
+                      src={ajImage}
+                      alt="AJ Hoover, Founder of Beau Monde Builders"
+                      loading="eager"
+                      decoding="async"
+                      onError={(e) => { e.currentTarget.src = "/placeholder.svg"; }}
+                      className="w-full h-full object-cover object-center"
+                    />
+                  </div>
+                  <div className="mt-4 flex items-center gap-3">
+                    <div className="h-px w-8 bg-accent" />
+                    <span className="text-[10px] tracking-[0.4em] uppercase text-accent font-sans">
+                      AJ Hoover · Founder
+                    </span>
                   </div>
                 </div>
-              </div>
-
-              {/* Content */}
-              <div className="order-2 lg:order-2">
-                <div className="flex items-center space-x-3 mb-4 md:mb-6">
-                  <div className="h-px w-12 md:w-16 bg-accent" />
-                  <span className="text-xs md:text-sm uppercase tracking-[0.2em] md:tracking-[0.3em] text-accent font-medium">Elite Certification</span>
-                </div>
-
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-light text-foreground mb-4 md:mb-6 leading-tight tracking-tight">
-                  Florida Certified
-                  <br />
-                  <span className="font-serif italic text-muted-foreground">Master Builder</span>
-                </h2>
-
-                <p className="text-sm md:text-base lg:text-lg text-muted-foreground mb-6 md:mb-8 font-light leading-relaxed">
-                  AJ Hoover holds the prestigious Florida Certified Master Builder designation — 
-                  an elite voluntary certification representing the pinnacle of construction excellence. 
-                  This distinction is earned through decades of experience, impeccable ethics, and 
-                  unwavering commitment to client satisfaction.
-                </p>
-
-                {/* Requirements Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-5 mb-6 md:mb-8">
-                  <div className="flex items-start space-x-2 md:space-x-3 p-3 md:p-4 bg-background rounded-lg border border-border">
-                    <Award className="w-4 h-4 md:w-5 md:h-5 text-accent flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-medium text-foreground text-xs md:text-sm mb-0.5 md:mb-1">7+ Years Experience</h4>
-                      <p className="text-[10px] md:text-xs text-muted-foreground">Proven industry expertise</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-2 md:space-x-3 p-3 md:p-4 bg-background rounded-lg border border-border">
-                    <Shield className="w-4 h-4 md:w-5 md:h-5 text-accent flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-medium text-foreground text-xs md:text-sm mb-0.5 md:mb-1">Clean Record</h4>
-                      <p className="text-[10px] md:text-xs text-muted-foreground">No regulatory issues</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-2 md:space-x-3 p-3 md:p-4 bg-background rounded-lg border border-border">
-                    <Users className="w-4 h-4 md:w-5 md:h-5 text-accent flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-medium text-foreground text-xs md:text-sm mb-0.5 md:mb-1">Verified References</h4>
-                      <p className="text-[10px] md:text-xs text-muted-foreground">Client & subcontractor approval</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-2 md:space-x-3 p-3 md:p-4 bg-background rounded-lg border border-border">
-                    <FileCheck className="w-4 h-4 md:w-5 md:h-5 text-accent flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-medium text-foreground text-xs md:text-sm mb-0.5 md:mb-1">Written Warranty</h4>
-                      <p className="text-[10px] md:text-xs text-muted-foreground">Minimum 1-year guarantee</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Verification badges */}
-                <div className="flex flex-wrap gap-2 md:gap-3">
-                  {["Background Verified", "5+ Years Licensed", "Fully Insured", "Board Approved"].map((badge) => (
-                    <div key={badge} className="flex items-center space-x-1.5 md:space-x-2 px-2 md:px-3 py-1 md:py-1.5 bg-accent/10 rounded-full">
-                      <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-accent" />
-                      <span className="text-[10px] md:text-xs font-medium text-foreground">{badge}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              </RevealAnimation>
             </div>
           </div>
         </section>
-      </RevealAnimation>
 
-      {/* Team Section */}
-      <RevealAnimation animation="luxury-reveal" delay={200}>
-        <section className="py-16 md:py-32 bg-background">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto text-center mb-12 md:mb-20 animate-fade-in">
-            <p className="text-xs md:text-sm uppercase tracking-[0.2em] md:tracking-[0.3em] text-accent font-light mb-4 md:mb-6">
-              Palm Beach
-            </p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-display font-light text-foreground tracking-tight">
-              The Beau Monde <span className="font-serif italic">Team</span>
-            </h2>
-          </div>
+        {/* The Story — long-form editorial */}
+        <section className="relative py-24 md:py-36 bg-background border-t border-accent/15 overflow-hidden">
+          <span
+            aria-hidden
+            className="pointer-events-none select-none absolute right-0 top-16 font-display italic text-[18vw] md:text-[12vw] leading-none text-primary/[0.035] whitespace-nowrap"
+          >
+            The Maker.
+          </span>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 max-w-6xl mx-auto">
-            {[
-              { name: "John Colaiacovo", role: "Project Manager", experience: "Over 40 Years of Luxury Construction Project Management", image: johnImage },
-              { name: "Michelle Williams", role: "Financial Director", experience: "20+ years in luxury construction finance", image: michelleImage },
-              { name: "Linda Lucas", role: "Project Manager", experience: "25+ years transforming visions into reality", image: lindaImage }
-            ].map((member, index) => (
-              <div key={index} className="text-center space-y-4 md:space-y-6 animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
-                <div className="aspect-[3/4] bg-muted/30 relative group overflow-hidden">
-                  <img 
-                    src={member.image} 
-                    alt={member.name}
-                    loading="lazy"
-                    decoding="async"
-                    onError={(e) => {
-                      e.currentTarget.src = "/placeholder.svg";
-                    }}
-                    className="w-full h-full object-cover object-center"
-                  />
-                  <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div className="max-w-2xl mx-auto">
+              <RevealAnimation animation="fade-up">
+                <div className="flex items-center space-x-3 mb-10 justify-center">
+                  <div className="h-px w-12 bg-accent" />
+                  <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-accent font-sans font-light">
+                    The Story
+                  </span>
+                  <div className="h-px w-12 bg-accent" />
                 </div>
+              </RevealAnimation>
+
+              {/* Movement I */}
+              <RevealAnimation animation="fade-up" delay={120}>
+                <div className="mb-16">
+                  <div className="flex items-baseline gap-4 mb-5">
+                    <span className="font-display italic text-accent text-2xl">I.</span>
+                    <span className="text-[10px] tracking-[0.4em] uppercase text-muted-foreground font-sans">
+                      Origin
+                    </span>
+                  </div>
+                  <p className="font-display text-primary text-xl md:text-2xl leading-[1.55] first-letter:font-display first-letter:italic first-letter:text-6xl first-letter:float-left first-letter:mr-3 first-letter:mt-1 first-letter:leading-[0.85] first-letter:text-accent">
+                    Rural Upstate New York. A single-parent household, a long
+                    horizon, and a kid who learned every trade with his hands —
+                    framing, finish carpentry, mechanical, stone. Nothing was
+                    given. Everything was earned at the bench.
+                  </p>
+                </div>
+              </RevealAnimation>
+
+              {/* Movement II */}
+              <RevealAnimation animation="fade-up" delay={180}>
+                <div className="mb-16">
+                  <div className="flex items-baseline gap-4 mb-5">
+                    <span className="font-display italic text-accent text-2xl">II.</span>
+                    <span className="text-[10px] tracking-[0.4em] uppercase text-muted-foreground font-sans">
+                      The Standard
+                    </span>
+                  </div>
+                  <p className="font-display text-primary text-xl md:text-2xl leading-[1.55]">
+                    AJ moved south and built relationships the slow way — one
+                    artisan, one mason, one millworker at a time. When he
+                    founded Beau Monde, he kept only the trades who shared the
+                    same intolerance for ordinary work. That bench is the
+                    company.
+                  </p>
+                </div>
+              </RevealAnimation>
+
+              {/* Pull quote */}
+              <RevealAnimation animation="scale-in" delay={220}>
+                <div className="my-16 md:my-20 text-center">
+                  <div className="h-px w-16 bg-accent mx-auto mb-8" />
+                  <p className="font-display italic text-primary text-3xl md:text-4xl leading-[1.25]">
+                    "We build the way old houses were built —
+                    <br className="hidden md:block" />
+                    by hand, by name, by standard."
+                  </p>
+                  <div className="h-px w-16 bg-accent mx-auto mt-8" />
+                </div>
+              </RevealAnimation>
+
+              {/* Movement III */}
+              <RevealAnimation animation="fade-up" delay={140}>
                 <div>
-                  <h3 className="text-xl md:text-2xl font-serif text-foreground mb-1.5 md:mb-2">{member.name}</h3>
-                  <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] md:tracking-[0.3em] text-accent font-light mb-2 md:mb-4">
-                    {member.role}
-                  </p>
-                  <p className="text-sm md:text-base text-muted-foreground font-light leading-relaxed">
-                    {member.experience}
+                  <div className="flex items-baseline gap-4 mb-5">
+                    <span className="font-display italic text-accent text-2xl">III.</span>
+                    <span className="text-[10px] tracking-[0.4em] uppercase text-muted-foreground font-sans">
+                      Today
+                    </span>
+                  </div>
+                  <p className="font-display text-primary text-xl md:text-2xl leading-[1.55]">
+                    Three decades on, AJ still walks every job, still answers
+                    the owner's call, still signs the standard. Beau Monde
+                    stays small on purpose — a Palm Beach house and a few
+                    families a year, each one given the room it deserves.
                   </p>
                 </div>
-              </div>
-            ))}
+              </RevealAnimation>
+            </div>
           </div>
-        </div>
-      </section>
-      </RevealAnimation>
+        </section>
 
-      <Footer />
+        {/* Philosophy — light, editorial */}
+        <section className="relative py-24 md:py-32 bg-background border-t border-accent/15 overflow-hidden">
+          <div
+            aria-hidden
+            className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[hsl(var(--seafoam))]/35 to-transparent pointer-events-none"
+          />
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <RevealAnimation animation="fade-up">
+              <div className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
+                <div className="flex items-center justify-center space-x-3 mb-6">
+                  <div className="h-px w-12 bg-accent" />
+                  <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-accent font-sans font-light">
+                    Our Philosophy
+                  </span>
+                  <div className="h-px w-12 bg-accent" />
+                </div>
+                <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-primary leading-[1.05]">
+                  Three principles,
+                  <br />
+                  <span className="italic text-muted-foreground">held without exception.</span>
+                </h2>
+              </div>
+            </RevealAnimation>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 max-w-6xl mx-auto border-t border-accent/20">
+              {[
+                {
+                  n: "01",
+                  k: "Excellence",
+                  v: "Every detail held to a higher standard than the brief required.",
+                },
+                {
+                  n: "02",
+                  k: "Integrity",
+                  v: "One number, one timeline, one conversation — kept honest from day one.",
+                },
+                {
+                  n: "03",
+                  k: "Discretion",
+                  v: "Quiet houses, quiet families, quiet press. The work speaks for the firm.",
+                },
+              ].map((p, i) => (
+                <RevealAnimation key={p.n} animation="fade-up" delay={i * 140}>
+                  <div className="p-10 md:p-12 border-b md:border-b-0 md:border-r last:border-r-0 border-accent/20 h-full">
+                    <div className="font-display italic text-accent text-2xl mb-6">{p.n}</div>
+                    <h3 className="font-display italic text-primary text-3xl md:text-4xl mb-5 leading-tight">
+                      {p.k}
+                    </h3>
+                    <p className="font-sans font-light text-base text-muted-foreground leading-relaxed">
+                      {p.v}
+                    </p>
+                  </div>
+                </RevealAnimation>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Certifications */}
+        <section className="relative py-24 md:py-32 bg-background border-t border-accent/15 overflow-hidden">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center max-w-7xl mx-auto">
+              {/* Badges */}
+              <RevealAnimation animation="fade-up">
+                <div className="flex items-start justify-center gap-8 md:gap-14">
+                  {[
+                    {
+                      src: fcmbLogo,
+                      alt: "Florida Certified Master Builder",
+                      cap: "Florida Certified Master Builder",
+                    },
+                    {
+                      src: nahbBadge.url,
+                      alt: "NAHB Certified Master Building Professional",
+                      cap: "NAHB Master Building Professional",
+                    },
+                  ].map((b) => (
+                    <div key={b.cap} className="flex flex-col items-center">
+                      <div className="bg-background p-6 md:p-8 border border-accent/30">
+                        <img
+                          src={b.src}
+                          alt={b.alt}
+                          loading="lazy"
+                          decoding="async"
+                          onError={(e) => { e.currentTarget.src = "/placeholder.svg"; }}
+                          className="w-32 h-32 md:w-44 md:h-44 object-contain"
+                        />
+                      </div>
+                      <div className="mt-4 h-px w-6 bg-accent" />
+                      <span className="mt-3 font-sans text-[9px] md:text-[10px] tracking-[0.32em] uppercase text-muted-foreground text-center max-w-[160px] leading-snug">
+                        {b.cap}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </RevealAnimation>
+
+              {/* Copy */}
+              <RevealAnimation animation="fade-up" delay={140}>
+                <div>
+                  <div className="flex items-center space-x-3 mb-6">
+                    <div className="h-px w-12 bg-accent" />
+                    <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-accent font-sans font-light">
+                      Elite Certification
+                    </span>
+                  </div>
+                  <h2 className="font-display text-4xl md:text-5xl text-primary leading-[1.05] mb-6">
+                    Florida Certified
+                    <br />
+                    <span className="italic text-muted-foreground">Master Builder.</span>
+                  </h2>
+                  <p className="font-sans font-light text-base md:text-lg text-muted-foreground leading-relaxed mb-10">
+                    AJ holds the Florida Certified Master Builder designation —
+                    an elite voluntary credential earned through decades of
+                    proven work, impeccable ethics, and unbroken client trust.
+                  </p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 border-t border-accent/20">
+                    {[
+                      { Icon: Award, k: "7+ Years Experience", v: "Proven industry tenure." },
+                      { Icon: Shield, k: "Clean Record", v: "No regulatory issues." },
+                      { Icon: Users, k: "Verified References", v: "Owner & subcontractor." },
+                      { Icon: FileCheck, k: "Written Warranty", v: "Minimum one-year coverage." },
+                    ].map(({ Icon, k, v }, i) => (
+                      <div
+                        key={k}
+                        className={`flex items-start gap-3 p-5 border-b border-accent/20 ${
+                          i % 2 === 0 ? "sm:border-r" : ""
+                        }`}
+                      >
+                        <Icon className="w-4 h-4 text-accent flex-shrink-0 mt-1" strokeWidth={1.25} />
+                        <div>
+                          <h4 className="font-sans text-[11px] tracking-[0.18em] uppercase text-primary mb-1">
+                            {k}
+                          </h4>
+                          <p className="font-sans font-light text-xs text-muted-foreground">{v}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-8 flex items-center gap-4">
+                    <div className="h-px w-10 bg-accent" />
+                    <span className="font-sans text-[10px] md:text-xs tracking-[0.32em] uppercase text-muted-foreground">
+                      Background verified · 5+ years licensed · Fully insured · Board approved
+                    </span>
+                  </div>
+                </div>
+              </RevealAnimation>
+            </div>
+          </div>
+        </section>
+
+        {/* Team */}
+        <section className="relative py-24 md:py-32 bg-background border-t border-accent/15">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <RevealAnimation animation="fade-up">
+              <div className="max-w-4xl mx-auto text-center mb-16 md:mb-20">
+                <div className="flex items-center justify-center space-x-3 mb-6">
+                  <div className="h-px w-12 bg-accent" />
+                  <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-accent font-sans font-light">
+                    The Bench
+                  </span>
+                  <div className="h-px w-12 bg-accent" />
+                </div>
+                <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-primary leading-[1.05]">
+                  The Beau Monde
+                  <span className="italic text-muted-foreground"> team.</span>
+                </h2>
+              </div>
+            </RevealAnimation>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 md:gap-14 max-w-6xl mx-auto">
+              {[
+                { name: "John Colaiacovo", role: "Project Manager", experience: "Forty years of luxury construction management.", image: johnImage },
+                { name: "Michelle Williams", role: "Financial Director", experience: "Twenty years in luxury construction finance.", image: michelleImage },
+                { name: "Linda Lucas", role: "Project Manager", experience: "Twenty-five years turning visions into residences.", image: lindaImage },
+              ].map((member, i) => (
+                <RevealAnimation key={member.name} animation="fade-up" delay={i * 140}>
+                  <div className="text-center">
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-[hsl(var(--seafoam))]/30 -translate-x-2 translate-y-2" aria-hidden />
+                      <div className="relative aspect-[4/5] overflow-hidden border border-accent/25 bg-muted/20">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          loading="lazy"
+                          decoding="async"
+                          onError={(e) => { e.currentTarget.src = "/placeholder.svg"; }}
+                          className="w-full h-full object-cover object-center"
+                        />
+                      </div>
+                    </div>
+                    <div className="mt-6">
+                      <h3 className="font-display text-2xl md:text-[28px] text-primary leading-tight mb-2">
+                        {member.name}
+                      </h3>
+                      <div className="flex items-center justify-center gap-3 mb-4">
+                        <div className="h-px w-6 bg-accent" />
+                        <p className="text-[10px] tracking-[0.4em] uppercase text-accent font-sans">
+                          {member.role}
+                        </p>
+                        <div className="h-px w-6 bg-accent" />
+                      </div>
+                      <p className="font-sans font-light text-sm md:text-base text-muted-foreground leading-relaxed max-w-xs mx-auto">
+                        {member.experience}
+                      </p>
+                    </div>
+                  </div>
+                </RevealAnimation>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Closing CTA */}
+        <section className="relative py-24 md:py-32 bg-background border-t border-accent/15 overflow-hidden">
+          <div
+            aria-hidden
+            className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[hsl(var(--seafoam))]/30 to-transparent pointer-events-none"
+          />
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <RevealAnimation animation="fade-up">
+              <div className="max-w-3xl mx-auto text-center">
+                <div className="flex items-center justify-center space-x-3 mb-8">
+                  <div className="h-px w-12 bg-accent" />
+                  <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-accent font-sans font-light">
+                    Begin a conversation
+                  </span>
+                  <div className="h-px w-12 bg-accent" />
+                </div>
+                <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-primary leading-[1.1] mb-10">
+                  Every Beau Monde home
+                  <br />
+                  <span className="italic text-muted-foreground">starts at the same table.</span>
+                </h2>
+                <Button
+                  size="lg"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-none px-10 py-6 font-sans text-xs tracking-[0.3em] uppercase"
+                  asChild
+                >
+                  <Link to="/contact">Talk to Beau Monde</Link>
+                </Button>
+              </div>
+            </RevealAnimation>
+          </div>
+        </section>
+
+        <Footer />
       </div>
     </>
   );
