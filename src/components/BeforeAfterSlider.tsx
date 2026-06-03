@@ -7,6 +7,8 @@ interface BeforeAfterSliderProps {
   afterAlt?: string;
   beforeLabel?: string;
   afterLabel?: string;
+  /** ms to delay the intro handle sweep so a parent's frame reveal can finish first. */
+  delayIntroSweep?: number;
 }
 
 export function BeforeAfterSlider({
@@ -16,11 +18,13 @@ export function BeforeAfterSlider({
   afterAlt = "After",
   beforeLabel = "Original Residence",
   afterLabel = "Beau Monde Standard",
+  delayIntroSweep = 0,
 }: BeforeAfterSliderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState(0);
   const [dragging, setDragging] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const revealRan = useRef(false);
 
   const updateFromClientX = useCallback((clientX: number) => {
@@ -62,25 +66,29 @@ export function BeforeAfterSlider({
         entries.forEach((entry) => {
           if (!entry.isIntersecting || revealRan.current) return;
           revealRan.current = true;
-          const duration = 1400;
-          const start = performance.now();
-          const from = 0;
-          const to = 55;
-          const tick = (now: number) => {
-            const t = Math.min(1, (now - start) / duration);
-            // ease-in-out cubic
-            const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-            setPosition(from + (to - from) * eased);
-            if (t < 1) requestAnimationFrame(tick);
-          };
-          requestAnimationFrame(tick);
+          // Lift the frame in immediately
+          setMounted(true);
+          // Then run the handle sweep after the lift settles
+          window.setTimeout(() => {
+            const duration = 1500;
+            const start = performance.now();
+            const from = 0;
+            const to = 55;
+            const tick = (now: number) => {
+              const t = Math.min(1, (now - start) / duration);
+              const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+              setPosition(from + (to - from) * eased);
+              if (t < 1) requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+          }, delayIntroSweep);
         });
       },
-      { threshold: 0.35 },
+      { threshold: 0.25 },
     );
     obs.observe(el);
     return () => obs.disconnect();
-  }, []);
+  }, [delayIntroSweep]);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowLeft") {
@@ -95,7 +103,17 @@ export function BeforeAfterSlider({
   return (
     <div
       ref={containerRef}
-      className="relative w-full aspect-[4/5] md:aspect-video overflow-hidden border border-foreground/5 shadow-[0_30px_80px_-30px_rgba(15,42,61,0.45)] select-none touch-none"
+      className="relative w-full aspect-[4/5] md:aspect-video overflow-hidden border border-foreground/5 select-none touch-none"
+      style={{
+        opacity: mounted ? 1 : 0,
+        transform: mounted ? "translateY(0)" : "translateY(28px)",
+        clipPath: mounted ? "inset(0 0 0 0)" : "inset(0 0 100% 0)",
+        boxShadow: mounted
+          ? "0 40px 100px -30px rgba(15,42,61,0.55)"
+          : "0 0 0 0 rgba(15,42,61,0)",
+        transition:
+          "opacity 900ms cubic-bezier(0.22, 1, 0.36, 1), transform 900ms cubic-bezier(0.22, 1, 0.36, 1), clip-path 1100ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 1100ms cubic-bezier(0.22, 1, 0.36, 1)",
+      }}
       onPointerDown={startDrag}
     >
       {/* After image (base — always fully painted) */}
