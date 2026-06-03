@@ -601,7 +601,7 @@ const Home = () => {
       </section>
 
       {/* Three Commitments — redesigned card grid */}
-      <section className="relative bg-background text-foreground py-20 md:py-28 lg:py-32 overflow-hidden border-t border-accent/20">
+      <section className="relative bg-seafoam text-foreground py-20 md:py-28 lg:py-32 overflow-hidden border-t border-accent/20">
         <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 lg:px-12">
           <div className="text-center mb-16 md:mb-20">
             <RevealAnimation animation="fade-up">
