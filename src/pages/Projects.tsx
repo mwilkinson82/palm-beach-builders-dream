@@ -9,7 +9,7 @@ import urbanClassical from "@/assets/projects/urban-classical.jpg.asset.json";
 import waterfrontContemporary from "@/assets/projects/waterfront-contemporary.jpg.asset.json";
 import mediterranean from "@/assets/projects/mediterranean.jpg.asset.json";
 import modernCoastal from "@/assets/projects/modern-coastal.jpg.asset.json";
-import classicEstate from "@/assets/projects/classic-estate.jpg";
+import traditionalEstate from "@/assets/projects/traditional-estate.jpg.asset.json";
 import bermudaColonial from "@/assets/projects/bermuda-colonial.jpg.asset.json";
 import angloCaribbean from "@/assets/projects/anglo-caribbean.jpg.asset.json";
 import transitional from "@/assets/projects/transitional.jpg.asset.json";
@@ -56,7 +56,7 @@ const STYLES: Style[] = [
     name: "Traditional Estate",
     descriptor:
       "Hipped roofs, hand-set masonry, deep eaves — the kind of house that reads as inherited from the first day.",
-    image: classicEstate,
+    image: traditionalEstate.url,
   },
   {
     name: "Bermuda / British Colonial",
