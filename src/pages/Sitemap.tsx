@@ -36,8 +36,9 @@ const Sitemap = () => {
   return (
     <>
       <SEO 
+        title="Sitemap"
         canonical="/sitemap"
-        description="Beau Monde Builders Sitemap - Navigate our website easily with this complete directory of all pages including our luxury home building services, portfolio, and contact information."
+        description="Complete directory of pages on the Beau Monde Builders website — services, portfolio, renovations, and contact information."
       />
       <div className="min-h-screen bg-background">
         <Navigation />

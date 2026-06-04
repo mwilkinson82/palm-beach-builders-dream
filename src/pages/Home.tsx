@@ -80,7 +80,7 @@ const Home = () => {
     <>
       <SEO 
         canonical="/"
-        description="Beau Monde Builders Palm Beach - Florida's premier custom luxury home builder. Three decades of excellence crafting oceanfront estates and bespoke residences on Worth Avenue for discerning clients."
+        description="Beau Monde Builders — Florida's premier custom luxury home builder on Worth Avenue, Palm Beach. Three decades crafting bespoke oceanfront estates."
       />
       
       {/* Splash Screen */}
@@ -93,6 +93,8 @@ const Home = () => {
       
       <div className="min-h-screen bg-background">
         <Navigation />
+
+      <h1 className="sr-only">Beau Monde Builders — Custom Luxury Home Builder in Palm Beach</h1>
 
       {/* Hero Section - Cinematic Video */}
       <VideoHero />
@@ -165,21 +167,21 @@ const Home = () => {
               {/* Wide landscape — top right, dominant */}
               <BentoTile
                 src={bento02.url}
-                alt="Interior detail"
+                alt="The Shores at Tranquility — interior living detail"
                 onClick={() => setBentoLightboxIndex(BENTO_02_INDEX)}
                 className="col-start-2 col-span-11 md:col-start-auto md:col-span-5 md:row-span-4 aspect-[16/10] md:aspect-auto"
               />
               {/* Lower right — wider */}
               <BentoTile
                 src={bento03.url}
-                alt="Architectural detail"
+                alt="The Shores at Tranquility — architectural ceiling and millwork"
                 onClick={() => setBentoLightboxIndex(BENTO_03_INDEX)}
                 className="col-span-7 md:col-span-3 md:row-span-2 aspect-[4/5] md:aspect-auto"
               />
               {/* Lower far right — narrow accent */}
               <BentoTile
                 src={bento05.url}
-                alt="Finish detail"
+                alt="The Shores at Tranquility — brass and stone finish detail"
                 onClick={() => setBentoLightboxIndex(BENTO_05_INDEX)}
                 className="col-span-5 md:col-span-2 md:row-span-2 aspect-[4/5] md:aspect-auto"
               />
@@ -236,10 +238,10 @@ const Home = () => {
                   B
                 </span>
                 <RevealAnimation animation="luxury-reveal" delay={120}>
-                  <h1 className="relative z-10 font-display text-5xl sm:text-6xl lg:text-8xl leading-[0.9] font-light mb-8 tracking-tight">
+                  <h2 className="relative z-10 font-display text-5xl sm:text-6xl lg:text-8xl leading-[0.9] font-light mb-8 tracking-tight">
                     Bespoke Luxury <br />
                     <span className="italic">Redefined</span>
-                  </h1>
+                  </h2>
                 </RevealAnimation>
               </div>
 

@@ -1,0 +1,21 @@
+# Beau Monde Builders
+
+> Ultra-luxury custom home builder and renovator on Worth Avenue, Palm Beach. Three decades of bespoke residences led by AJ Hoover, Florida Certified Master Builder.
+
+Beau Monde Builders designs and constructs custom oceanfront and waterfront estates throughout Palm Beach, West Palm Beach, Jupiter Island, and Palm Beach County. The firm also performs discreet whole-home and luxury condominium renovations.
+
+## Pages
+
+- [Home](/): Overview of Beau Monde Builders, the Beau Monde Standard, and a featured residence walkthrough.
+- [About](/about): Firm history, AJ Hoover, and the Florida Certified Master Builder credential.
+- [Process](/process): The nine-step Beau Monde process from consultation to delivery.
+- [Portfolio](/projects): Style Book of completed custom homes and architectural directions.
+- [Renovations](/renovations): Luxury condo, estate, kitchen, and bath renovation services.
+- [Press](/press): Media coverage and recognition.
+- [Contact](/contact): Schedule a private consultation. (561) 646-8992 · 205 Worth Avenue, Palm Beach.
+
+## Optional
+
+- [Sitemap](/sitemap): Full index of pages.
+- [Privacy Policy](/privacy)
+- [Terms of Service](/terms)

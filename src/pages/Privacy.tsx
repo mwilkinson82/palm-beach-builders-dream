@@ -7,8 +7,9 @@ const Privacy = () => {
   return (
     <>
       <SEO 
+        title="Privacy Policy"
         canonical="/privacy"
-        description="Beau Monde Builders Privacy Policy - Learn how we collect, use, and protect your personal information when you visit our website or engage our luxury home building services."
+        description="How Beau Monde Builders collects, uses, and protects your personal information across our website and luxury homebuilding services."
       />
       <div className="min-h-screen bg-background">
         <Navigation />
