@@ -13,9 +13,9 @@ interface SEOProps {
 const businessInfo = {
   name: "Beau Monde Builders",
   legalName: "Beau Monde Builders LLC",
-  url: "https://beaumondebuilders.com",
-  logo: "https://beaumondebuilders.com/favicon.png",
-  description: "Florida's premier custom luxury home builder on Worth Avenue, Palm Beach. Three decades of excellence in bespoke homebuilding for discerning clients.",
+  url: "https://bmbpalmbeach.com",
+  logo: "https://bmbpalmbeach.com/favicon.png",
+  description: "Florida's premier custom luxury home builder on Worth Avenue, Palm Beach. Three decades of bespoke homebuilding for discerning clients.",
   foundingDate: "1994",
   address: {
     streetAddress: "205 Worth Avenue, Suite 120",
@@ -29,7 +29,7 @@ const businessInfo = {
     longitude: "-80.0370"
   },
   phone: "+1-561-646-8992",
-  email: "info@beaumondebuilders.com",
+  email: "aj@bmbpalmbeach.com",
   priceRange: "$$$$$",
   openingHours: ["Mo-Fr 09:00-17:00", "Sa By Appointment"],
   sameAs: [
@@ -205,11 +205,11 @@ export const SEO = ({
   description = businessInfo.description,
   canonical,
   type = "website",
-  image = "https://beaumondebuilders.com/og-image.jpg",
+  image = "https://bmbpalmbeach.com/og-image.jpg",
   noIndex = false,
 }: SEOProps) => {
   const siteTitle = "Beau Monde Builders Palm Beach";
-  const fullTitle = title ? `${title} | ${siteTitle}` : `${siteTitle} | Ultra Luxury Custom Home Builders`;
+  const fullTitle = title ? `${title} | ${siteTitle}` : `${siteTitle} — Luxury Custom Home Builder`;
   const canonicalUrl = canonical ? `${businessInfo.url}${canonical}` : businessInfo.url;
 
   return (
