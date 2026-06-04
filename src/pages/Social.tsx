@@ -49,7 +49,7 @@ const Social = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-pink-500/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               <div className="relative z-10">
                 <Instagram className="h-12 w-12 mb-8 text-accent" />
-                <h3 className="text-4xl font-serif italic mb-4">Instagram</h3>
+                <h2 className="text-4xl font-serif italic mb-4">Instagram</h2>
                 <p className="text-background/70 font-light leading-relaxed mb-8">
                   Explore our latest projects, design inspiration, and luxury home showcases.
                 </p>
@@ -71,7 +71,7 @@ const Social = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-blue-800/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               <div className="relative z-10">
                 <Facebook className="h-12 w-12 mb-8 text-accent" />
-                <h3 className="text-4xl font-serif italic mb-4">Facebook</h3>
+                <h2 className="text-4xl font-serif italic mb-4">Facebook</h2>
                 <p className="text-background/70 font-light leading-relaxed mb-8">
                   Join our community and stay updated on news, events, and client testimonials.
                 </p>
@@ -93,7 +93,7 @@ const Social = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-red-600/20 to-red-800/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               <div className="relative z-10">
                 <Youtube className="h-12 w-12 mb-8 text-accent" />
-                <h3 className="text-4xl font-serif italic mb-4">YouTube</h3>
+                <h2 className="text-4xl font-serif italic mb-4">YouTube</h2>
                 <p className="text-background/70 font-light leading-relaxed mb-8">
                   Watch virtual tours, construction updates, and educational content.
                 </p>
@@ -115,7 +115,7 @@ const Social = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-blue-700/20 to-blue-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               <div className="relative z-10">
                 <Linkedin className="h-12 w-12 mb-8 text-accent" />
-                <h3 className="text-4xl font-serif italic mb-4">LinkedIn</h3>
+                <h2 className="text-4xl font-serif italic mb-4">LinkedIn</h2>
                 <p className="text-background/70 font-light leading-relaxed mb-8">
                   Connect professionally and learn about career opportunities.
                 </p>
