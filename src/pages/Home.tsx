@@ -167,21 +167,21 @@ const Home = () => {
               {/* Wide landscape — top right, dominant */}
               <BentoTile
                 src={bento02.url}
-                alt="Interior detail"
+                alt="The Shores at Tranquility — interior living detail"
                 onClick={() => setBentoLightboxIndex(BENTO_02_INDEX)}
                 className="col-start-2 col-span-11 md:col-start-auto md:col-span-5 md:row-span-4 aspect-[16/10] md:aspect-auto"
               />
               {/* Lower right — wider */}
               <BentoTile
                 src={bento03.url}
-                alt="Architectural detail"
+                alt="The Shores at Tranquility — architectural ceiling and millwork"
                 onClick={() => setBentoLightboxIndex(BENTO_03_INDEX)}
                 className="col-span-7 md:col-span-3 md:row-span-2 aspect-[4/5] md:aspect-auto"
               />
               {/* Lower far right — narrow accent */}
               <BentoTile
                 src={bento05.url}
-                alt="Finish detail"
+                alt="The Shores at Tranquility — brass and stone finish detail"
                 onClick={() => setBentoLightboxIndex(BENTO_05_INDEX)}
                 className="col-span-5 md:col-span-2 md:row-span-2 aspect-[4/5] md:aspect-auto"
               />
