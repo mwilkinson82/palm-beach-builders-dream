@@ -116,7 +116,7 @@ export const Footer = () => {
               {[
                 { eyebrow: "Accredited", line: "Fully Insured" },
                 { eyebrow: "State Registered", line: "FL Licensed Contractor" },
-                { eyebrow: "Established", line: "30+ Years · Since 1994" },
+              { eyebrow: "Established", line: "30 Years · Since 1994" },
               ].map((c, i, arr) => (
                 <div key={c.eyebrow} className="flex items-center gap-x-12">
                   <div className="text-center">

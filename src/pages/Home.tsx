@@ -48,7 +48,7 @@ const EMBLEM_MEANINGS = [
 ];
 
 const FCMB_CREDENTIALS = [
-  { k: "Experience", v: "7+ years of proven industry practice" },
+  { k: "Experience", v: "30 years of proven industry practice" },
   { k: "Record", v: "Clean regulatory and disciplinary history" },
   { k: "References", v: "Verified by clients and subcontractors" },
   { k: "Warranty", v: "Written, minimum one-year guarantee" },
@@ -80,7 +80,7 @@ const Home = () => {
     <>
       <SEO 
         canonical="/"
-        description="Beau Monde Builders — Florida's premier custom luxury home builder on Worth Avenue, Palm Beach. Three decades crafting bespoke oceanfront estates."
+        description="Beau Monde Builders — Florida's premier custom luxury home builder on Worth Avenue, Palm Beach. 30 years crafting bespoke oceanfront estates."
       />
       
       {/* Splash Screen */}
@@ -137,7 +137,7 @@ const Home = () => {
               <RevealAnimation animation="fade-up" delay={240}>
                 <p className="font-sans font-light text-[15px] md:text-base leading-relaxed text-foreground/80 mb-7 max-w-lg">
                   An intracoastal estate completed this season — every threshold, joint, and finish
-                  shaped by seven years of Beau Monde craftsmanship.
+                  shaped by 30 years of Beau Monde craftsmanship.
                 </p>
                 <Link
                   to="/projects"
@@ -247,7 +247,7 @@ const Home = () => {
 
               <RevealAnimation animation="fade-up" delay={250}>
                 <p className="font-sans font-light text-base md:text-lg leading-relaxed max-w-lg mb-10 text-foreground/85">
-                  Where architectural excellence meets uncompromising craftsmanship. Three decades of creating Palm Beach's
+                  Where architectural excellence meets uncompromising craftsmanship. 30 years of creating Palm Beach's
                   most distinguished estates — custom residences beginning at $5M and rising into the extraordinary.
                 </p>
               </RevealAnimation>
@@ -354,7 +354,7 @@ const Home = () => {
           <div className="py-12 md:py-14 border-b border-accent/30">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 divide-x divide-accent/20">
               {[
-                { v: "30+", l: "Years Excellence" },
+                { v: "30", l: "Years Excellence" },
                 { v: "$150M+", l: "Project Value" },
                 { v: "25+", l: "Estate Homes" },
                 { v: "100%", l: "Client Satisfaction" },
@@ -556,7 +556,7 @@ const Home = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 font-sans font-light text-[15px] leading-relaxed text-foreground/90">
                   <p>
                     Founded on the principle that a custom home is the ultimate expression of its owner, AJ Hoover has
-                    spent three decades refining a hands-on approach that prioritizes the artisanal over the industrial.
+                    spent 30 years refining a hands-on approach that prioritizes the artisanal over the industrial.
                   </p>
                   <p>
                     By limiting our project count, we ensure that every stone, every beam, and every finish receives the

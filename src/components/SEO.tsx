@@ -15,7 +15,7 @@ const businessInfo = {
   legalName: "Beau Monde Builders LLC",
   url: "https://bmbpalmbeach.com",
   logo: "https://bmbpalmbeach.com/favicon.png",
-  description: "Florida's premier custom luxury home builder on Worth Avenue, Palm Beach. Three decades of bespoke homebuilding for discerning clients.",
+  description: "Florida's premier custom luxury home builder on Worth Avenue, Palm Beach. 30 years of bespoke homebuilding for discerning clients.",
   foundingDate: "1994",
   address: {
     streetAddress: "205 Worth Avenue, Suite 120",
@@ -162,7 +162,7 @@ const faqSchema = {
       name: "What makes Beau Monde Builders different from other luxury home builders in Palm Beach?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Beau Monde Builders is led by AJ Hoover, a Florida Certified Master Builder with over 30 years of experience. This elite designation is held by only the finest builders in Florida, requiring decades of experience, impeccable ethics, verified references, and unwavering commitment to client satisfaction. We provide hands-on leadership in every project, ensuring uncompromising quality."
+        text: "Beau Monde Builders is led by AJ Hoover, a Florida Certified Master Builder with 30 years of experience. This elite designation is held by only the finest builders in Florida, requiring extensive experience, impeccable ethics, verified references, and unwavering commitment to client satisfaction. We provide hands-on leadership in every project, ensuring uncompromising quality."
       }
     },
     {
