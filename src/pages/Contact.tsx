@@ -16,50 +16,6 @@ const contactPageSchema = {
   url: "https://bmbpalmbeach.com/contact",
 };
 
-// LocalBusiness schema — Palm Beach office for local SEO
-const localBusinessSchema = {
-  "@context": "https://schema.org",
-  "@type": "GeneralContractor",
-  "@id": "https://bmbpalmbeach.com/#localbusiness",
-  name: "Beau Monde Builders",
-  description:
-    "Ultra-luxury custom home builder serving Palm Beach, Florida. Private consultations by appointment at our Worth Avenue office.",
-  url: "https://bmbpalmbeach.com",
-  telephone: "+1-561-646-8992",
-  email: "aj@bmbpalmbeach.com",
-  priceRange: "$$$$",
-  image: "https://bmbpalmbeach.com/og-image.jpg",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "205 Worth Avenue, Suite 120",
-    addressLocality: "Palm Beach",
-    addressRegion: "FL",
-    postalCode: "33480",
-    addressCountry: "US",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 26.7015,
-    longitude: -80.037,
-  },
-  hasMap:
-    "https://www.google.com/maps/place/205+Worth+Ave,+Palm+Beach,+FL+33480",
-  areaServed: [
-    { "@type": "City", name: "Palm Beach" },
-    { "@type": "City", name: "West Palm Beach" },
-    { "@type": "City", name: "Manalapan" },
-    { "@type": "City", name: "Jupiter Island" },
-    { "@type": "AdministrativeArea", name: "Palm Beach County" },
-  ],
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      description: "By Appointment",
-    },
-  ],
-};
-
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -138,7 +94,7 @@ const Contact = () => {
     <>
       <SEO 
         title="Contact Us"
-          description="Schedule a private consultation with Beau Monde Builders. Visit us at 205 Worth Avenue, Palm Beach or call (561) 646-8992. By appointment only, Monday through Saturday."
+          description="Schedule a private consultation with Beau Monde Builders at 205 Worth Avenue, Palm Beach. Call (561) 646-8992. By appointment only."
         canonical="/contact"
       />
       <BreadcrumbSchema items={[
@@ -148,9 +104,6 @@ const Contact = () => {
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify(contactPageSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(localBusinessSchema)}
         </script>
       </Helmet>
       <div className="min-h-screen bg-background">
@@ -237,7 +190,7 @@ const Contact = () => {
                     <div className="p-8 md:p-10 space-y-8">
                       {/* Address */}
                       <div>
-                        <h3 className="text-[9px] md:text-[10px] tracking-[0.35em] uppercase text-accent font-sans font-medium mb-4">Palm Beach Office</h3>
+                        <h2 className="text-[9px] md:text-[10px] tracking-[0.35em] uppercase text-accent font-sans font-medium mb-4">Palm Beach Office</h2>
                         <p className="font-display text-2xl md:text-3xl text-foreground leading-tight">
                           205 Worth Avenue, Suite 120<br />Palm Beach, FL 33480
                         </p>
