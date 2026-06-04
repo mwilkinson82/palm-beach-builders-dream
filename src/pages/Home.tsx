@@ -80,7 +80,7 @@ const Home = () => {
     <>
       <SEO 
         canonical="/"
-        description="Beau Monde Builders Palm Beach - Florida's premier custom luxury home builder. Three decades of excellence crafting oceanfront estates and bespoke residences on Worth Avenue for discerning clients."
+        description="Beau Monde Builders — Florida's premier custom luxury home builder on Worth Avenue, Palm Beach. Three decades crafting bespoke oceanfront estates."
       />
       
       {/* Splash Screen */}
@@ -93,6 +93,8 @@ const Home = () => {
       
       <div className="min-h-screen bg-background">
         <Navigation />
+
+      <h1 className="sr-only">Beau Monde Builders — Custom Luxury Home Builder in Palm Beach</h1>
 
       {/* Hero Section - Cinematic Video */}
       <VideoHero />
