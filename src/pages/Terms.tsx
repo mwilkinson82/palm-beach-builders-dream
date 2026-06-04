@@ -7,8 +7,9 @@ const Terms = () => {
   return (
     <>
       <SEO 
+        title="Terms of Service"
         canonical="/terms"
-        description="Beau Monde Builders Terms of Service - Review the terms and conditions governing your use of our website and engagement of our luxury home building services in Palm Beach."
+        description="Terms and conditions governing use of the Beau Monde Builders website and engagement of our Palm Beach luxury homebuilding services."
       />
       <div className="min-h-screen bg-background">
         <Navigation />
