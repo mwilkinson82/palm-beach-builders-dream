@@ -238,10 +238,10 @@ const Home = () => {
                   B
                 </span>
                 <RevealAnimation animation="luxury-reveal" delay={120}>
-                  <h1 className="relative z-10 font-display text-5xl sm:text-6xl lg:text-8xl leading-[0.9] font-light mb-8 tracking-tight">
+                  <h2 className="relative z-10 font-display text-5xl sm:text-6xl lg:text-8xl leading-[0.9] font-light mb-8 tracking-tight">
                     Bespoke Luxury <br />
                     <span className="italic">Redefined</span>
-                  </h1>
+                  </h2>
                 </RevealAnimation>
               </div>
 
