@@ -103,7 +103,7 @@ const processSchema = {
   "@context": "https://schema.org",
   "@type": "HowTo",
   name: "Beau Monde Builders 9-Step Custom Home Building Process",
-  description: "A meticulously orchestrated journey from vision to reality, guided by decades of expertise in luxury homebuilding.",
+  description: "A meticulously orchestrated journey from vision to reality, guided by 30 years of expertise in luxury homebuilding.",
   totalTime: "PT12M",
   estimatedCost: {
     "@type": "MonetaryAmount",
@@ -222,7 +222,7 @@ const Process = () => {
               >
                 <RevealAnimation animation="fade-up" delay={620}>
                   <p className="font-sans font-light text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl">
-                    Three decades of master-built craft, distilled into a private,
+                    30 years of master-built craft, distilled into a private,
                     measured cadence — from the first quiet conversation to the day
                     we hand you the keys.
                   </p>
