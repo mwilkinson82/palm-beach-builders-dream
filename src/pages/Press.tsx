@@ -52,7 +52,7 @@ const Press = () => {
               ].map((item, index) => (
                 <div key={index} className="text-center space-y-6 animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
                   <div className="text-6xl font-display font-light text-accent/30">{item.number}</div>
-                  <h3 className="text-2xl font-serif italic text-foreground">{item.title}</h3>
+                  <h2 className="text-2xl font-serif italic text-foreground">{item.title}</h2>
                   <div className="w-12 h-px bg-accent mx-auto" />
                   <p className="text-muted-foreground font-light leading-relaxed">{item.desc}</p>
                 </div>
