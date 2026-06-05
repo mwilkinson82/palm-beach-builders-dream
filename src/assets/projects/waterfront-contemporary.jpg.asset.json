@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "eba59b3a-23f9-4f25-8268-bec85f44378d",
-  "project_id": "e6ff6f01-3217-4ab3-a673-5d35272d28ac",
-  "url": "/__l5e/assets-v1/eba59b3a-23f9-4f25-8268-bec85f44378d/waterfront-contemporary.jpg",
-  "r2_key": "a/v1/e6ff6f01-3217-4ab3-a673-5d35272d28ac/eba59b3a-23f9-4f25-8268-bec85f44378d/waterfront-contemporary.jpg",
-  "original_filename": "waterfront-contemporary.jpg",
-  "size": 3039932,
   "content_type": "image/png",
-  "created_at": "2026-06-03T15:20:14Z"
+  "created_at": "2026-06-03T15:20:14Z",
+  "original_filename": "waterfront-contemporary.jpg",
+  "project_id": "208cb33e-aeea-4e2c-83d1-5a33f1ccea18",
+  "r2_key": "a/v1/208cb33e-aeea-4e2c-83d1-5a33f1ccea18/eba59b3a-23f9-4f25-8268-bec85f44378d/waterfront-contemporary.jpg",
+  "size": 3039932,
+  "url": "/__l5e/assets-v1/eba59b3a-23f9-4f25-8268-bec85f44378d/waterfront-contemporary.jpg",
+  "version": 1
 }

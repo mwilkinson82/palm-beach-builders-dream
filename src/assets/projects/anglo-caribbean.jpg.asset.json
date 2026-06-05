@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "b9064bbb-f1ec-41ba-aa6d-753a93a01e44",
-  "project_id": "e6ff6f01-3217-4ab3-a673-5d35272d28ac",
-  "url": "/__l5e/assets-v1/b9064bbb-f1ec-41ba-aa6d-753a93a01e44/anglo-caribbean.jpg",
-  "r2_key": "a/v1/e6ff6f01-3217-4ab3-a673-5d35272d28ac/b9064bbb-f1ec-41ba-aa6d-753a93a01e44/anglo-caribbean.jpg",
-  "original_filename": "anglo-caribbean.jpg",
-  "size": 3093246,
   "content_type": "image/png",
-  "created_at": "2026-06-03T14:55:25Z"
+  "created_at": "2026-06-03T14:55:25Z",
+  "original_filename": "anglo-caribbean.jpg",
+  "project_id": "208cb33e-aeea-4e2c-83d1-5a33f1ccea18",
+  "r2_key": "a/v1/208cb33e-aeea-4e2c-83d1-5a33f1ccea18/b9064bbb-f1ec-41ba-aa6d-753a93a01e44/anglo-caribbean.jpg",
+  "size": 3093246,
+  "url": "/__l5e/assets-v1/b9064bbb-f1ec-41ba-aa6d-753a93a01e44/anglo-caribbean.jpg",
+  "version": 1
 }

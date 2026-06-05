@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "25bd2d3d-c571-4980-acbf-bf0b171c79f6",
-  "project_id": "e6ff6f01-3217-4ab3-a673-5d35272d28ac",
-  "url": "/__l5e/assets-v1/25bd2d3d-c571-4980-acbf-bf0b171c79f6/bespoke-detail.jpg",
-  "r2_key": "a/v1/e6ff6f01-3217-4ab3-a673-5d35272d28ac/25bd2d3d-c571-4980-acbf-bf0b171c79f6/bespoke-detail.jpg",
-  "original_filename": "bespoke-detail.jpg",
-  "size": 2336030,
   "content_type": "image/png",
-  "created_at": "2026-06-03T02:37:31Z"
+  "created_at": "2026-06-03T02:37:31Z",
+  "original_filename": "bespoke-detail.jpg",
+  "project_id": "208cb33e-aeea-4e2c-83d1-5a33f1ccea18",
+  "r2_key": "a/v1/208cb33e-aeea-4e2c-83d1-5a33f1ccea18/25bd2d3d-c571-4980-acbf-bf0b171c79f6/bespoke-detail.jpg",
+  "size": 2336030,
+  "url": "/__l5e/assets-v1/25bd2d3d-c571-4980-acbf-bf0b171c79f6/bespoke-detail.jpg",
+  "version": 1
 }

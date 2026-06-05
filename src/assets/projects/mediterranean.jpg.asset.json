@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "71090dd7-b0d5-4398-8071-6f27b6b4fef4",
-  "project_id": "e6ff6f01-3217-4ab3-a673-5d35272d28ac",
-  "url": "/__l5e/assets-v1/71090dd7-b0d5-4398-8071-6f27b6b4fef4/mediterranean.jpg",
-  "r2_key": "a/v1/e6ff6f01-3217-4ab3-a673-5d35272d28ac/71090dd7-b0d5-4398-8071-6f27b6b4fef4/mediterranean.jpg",
-  "original_filename": "mediterranean.jpg",
-  "size": 3063294,
   "content_type": "image/png",
-  "created_at": "2026-06-03T15:25:23Z"
+  "created_at": "2026-06-03T15:25:23Z",
+  "original_filename": "mediterranean.jpg",
+  "project_id": "208cb33e-aeea-4e2c-83d1-5a33f1ccea18",
+  "r2_key": "a/v1/208cb33e-aeea-4e2c-83d1-5a33f1ccea18/71090dd7-b0d5-4398-8071-6f27b6b4fef4/mediterranean.jpg",
+  "size": 3063294,
+  "url": "/__l5e/assets-v1/71090dd7-b0d5-4398-8071-6f27b6b4fef4/mediterranean.jpg",
+  "version": 1
 }

@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "51783a81-74f5-4881-85d6-578e8212a143",
-  "project_id": "e6ff6f01-3217-4ab3-a673-5d35272d28ac",
-  "url": "/__l5e/assets-v1/51783a81-74f5-4881-85d6-578e8212a143/renovation-hero.jpg",
-  "r2_key": "a/v1/e6ff6f01-3217-4ab3-a673-5d35272d28ac/51783a81-74f5-4881-85d6-578e8212a143/renovation-hero.jpg",
-  "original_filename": "renovation-hero.jpg",
-  "size": 2182593,
   "content_type": "image/jpeg",
-  "created_at": "2026-06-03T22:36:44Z"
+  "created_at": "2026-06-03T22:36:44Z",
+  "original_filename": "renovation-hero.jpg",
+  "project_id": "208cb33e-aeea-4e2c-83d1-5a33f1ccea18",
+  "r2_key": "a/v1/208cb33e-aeea-4e2c-83d1-5a33f1ccea18/51783a81-74f5-4881-85d6-578e8212a143/renovation-hero.jpg",
+  "size": 2182593,
+  "url": "/__l5e/assets-v1/51783a81-74f5-4881-85d6-578e8212a143/renovation-hero.jpg",
+  "version": 1
 }

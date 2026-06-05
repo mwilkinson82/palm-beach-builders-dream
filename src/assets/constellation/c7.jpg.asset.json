@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "b00c6345-f25e-4eff-8d4a-4999e14e9e29",
-  "project_id": "e6ff6f01-3217-4ab3-a673-5d35272d28ac",
-  "url": "/__l5e/assets-v1/b00c6345-f25e-4eff-8d4a-4999e14e9e29/constellation-7.jpg",
-  "r2_key": "a/v1/e6ff6f01-3217-4ab3-a673-5d35272d28ac/b00c6345-f25e-4eff-8d4a-4999e14e9e29/constellation-7.jpg",
-  "original_filename": "constellation-7.jpg",
-  "size": 180753,
   "content_type": "image/jpeg",
-  "created_at": "2026-06-03T01:12:43Z"
+  "created_at": "2026-06-03T01:12:43Z",
+  "original_filename": "constellation-7.jpg",
+  "project_id": "208cb33e-aeea-4e2c-83d1-5a33f1ccea18",
+  "r2_key": "a/v1/208cb33e-aeea-4e2c-83d1-5a33f1ccea18/b00c6345-f25e-4eff-8d4a-4999e14e9e29/constellation-7.jpg",
+  "size": 180753,
+  "url": "/__l5e/assets-v1/b00c6345-f25e-4eff-8d4a-4999e14e9e29/constellation-7.jpg",
+  "version": 1
 }

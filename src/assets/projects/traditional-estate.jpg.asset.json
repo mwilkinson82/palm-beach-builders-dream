@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "afc6cdc1-41ee-448b-8f9c-badef6622cc2",
-  "project_id": "e6ff6f01-3217-4ab3-a673-5d35272d28ac",
-  "url": "/__l5e/assets-v1/afc6cdc1-41ee-448b-8f9c-badef6622cc2/traditional-estate.jpg",
-  "r2_key": "a/v1/e6ff6f01-3217-4ab3-a673-5d35272d28ac/afc6cdc1-41ee-448b-8f9c-badef6622cc2/traditional-estate.jpg",
-  "original_filename": "traditional-estate.jpg",
-  "size": 2497155,
   "content_type": "image/png",
-  "created_at": "2026-06-03T15:34:23Z"
+  "created_at": "2026-06-03T15:34:23Z",
+  "original_filename": "traditional-estate.jpg",
+  "project_id": "208cb33e-aeea-4e2c-83d1-5a33f1ccea18",
+  "r2_key": "a/v1/208cb33e-aeea-4e2c-83d1-5a33f1ccea18/afc6cdc1-41ee-448b-8f9c-badef6622cc2/traditional-estate.jpg",
+  "size": 2497155,
+  "url": "/__l5e/assets-v1/afc6cdc1-41ee-448b-8f9c-badef6622cc2/traditional-estate.jpg",
+  "version": 1
 }
