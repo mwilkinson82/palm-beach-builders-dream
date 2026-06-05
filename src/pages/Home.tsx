@@ -112,6 +112,30 @@ const Home = () => {
       >
         <div className="absolute inset-0 silk-grain opacity-[0.04] pointer-events-none select-none" />
 
+        {/* Section title — Space Coast Luxury Living */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 mb-14 md:mb-20 text-center">
+          <RevealAnimation animation="fade-up">
+            <div className="flex items-center justify-center gap-3 mb-5">
+              <span className="h-px w-10 bg-accent" />
+              <span className="font-sans text-[10px] md:text-xs tracking-[0.4em] uppercase text-accent">
+                Space Coast Luxury Living
+              </span>
+              <span className="h-px w-10 bg-accent" />
+            </div>
+          </RevealAnimation>
+          <RevealAnimation animation="luxury-reveal" delay={120}>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] tracking-tight text-primary">
+              Built on the <span className="italic">Space Coast.</span>
+            </h2>
+          </RevealAnimation>
+          <RevealAnimation animation="fade-up" delay={220}>
+            <p className="mt-5 font-sans font-light text-[14px] md:text-[15px] tracking-wide text-primary/65 max-w-2xl mx-auto">
+              Rockledge to Melbourne Beach to Cocoa — the residences that define luxury living
+              along Florida's Atlantic coast.
+            </p>
+          </RevealAnimation>
+        </div>
+
         {/* Editorial header — sits above the bento */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
