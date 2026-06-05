@@ -43,7 +43,7 @@ const About = () => {
         name="AJ Hoover"
         jobTitle="CEO & Founder"
         description="Florida Certified Master Builder with 30 years of experience in luxury custom home building. Founder of Beau Monde Builders, Palm Beach's premier luxury home builder."
-        image="https://beaumondebuilders.com/assets/aj-hoover.png"
+        image="https://bmb.builders/assets/aj-hoover.png"
       />
       <BreadcrumbSchema items={[
         { name: "Home", url: "/" },

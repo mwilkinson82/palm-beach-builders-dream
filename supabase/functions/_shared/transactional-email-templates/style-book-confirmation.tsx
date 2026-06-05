@@ -36,9 +36,9 @@ const Email = ({ firstName, style }: Props) => (
         </Text>
         <Hr style={hr} />
         <Text style={signature}>Beau Monde Builders</Text>
-        <Text style={meta}>205 Worth Avenue, Suite 120</Text>
-        <Text style={meta}>Palm Beach, FL 33480</Text>
-        <Text style={meta}>(561) 646-8992</Text>
+        <Text style={meta}>1129 Rockledge Boulevard</Text>
+        <Text style={meta}>Rockledge, FL 32955</Text>
+        <Text style={meta}>(321) 298-4122</Text>
       </Container>
     </Body>
   </Html>

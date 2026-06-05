@@ -219,7 +219,7 @@ const FrontCover = () => (
       variants={fadeUp}
       className="font-sans text-[10px] tracking-[0.5em] uppercase text-accent"
     >
-      Beau Monde · Palm Beach
+      Beau Monde · Space Coast
     </motion.p>
 
     <div className="flex flex-col items-center gap-8">
@@ -529,7 +529,7 @@ const InquiryPlate = ({ defaultStyle }: { defaultStyle?: string }) => {
       console.error("Style Book inquiry failed:", err);
       toast({
         title: "Something went wrong",
-        description: "Please try again or call (561) 646-8992.",
+        description: "Please try again or call (321) 298-4122.",
         variant: "destructive",
       });
     } finally {
@@ -549,7 +549,7 @@ const InquiryPlate = ({ defaultStyle }: { defaultStyle?: string }) => {
         variants={fadeUp}
         className="font-sans text-[10px] tracking-[0.5em] uppercase text-accent"
       >
-        Beau Monde · Palm Beach
+        Beau Monde · Space Coast
       </motion.p>
 
       <motion.div variants={fadeImg} className="flex flex-col items-center gap-2 mt-2">
@@ -669,7 +669,7 @@ const InquiryPlate = ({ defaultStyle }: { defaultStyle?: string }) => {
         variants={fadeUp}
         className="font-sans text-[9px] tracking-[0.4em] uppercase text-accent/70 mt-3"
       >
-        Replies within 24 hours · 205 Worth Avenue
+        Replies within 24 hours · 1129 Rockledge Boulevard
       </motion.p>
     </div>
   );

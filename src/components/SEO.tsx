@@ -13,12 +13,12 @@ interface SEOProps {
 const businessInfo = {
   name: "Beau Monde Builders",
   legalName: "Beau Monde Builders LLC",
-  url: "https://bmbpalmbeach.com",
-  logo: "https://bmbpalmbeach.com/favicon.png",
+  url: "https://bmb.builders",
+  logo: "https://bmb.builders/favicon.png",
   description: "Florida's premier custom luxury home builder on Worth Avenue, Palm Beach. 30 years of bespoke homebuilding for discerning clients.",
   foundingDate: "1994",
   address: {
-    streetAddress: "205 Worth Avenue, Suite 120",
+    streetAddress: "1129 Rockledge Boulevard",
     addressLocality: "Palm Beach",
     addressRegion: "FL",
     postalCode: "33480",
@@ -28,8 +28,8 @@ const businessInfo = {
     latitude: "26.7015",
     longitude: "-80.0370"
   },
-  phone: "+1-561-646-8992",
-  email: "aj@bmbpalmbeach.com",
+  phone: "+1-321-298-4122",
+  email: "ajhoover@mac.com",
   priceRange: "$$$$$",
   openingHours: ["Mo-Fr 09:00-17:00", "Sa By Appointment"],
   sameAs: [
@@ -194,7 +194,7 @@ const faqSchema = {
       name: "How do I schedule a consultation with Beau Monde Builders?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "You can schedule a private consultation by calling (561) 646-8992, emailing info@beaumondebuilders.com, or visiting our office at 205 Worth Avenue, Suite 120, Palm Beach, FL 33480. Our office hours are Monday through Friday 9:00 AM to 5:00 PM, with Saturday appointments available by request."
+        text: "You can schedule a private consultation by calling (321) 298-4122, emailing ajhoover@mac.com, or visiting our office at 1129 Rockledge Boulevard, Rockledge, FL 32955. Our office hours are Monday through Friday 9:00 AM to 5:00 PM, with Saturday appointments available by request."
       }
     }
   ]
@@ -205,10 +205,10 @@ export const SEO = ({
   description = businessInfo.description,
   canonical,
   type = "website",
-  image = "https://bmbpalmbeach.com/og-image.jpg",
+  image = "https://bmb.builders/og-image.jpg",
   noIndex = false,
 }: SEOProps) => {
-  const siteTitle = "Beau Monde Builders Palm Beach";
+  const siteTitle = "Beau Monde Builders Space Coast";
   const fullTitle = title ? `${title} | ${siteTitle}` : `${siteTitle} — Luxury Custom Home Builder`;
   const canonicalUrl = canonical ? `${businessInfo.url}${canonical}` : businessInfo.url;
 

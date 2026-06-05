@@ -100,10 +100,10 @@ const Press = () => {
             </p>
             <div className="pt-4">
               <a
-                href="mailto:press@beaumondebuilders.com"
+                href="mailto:ajhoover@mac.com"
                 className="text-accent hover:text-background transition-colors text-lg font-light tracking-wider"
               >
-                press@beaumondebuilders.com
+                ajhoover@mac.com
               </a>
             </div>
           </div>

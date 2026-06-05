@@ -72,8 +72,8 @@ const Renovations = () => {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://bmbpalmbeach.com/" },
-      { "@type": "ListItem", position: 2, name: "Renovations", item: "https://bmbpalmbeach.com/renovations" },
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://bmb.builders/" },
+      { "@type": "ListItem", position: 2, name: "Renovations", item: "https://bmb.builders/renovations" },
     ],
   };
 
@@ -81,7 +81,7 @@ const Renovations = () => {
     "@context": "https://schema.org",
     "@type": "Service",
     serviceType: "Luxury Renovation",
-    provider: { "@id": "https://bmbpalmbeach.com/#localbusiness" },
+    provider: { "@id": "https://bmb.builders/#localbusiness" },
     areaServed: areasServed.map((a) => ({ "@type": "Place", name: a })),
     hasOfferCatalog: {
       "@type": "OfferCatalog",
@@ -96,7 +96,7 @@ const Renovations = () => {
   return (
     <>
       <SEO
-        title="Luxury Renovations | Beau Monde Builders Palm Beach"
+        title="Luxury Renovations | Beau Monde Builders Space Coast"
         canonical="/renovations"
         description="Palm Beach's premier luxury renovation specialists. Discreet, full-service condominium and estate renovations by Florida Certified Master Builders."
       />

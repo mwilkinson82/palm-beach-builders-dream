@@ -849,11 +849,11 @@ const Home = () => {
 
           <RevealAnimation animation="fade-up" delay={480}>
             <p className="mt-10 font-sans text-[11px] md:text-xs tracking-[0.25em] uppercase text-primary-foreground/55 flex items-center justify-center gap-3 flex-wrap">
-              <a href="tel:+15616468992" className="hover:text-accent transition-colors">(561) 646-8992</a>
+              <a href="tel:+13212984122" className="hover:text-accent transition-colors">(321) 298-4122</a>
               <span aria-hidden className="inline-block w-1 h-1 rounded-full bg-accent/70" />
-              <a href="mailto:aj@bmbpalmbeach.com" className="hover:text-accent transition-colors normal-case tracking-[0.15em]">aj@bmbpalmbeach.com</a>
+              <a href="mailto:ajhoover@mac.com" className="hover:text-accent transition-colors normal-case tracking-[0.15em]">ajhoover@mac.com</a>
               <span aria-hidden className="inline-block w-1 h-1 rounded-full bg-accent/70" />
-              <span>205 Worth Ave.</span>
+              <span>1129 Rockledge Blvd.</span>
             </p>
           </RevealAnimation>
         </div>

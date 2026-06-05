@@ -1,5 +1,5 @@
 # Beau Monde Builders - robots.txt
-# https://beaumondebuilders.com
+# https://bmb.builders
 
 User-agent: Googlebot
 Allow: /
@@ -51,4 +51,4 @@ Allow: /
 Disallow: /api/
 
 # Sitemap location
-Sitemap: https://bmbpalmbeach.com/sitemap.xml
+Sitemap: https://bmb.builders/sitemap.xml
