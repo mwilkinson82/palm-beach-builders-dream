@@ -3,7 +3,7 @@ import { useEffect, useRef, ReactNode } from "react";
 interface RevealAnimationProps {
   children: ReactNode;
   delay?: number;
-  animation?: "fade-up" | "fade-in" | "slide-left" | "slide-right" | "scale-in" | "luxury-reveal";
+  animation?: "fade-up" | "fade-in" | "slide-left" | "slide-right" | "scale-in" | "luxury-reveal" | "curtain";
   className?: string;
 }
 
