@@ -179,7 +179,7 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
         </button>
         <button
           type="button"
-          onClick={openLightbox}
+          onClick={expandFullscreen}
           aria-label="Expand walkthrough to fullscreen"
           className="group flex items-center gap-2 border border-white/30 bg-black/30 backdrop-blur-md px-4 py-2.5 text-white text-[10px] md:text-xs uppercase tracking-[0.25em] font-light hover:border-accent hover:bg-black/50 transition-colors"
         >
@@ -187,23 +187,6 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
           <span>Expand</span>
         </button>
       </div>
-
-      <VideoLightbox
-        items={[
-          {
-            src: HERO_VIDEO_SRC,
-            poster: HERO_POSTER_SRC,
-            title: "Walkthrough with AJ Hoover",
-            caption: "Walkthrough with AJ Hoover",
-            subtitle:
-              "Chief Executive Officer · Newly Completed Residence · Beau Monde Builders, Space Coast",
-            kind: "mp4",
-            startTime: handoffTime,
-          },
-        ]}
-        open={open}
-        onClose={() => setOpen(false)}
-      />
     </section>
   );
 };
