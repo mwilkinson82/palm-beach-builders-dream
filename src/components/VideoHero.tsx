@@ -24,6 +24,7 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [promptHinting, setPromptHinting] = useState(true);
+  const [inView, setInView] = useState(true);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -37,17 +38,32 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
     return () => window.clearTimeout(t);
   }, [audioOn]);
 
+  // Observe whether the hero is on-screen so we can auto-mute when the visitor
+  // scrolls past, and restore their audio preference when they scroll back —
+  // without restarting playback from the beginning.
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(
+      ([entry]) => setInView(entry.intersectionRatio > 0.35),
+      { threshold: [0, 0.35, 0.6, 1] }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   // Native video avoids ReelReef's embedded play overlay and gives true muted autoplay.
+  // We intentionally do NOT reset currentTime here, so toggling sound or scrolling
+  // back to the hero resumes from where the visitor left off.
   useEffect(() => {
     const video = videoRef.current;
     if (!video || reducedMotion) return;
 
-    video.muted = !audioOn;
-    if (audioOn) video.currentTime = 0;
+    video.muted = !audioOn || !inView;
 
     const playAttempt = video.play();
     if (playAttempt) playAttempt.catch(() => undefined);
-  }, [audioOn, reducedMotion]);
+  }, [audioOn, inView, reducedMotion]);
 
   const toggleAudio = () => audioPreference.set(!audioOn);
 
