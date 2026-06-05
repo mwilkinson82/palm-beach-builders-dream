@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import logoSketch from "@/assets/beau-monde-logo-sketch.jpeg";
+import logoAsset from "@/assets/beau-monde-builders-logo.jpeg.asset.json";
+
+const logoSketch = logoAsset.url;
 
 interface SplashScreenProps {
   duration?: number;
@@ -56,48 +58,38 @@ export const SplashScreen = ({ duration = 3000, onComplete }: SplashScreenProps)
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-seafoam transition-opacity duration-700 ${
+      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-primary transition-opacity duration-700 ${
         phase === "exiting" ? "opacity-0" : "opacity-100"
       }`}
     >
       {/* Logo Container */}
       <div
         className={`flex flex-col items-center transition-all duration-700 ease-out ${
-          phase === "loading" || phase === "entering" 
-            ? "opacity-0 scale-95" 
+          phase === "loading" || phase === "entering"
+            ? "opacity-0 scale-95"
             : "opacity-100 scale-100"
         }`}
       >
         {/* Logo Image */}
-        <div className="relative mb-8">
+        <div className="relative mb-8 bg-background rounded-sm p-6 sm:p-8 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.45)]">
           <img
             src={logoSketch}
             alt="Beau Monde Builders"
-            className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 object-contain ring-1 ring-accent shadow-[0_25px_50px_-12px_rgba(15,42,61,0.45)] rounded-sm"
+            className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 object-contain"
           />
         </div>
 
         {/* Brand Text */}
         <div className="text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-light tracking-[0.2em] text-primary uppercase">
-            Beau Monde
-          </h1>
-          <div className="flex items-center justify-center gap-4 mt-3">
-            <div className="h-px w-8 bg-accent" />
-            <span className="text-xs sm:text-sm tracking-[0.3em] uppercase text-primary/60 font-light">
-              Builders
-            </span>
-            <div className="h-px w-8 bg-accent" />
-          </div>
-          <p className="text-sm sm:text-base md:text-lg tracking-[0.25em] uppercase text-primary/50 font-light mt-2">
-            Space Coast
+          <p className="text-sm sm:text-base md:text-lg tracking-[0.25em] uppercase text-background/70 font-light mt-2">
+            Space Coast in Central Florida
           </p>
         </div>
 
         {/* Subtle loading indicator */}
         <div className="mt-12">
-          <div className="w-32 h-px bg-primary/10 overflow-hidden">
-            <div 
+          <div className="w-32 h-px bg-background/15 overflow-hidden">
+            <div
               className={`h-full bg-accent origin-left ${imageLoaded ? '' : 'opacity-0'}`}
               style={{
                 animation: imageLoaded ? `loadingBar ${duration - 800}ms ease-out forwards` : 'none',

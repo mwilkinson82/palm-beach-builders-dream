@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import logoAsset from "@/assets/beau-monde-builders-logo.jpeg.asset.json";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,14 +33,17 @@ export const Navigation = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
-          <Link to="/" className="group">
-            <div className="flex flex-col">
-              <span className={`text-2xl md:text-[28px] font-wordmark tracking-tight leading-none transition-colors duration-500 ${textClass}`}>
-                Beau Monde
-              </span>
-              <span className={`mt-1 text-[10px] tracking-[0.3em] uppercase font-light transition-colors duration-500 ${mutedClass}`}>
-                Builders · Space Coast
-              </span>
+          <Link to="/" className="group flex items-center" aria-label="Beau Monde Builders — Space Coast in Central Florida">
+            <div
+              className={`flex items-center justify-center transition-all duration-500 ${
+                solid ? "bg-transparent p-0" : "bg-background/95 backdrop-blur-sm px-2 py-1 rounded-sm shadow-sm"
+              }`}
+            >
+              <img
+                src={logoAsset.url}
+                alt="Beau Monde Builders"
+                className="h-14 md:h-16 w-auto object-contain"
+              />
             </div>
           </Link>
 
