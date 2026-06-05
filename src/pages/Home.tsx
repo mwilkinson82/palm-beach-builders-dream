@@ -248,7 +248,7 @@ const Home = () => {
               <RevealAnimation animation="fade-up" delay={250}>
                 <p className="font-sans font-light text-base md:text-lg leading-relaxed max-w-lg mb-10 text-foreground/85">
                   Where architectural excellence meets uncompromising craftsmanship. 30 years of creating the Space Coast's
-                  most distinguished estates — custom residences beginning at $5M and rising into the extraordinary.
+                  most distinguished residences — custom homes from $2M to $5M and rising into the extraordinary.
                 </p>
               </RevealAnimation>
 
