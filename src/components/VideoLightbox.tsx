@@ -15,6 +15,8 @@ export interface LightboxVideo {
   poster?: string;
   /** How to render */
   kind: "iframe" | "mp4";
+  /** Optional starting playhead in seconds — used to hand off from the inline hero. */
+  startTime?: number;
 }
 
 interface VideoLightboxProps {
