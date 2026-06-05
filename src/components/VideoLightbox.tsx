@@ -189,7 +189,18 @@ export const VideoLightbox = ({
                 : "min(96vw, calc((100vh - 140px) * 16 / 9))",
           }}
         >
-          {item.kind === "iframe" ? (
+          {!introDone ? (
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-primary-foreground animate-fade-in px-6 text-center">
+              <span className="h-px w-12 bg-accent mb-5" />
+              <p className="font-sans uppercase text-[10px] md:text-xs tracking-[0.4em] text-accent/90 mb-4">
+                {introTitle ?? "Beau Monde Builders · Space Coast"}
+              </p>
+              <p className="font-display italic text-2xl md:text-4xl leading-snug text-primary-foreground/95 max-w-xl">
+                {introSubtitle ?? "A walkthrough with AJ Hoover"}
+              </p>
+              <span className="h-px w-12 bg-accent mt-5" />
+            </div>
+          ) : item.kind === "iframe" ? (
             <iframe
               src={finalSrc}
               title={item.title}
@@ -198,7 +209,7 @@ export const VideoLightbox = ({
               // @ts-expect-error legacy vendor attributes for iOS/older Safari
               webkitallowfullscreen="true"
               mozallowfullscreen="true"
-              className="absolute inset-0 h-full w-full"
+              className="absolute inset-0 h-full w-full animate-fade-in"
               style={{ border: 0 }}
             />
           ) : (
@@ -209,7 +220,7 @@ export const VideoLightbox = ({
               autoPlay
               controls
               playsInline
-              className="absolute inset-0 h-full w-full object-contain bg-black"
+              className="absolute inset-0 h-full w-full object-contain bg-black animate-fade-in"
             />
           )}
         </div>
