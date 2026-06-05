@@ -8,7 +8,7 @@ import { SplashScreen } from "@/components/SplashScreen";
 import { SEO } from "@/components/SEO";
 import { VideoHero } from "@/components/VideoHero";
 import { DeliveryShowcase } from "@/components/DeliveryShowcase";
-import { WalkthroughShowcase } from "@/components/WalkthroughShowcase";
+// WalkthroughShowcase removed from Home — promoted to hero via VideoHero
 import { WalkthroughGallery, PhotoLightbox, PHOTOS as WALKTHROUGH_PHOTOS } from "@/components/WalkthroughGallery";
 import { InterviewShowcase } from "@/components/InterviewShowcase";
 import { BentoTile } from "@/components/BentoTile";
