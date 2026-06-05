@@ -23,6 +23,14 @@ interface VideoLightboxProps {
   initialIndex?: number;
   open: boolean;
   onClose: () => void;
+  /**
+   * Optional cinematic intro card shown for N ms before the player mounts.
+   * Lets the visitor settle so the first audio they hear is the very top of the clip.
+   * Only applied on the initial open; subsequent playlist switches skip it.
+   */
+  introDelayMs?: number;
+  introTitle?: string;
+  introSubtitle?: string;
 }
 
 /**
@@ -35,6 +43,9 @@ export const VideoLightbox = ({
   initialIndex = 0,
   open,
   onClose,
+  introDelayMs = 0,
+  introTitle,
+  introSubtitle,
 }: VideoLightboxProps) => {
   const [current, setCurrent] = useState(initialIndex);
   const playerRef = useRef<HTMLDivElement | null>(null);
@@ -44,6 +55,32 @@ export const VideoLightbox = ({
   useEffect(() => {
     if (open) setCurrent(initialIndex);
   }, [open, initialIndex]);
+
+  // Cinematic intro beat — defer iframe mount so the opening audio lands intentionally.
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+  const effectiveDelay = introDelayMs > 0
+    ? (prefersReducedMotion ? Math.min(introDelayMs, 500) : introDelayMs)
+    : 0;
+  const [introDone, setIntroDone] = useState(effectiveDelay === 0);
+  useEffect(() => {
+    if (!open) {
+      setIntroDone(effectiveDelay === 0);
+      return;
+    }
+    if (effectiveDelay === 0) {
+      setIntroDone(true);
+      return;
+    }
+    setIntroDone(false);
+    const t = window.setTimeout(() => setIntroDone(true), effectiveDelay);
+    return () => window.clearTimeout(t);
+  }, [open, effectiveDelay]);
+  // After the first item finishes its intro, switching playlist items skips the card.
+  useEffect(() => {
+    if (open && current !== initialIndex) setIntroDone(true);
+  }, [current, initialIndex, open]);
 
   useEffect(() => {
     if (!open) return;
@@ -152,7 +189,18 @@ export const VideoLightbox = ({
                 : "min(96vw, calc((100vh - 140px) * 16 / 9))",
           }}
         >
-          {item.kind === "iframe" ? (
+          {!introDone ? (
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-primary-foreground animate-fade-in px-6 text-center">
+              <span className="h-px w-12 bg-accent mb-5" />
+              <p className="font-sans uppercase text-[10px] md:text-xs tracking-[0.4em] text-accent/90 mb-4">
+                {introTitle ?? "Beau Monde Builders · Space Coast"}
+              </p>
+              <p className="font-display italic text-2xl md:text-4xl leading-snug text-primary-foreground/95 max-w-xl">
+                {introSubtitle ?? "A walkthrough with AJ Hoover"}
+              </p>
+              <span className="h-px w-12 bg-accent mt-5" />
+            </div>
+          ) : item.kind === "iframe" ? (
             <iframe
               src={finalSrc}
               title={item.title}
@@ -161,7 +209,7 @@ export const VideoLightbox = ({
               // @ts-expect-error legacy vendor attributes for iOS/older Safari
               webkitallowfullscreen="true"
               mozallowfullscreen="true"
-              className="absolute inset-0 h-full w-full"
+              className="absolute inset-0 h-full w-full animate-fade-in"
               style={{ border: 0 }}
             />
           ) : (
@@ -172,7 +220,7 @@ export const VideoLightbox = ({
               autoPlay
               controls
               playsInline
-              className="absolute inset-0 h-full w-full object-contain bg-black"
+              className="absolute inset-0 h-full w-full object-contain bg-black animate-fade-in"
             />
           )}
         </div>

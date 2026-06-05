@@ -18,11 +18,19 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
   const audioOn = useAudioPreference();
   const wrapRef = useRef<HTMLDivElement>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [ctaHinting, setCtaHinting] = useState(true);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReducedMotion(mq.matches);
   }, []);
+
+  // Draw the eye to the sound CTA for the first few seconds, then settle.
+  useEffect(() => {
+    if (audioOn) { setCtaHinting(false); return; }
+    const t = window.setTimeout(() => setCtaHinting(false), 6000);
+    return () => window.clearTimeout(t);
+  }, [audioOn]);
 
   // Compose autoplay loop iframe src
   let inlineSrc = iframeSrc;
@@ -76,19 +84,30 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
       </div>
 
       {/* Click-through to open lightbox with sound */}
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        aria-label="Watch the walkthrough with sound and full controls"
-        className="absolute bottom-8 right-4 sm:right-8 lg:right-16 z-10 group flex items-center gap-2 border border-white/30 bg-black/30 backdrop-blur-md px-4 py-2.5 text-white text-[10px] md:text-xs uppercase tracking-[0.25em] font-light hover:border-accent hover:bg-black/50 transition-colors"
-      >
-        {audioOn ? (
-          <Maximize2 className="h-3.5 w-3.5 md:h-4 md:w-4 text-accent" strokeWidth={1.25} />
-        ) : (
-          <Volume2 className="h-3.5 w-3.5 md:h-4 md:w-4 text-accent" strokeWidth={1.25} />
+      <div className="absolute bottom-8 right-4 sm:right-8 lg:right-16 z-10 flex flex-col items-end gap-2">
+        {ctaHinting && !reducedMotion && !audioOn && (
+          <span className="font-display italic text-white/90 text-sm md:text-base animate-fade-in">
+            Hear AJ's welcome →
+          </span>
         )}
-        <span>{audioOn ? "Expand" : "Watch with sound"}</span>
-      </button>
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-label="Watch the walkthrough with sound and full controls"
+          className={`group flex items-center gap-2 border bg-black/30 backdrop-blur-md px-4 py-2.5 text-white text-[10px] md:text-xs uppercase tracking-[0.25em] font-light hover:border-accent hover:bg-black/50 transition-all ${
+            ctaHinting && !audioOn
+              ? "border-accent ring-2 ring-accent/40 animate-pulse"
+              : "border-white/30"
+          }`}
+        >
+          {audioOn ? (
+            <Maximize2 className="h-3.5 w-3.5 md:h-4 md:w-4 text-accent" strokeWidth={1.25} />
+          ) : (
+            <Volume2 className="h-3.5 w-3.5 md:h-4 md:w-4 text-accent" strokeWidth={1.25} />
+          )}
+          <span>{audioOn ? "Expand" : "Watch with sound"}</span>
+        </button>
+      </div>
 
       <VideoLightbox
         items={[
@@ -103,6 +122,9 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
         ]}
         open={open}
         onClose={() => setOpen(false)}
+        introDelayMs={2000}
+        introTitle="Beau Monde Builders · Space Coast"
+        introSubtitle="A walkthrough with AJ Hoover"
       />
     </section>
   );
