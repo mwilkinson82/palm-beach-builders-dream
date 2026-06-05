@@ -176,78 +176,104 @@ const Renovations = () => {
           </div>
         </section>
 
-        {/* Text hero */}
+        {/* Text hero — split editorial */}
         <section className="relative pt-20 pb-20 md:pt-28 md:pb-28 bg-[hsl(var(--seafoam))] border-y border-accent/15">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <RevealAnimation animation="fade-up">
-              <div className="max-w-4xl">
-                <div className="flex items-center space-x-3 mb-8">
-                  <div className="h-px w-12 bg-accent" />
-                  <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-accent font-sans font-light">
-                    Renovations
-                  </span>
-                </div>
-
-                <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-primary leading-[1.05] mb-10">
-                  <span className="italic">Reimagine</span> your
-                  <br />
-                  dream residence.
-                </h1>
-
-                <p className="font-sans font-light text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mb-12">
-                  30 years of discreet, master-built craftsmanship — now applied to the
-                  residences you already love. Every renovation is led personally, scheduled
-                  around your life, and finished to the same standard as our ground-up estates.
-                </p>
-
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-                  <Link to="/contact" className={ctaClass}>
-                    <span className="relative">
-                      Talk to Beau Monde
-                      <span className="pointer-events-none absolute -bottom-1.5 left-0 h-px w-0 bg-accent transition-all duration-500 group-hover:w-full" />
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+              {/* Left — copy */}
+              <RevealAnimation animation="fade-up" className="lg:col-span-7">
+                <div className="max-w-xl">
+                  <div className="flex items-center space-x-3 mb-8">
+                    <div className="h-px w-12 bg-accent" />
+                    <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-accent font-sans font-light">
+                      Renovations
                     </span>
-                  </Link>
-                  <Link
-                    to="/process"
-                    className="group inline-flex items-center text-[10px] md:text-xs uppercase tracking-[0.4em] font-sans font-light text-primary"
-                  >
-                    <span className="relative pb-1">
-                      View Our Process
-                      <span className="pointer-events-none absolute bottom-0 left-0 h-px w-full bg-accent/40 group-hover:bg-accent transition-colors duration-500" />
-                    </span>
-                    <span className="ml-3 text-accent">→</span>
-                  </Link>
+                  </div>
+
+                  <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-primary leading-[1.05] mb-10">
+                    <span className="italic">Reimagine</span> your
+                    <br />
+                    dream residence.
+                  </h1>
+
+                  <p className="font-sans font-light text-lg md:text-xl text-muted-foreground leading-relaxed mb-12">
+                    30 years of discreet, master-built craftsmanship — now applied to the
+                    residences you already love. Every renovation is led personally, scheduled
+                    around your life, and finished to the same standard as our ground-up estates.
+                  </p>
+
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                    <Link to="/contact" className={ctaClass}>
+                      <span className="relative">
+                        Talk to Beau Monde
+                        <span className="pointer-events-none absolute -bottom-1.5 left-0 h-px w-0 bg-accent transition-all duration-500 group-hover:w-full" />
+                      </span>
+                    </Link>
+                    <Link
+                      to="/process"
+                      className="group inline-flex items-center text-[10px] md:text-xs uppercase tracking-[0.4em] font-sans font-light text-primary"
+                    >
+                      <span className="relative pb-1">
+                        View Our Process
+                        <span className="pointer-events-none absolute bottom-0 left-0 h-px w-full bg-accent/40 group-hover:bg-accent transition-colors duration-500" />
+                      </span>
+                      <span className="ml-3 text-accent">→</span>
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            </RevealAnimation>
+              </RevealAnimation>
+
+              {/* Right — editorial image */}
+              <RevealAnimation animation="fade-up" delay={180} className="lg:col-span-5">
+                <figure className="relative">
+                  <div className="relative aspect-[4/5] overflow-hidden ring-1 ring-accent/60 shadow-[0_30px_60px_-20px_hsl(var(--primary)/0.35),0_12px_24px_-12px_hsl(var(--primary)/0.25)]">
+                    <img
+                      src={renovationAfter.url}
+                      alt="Interior detail of a recently reimagined Space Coast residence"
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <figcaption className="mt-4 flex items-center space-x-3">
+                    <span className="h-px w-8 bg-accent" />
+                    <span className="font-sans text-[10px] tracking-[0.35em] uppercase text-accent">
+                      Recently Reimagined · Space Coast
+                    </span>
+                  </figcaption>
+                </figure>
+              </RevealAnimation>
+            </div>
           </div>
         </section>
 
-        {/* Editorial intro */}
+        {/* Editorial intro — centered pause */}
         <section className="pt-6 pb-20 md:pt-10 md:pb-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <RevealAnimation animation="fade-up">
-              <div className="max-w-3xl">
-                <div className="flex items-center space-x-3 mb-6">
+              <div className="max-w-3xl mx-auto text-center">
+                <div className="flex items-center justify-center space-x-3 mb-6">
                   <div className="h-px w-10 bg-accent" />
                   <span className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans font-light">
                     The Standard
                   </span>
+                  <div className="h-px w-10 bg-accent" />
                 </div>
                 <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-primary leading-[1.1] mb-8">
                   The Space Coast and Central Florida's finest
                   <br />
                   <span className="italic text-muted-foreground">renovation specialists.</span>
                 </h2>
-                <p className="font-sans font-light text-base md:text-lg text-muted-foreground leading-relaxed max-w-xl">
+                <p className="font-sans font-light text-base md:text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto mb-8">
                   The same Florida Certified Master Builder excellence behind Palm
                   Beach's most distinguished new estates — applied, quietly, to the
                   residences our clients already own.
                 </p>
+                <div className="mx-auto h-px w-16 bg-accent/70" />
               </div>
             </RevealAnimation>
           </div>
         </section>
+
 
         {/* FCMB credentials band */}
         <section className="py-20 md:py-28 border-t border-accent/15 bg-secondary/20">
