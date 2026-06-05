@@ -424,7 +424,7 @@ const Renovations = () => {
                   </span>
                 </div>
                 <h2 className="font-display text-3xl md:text-4xl text-primary-foreground leading-[1.05] mb-6">
-                  Built for the Space Coast's
+                  Built for Florida's finest
                   <br />
                   <span className="italic text-primary-foreground/70">towers.</span>
                 </h2>
