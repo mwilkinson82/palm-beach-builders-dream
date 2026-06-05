@@ -235,7 +235,7 @@ const Renovations = () => {
                   </span>
                 </div>
                 <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-primary leading-[1.1] mb-8">
-                  The Space Coast's finest
+                  The Space Coast and Central Florida's finest
                   <br />
                   <span className="italic text-muted-foreground">renovation specialists.</span>
                 </h2>
