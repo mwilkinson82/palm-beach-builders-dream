@@ -115,12 +115,13 @@ All colors MUST be HSL.
   }
 }
 
-/* Premium Reveal Animations */
+/* Premium Reveal Animations — slow, fluid, engraved-invitation cadence */
 .reveal-element {
   opacity: 0;
-  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 1500ms cubic-bezier(0.19, 1, 0.22, 1),
+              transform 1500ms cubic-bezier(0.19, 1, 0.22, 1),
+              filter 1500ms cubic-bezier(0.19, 1, 0.22, 1),
+              clip-path 1600ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform, filter;
 }
 
@@ -128,10 +129,10 @@ All colors MUST be HSL.
   opacity: 1;
 }
 
-/* Luxury Reveal - Sophisticated fade with slight scale */
+/* Luxury Reveal — sophisticated fade with slight scale + breath of blur */
 .reveal-luxury {
-  transform: translateY(40px) scale(0.95);
-  filter: blur(10px);
+  transform: translateY(48px) scale(0.965);
+  filter: blur(12px);
 }
 
 .reveal-luxury.revealed {
@@ -141,50 +142,83 @@ All colors MUST be HSL.
 
 /* Fade Up */
 .reveal-fade-up {
-  transform: translateY(60px);
+  transform: translateY(64px);
+  filter: blur(6px);
 }
 
 .reveal-fade-up.revealed {
   transform: translateY(0);
+  filter: blur(0);
 }
 
 /* Fade In */
 .reveal-fade-in {
   opacity: 0;
+  filter: blur(4px);
 }
 
 .reveal-fade-in.revealed {
   opacity: 1;
+  filter: blur(0);
 }
 
 /* Slide Left */
 .reveal-slide-left {
-  transform: translateX(-60px);
+  transform: translateX(-72px);
+  filter: blur(6px);
 }
 
 .reveal-slide-left.revealed {
   transform: translateX(0);
+  filter: blur(0);
 }
 
 /* Slide Right */
 .reveal-slide-right {
-  transform: translateX(60px);
+  transform: translateX(72px);
+  filter: blur(6px);
 }
 
 .reveal-slide-right.revealed {
   transform: translateX(0);
+  filter: blur(0);
 }
 
 /* Scale In */
 .reveal-scale-in {
-  transform: scale(0.85);
-  filter: blur(5px);
+  transform: scale(0.88);
+  filter: blur(8px);
 }
 
 .reveal-scale-in.revealed {
   transform: scale(1);
   filter: blur(0);
 }
+
+/* Curtain — engraved invitation reveal, top-to-bottom unveil */
+.reveal-curtain {
+  clip-path: inset(0 0 100% 0);
+  transform: translateY(16px);
+}
+
+.reveal-curtain.revealed {
+  clip-path: inset(0 0 0 0);
+  transform: translateY(0);
+}
+
+/* Mobile — tone the travel and skip blur to keep playback buttery on low-end devices */
+@media (max-width: 768px) {
+  .reveal-element {
+    transition-duration: 1100ms;
+  }
+  .reveal-luxury { transform: translateY(28px) scale(0.985); filter: blur(6px); }
+  .reveal-fade-up { transform: translateY(32px); filter: none; }
+  .reveal-fade-in { filter: none; }
+  .reveal-slide-left { transform: translateX(-36px); filter: none; }
+  .reveal-slide-right { transform: translateX(36px); filter: none; }
+  .reveal-scale-in { transform: scale(0.94); filter: blur(4px); }
+}
+
 
 /* Cinematic hero — slow Ken Burns + hairline draw, triggered by ancestor .revealed */
 .cinema-image {
