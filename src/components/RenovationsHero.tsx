@@ -71,7 +71,7 @@ export const RenovationsHero = () => {
       <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/60 to-transparent" />
 
       {/* Bottom-left brand mark */}
-      <div className="absolute bottom-8 left-4 sm:left-8 lg:left-16 z-10 flex items-center space-x-3 text-white">
+      <div className="absolute bottom-3 sm:bottom-8 left-4 sm:left-8 lg:left-16 z-10 flex items-center space-x-3 text-white">
         <div className="h-px w-8 md:w-12 bg-accent" />
         <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] font-light text-white/80">
           Beau Monde Renovations
