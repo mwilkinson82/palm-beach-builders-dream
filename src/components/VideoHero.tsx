@@ -12,11 +12,16 @@ interface VideoHeroProps {
 // unmutes in place and restarts the clip from 0 so the opening "Good morning" lands.
 const DEFAULT_SRC =
   "https://media.reelreef.com/videos/019caebd-3875-71e0-b3da-bde3d856926a";
+const HERO_VIDEO_SRC =
+  "https://stream.mux.com/RobUQ1iPAyHL00WrjLg7XgIPxrqkE9ID9/high.mp4";
+const HERO_POSTER_SRC =
+  "https://image.mux.com/RobUQ1iPAyHL00WrjLg7XgIPxrqkE9ID9/thumbnail.png?width=1920&height=1080&smart_crop=true&time=1";
 
 export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
   const [open, setOpen] = useState(false);
   const audioOn = useAudioPreference();
   const wrapRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [promptHinting, setPromptHinting] = useState(true);
 
@@ -32,20 +37,17 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
     return () => window.clearTimeout(t);
   }, [audioOn]);
 
-  // Compose iframe src. Restart from t=0 whenever audio state flips so the
-  // "Good morning" intro is the first thing the visitor hears on unmute.
-  let inlineSrc = iframeSrc;
-  try {
-    const url = new URL(iframeSrc);
-    url.searchParams.set("autoplay", reducedMotion ? "0" : "1");
-    url.searchParams.set("muted", audioOn ? "0" : "1");
-    url.searchParams.set("loop", "1");
-    url.searchParams.set("controls", "0");
-    url.searchParams.set("t", "0");
-    inlineSrc = url.toString();
-  } catch {
-    /* ignore */
-  }
+  // Native video avoids ReelReef's embedded play overlay and gives true muted autoplay.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || reducedMotion) return;
+
+    video.muted = !audioOn;
+    if (audioOn) video.currentTime = 0;
+
+    const playAttempt = video.play();
+    if (playAttempt) playAttempt.catch(() => undefined);
+  }, [audioOn, reducedMotion]);
 
   const toggleAudio = () => audioPreference.set(!audioOn);
 
@@ -56,14 +58,19 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
     >
       <div ref={wrapRef} className="absolute inset-0">
         {!reducedMotion && (
-          <iframe
-            key={audioOn ? "on" : "off"}
-            src={inlineSrc}
+          <video
+            ref={videoRef}
+            src={HERO_VIDEO_SRC}
+            poster={HERO_POSTER_SRC}
             title="Walkthrough with AJ Hoover, autoplay preview"
-            allow="autoplay; picture-in-picture"
-            className="absolute inset-0 h-full w-full pointer-events-none scale-[1.15]"
+            autoPlay
+            muted={!audioOn}
+            loop
+            playsInline
+            preload="auto"
+            controls={false}
+            className="absolute inset-0 h-full w-full pointer-events-none object-cover"
             style={{ border: 0 }}
-            tabIndex={-1}
           />
         )}
       </div>
