@@ -17,8 +17,8 @@ import { ArrowRight, Star } from "lucide-react";
 import fcmbLogo from "@/assets/fcmb-logo.png";
 import logoSketch from "@/assets/beau-monde-logo-sketch.jpeg";
 import renovationHero from "@/assets/projects/renovation-hero.jpg.asset.json";
-import bespokePortrait from "@/assets/projects/bespoke-portrait.jpg.asset.json";
 import bespokeDetail from "@/assets/projects/bespoke-detail.jpg.asset.json";
+import oceanfrontHero from "@/assets/projects/oceanfront.jpg.asset.json";
 import nahbBadge from "@/assets/nahb-master-building-professional.png.asset.json";
 // Carousel skips c10, so carousel position N>=10 maps to c(N+1).
 import featuredResidence from "@/assets/constellation/c55.jpg.asset.json"; // carousel #54
@@ -236,30 +236,34 @@ const Home = () => {
       )}
 
       {/* Editorial Sequence — Bespoke hero + Stats */}
-      <section className="relative bg-background text-foreground py-20 md:py-28 lg:py-32 overflow-hidden">
+      <section className="relative bg-background text-foreground overflow-hidden">
         <div className="absolute inset-0 silk-grain opacity-[0.03] pointer-events-none select-none z-0" />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 lg:px-12">
+        {/* Band 1 — Full-bleed editorial split: Atlantic background + floating caption card */}
+        <div className="relative flex flex-col lg:flex-row min-h-[80vh] lg:min-h-[760px]">
 
-          {/* Band 1 — Hero editorial */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-0 border-b border-accent/30 pb-16 md:pb-20">
-            <div className="lg:col-span-7 lg:pr-12 order-2 lg:order-1">
+          {/* Narrative Column */}
+          <div className="relative z-30 lg:w-5/12 flex items-center justify-end px-6 sm:px-10 lg:pl-16 lg:pr-12 py-20 md:py-24 lg:py-32">
+            <div className="max-w-md w-full">
               <RevealAnimation animation="fade-up">
-                <span className="block font-sans text-[10px] tracking-[0.25em] text-accent uppercase mb-4">
-                  The Beau Monde Standard
-                </span>
+                <div className="flex items-center gap-4 mb-10">
+                  <span className="h-px w-12 bg-accent" />
+                  <span className="font-sans text-[10px] tracking-[0.4em] uppercase text-accent">
+                    The Beau Monde Standard
+                  </span>
+                </div>
               </RevealAnimation>
 
-              <div className="relative">
+              <div className="relative mb-10">
                 <span
                   aria-hidden
-                  className="parallax-ligature absolute -top-10 md:-top-16 -left-3 md:-left-12 font-display italic text-[8rem] md:text-[16rem] lg:text-[18rem] leading-none text-accent/15 pointer-events-none select-none"
+                  className="parallax-ligature absolute -left-6 md:-left-10 -top-14 md:-top-20 font-display italic text-[10rem] md:text-[14rem] leading-none text-accent/15 pointer-events-none select-none"
                   style={{ fontFeatureSettings: "'swsh' 1, 'dlig' 1" }}
                 >
                   B
                 </span>
                 <RevealAnimation animation="luxury-reveal" delay={120}>
-                  <h2 className="relative z-10 font-display text-5xl sm:text-6xl lg:text-8xl leading-[0.9] font-light mb-8 tracking-tight">
+                  <h2 className="relative z-10 font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[0.95] font-light tracking-tight text-primary">
                     Bespoke Luxury <br />
                     <span className="italic">Redefined</span>
                   </h2>
@@ -267,7 +271,7 @@ const Home = () => {
               </div>
 
               <RevealAnimation animation="fade-up" delay={250}>
-                <p className="font-sans font-light text-base md:text-lg leading-relaxed max-w-lg mb-10 text-foreground/85">
+                <p className="font-sans font-light text-base md:text-lg leading-relaxed text-foreground/75 mb-10">
                   Where architectural excellence meets uncompromising craftsmanship. 30 years of creating the Space Coast's
                   most distinguished residences — custom homes from $2M to $5M and rising into the extraordinary.
                 </p>
@@ -280,7 +284,6 @@ const Home = () => {
                     to="/contact"
                     className="group relative inline-flex items-center justify-center bg-primary text-primary-foreground font-sans text-[11px] uppercase tracking-[0.28em] font-medium px-10 md:px-12 py-5 overflow-hidden transition-[background,transform,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-primary/95 hover:-translate-y-[1px] hover:shadow-[0_18px_40px_-18px_hsl(var(--primary)/0.55)]"
                   >
-                    {/* brass corner ticks */}
                     <span aria-hidden className="pointer-events-none absolute top-1.5 left-1.5 w-2.5 h-px bg-accent/80" />
                     <span aria-hidden className="pointer-events-none absolute top-1.5 left-1.5 w-px h-2.5 bg-accent/80" />
                     <span aria-hidden className="pointer-events-none absolute top-1.5 right-1.5 w-2.5 h-px bg-accent/80" />
@@ -289,7 +292,6 @@ const Home = () => {
                     <span aria-hidden className="pointer-events-none absolute bottom-1.5 left-1.5 w-px h-2.5 bg-accent/80" />
                     <span aria-hidden className="pointer-events-none absolute bottom-1.5 right-1.5 w-2.5 h-px bg-accent/80" />
                     <span aria-hidden className="pointer-events-none absolute bottom-1.5 right-1.5 w-px h-2.5 bg-accent/80" />
-                    {/* brass sheen sweep on hover */}
                     <span
                       aria-hidden
                       className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 bg-gradient-to-r from-transparent via-accent/25 to-transparent -skew-x-12 translate-x-[-120%] group-hover:translate-x-[420%] transition-transform duration-[1100ms] ease-out"
@@ -300,12 +302,10 @@ const Home = () => {
                     </span>
                   </Link>
 
-                  {/* Secondary — Ivory with brass hairline that thickens on hover */}
                   <Link
                     to="/projects"
                     className="group relative inline-flex items-center justify-center bg-transparent text-primary font-sans text-[11px] uppercase tracking-[0.28em] font-medium px-10 md:px-12 py-5 border border-primary/80 transition-[background,color,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-primary hover:text-primary-foreground hover:-translate-y-[1px]"
                   >
-                    {/* brass inner hairline frame, fades in on hover */}
                     <span aria-hidden className="pointer-events-none absolute inset-[3px] border border-accent/0 group-hover:border-accent/60 transition-colors duration-500" />
                     <span className="relative z-10">Find My Style</span>
                   </Link>
@@ -325,54 +325,75 @@ const Home = () => {
                 </div>
               </RevealAnimation>
             </div>
+          </div>
 
-            <div className="lg:col-span-5 relative lg:pb-28 order-1 lg:order-2">
-              <div className="flex flex-row items-start gap-3 lg:block">
-                {/* Interior — dominant */}
-                <div className="w-[58%] lg:w-full">
-                  <RevealAnimation animation="scale-in" delay={200}>
-                    <div className="relative">
-                      <Parallax speed={0.08} className="block">
-                        <img
-                          src={bespokeDetail.url}
-                          alt="Beau Monde interior — coffered ceilings, brass lanterns, marble island"
-                          className="w-full aspect-[4/5] object-cover shadow-[40px_40px_80px_-20px_hsl(var(--primary)/0.25)]"
-                          loading="lazy"
-                        />
-                        {/* engraved corner hairline (brass, bottom-right) */}
-                        <span
-                          aria-hidden
-                          className="absolute bottom-2 right-2 lg:bottom-3 lg:right-3 w-10 h-10 lg:w-16 lg:h-16 border-b border-r border-accent/70 pointer-events-none"
-                        />
-                      </Parallax>
-                    </div>
-                  </RevealAnimation>
-                </div>
+          {/* Visual Column — layered Atlantic composition */}
+          <div className="relative lg:w-7/12 min-h-[70vh] lg:min-h-0 group">
+            {/* Background base — Atlantic-front estate */}
+            <div className="absolute inset-0 overflow-hidden">
+              <Parallax speed={0.06} className="absolute inset-0">
+                <img
+                  src={oceanfrontHero.url}
+                  alt="Beau Monde Atlantic-front estate — Space Coast oceanfront architecture"
+                  className="w-full h-full object-cover scale-105 transition-transform duration-[3000ms] ease-out group-hover:scale-100"
+                  loading="lazy"
+                />
+              </Parallax>
+              {/* Ivory bleed from left so text column meets imagery softly */}
+              <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-background via-background/30 to-transparent lg:via-transparent" />
+              <div aria-hidden className="absolute inset-0 bg-primary/[0.04]" />
+            </div>
 
-                {/* Portrait — small offset counterpart */}
-                <div className="w-[42%] mt-8 lg:mt-0 lg:absolute lg:bottom-[-3rem] lg:left-[-2.5rem] lg:w-[46%] lg:z-30">
-                  <RevealAnimation animation="fade-up" delay={420}>
-                    <div className="relative">
-                      <img
-                        src={bespokePortrait.url}
-                        alt="Portrait of a Beau Monde client — the life behind the residence"
-                        className="w-full aspect-[3/4] object-cover object-[center_top] shadow-[30px_30px_60px_-20px_hsl(var(--primary)/0.4)] ring-1 ring-accent/30"
-                        loading="lazy"
-                      />
-                      <div className="hidden lg:block absolute -bottom-5 -right-6 z-10">
-                        <p className="font-display italic text-sm text-accent bg-background px-4 py-2 border border-accent/40 shadow-md whitespace-nowrap">
-                          Turning blueprints to fingerprints
-                        </p>
-                      </div>
+            {/* Structural brass accents */}
+            <div aria-hidden className="hidden lg:block absolute top-14 right-14 w-40 h-40 border-t border-r border-accent/30 z-20 transition-transform duration-[2000ms] ease-out group-hover:translate-x-3 group-hover:-translate-y-3" />
+            <div aria-hidden className="hidden lg:block absolute bottom-1/3 right-1/4 w-24 h-px bg-accent/40 z-20" />
+
+            {/* Floating foreground caption card — interior */}
+            <div className="relative lg:absolute lg:bottom-10 lg:-left-20 lg:right-16 z-40 px-4 sm:px-8 lg:px-0 -mt-12 lg:mt-0 pb-12 lg:pb-0">
+              <RevealAnimation animation="fade-up" delay={420}>
+                <div className="relative bg-background p-3 md:p-4 shadow-[0_50px_100px_-20px_hsl(var(--primary)/0.3)]">
+                  <div className="relative overflow-hidden aspect-[4/3]">
+                    <img
+                      src={bespokeDetail.url}
+                      alt="Beau Monde interior — coffered ceilings, brass lanterns, marble island"
+                      className="w-full h-full object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-primary/55 via-transparent to-transparent" />
+                    {/* engraved corner hairline */}
+                    <span
+                      aria-hidden
+                      className="absolute top-3 right-3 w-10 h-10 border-t border-r border-accent/60 pointer-events-none"
+                    />
+                    {/* Caption bar */}
+                    <div className="absolute bottom-0 left-0 right-0 bg-background/95 backdrop-blur-md py-5 px-6 md:px-8 border-t border-accent/15">
+                      <span className="block font-sans text-[10px] tracking-[0.35em] uppercase text-accent mb-1.5">
+                        Oceanfront Living
+                      </span>
+                      <span className="block font-display italic text-lg md:text-xl leading-tight text-primary">
+                        Turning blueprints to fingerprints
+                      </span>
                     </div>
-                  </RevealAnimation>
+                  </div>
                 </div>
+              </RevealAnimation>
+            </div>
+
+            {/* Discover More indicator */}
+            <div aria-hidden className="hidden lg:flex absolute bottom-12 right-10 flex-col items-center gap-5 z-50">
+              <span className="font-sans text-[9px] tracking-[0.5em] uppercase text-primary/40 [writing-mode:vertical-rl] rotate-180">
+                Discover More
+              </span>
+              <div className="relative w-px h-20 bg-gradient-to-b from-primary/40 to-transparent overflow-hidden">
+                <span className="absolute top-0 left-0 w-full h-1/2 bg-accent animate-[bounce_3s_infinite]" />
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Band 2 — Stats */}
-          <div className="py-12 md:py-14 border-b border-accent/30">
+        {/* Band 2 — Stats */}
+        <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 lg:px-12">
+          <div className="py-12 md:py-14 border-t border-accent/30">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 divide-x divide-accent/20">
               {[
                 { v: "30", l: "Years Excellence" },
@@ -391,7 +412,6 @@ const Home = () => {
               ))}
             </div>
           </div>
-
         </div>
       </section>
 
