@@ -17,8 +17,6 @@ const HERO_POSTER_SRC =
   "https://image.mux.com/RobUQ1iPAyHL00WrjLg7XgIPxrqkE9ID9/thumbnail.png?width=1920&height=1080&smart_crop=true&time=1";
 
 export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
-  const [open, setOpen] = useState(false);
-  const [handoffTime, setHandoffTime] = useState(0);
   const audioOn = useAudioPreference();
   const wrapRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
