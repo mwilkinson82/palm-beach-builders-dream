@@ -130,8 +130,8 @@ const Home = () => {
           </RevealAnimation>
           <RevealAnimation animation="fade-up" delay={220}>
             <p className="mt-5 font-sans font-light text-[14px] md:text-[15px] tracking-wide text-primary/65 max-w-2xl mx-auto">
-              Rockledge to Melbourne Beach to Cocoa — the residences that define luxury living
-              along Florida's Atlantic coast.
+              From the Space Coast to Orlando — the residences that define luxury living
+              along Florida's Atlantic coast and Central Florida homescapes.
             </p>
           </RevealAnimation>
         </div>
