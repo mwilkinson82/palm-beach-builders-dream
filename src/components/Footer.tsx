@@ -19,7 +19,7 @@ export const Footer = () => {
               </span>
             </div>
             <p className="text-sm font-light leading-relaxed max-w-sm text-primary-foreground/70">
-              Creating Palm Beach's most distinguished estates through architectural excellence
+              Creating the Space Coast's most distinguished estates through architectural excellence
               and uncompromising craftsmanship since 1994.
             </p>
           </div>

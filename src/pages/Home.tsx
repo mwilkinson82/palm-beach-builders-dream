@@ -43,7 +43,7 @@ const EMBLEM_MEANINGS = [
   },
   {
     title: "Palm Trees",
-    body: "Our geographical stamp — the tranquility and exclusive heritage of Palm Beach woven into the design itself.",
+    body: "Our geographical stamp — the tranquility and exclusive heritage of Florida's Space Coast woven into the design itself.",
   },
 ];
 
@@ -80,7 +80,7 @@ const Home = () => {
     <>
       <SEO 
         canonical="/"
-        description="Beau Monde Builders — Florida's premier custom luxury home builder on Worth Avenue, Palm Beach. 30 years crafting bespoke oceanfront estates."
+        description="Beau Monde Builders — Florida's premier custom luxury home builder on Florida's Space Coast. 30 years crafting bespoke oceanfront estates."
       />
       
       {/* Splash Screen */}
@@ -94,7 +94,7 @@ const Home = () => {
       <div className="min-h-screen bg-background">
         <Navigation />
 
-      <h1 className="sr-only">Beau Monde Builders — Custom Luxury Home Builder in Palm Beach</h1>
+      <h1 className="sr-only">Beau Monde Builders — Custom Luxury Home Builder on Florida's Space Coast</h1>
 
       {/* Hero Section - Cinematic Video */}
       <VideoHero />
@@ -247,7 +247,7 @@ const Home = () => {
 
               <RevealAnimation animation="fade-up" delay={250}>
                 <p className="font-sans font-light text-base md:text-lg leading-relaxed max-w-lg mb-10 text-foreground/85">
-                  Where architectural excellence meets uncompromising craftsmanship. 30 years of creating Palm Beach's
+                  Where architectural excellence meets uncompromising craftsmanship. 30 years of creating the Space Coast's
                   most distinguished estates — custom residences beginning at $5M and rising into the extraordinary.
                 </p>
               </RevealAnimation>

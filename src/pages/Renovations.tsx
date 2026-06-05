@@ -58,7 +58,7 @@ const propertyTypes = [
 const areasServed = ["Palm Beach Island", "West Palm Beach", "Jupiter Island", "Singer Island"];
 
 const fcmbCredentials = [
-  { k: "Experience", v: "30 years of Palm Beach building" },
+  { k: "Experience", v: "30 years building Florida's coast" },
   { k: "Record", v: "Clean regulatory and disciplinary history" },
   { k: "References", v: "Verified by clients and subcontractors" },
   { k: "Warranty", v: "Written, minimum one-year guarantee" },
@@ -98,7 +98,7 @@ const Renovations = () => {
       <SEO
         title="Luxury Renovations | Beau Monde Builders Space Coast"
         canonical="/renovations"
-        description="Palm Beach's premier luxury renovation specialists. Discreet, full-service condominium and estate renovations by Florida Certified Master Builders."
+        description="the Space Coast's premier luxury renovation specialists. Discreet, full-service condominium and estate renovations by Florida Certified Master Builders."
       />
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
@@ -116,7 +116,7 @@ const Renovations = () => {
             <figure className="relative w-full overflow-hidden">
               <img
                 src={renovationMoment.url}
-                alt="A reimagined Palm Beach interior by Beau Monde Builders"
+                alt="A reimagined Space Coast interior by Beau Monde Builders"
                 className="w-full h-[60vh] md:h-[80vh] object-cover"
                 loading="lazy"
               />
@@ -191,7 +191,7 @@ const Renovations = () => {
                 <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-primary leading-[1.05] mb-10">
                   <span className="italic">Reimagine</span> your
                   <br />
-                  Palm Beach residence.
+                  Space Coast residence.
                 </h1>
 
                 <p className="font-sans font-light text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mb-12">
@@ -235,7 +235,7 @@ const Renovations = () => {
                   </span>
                 </div>
                 <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-primary leading-[1.1] mb-8">
-                  Palm Beach's finest
+                  The Space Coast's finest
                   <br />
                   <span className="italic text-muted-foreground">renovation specialists.</span>
                 </h2>
@@ -424,7 +424,7 @@ const Renovations = () => {
                   </span>
                 </div>
                 <h2 className="font-display text-3xl md:text-4xl text-primary-foreground leading-[1.05] mb-6">
-                  Built for Palm Beach's
+                  Built for the Space Coast's
                   <br />
                   <span className="italic text-primary-foreground/70">towers.</span>
                 </h2>

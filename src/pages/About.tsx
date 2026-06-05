@@ -36,13 +36,13 @@ const About = () => {
     <>
       <SEO 
         title="About AJ Hoover & Our Team"
-        description="Meet AJ Hoover, Florida Certified Master Builder and CEO of Beau Monde Builders. 30 years of excellence in luxury custom home building in Palm Beach."
+        description="Meet AJ Hoover, Florida Certified Master Builder and CEO of Beau Monde Builders. 30 years of excellence in luxury custom home building on Florida's Space Coast."
         canonical="/about"
       />
       <PersonSchema 
         name="AJ Hoover"
         jobTitle="CEO & Founder"
-        description="Florida Certified Master Builder with 30 years of experience in luxury custom home building. Founder of Beau Monde Builders, Palm Beach's premier luxury home builder."
+        description="Florida Certified Master Builder with 30 years of experience in luxury custom home building. Founder of Beau Monde Builders, the Space Coast's premier luxury home builder."
         image="https://bmb.builders/assets/aj-hoover.png"
       />
       <BreadcrumbSchema items={[

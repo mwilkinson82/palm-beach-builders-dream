@@ -47,7 +47,7 @@ const STYLES: Style[] = [
   {
     name: "Urban Classical",
     descriptor:
-      "Palm Beach gentility in town clothes — symmetry, scaled cornices, and rooms that know how to host.",
+      "Coastal Florida gentility in town clothes — symmetry, scaled cornices, and rooms that know how to host.",
     image: urbanClassical.url,
   },
   {
@@ -89,7 +89,7 @@ const STYLES: Style[] = [
   {
     name: "Transitional",
     descriptor:
-      "Traditional bones, modern interiors — the way most Palm Beach houses live today.",
+      "Traditional bones, modern interiors — the way most Space Coast houses live today.",
     image: transitional.url,
   },
   {
@@ -110,7 +110,7 @@ const projectsSchema = {
   "@type": "ItemList",
   name: "Beau Monde Builders — Style Studies",
   description:
-    "Ten design idioms — from Oceanfront to Regency — that shape Beau Monde's bespoke Palm Beach residences.",
+    "Ten design idioms — from Oceanfront to Regency — that shape Beau Monde's bespoke Space Coast residences.",
   itemListElement: STYLES.map((s, i) => ({
     "@type": "ListItem",
     position: i + 1,
@@ -884,7 +884,7 @@ const Projects = () => {
     <>
       <SEO
         title="Find Your Style"
-        description="Ten design idioms — Oceanfront, Mediterranean, Bermuda Colonial, Transitional and more — that shape Beau Monde's bespoke Palm Beach residences."
+        description="Ten design idioms — Oceanfront, Mediterranean, Bermuda Colonial, Transitional and more — that shape Beau Monde's bespoke Space Coast residences."
         canonical="/projects"
       />
       <BreadcrumbSchema

@@ -12,7 +12,7 @@ const contactPageSchema = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
   name: "Contact Beau Monde Builders",
-  description: "Schedule a private consultation for your luxury custom home in Palm Beach. Contact us at (321) 298-4122 or visit our Worth Avenue office.",
+  description: "Schedule a private consultation for your luxury custom home on Florida's Space Coast. Contact us at (321) 298-4122 or visit our Worth Avenue office.",
   url: "https://bmb.builders/contact",
 };
 

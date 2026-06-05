@@ -9,7 +9,7 @@ const Terms = () => {
       <SEO 
         title="Terms of Service"
         canonical="/terms"
-        description="Terms and conditions governing use of the Beau Monde Builders website and engagement of our Palm Beach luxury homebuilding services."
+        description="Terms and conditions governing use of the Beau Monde Builders website and engagement of our Space Coast luxury homebuilding services."
       />
       <div className="min-h-screen bg-background">
         <Navigation />
@@ -161,7 +161,7 @@ const Terms = () => {
                       These Terms shall be governed and construed in accordance with the laws of the State of 
                       Florida, United States, without regard to its conflict of law provisions. Any disputes 
                       arising under or in connection with these Terms shall be subject to the exclusive 
-                      jurisdiction of the courts located in Palm Beach County, Florida.
+                      jurisdiction of the courts located in Brevard County, Florida.
                     </p>
                   </div>
 
