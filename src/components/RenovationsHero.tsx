@@ -55,6 +55,7 @@ export const RenovationsHero = () => {
           loop
           playsInline
           preload="metadata"
+          disablePictureInPicture
           poster={posterAsset.url}
           className={`absolute inset-0 h-full w-full object-contain md:object-cover transition-opacity duration-[1200ms] ease-out ${
             ready ? "opacity-100" : "opacity-0"

@@ -83,8 +83,9 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
             muted={!audioOn}
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
             controls={false}
+            disablePictureInPicture
             className="absolute inset-0 h-full w-full pointer-events-none object-cover"
             style={{ border: 0 }}
           />
