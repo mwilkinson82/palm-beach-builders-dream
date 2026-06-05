@@ -1,59 +1,48 @@
-## TL;DR
+## The problem
+Two consecutive sections on `/renovations` use the same left-aligned text-on-empty-right layout:
 
-**Sound-on autoplay isn't possible** — every modern browser (Chrome, Safari, Firefox, mobile included) blocks unmuted autoplay until the user taps the page. The hero already does the maximum that's allowed: muted autoplay + a visible "Watch with sound" CTA.
+1. **"Reimagine your dream residence."** (seafoam band, with CTAs)
+2. **"The Space Coast and Central Florida's finest renovation specialists."** (ivory band)
 
-The good news: we can make the unmute moment feel intentional and guarantee AJ's "Good morning" is the first thing the visitor hears.
+Stacked back-to-back they read as twin slabs of copy with a vacant right column on each. The page loses rhythm before the credentials band.
 
-## The hero today
+## Proposed fix — two complementary moves
 
-- ReelReef iframe autoplays **muted + looping** behind the vignette.
-- A bottom-right pill reads "Watch with sound" → opens a full-screen lightbox with a fresh iframe (starts at t=0, with audio).
-
-So the "Good morning" line *does* play from the top whenever someone hits that button — the problem is the handoff feels abrupt.
-
-## What to change
-
-**1. Lead the eye to the CTA on landing.**
-Pulse / glow the "Watch with sound" pill for the first ~6 seconds after the hero mounts, then settle. Subtle — a soft brass ring + a one-time slide-up of the label "Hear AJ's welcome →". Reduces the "I missed it" feeling.
-
-**2. Insert a 2-second cinematic beat after the user taps.**
-When the user clicks "Watch with sound," the lightbox opens to a brief intro card before the iframe loads:
+### 1. "Reimagine your dream residence." → split editorial layout
+Convert the seafoam hero from single-column text to a 12-column split:
 
 ```text
-┌──────────────────────────────┐
-│                              │
-│       BEAU MONDE BUILDERS    │
-│       — Space Coast —        │
-│                              │
-│      A walkthrough with      │
-│         AJ Hoover            │
-│                              │
-│        ● ● ●  (fade)         │
-└──────────────────────────────┘
++-------------------------------+-----------------+
+|  Eyebrow · Renovations        |                 |
+|                               |   [renovation   |
+|  Reimagine your               |    interior     |
+|  dream residence.             |    detail —     |
+|                               |    portrait     |
+|  Lede paragraph (max-w-md)    |    aspect,      |
+|                               |    brass        |
+|  [Talk to Beau Monde] [Process]|   hairline]    |
++-------------------------------+-----------------+
 ```
 
-After ~2 seconds the card fades and the iframe mounts with `autoplay=1&muted=0&t=0`. Net effect: visitors are settled, eyes on the frame, ears ready — and the very first audio they hear is "Good morning."
+- Left column (≈col-span-7): existing eyebrow, headline, lede, CTAs — tightened width.
+- Right column (≈col-span-5): a tall portrait-aspect renovation image with the same thin brass hairline ring and soft navy shadow used on AJ's portrait, with a tiny brass "Recently Reimagined · Space Coast" caption underneath.
+- Image source: reuse one of the existing renovation interior assets already imported on this page (the "A residence, reimagined" hero image around line 119, or a sibling renovation shot if available). No new uploads required for the plan — pick whichever reads most "interior detail" rather than wide exterior so it complements, not duplicates, the hero image at the top of the page.
 
-**3. Keep the muted hero loop running** behind the lightbox so there's no jarring black flash during the 2-second beat.
+### 2. "The Space Coast and Central Florida's finest renovation specialists." → centered editorial
+Re-orient the second section so it doesn't visually rhyme with the first:
 
-**4. Respect `prefers-reduced-motion`** — skip the pulse and shorten the intro beat to ~500 ms.
+- Center the eyebrow rule, headline, and lede.
+- Tighten max-width and add a short centered brass hairline underline beneath the lede.
+- Keep it text-only (no image) so it functions as a quiet editorial pause before the FCMB credentials band — but its centered rhythm differentiates it from the new split hero above.
 
-## Why not "real" sound-on autoplay
+## Why this works
+- Adds a real image where there was dead space, without inflating the page.
+- Breaks the "twin slabs" pattern by giving each section a distinct composition (split vs. centered).
+- Stays inside brand discipline: hairline brass framing, navy shadow, Cormorant headlines, no new colors or fonts.
+- Zero new assets needed — reuses imagery already on the Renovations page.
 
-Even with tricks (Web Audio unlock, hidden user-gesture capture), Chrome's Media Engagement Index and Safari's autoplay policy will still mute the iframe on first visit. Attempting it produces a worse outcome: video starts, audio is silently dropped, and the "Good morning" is already gone by the time the user finds the unmute button. The 2-second beat solves the real problem without fighting the browser.
-
-## Files touched
-
-- `src/components/VideoHero.tsx` — pulse/label affordance on the CTA for the first few seconds.
-- `src/components/VideoLightbox.tsx` — optional `introDelayMs` + intro card render; defer iframe mount until the timer fires.
-- No backend, no design-token, no copy-sweep changes.
-
-## Open question for you
-
-Intro card copy — three options:
-
-- **A.** "Beau Monde Builders — Space Coast" / "A walkthrough with AJ Hoover" *(editorial, matches the wordmark)*
-- **B.** Just the emblem fading in on ivory, no words *(most cinematic)*
-- **C.** "Good morning." set in Cormorant, fades into the video *(meta, riskier, very memorable)*
-
-Tell me A / B / C (or write your own) and I'll build it.
+## Technical notes
+- Edits limited to `src/pages/Renovations.tsx` (the two sections roughly lines 179–250).
+- Use the existing `RevealAnimation` wrapper for both columns; stagger the right-column image with a small delay so it lands after the headline.
+- Mobile: image stacks below the text block on `<lg`, matching the page's existing responsive pattern.
+- No changes to routing, data, or other pages.
