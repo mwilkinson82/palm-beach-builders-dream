@@ -17,8 +17,8 @@ import { ArrowRight, Star } from "lucide-react";
 import fcmbLogo from "@/assets/fcmb-logo.png";
 import logoSketch from "@/assets/beau-monde-logo-sketch.jpeg";
 import renovationHero from "@/assets/projects/renovation-hero.jpg.asset.json";
-import bespokeDetail from "@/assets/projects/bespoke-detail.jpg.asset.json";
-import oceanfrontHero from "@/assets/projects/oceanfront.jpg.asset.json";
+import deliveryVideo from "@/assets/new-delivery.mp4.asset.json";
+import deliveryPoster from "@/assets/new-delivery-poster.jpg.asset.json";
 import nahbBadge from "@/assets/nahb-master-building-professional.png.asset.json";
 // Carousel skips c10, so carousel position N>=10 maps to c(N+1).
 import featuredResidence from "@/assets/constellation/c55.jpg.asset.json"; // carousel #54
@@ -329,18 +329,18 @@ const Home = () => {
 
           {/* Visual Column — layered Atlantic composition */}
           <div className="relative lg:w-7/12 min-h-[70vh] lg:min-h-0 group">
-            {/* Background base — Atlantic-front estate */}
+            {/* Background base — Shores at Tranquility (carousel #2) */}
             <div className="absolute inset-0 overflow-hidden">
               <Parallax speed={0.06} className="absolute inset-0">
                 <img
-                  src={oceanfrontHero.url}
-                  alt="Beau Monde Atlantic-front estate — Space Coast oceanfront architecture"
+                  src={bento02.url}
+                  alt="Beau Monde Space Coast residence — Shores at Tranquility"
                   className="w-full h-full object-cover scale-105 transition-transform duration-[3000ms] ease-out group-hover:scale-100"
                   loading="lazy"
                 />
               </Parallax>
-              {/* Ivory bleed from left so text column meets imagery softly */}
-              <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-background via-background/30 to-transparent lg:via-transparent" />
+              {/* Ivory bleed from left — strong on lg so the headline never fights the image */}
+              <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-background/10 lg:via-background/55 lg:to-transparent" />
               <div aria-hidden className="absolute inset-0 bg-primary/[0.04]" />
             </div>
 
@@ -348,18 +348,23 @@ const Home = () => {
             <div aria-hidden className="hidden lg:block absolute top-14 right-14 w-40 h-40 border-t border-r border-accent/30 z-20 transition-transform duration-[2000ms] ease-out group-hover:translate-x-3 group-hover:-translate-y-3" />
             <div aria-hidden className="hidden lg:block absolute bottom-1/3 right-1/4 w-24 h-px bg-accent/40 z-20" />
 
-            {/* Floating foreground caption card — interior */}
+            {/* Floating foreground card — Recent Delivery video */}
             <div className="relative lg:absolute lg:bottom-10 lg:-left-20 lg:right-16 z-40 px-4 sm:px-8 lg:px-0 -mt-12 lg:mt-0 pb-12 lg:pb-0">
               <RevealAnimation animation="fade-up" delay={420}>
                 <div className="relative bg-background p-3 md:p-4 shadow-[0_50px_100px_-20px_hsl(var(--primary)/0.3)]">
                   <div className="relative overflow-hidden aspect-[4/3]">
-                    <img
-                      src={bespokeDetail.url}
-                      alt="Beau Monde interior — coffered ceilings, brass lanterns, marble island"
-                      className="w-full h-full object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-105"
-                      loading="lazy"
+                    <video
+                      src={deliveryVideo.url}
+                      poster={deliveryPoster.url}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      className="w-full h-full object-cover"
+                      aria-label="Beau Monde recent delivery — featured residence walkthrough"
                     />
-                    <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-primary/55 via-transparent to-transparent" />
+                    <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-primary/55 via-transparent to-transparent pointer-events-none" />
                     {/* engraved corner hairline */}
                     <span
                       aria-hidden
@@ -368,7 +373,7 @@ const Home = () => {
                     {/* Caption bar */}
                     <div className="absolute bottom-0 left-0 right-0 bg-background/95 backdrop-blur-md py-5 px-6 md:px-8 border-t border-accent/15">
                       <span className="block font-sans text-[10px] tracking-[0.35em] uppercase text-accent mb-1.5">
-                        Oceanfront Living
+                        Recent Delivery · Space Coast
                       </span>
                       <span className="block font-display italic text-lg md:text-xl leading-tight text-primary">
                         Turning blueprints to fingerprints
