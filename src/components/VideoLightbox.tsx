@@ -23,6 +23,14 @@ interface VideoLightboxProps {
   initialIndex?: number;
   open: boolean;
   onClose: () => void;
+  /**
+   * Optional cinematic intro card shown for N ms before the player mounts.
+   * Lets the visitor settle so the first audio they hear is the very top of the clip.
+   * Only applied on the initial open; subsequent playlist switches skip it.
+   */
+  introDelayMs?: number;
+  introTitle?: string;
+  introSubtitle?: string;
 }
 
 /**
@@ -35,6 +43,9 @@ export const VideoLightbox = ({
   initialIndex = 0,
   open,
   onClose,
+  introDelayMs = 0,
+  introTitle,
+  introSubtitle,
 }: VideoLightboxProps) => {
   const [current, setCurrent] = useState(initialIndex);
   const playerRef = useRef<HTMLDivElement | null>(null);
@@ -44,6 +55,32 @@ export const VideoLightbox = ({
   useEffect(() => {
     if (open) setCurrent(initialIndex);
   }, [open, initialIndex]);
+
+  // Cinematic intro beat — defer iframe mount so the opening audio lands intentionally.
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+  const effectiveDelay = introDelayMs > 0
+    ? (prefersReducedMotion ? Math.min(introDelayMs, 500) : introDelayMs)
+    : 0;
+  const [introDone, setIntroDone] = useState(effectiveDelay === 0);
+  useEffect(() => {
+    if (!open) {
+      setIntroDone(effectiveDelay === 0);
+      return;
+    }
+    if (effectiveDelay === 0) {
+      setIntroDone(true);
+      return;
+    }
+    setIntroDone(false);
+    const t = window.setTimeout(() => setIntroDone(true), effectiveDelay);
+    return () => window.clearTimeout(t);
+  }, [open, effectiveDelay]);
+  // After the first item finishes its intro, switching playlist items skips the card.
+  useEffect(() => {
+    if (open && current !== initialIndex) setIntroDone(true);
+  }, [current, initialIndex, open]);
 
   useEffect(() => {
     if (!open) return;
