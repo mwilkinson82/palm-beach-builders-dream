@@ -15,34 +15,40 @@ const businessInfo = {
   legalName: "Beau Monde Builders LLC",
   url: "https://bmb.builders",
   logo: "https://bmb.builders/favicon.png",
-  description: "Florida's premier custom luxury home builder on Worth Avenue, Palm Beach. 30 years of bespoke homebuilding for discerning clients.",
+  description: "Florida's premier custom luxury home builder on the Space Coast. 30 years of bespoke homebuilding for discerning clients across Brevard County.",
   foundingDate: "1994",
   address: {
     streetAddress: "1129 Rockledge Boulevard",
-    addressLocality: "Palm Beach",
+    addressLocality: "Rockledge",
     addressRegion: "FL",
-    postalCode: "33480",
+    postalCode: "32955",
     addressCountry: "US"
   },
   geo: {
-    latitude: "26.7015",
-    longitude: "-80.0370"
+    latitude: "28.3464",
+    longitude: "-80.7253"
   },
   phone: "+1-321-298-4122",
   email: "ajhoover@mac.com",
   priceRange: "$$$$$",
   openingHours: ["Mo-Fr 09:00-17:00", "Sa By Appointment"],
-  sameAs: [
-    "https://instagram.com/beaumondebuilders",
-    "https://facebook.com/beaumondebuilders",
-    "https://linkedin.com/company/beaumondebuilders",
-    "https://youtube.com/@beaumondebuilders"
-  ],
+  sameAs: [],
   areaServed: [
-    "Palm Beach, FL",
-    "West Palm Beach, FL",
-    "Palm Beach County, FL",
-    "South Florida"
+    "Rockledge, FL",
+    "Cocoa, FL",
+    "Cocoa Beach, FL",
+    "Cape Canaveral, FL",
+    "Merritt Island, FL",
+    "Satellite Beach, FL",
+    "Indian Harbour Beach, FL",
+    "Indialantic, FL",
+    "Melbourne, FL",
+    "Melbourne Beach, FL",
+    "Viera, FL",
+    "Suntree, FL",
+    "Palm Bay, FL",
+    "Titusville, FL",
+    "Brevard County, FL"
   ],
   services: [
     "Custom Home Building",
@@ -125,7 +131,7 @@ const organizationSchema = {
   knowsAbout: [
     "Custom Home Building",
     "Luxury Construction",
-    "Palm Beach Architecture",
+    "Space Coast Architecture",
     "Florida Real Estate Development",
     "High-End Residential Construction"
   ]
@@ -159,7 +165,7 @@ const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "What makes Beau Monde Builders different from other luxury home builders in Palm Beach?",
+      name: "What makes Beau Monde Builders different from other luxury home builders on Florida's Space Coast?",
       acceptedAnswer: {
         "@type": "Answer",
         text: "Beau Monde Builders is led by AJ Hoover, a Florida Certified Master Builder with 30 years of experience. This elite designation is held by only the finest builders in Florida, requiring extensive experience, impeccable ethics, verified references, and unwavering commitment to client satisfaction. We provide hands-on leadership in every project, ensuring uncompromising quality."
@@ -170,7 +176,7 @@ const faqSchema = {
       name: "What areas does Beau Monde Builders serve?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Beau Monde Builders primarily serves Palm Beach, West Palm Beach, and Palm Beach County, Florida. We specialize in oceanfront estates, waterfront properties, and luxury custom homes throughout South Florida."
+        text: "Beau Monde Builders serves Brevard County and Florida's Space Coast — Rockledge, Cocoa, Cocoa Beach, Cape Canaveral, Merritt Island, Satellite Beach, Indian Harbour Beach, Indialantic, Melbourne, Melbourne Beach, Viera, Suntree, Palm Bay, and Titusville. We specialize in oceanfront, riverfront, and intracoastal custom homes from $2M to $5M and above."
       }
     },
     {
@@ -208,7 +214,7 @@ export const SEO = ({
   image = "https://bmb.builders/og-image.jpg",
   noIndex = false,
 }: SEOProps) => {
-  const siteTitle = "Beau Monde Builders Space Coast";
+  const siteTitle = "Beau Monde Builders — Space Coast";
   const fullTitle = title ? `${title} | ${siteTitle}` : `${siteTitle} — Luxury Custom Home Builder`;
   const canonicalUrl = canonical ? `${businessInfo.url}${canonical}` : businessInfo.url;
 
@@ -225,7 +231,7 @@ export const SEO = ({
       
       {/* Geo Tags for Local SEO */}
       <meta name="geo.region" content="US-FL" />
-      <meta name="geo.placename" content="Palm Beach" />
+      <meta name="geo.placename" content="Rockledge" />
       <meta name="geo.position" content={`${businessInfo.geo.latitude};${businessInfo.geo.longitude}`} />
       <meta name="ICBM" content={`${businessInfo.geo.latitude}, ${businessInfo.geo.longitude}`} />
       
@@ -315,7 +321,7 @@ export const PersonSchema = ({
     knowsAbout: [
       "Custom Home Building",
       "Luxury Construction",
-      "Palm Beach Real Estate"
+      "Space Coast Real Estate"
     ]
   };
 

@@ -43,7 +43,7 @@ const EMBLEM_MEANINGS = [
   },
   {
     title: "Palm Trees",
-    body: "Our geographical stamp — the tranquility and exclusive heritage of Florida's Space Coast woven into the design itself.",
+    body: "Our geographical stamp — the tranquility of Florida's Space Coast, from the Banana River to the Atlantic, woven into the design itself.",
   },
 ];
 
