@@ -217,9 +217,11 @@ const FrontCover = () => (
   >
     <motion.p
       variants={fadeUp}
-      className="font-sans text-[10px] tracking-[0.5em] uppercase text-accent"
+      className="font-sans text-[10px] tracking-[0.5em] uppercase text-accent leading-[2] text-center"
     >
-      Beau Monde · Space Coast &amp; Central Florida
+      Beau Monde
+      <br />
+      Space Coast &amp; Central Florida
     </motion.p>
 
     <div className="flex flex-col items-center gap-8">
