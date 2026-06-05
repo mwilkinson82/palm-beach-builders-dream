@@ -883,7 +883,7 @@ const Projects = () => {
   return (
     <>
       <SEO
-        title="Find Your Style — Palm Beach Design Studies"
+        title="Find Your Style"
         description="Ten design idioms — Oceanfront, Mediterranean, Bermuda Colonial, Transitional and more — that shape Beau Monde's bespoke Palm Beach residences."
         canonical="/projects"
       />
