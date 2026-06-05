@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import logoAsset from "@/assets/beau-monde-builders-logo.jpeg.asset.json";
+import logoAsset from "@/assets/beau-monde-builders-logo.png.asset.json";
 
 const logoSketch = logoAsset.url;
 
