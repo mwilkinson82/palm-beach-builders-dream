@@ -98,7 +98,7 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
             preload="metadata"
             controls={false}
             disablePictureInPicture
-            className="absolute inset-0 h-full w-full pointer-events-none object-cover"
+            className="absolute inset-0 h-full w-full pointer-events-none object-contain md:object-cover"
             style={{ border: 0 }}
           />
         )}
