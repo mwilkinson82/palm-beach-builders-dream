@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import logoAsset from "@/assets/beau-monde-builders-logo.jpeg.asset.json";
+import logoAsset from "@/assets/beau-monde-builders-logo.png.asset.json";
 
 const logoSketch = logoAsset.url;
 
@@ -70,12 +70,13 @@ export const SplashScreen = ({ duration = 3000, onComplete }: SplashScreenProps)
             : "opacity-100 scale-100"
         }`}
       >
-        {/* Logo Image */}
-        <div className="relative mb-8 bg-background rounded-sm p-6 sm:p-8 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.45)]">
+        {/* Logo Image — rendered white on navy via filter for contrast */}
+        <div className="relative mb-8">
           <img
             src={logoSketch}
             alt="Beau Monde Builders"
             className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 object-contain"
+            style={{ filter: "brightness(0) invert(1)" }}
           />
         </div>
 
