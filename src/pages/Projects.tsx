@@ -219,7 +219,7 @@ const FrontCover = () => (
       variants={fadeUp}
       className="font-sans text-[10px] tracking-[0.5em] uppercase text-accent"
     >
-      Beau Monde · Space Coast
+      Beau Monde · Space Coast &amp; Central Florida
     </motion.p>
 
     <div className="flex flex-col items-center gap-8">
