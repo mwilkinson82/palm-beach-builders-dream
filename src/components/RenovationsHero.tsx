@@ -1,29 +1,43 @@
 import { useEffect, useRef, useState } from "react";
-import { Volume2, VolumeX } from "lucide-react";
+import { Helmet } from "react-helmet-async";
+import { Play, Volume2, VolumeX } from "lucide-react";
 import { audioPreference } from "@/hooks/useAudioPreference";
 import videoAsset from "@/assets/renovations-hero.mp4.asset.json";
 import posterAsset from "@/assets/renovations-hero-poster.jpg.asset.json";
+
+// Detect a coarse pointer / small screen at module load so we can skip the
+// 82 MB autoplay download on cellular and wait for an explicit tap instead.
+const isMobileLike = () =>
+  typeof window !== "undefined" &&
+  (window.matchMedia("(max-width: 768px)").matches ||
+    window.matchMedia("(pointer: coarse)").matches);
 
 export const RenovationsHero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [ready, setReady] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [muted, setMuted] = useState(true);
+  const [mobile, setMobile] = useState(false);
+  const [started, setStarted] = useState(false);
 
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReducedMotion(mq.matches);
+    setReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    setMobile(isMobileLike());
   }, []);
 
+  // Only autoplay (and therefore download the full mp4) on desktop. On mobile
+  // we hold on the poster until the visitor taps Play — this prevents an
+  // ~82 MB download from kicking off the moment the page mounts on cellular.
   useEffect(() => {
     if (reducedMotion) return;
+    if (mobile && !started) return;
     const v = videoRef.current;
     if (!v) return;
     const onPlaying = () => setReady(true);
     v.addEventListener("playing", onPlaying);
     v.play().catch(() => {});
     return () => v.removeEventListener("playing", onPlaying);
-  }, [reducedMotion]);
+  }, [reducedMotion, mobile, started]);
 
   const toggleMute = () => {
     const v = videoRef.current;
@@ -35,26 +49,50 @@ export const RenovationsHero = () => {
     if (!next) v.play().catch(() => {});
   };
 
+  const handlePlay = () => {
+    setStarted(true);
+    // Unmute on intentional tap so the visitor actually hears the footage.
+    setMuted(false);
+    audioPreference.set(true);
+    const v = videoRef.current;
+    if (v) {
+      v.muted = false;
+      v.play().catch(() => {});
+    }
+  };
+
+  // Desktop preloads the video for an instant LCP-style reveal. Mobile skips
+  // the preload entirely so we don't burn cellular data before a tap.
+  const shouldPreload = !reducedMotion && !mobile;
+
   return (
     <section
       aria-label="Renovations cinematic introduction"
       className="relative h-[100svh] w-full overflow-hidden bg-black"
     >
+      {shouldPreload && (
+        <Helmet>
+          <link rel="preload" as="image" href={posterAsset.url} fetchPriority="high" />
+          <link rel="preload" as="video" href={videoAsset.url} type="video/mp4" />
+        </Helmet>
+      )}
+
       <img
         src={posterAsset.url}
         alt=""
         aria-hidden="true"
+        fetchPriority="high"
         className="absolute inset-0 h-full w-full object-contain md:object-cover"
       />
 
-      {!reducedMotion && (
+      {!reducedMotion && (!mobile || started) && (
         <video
           ref={videoRef}
           autoPlay
-          muted
+          muted={muted}
           loop
           playsInline
-          preload="metadata"
+          preload={mobile ? "none" : "metadata"}
           disablePictureInPicture
           poster={posterAsset.url}
           className={`absolute inset-0 h-full w-full object-contain md:object-cover transition-opacity duration-[1200ms] ease-out ${
@@ -63,6 +101,22 @@ export const RenovationsHero = () => {
         >
           <source src={videoAsset.url} type="video/mp4" />
         </video>
+      )}
+
+      {/* Mobile-only tap-to-play affordance — keeps the poster up until the
+          visitor opts in, avoiding an automatic 82 MB download on cellular. */}
+      {!reducedMotion && mobile && !started && (
+        <button
+          type="button"
+          onClick={handlePlay}
+          aria-label="Play renovations film"
+          className="absolute inset-0 z-20 flex flex-col items-center justify-center text-white focus:outline-none focus-visible:ring-1 focus-visible:ring-accent/60"
+        >
+          <span className="flex items-center justify-center h-16 w-16 rounded-full border border-accent/70 bg-black/30 backdrop-blur-md">
+            <Play className="h-6 w-6 text-accent" strokeWidth={1.25} />
+          </span>
+          <span className="mt-4 font-display italic text-base text-white/90">Tap to play</span>
+        </button>
       )}
 
       {/* Vignette + edge gradients for nav legibility, matching the home VideoHero */}
@@ -84,8 +138,8 @@ export const RenovationsHero = () => {
         <div className="w-px h-10 md:h-14 bg-gradient-to-b from-white/70 to-transparent" />
       </div>
 
-      {/* Bottom-right unmute pill */}
-      {!reducedMotion && (
+      {/* Bottom-right unmute pill — only after the video is actually playing. */}
+      {!reducedMotion && (!mobile || started) && (
         <button
           type="button"
           onClick={toggleMute}
