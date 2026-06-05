@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { Maximize2, Volume2, VolumeX } from "lucide-react";
-import { VideoLightbox } from "@/components/VideoLightbox";
 import { useAudioPreference, audioPreference } from "@/hooks/useAudioPreference";
 
 interface VideoHeroProps {
