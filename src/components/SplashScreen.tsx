@@ -98,7 +98,6 @@ export const SplashScreen = ({ duration = 3000, onComplete }: SplashScreenProps)
           </div>
         </div>
       </div>
-      </div>
 
       {/* CSS for loading animation */}
       <style>{`
