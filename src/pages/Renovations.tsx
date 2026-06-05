@@ -191,7 +191,7 @@ const Renovations = () => {
                 <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-primary leading-[1.05] mb-10">
                   <span className="italic">Reimagine</span> your
                   <br />
-                  Space Coast residence.
+                  dream residence.
                 </h1>
 
                 <p className="font-sans font-light text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mb-12">
