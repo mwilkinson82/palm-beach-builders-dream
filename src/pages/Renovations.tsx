@@ -55,7 +55,7 @@ const propertyTypes = [
   "Private Residences",
 ];
 
-const areasServed = ["Palm Beach Island", "West Palm Beach", "Jupiter Island", "Singer Island"];
+const areasServed = ["Rockledge", "Cocoa Beach", "Melbourne", "Indialantic", "Merritt Island", "Satellite Beach", "Viera"];
 
 const fcmbCredentials = [
   { k: "Experience", v: "30 years building Florida's coast" },

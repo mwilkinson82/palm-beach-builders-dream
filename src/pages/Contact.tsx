@@ -12,7 +12,7 @@ const contactPageSchema = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
   name: "Contact Beau Monde Builders",
-  description: "Schedule a private consultation for your luxury custom home on Florida's Space Coast. Contact us at (321) 298-4122 or visit our Worth Avenue office.",
+  description: "Schedule a private consultation for your luxury custom home on Florida's Space Coast. Contact us at (321) 298-4122 or visit our Rockledge office.",
   url: "https://bmb.builders/contact",
 };
 
@@ -94,7 +94,7 @@ const Contact = () => {
     <>
       <SEO 
         title="Contact Us"
-          description="Schedule a private consultation with Beau Monde Builders at 1129 Rockledge Boulevard, Palm Beach. Call (321) 298-4122. By appointment only."
+          description="Schedule a private consultation with Beau Monde Builders at 1129 Rockledge Boulevard, Rockledge. Call (321) 298-4122. By appointment only."
         canonical="/contact"
       />
       <BreadcrumbSchema items={[
@@ -124,7 +124,7 @@ const Contact = () => {
               </div>
               <div className="md:w-1/3">
                 <p className="font-sans text-foreground/70 font-light leading-relaxed text-base md:text-lg">
-                  Our office accepts a limited number of commissions each year. Share your vision and we will respond within twenty-four hours to arrange a private consultation on Worth Avenue.
+                  Our office accepts a limited number of commissions each year. Share your vision and we will respond within twenty-four hours to arrange a private consultation at our Rockledge office.
                 </p>
               </div>
             </div>
@@ -181,7 +181,7 @@ const Contact = () => {
                           style={{ border: 0, pointerEvents: "none" }}
                           loading="lazy"
                           referrerPolicy="no-referrer-when-downgrade"
-                          title="1129 Rockledge Boulevard, Palm Beach"
+                          title="1129 Rockledge Boulevard, Rockledge"
                           className="w-full h-full"
                         />
                       </div>

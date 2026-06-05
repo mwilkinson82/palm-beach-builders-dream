@@ -494,7 +494,7 @@ const Home = () => {
                 {
                   n: "I",
                   title: "Discretion",
-                  body: "Worth Avenue addresses, historic estates, occupied condominiums — handled with the privacy our clients expect. Quiet site protocols, vetted crews, no public reels.",
+                  body: "Oceanfront estates, historic homes, occupied condominiums — handled with the privacy our clients expect. Quiet site protocols, vetted crews, no public reels.",
                 },
                 {
                   n: "II",
@@ -817,7 +817,7 @@ const Home = () => {
             <div className="flex items-center justify-center gap-4 mb-8">
               <span className="h-px w-10 md:w-14 bg-accent/50" />
               <span className="font-sans text-[10px] md:text-xs tracking-[0.35em] uppercase text-accent">
-                By Appointment · Worth Avenue
+                By Appointment · Rockledge
               </span>
               <span className="h-px w-10 md:w-14 bg-accent/50" />
             </div>

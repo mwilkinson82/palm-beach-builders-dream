@@ -31,7 +31,7 @@ const Email = ({ firstName }: Props) => (
           We have received your inquiry and appreciate you reaching out to Beau Monde Builders.
         </Text>
         <Text style={text}>
-          Our office will review your message and respond within twenty-four hours to arrange a private consultation on Worth Avenue.
+          Our office will review your message and respond within twenty-four hours to arrange a private consultation at our Rockledge office.
         </Text>
         <Hr style={hr} />
         <Text style={signature}>Beau Monde Builders</Text>

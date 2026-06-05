@@ -109,7 +109,7 @@ const About = () => {
 
                 <RevealAnimation animation="fade-up" delay={640}>
                   <div className="mt-10 flex items-center gap-4 text-[10px] md:text-xs tracking-[0.4em] uppercase text-muted-foreground/70 font-sans">
-                    <span>Palm Beach</span>
+                    <span>Space Coast</span>
                     <span className="h-px w-6 bg-accent/50" />
                     <span>Est. by AJ Hoover</span>
                   </div>
