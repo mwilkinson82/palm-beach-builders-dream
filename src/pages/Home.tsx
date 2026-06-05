@@ -17,8 +17,8 @@ import { ArrowRight, Star } from "lucide-react";
 import fcmbLogo from "@/assets/fcmb-logo.png";
 import logoSketch from "@/assets/beau-monde-logo-sketch.jpeg";
 import renovationHero from "@/assets/projects/renovation-hero.jpg.asset.json";
-import bespokeDetail from "@/assets/projects/bespoke-detail.jpg.asset.json";
-import oceanfrontHero from "@/assets/projects/oceanfront.jpg.asset.json";
+import deliveryVideo from "@/assets/new-delivery.mp4.asset.json";
+import deliveryPoster from "@/assets/new-delivery-poster.jpg.asset.json";
 import nahbBadge from "@/assets/nahb-master-building-professional.png.asset.json";
 // Carousel skips c10, so carousel position N>=10 maps to c(N+1).
 import featuredResidence from "@/assets/constellation/c55.jpg.asset.json"; // carousel #54
