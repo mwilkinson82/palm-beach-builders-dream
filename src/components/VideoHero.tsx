@@ -19,6 +19,7 @@ const HERO_POSTER_SRC =
 
 export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
   const [open, setOpen] = useState(false);
+  const [handoffTime, setHandoffTime] = useState(0);
   const audioOn = useAudioPreference();
   const wrapRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -59,11 +60,26 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
     const video = videoRef.current;
     if (!video || reducedMotion) return;
 
+    // Lightbox is the active player — pause + mute the inline hero so audio
+    // doesn't double up and the visitor's playhead is preserved for handoff.
+    if (open) {
+      video.muted = true;
+      try { video.pause(); } catch { /* ignore */ }
+      return;
+    }
+
     video.muted = !audioOn || !inView;
 
     const playAttempt = video.play();
     if (playAttempt) playAttempt.catch(() => undefined);
-  }, [audioOn, inView, reducedMotion]);
+  }, [audioOn, inView, reducedMotion, open]);
+
+  const openLightbox = () => {
+    const v = videoRef.current;
+    const t = v && Number.isFinite(v.currentTime) ? v.currentTime : 0;
+    setHandoffTime(t);
+    setOpen(true);
+  };
 
   const toggleAudio = () => {
     const next = !audioOn;
@@ -164,7 +180,7 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
         </button>
         <button
           type="button"
-          onClick={() => setOpen(true)}
+          onClick={openLightbox}
           aria-label="Expand walkthrough to fullscreen"
           className="group flex items-center gap-2 border border-white/30 bg-black/30 backdrop-blur-md px-4 py-2.5 text-white text-[10px] md:text-xs uppercase tracking-[0.25em] font-light hover:border-accent hover:bg-black/50 transition-colors"
         >
@@ -176,12 +192,14 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
       <VideoLightbox
         items={[
           {
-            src: iframeSrc,
+            src: HERO_VIDEO_SRC,
+            poster: HERO_POSTER_SRC,
             title: "Walkthrough with AJ Hoover",
             caption: "Walkthrough with AJ Hoover",
             subtitle:
               "Chief Executive Officer · Newly Completed Residence · Beau Monde Builders, Space Coast",
-            kind: "iframe",
+            kind: "mp4",
+            startTime: handoffTime,
           },
         ]}
         open={open}

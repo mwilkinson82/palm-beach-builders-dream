@@ -15,6 +15,8 @@ export interface LightboxVideo {
   poster?: string;
   /** How to render */
   kind: "iframe" | "mp4";
+  /** Optional starting playhead in seconds — used to hand off from the inline hero. */
+  startTime?: number;
 }
 
 interface VideoLightboxProps {
@@ -220,6 +222,11 @@ export const VideoLightbox = ({
               autoPlay
               controls
               playsInline
+              onLoadedMetadata={(e) => {
+                if (typeof item.startTime === "number" && item.startTime > 0) {
+                  try { (e.currentTarget as HTMLVideoElement).currentTime = item.startTime; } catch { /* ignore */ }
+                }
+              }}
               className="absolute inset-0 h-full w-full object-contain bg-black animate-fade-in"
             />
           )}
