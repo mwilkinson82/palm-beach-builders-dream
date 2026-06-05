@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-import { Maximize2, Volume2 } from "lucide-react";
+import { Maximize2, Volume2, VolumeX } from "lucide-react";
 import { VideoLightbox } from "@/components/VideoLightbox";
-import { useAudioPreference } from "@/hooks/useAudioPreference";
+import { useAudioPreference, audioPreference } from "@/hooks/useAudioPreference";
 
 interface VideoHeroProps {
   iframeSrc?: string;
 }
 
 // Space Coast hero — AJ Hoover walkthrough of a newly completed Beau Monde residence.
-// The walkthrough is served as an embeddable iframe (ReelReef); the hero autoplays
-// muted until the user opens the lightbox for sound + full controls.
+// Autoplays muted on landing (browser policy); a single tap anywhere on the hero
+// unmutes in place and restarts the clip from 0 so the opening "Good morning" lands.
 const DEFAULT_SRC =
   "https://media.reelreef.com/videos/019caebd-3875-71e0-b3da-bde3d856926a";
 
@@ -18,21 +18,22 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
   const audioOn = useAudioPreference();
   const wrapRef = useRef<HTMLDivElement>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
-  const [ctaHinting, setCtaHinting] = useState(true);
+  const [promptHinting, setPromptHinting] = useState(true);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReducedMotion(mq.matches);
   }, []);
 
-  // Draw the eye to the sound CTA for the first few seconds, then settle.
+  // Center prompt fades after a beat so it doesn't compete with the footage.
   useEffect(() => {
-    if (audioOn) { setCtaHinting(false); return; }
-    const t = window.setTimeout(() => setCtaHinting(false), 6000);
+    if (audioOn) { setPromptHinting(false); return; }
+    const t = window.setTimeout(() => setPromptHinting(false), 6000);
     return () => window.clearTimeout(t);
   }, [audioOn]);
 
-  // Compose autoplay loop iframe src
+  // Compose iframe src. Restart from t=0 whenever audio state flips so the
+  // "Good morning" intro is the first thing the visitor hears on unmute.
   let inlineSrc = iframeSrc;
   try {
     const url = new URL(iframeSrc);
@@ -40,10 +41,13 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
     url.searchParams.set("muted", audioOn ? "0" : "1");
     url.searchParams.set("loop", "1");
     url.searchParams.set("controls", "0");
+    url.searchParams.set("t", "0");
     inlineSrc = url.toString();
   } catch {
     /* ignore */
   }
+
+  const toggleAudio = () => audioPreference.set(!audioOn);
 
   return (
     <section
@@ -69,8 +73,33 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
       <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/80 to-transparent" />
       <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/60 to-transparent" />
 
+      {/* Full-area tap target: single tap unmutes (or re-mutes) the hero in place. */}
+      <button
+        type="button"
+        onClick={toggleAudio}
+        aria-label={audioOn ? "Mute the walkthrough" : "Tap anywhere for sound"}
+        className="absolute inset-0 z-[5] cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-accent/60"
+      />
+
+      {/* Centered first-touch prompt — fades after the visitor has had a beat. */}
+      {!audioOn && promptHinting && !reducedMotion && (
+        <div className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center text-white animate-fade-in">
+          <span
+            className="flex items-center justify-center h-16 w-16 md:h-20 md:w-20 rounded-full border border-accent/70 bg-black/30 backdrop-blur-md animate-pulse"
+          >
+            <Volume2 className="h-6 w-6 md:h-7 md:w-7 text-accent" strokeWidth={1.25} />
+          </span>
+          <span className="mt-4 font-display italic text-base md:text-lg text-white/90">
+            Tap for sound
+          </span>
+          <span className="mt-1 font-sans uppercase text-[9px] md:text-[10px] tracking-[0.35em] text-white/60">
+            Hear AJ's welcome
+          </span>
+        </div>
+      )}
+
       {/* Bottom-left brand mark */}
-      <div className="absolute bottom-8 left-4 sm:left-8 lg:left-16 z-10 flex items-center space-x-3 text-white">
+      <div className="pointer-events-none absolute bottom-8 left-4 sm:left-8 lg:left-16 z-10 flex items-center space-x-3 text-white">
         <div className="h-px w-8 md:w-12 bg-accent" />
         <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] font-light text-white/80">
           Space Coast, Florida
@@ -78,34 +107,33 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
       </div>
 
       {/* Bottom-center scroll indicator */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden sm:flex flex-col items-center text-white/70 animate-float">
+      <div className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden sm:flex flex-col items-center text-white/70 animate-float">
         <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] mb-2">Scroll</span>
         <div className="w-px h-10 md:h-14 bg-gradient-to-b from-white/70 to-transparent" />
       </div>
 
-      {/* Click-through to open lightbox with sound */}
-      <div className="absolute bottom-8 right-4 sm:right-8 lg:right-16 z-10 flex flex-col items-end gap-2">
-        {ctaHinting && !reducedMotion && !audioOn && (
-          <span className="font-display italic text-white/90 text-sm md:text-base animate-fade-in">
-            Hear AJ's welcome →
-          </span>
-        )}
+      {/* Bottom-right utility controls: persistent mute toggle + expand to lightbox. */}
+      <div className="absolute bottom-8 right-4 sm:right-8 lg:right-16 z-10 flex items-center gap-2">
+        <button
+          type="button"
+          onClick={toggleAudio}
+          aria-label={audioOn ? "Mute" : "Unmute"}
+          className="flex items-center justify-center h-10 w-10 border border-white/30 bg-black/30 backdrop-blur-md text-white hover:border-accent hover:bg-black/50 transition-colors"
+        >
+          {audioOn ? (
+            <Volume2 className="h-4 w-4 text-accent" strokeWidth={1.25} />
+          ) : (
+            <VolumeX className="h-4 w-4 text-white/80" strokeWidth={1.25} />
+          )}
+        </button>
         <button
           type="button"
           onClick={() => setOpen(true)}
-          aria-label="Watch the walkthrough with sound and full controls"
-          className={`group flex items-center gap-2 border bg-black/30 backdrop-blur-md px-4 py-2.5 text-white text-[10px] md:text-xs uppercase tracking-[0.25em] font-light hover:border-accent hover:bg-black/50 transition-all ${
-            ctaHinting && !audioOn
-              ? "border-accent ring-2 ring-accent/40 animate-pulse"
-              : "border-white/30"
-          }`}
+          aria-label="Expand walkthrough to fullscreen"
+          className="group flex items-center gap-2 border border-white/30 bg-black/30 backdrop-blur-md px-4 py-2.5 text-white text-[10px] md:text-xs uppercase tracking-[0.25em] font-light hover:border-accent hover:bg-black/50 transition-colors"
         >
-          {audioOn ? (
-            <Maximize2 className="h-3.5 w-3.5 md:h-4 md:w-4 text-accent" strokeWidth={1.25} />
-          ) : (
-            <Volume2 className="h-3.5 w-3.5 md:h-4 md:w-4 text-accent" strokeWidth={1.25} />
-          )}
-          <span>{audioOn ? "Expand" : "Watch with sound"}</span>
+          <Maximize2 className="h-3.5 w-3.5 md:h-4 md:w-4 text-accent" strokeWidth={1.25} />
+          <span>Expand</span>
         </button>
       </div>
 
@@ -122,9 +150,6 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
         ]}
         open={open}
         onClose={() => setOpen(false)}
-        introDelayMs={2000}
-        introTitle="Beau Monde Builders · Space Coast"
-        introSubtitle="A walkthrough with AJ Hoover"
       />
     </section>
   );
