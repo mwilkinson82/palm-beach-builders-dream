@@ -18,11 +18,19 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
   const audioOn = useAudioPreference();
   const wrapRef = useRef<HTMLDivElement>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [ctaHinting, setCtaHinting] = useState(true);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReducedMotion(mq.matches);
   }, []);
+
+  // Draw the eye to the sound CTA for the first few seconds, then settle.
+  useEffect(() => {
+    if (audioOn) { setCtaHinting(false); return; }
+    const t = window.setTimeout(() => setCtaHinting(false), 6000);
+    return () => window.clearTimeout(t);
+  }, [audioOn]);
 
   // Compose autoplay loop iframe src
   let inlineSrc = iframeSrc;
