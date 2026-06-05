@@ -60,11 +60,26 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
     const video = videoRef.current;
     if (!video || reducedMotion) return;
 
+    // Lightbox is the active player — pause + mute the inline hero so audio
+    // doesn't double up and the visitor's playhead is preserved for handoff.
+    if (open) {
+      video.muted = true;
+      try { video.pause(); } catch { /* ignore */ }
+      return;
+    }
+
     video.muted = !audioOn || !inView;
 
     const playAttempt = video.play();
     if (playAttempt) playAttempt.catch(() => undefined);
-  }, [audioOn, inView, reducedMotion]);
+  }, [audioOn, inView, reducedMotion, open]);
+
+  const openLightbox = () => {
+    const v = videoRef.current;
+    const t = v && Number.isFinite(v.currentTime) ? v.currentTime : 0;
+    setHandoffTime(t);
+    setOpen(true);
+  };
 
   const toggleAudio = () => {
     const next = !audioOn;
