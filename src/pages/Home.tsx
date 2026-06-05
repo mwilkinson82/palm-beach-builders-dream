@@ -360,6 +360,7 @@ const Home = () => {
                       muted
                       loop
                       playsInline
+                      controls
                       preload="metadata"
                       disablePictureInPicture
                       className="w-full h-full object-cover"
