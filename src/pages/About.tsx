@@ -124,7 +124,7 @@ const About = () => {
                   className="relative will-change-transform"
                   style={{ transform: `translate3d(0, ${portraitY}px, 0)` }}
                 >
-                  <div className="relative aspect-square overflow-hidden">
+                  <div className="relative aspect-square overflow-hidden ring-1 ring-accent/60">
                     <img
                       src={ajImage}
                       alt="AJ Hoover, Founder of Beau Monde Builders"
