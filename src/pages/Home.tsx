@@ -96,13 +96,10 @@ const Home = () => {
 
       <h1 className="sr-only">Beau Monde Builders — Custom Luxury Home Builder on Florida's Space Coast</h1>
 
-      {/* Hero Section - Cinematic Video */}
+      {/* Hero Section — AJ Hoover walkthrough of a newly completed Space Coast residence */}
       <VideoHero />
 
-      {/* Founder Walkthrough */}
-      <WalkthroughShowcase />
-
-      {/* Realtor Interview with AJ — paired with the walkthrough (same home, two lenses) */}
+      {/* Realtor Interview with AJ — companion lens on the same home */}
       <InterviewShowcase />
 
       {/* New Delivery Showcase */}
