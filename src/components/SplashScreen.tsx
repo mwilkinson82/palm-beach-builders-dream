@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import logoSketch from "@/assets/beau-monde-logo-sketch.jpeg";
+import logoAsset from "@/assets/beau-monde-builders-logo.jpeg.asset.json";
+
+const logoSketch = logoAsset.url;
 
 interface SplashScreenProps {
   duration?: number;
