@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { Maximize2, Volume2, VolumeX } from "lucide-react";
-import { VideoLightbox } from "@/components/VideoLightbox";
 import { useAudioPreference, audioPreference } from "@/hooks/useAudioPreference";
 
 interface VideoHeroProps {
@@ -18,8 +17,6 @@ const HERO_POSTER_SRC =
   "https://image.mux.com/RobUQ1iPAyHL00WrjLg7XgIPxrqkE9ID9/thumbnail.png?width=1920&height=1080&smart_crop=true&time=1";
 
 export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
-  const [open, setOpen] = useState(false);
-  const [handoffTime, setHandoffTime] = useState(0);
   const audioOn = useAudioPreference();
   const wrapRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -60,25 +57,27 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
     const video = videoRef.current;
     if (!video || reducedMotion) return;
 
-    // Lightbox is the active player — pause + mute the inline hero so audio
-    // doesn't double up and the visitor's playhead is preserved for handoff.
-    if (open) {
-      video.muted = true;
-      try { video.pause(); } catch { /* ignore */ }
-      return;
-    }
-
     video.muted = !audioOn || !inView;
 
     const playAttempt = video.play();
     if (playAttempt) playAttempt.catch(() => undefined);
-  }, [audioOn, inView, reducedMotion, open]);
+  }, [audioOn, inView, reducedMotion]);
 
-  const openLightbox = () => {
-    const v = videoRef.current;
-    const t = v && Number.isFinite(v.currentTime) ? v.currentTime : 0;
-    setHandoffTime(t);
-    setOpen(true);
+  // Expand the hero in place using the native Fullscreen API — no second
+  // player, no playhead handoff. iOS Safari uses webkitEnterFullscreen on
+  // the <video> element itself; everywhere else uses element fullscreen.
+  const expandFullscreen = () => {
+    const v = videoRef.current as any;
+    if (!v) return;
+    // Unmute on intentional expand so audio rides through fullscreen.
+    if (!audioOn) audioPreference.set(true);
+    if (typeof v.webkitEnterFullscreen === "function") {
+      try { v.webkitEnterFullscreen(); return; } catch { /* fallthrough */ }
+    }
+    const req = v.requestFullscreen || v.webkitRequestFullscreen || v.msRequestFullscreen;
+    if (typeof req === "function") {
+      try { req.call(v); } catch { /* ignore */ }
+    }
   };
 
   const toggleAudio = () => {
@@ -180,7 +179,7 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
         </button>
         <button
           type="button"
-          onClick={openLightbox}
+          onClick={expandFullscreen}
           aria-label="Expand walkthrough to fullscreen"
           className="group flex items-center gap-2 border border-white/30 bg-black/30 backdrop-blur-md px-4 py-2.5 text-white text-[10px] md:text-xs uppercase tracking-[0.25em] font-light hover:border-accent hover:bg-black/50 transition-colors"
         >
@@ -188,23 +187,6 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
           <span>Expand</span>
         </button>
       </div>
-
-      <VideoLightbox
-        items={[
-          {
-            src: HERO_VIDEO_SRC,
-            poster: HERO_POSTER_SRC,
-            title: "Walkthrough with AJ Hoover",
-            caption: "Walkthrough with AJ Hoover",
-            subtitle:
-              "Chief Executive Officer · Newly Completed Residence · Beau Monde Builders, Space Coast",
-            kind: "mp4",
-            startTime: handoffTime,
-          },
-        ]}
-        open={open}
-        onClose={() => setOpen(false)}
-      />
     </section>
   );
 };
