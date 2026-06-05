@@ -75,14 +75,14 @@ export const SplashScreen = ({ duration = 3000, onComplete }: SplashScreenProps)
           <img
             src={logoSketch}
             alt="Beau Monde Builders"
-            className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 object-contain"
+            className="w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 object-contain"
           />
         </div>
 
         {/* Brand Text */}
         <div className="text-center">
           <p className="text-sm sm:text-base md:text-lg tracking-[0.25em] uppercase text-primary/60 font-light mt-2">
-            Space Coast in Central Florida
+            Space Coast and Central Florida
           </p>
         </div>
 
