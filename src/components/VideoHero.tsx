@@ -65,7 +65,19 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
     if (playAttempt) playAttempt.catch(() => undefined);
   }, [audioOn, inView, reducedMotion]);
 
-  const toggleAudio = () => audioPreference.set(!audioOn);
+  const toggleAudio = () => {
+    const next = !audioOn;
+    // Turning sound ON via the tap target should always restart from frame 0
+    // so the visitor hears AJ's opening "Good morning." Auto-mute on scroll-out
+    // doesn't go through this path, so playhead is preserved on scroll-back.
+    if (next) {
+      const video = videoRef.current;
+      if (video) {
+        try { video.currentTime = 0; } catch { /* ignore seek errors before metadata */ }
+      }
+    }
+    audioPreference.set(next);
+  };
 
   return (
     <section
