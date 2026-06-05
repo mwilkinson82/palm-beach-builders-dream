@@ -52,6 +52,7 @@ export const RevealAnimation = ({
     "slide-right": "reveal-slide-right",
     "scale-in": "reveal-scale-in",
     "luxury-reveal": "reveal-luxury",
+    "curtain": "reveal-curtain",
   }[animation];
 
   return (
