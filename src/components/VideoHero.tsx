@@ -57,25 +57,27 @@ export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
     const video = videoRef.current;
     if (!video || reducedMotion) return;
 
-    // Lightbox is the active player — pause + mute the inline hero so audio
-    // doesn't double up and the visitor's playhead is preserved for handoff.
-    if (open) {
-      video.muted = true;
-      try { video.pause(); } catch { /* ignore */ }
-      return;
-    }
-
     video.muted = !audioOn || !inView;
 
     const playAttempt = video.play();
     if (playAttempt) playAttempt.catch(() => undefined);
-  }, [audioOn, inView, reducedMotion, open]);
+  }, [audioOn, inView, reducedMotion]);
 
-  const openLightbox = () => {
-    const v = videoRef.current;
-    const t = v && Number.isFinite(v.currentTime) ? v.currentTime : 0;
-    setHandoffTime(t);
-    setOpen(true);
+  // Expand the hero in place using the native Fullscreen API — no second
+  // player, no playhead handoff. iOS Safari uses webkitEnterFullscreen on
+  // the <video> element itself; everywhere else uses element fullscreen.
+  const expandFullscreen = () => {
+    const v = videoRef.current as any;
+    if (!v) return;
+    // Unmute on intentional expand so audio rides through fullscreen.
+    if (!audioOn) audioPreference.set(true);
+    if (typeof v.webkitEnterFullscreen === "function") {
+      try { v.webkitEnterFullscreen(); return; } catch { /* fallthrough */ }
+    }
+    const req = v.requestFullscreen || v.webkitRequestFullscreen || v.msRequestFullscreen;
+    if (typeof req === "function") {
+      try { req.call(v); } catch { /* ignore */ }
+    }
   };
 
   const toggleAudio = () => {
