@@ -19,6 +19,7 @@ const HERO_POSTER_SRC =
 
 export const VideoHero = ({ iframeSrc = DEFAULT_SRC }: VideoHeroProps) => {
   const [open, setOpen] = useState(false);
+  const [handoffTime, setHandoffTime] = useState(0);
   const audioOn = useAudioPreference();
   const wrapRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
