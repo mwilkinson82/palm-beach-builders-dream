@@ -270,7 +270,7 @@ const FieldUnderline = ({
   textarea?: boolean;
 }) => {
   const sharedClasses =
-    "w-full bg-transparent border-b border-foreground/15 py-3 md:py-4 font-sans font-light text-base md:text-lg text-foreground placeholder:text-foreground/30 focus:outline-none transition-colors duration-500 peer";
+    "w-full bg-transparent border-b border-foreground/15 py-3 md:py-4 font-sans font-light text-base md:text-lg text-foreground placeholder:text-foreground/60 focus:outline-none transition-colors duration-500 peer";
   return (
     <div className="group relative">
       <label htmlFor={id} className="block text-[9px] md:text-[10px] tracking-[0.35em] uppercase text-accent font-sans font-medium mb-1">

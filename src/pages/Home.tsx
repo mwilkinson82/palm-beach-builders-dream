@@ -513,7 +513,7 @@ const Home = () => {
                       <span className="font-display italic text-5xl md:text-6xl font-light text-accent leading-none">
                         {row.n}
                       </span>
-                      <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-foreground/40 mt-2">
+                      <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-foreground/60 mt-2">
                         0{i + 1} / 03
                       </span>
                     </div>
@@ -784,7 +784,7 @@ const Home = () => {
                     <span className="font-display italic text-5xl md:text-6xl font-light text-accent leading-none">
                       {row.n}
                     </span>
-                    <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-foreground/40 mt-2">
+                    <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-foreground/60 mt-2">
                       0{i + 1} / 03
                     </span>
                   </div>
