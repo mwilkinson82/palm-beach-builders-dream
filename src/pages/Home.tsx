@@ -361,6 +361,7 @@ const Home = () => {
                       loop
                       playsInline
                       preload="metadata"
+                      disablePictureInPicture
                       className="w-full h-full object-cover"
                       aria-label="Beau Monde recent delivery — featured residence walkthrough"
                     />
