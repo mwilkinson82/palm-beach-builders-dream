@@ -58,7 +58,7 @@ export const SplashScreen = ({ duration = 3000, onComplete }: SplashScreenProps)
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-primary transition-opacity duration-700 ${
+      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background transition-opacity duration-700 ${
         phase === "exiting" ? "opacity-0" : "opacity-100"
       }`}
     >
@@ -70,26 +70,25 @@ export const SplashScreen = ({ duration = 3000, onComplete }: SplashScreenProps)
             : "opacity-100 scale-100"
         }`}
       >
-        {/* Logo Image — rendered white on navy via filter for contrast */}
+        {/* Logo Image — natural blue on ivory */}
         <div className="relative mb-8">
           <img
             src={logoSketch}
             alt="Beau Monde Builders"
             className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 object-contain"
-            style={{ filter: "brightness(0) invert(1)" }}
           />
         </div>
 
         {/* Brand Text */}
         <div className="text-center">
-          <p className="text-sm sm:text-base md:text-lg tracking-[0.25em] uppercase text-background/70 font-light mt-2">
+          <p className="text-sm sm:text-base md:text-lg tracking-[0.25em] uppercase text-primary/60 font-light mt-2">
             Space Coast in Central Florida
           </p>
         </div>
 
         {/* Subtle loading indicator */}
         <div className="mt-12">
-          <div className="w-32 h-px bg-background/15 overflow-hidden">
+          <div className="w-32 h-px bg-primary/10 overflow-hidden">
             <div
               className={`h-full bg-accent origin-left ${imageLoaded ? '' : 'opacity-0'}`}
               style={{

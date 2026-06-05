@@ -34,12 +34,19 @@ export const Navigation = () => {
         <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
           <Link to="/" className="group flex items-center" aria-label="Beau Monde Builders — Space Coast in Central Florida">
-            <img
-              src={logoAsset.url}
-              alt="Beau Monde Builders"
-              className="h-14 md:h-16 w-auto object-contain transition-[filter] duration-500"
-              style={solid ? undefined : { filter: "brightness(0) invert(1)" }}
-            />
+            <div
+              className={`flex items-center justify-center transition-all duration-500 rounded-sm ${
+                solid
+                  ? "bg-transparent px-0 py-0 shadow-none ring-0"
+                  : "bg-background px-3 py-2 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.45)] ring-1 ring-accent/20"
+              }`}
+            >
+              <img
+                src={logoAsset.url}
+                alt="Beau Monde Builders"
+                className="h-12 md:h-14 w-auto object-contain"
+              />
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
