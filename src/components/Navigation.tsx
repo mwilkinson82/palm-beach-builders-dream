@@ -46,7 +46,7 @@ export const Navigation = () => {
                   Beau Monde
                 </span>
                 <span className={`mt-1 text-[10px] tracking-[0.3em] uppercase font-light transition-colors duration-500 ${mutedClass}`}>
-                  Builders · Space Coast in Central Florida
+                  Builders · Space Coast and Central Florida
                 </span>
               </div>
             )}
