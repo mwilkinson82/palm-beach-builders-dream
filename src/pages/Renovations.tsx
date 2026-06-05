@@ -237,7 +237,7 @@ const Renovations = () => {
                   <figcaption className="mt-4 flex items-center space-x-3">
                     <span className="h-px w-8 bg-accent" />
                     <span className="font-sans text-[10px] tracking-[0.35em] uppercase text-accent">
-                      Recently Reimagined · Space Coast
+                      Recently Reimagined
                     </span>
                   </figcaption>
                 </figure>
