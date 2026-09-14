@@ -1,73 +1,34 @@
-# Welcome to your Lovable project
+# BMB Main
 
-## Project info
+The attached are screenshots from Beau Monde Builders, they are my client in Florida, they are Luxury Custom Home Builders. They just opened a new location in Palm Beach Florida at 205 Worth Avenue, Suite 120, Palm Beach, FL 33480.
 
-**URL**: https://lovable.dev/projects/e6ff6f01-3217-4ab3-a673-5d35272d28ac
+We need to create an Ultra Luxury Website for Beau Monde Builders that is specifically for Palm Beach and the surrounding area that is hyper wealthy and cater to that market. That market is ultra high-end design aesthetic, design focused and luxury build from start to finish. 
 
-## How can I edit this code?
+AJ is the CEO of the company and hands on involved in every project from start to finish and has a remarkable team of experienced industry professionals, designers, project managers, superintendents and a highly rigorous qualifying process for all of his subs. 
 
-There are several ways of editing your application.
+AJ has received press and will continue to receive press and has a robust social media so we will need pages that are specifically for Press and Social Media. 
 
-**Use Lovable**
+This site cannot be boilerplate and templated and has to ooze luxury and sophistication and tech
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/e6ff6f01-3217-4ab3-a673-5d35272d28ac) and start prompting.
+This project was built with [Lovable](https://lovable.dev).
 
-Changes made via Lovable will be committed automatically to this repo.
+**Live app**: https://palm-beach-builders-dream.lovable.app
 
-**Use your preferred IDE**
+## Build with Lovable
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/208cb33e-aeea-4e2c-83d1-5a33f1ccea18).
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **Ship faster**: describe what you want to build and Lovable handles the code.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
-Follow these steps:
+## Development
+
+Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+git clone <this-repository-url>
+cd <repository-name>
 npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/e6ff6f01-3217-4ab3-a673-5d35272d28ac) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
